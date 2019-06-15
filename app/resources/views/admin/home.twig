@@ -1,0 +1,35 @@
+
+{% extends 'layoutAdmin.twig' %}
+
+{% block content %}
+<div class="md-col-12">
+<br>
+<br>
+<br>
+     <table class="table table-bordered">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+             <th scope="col">Telefone</th>
+            <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+   {% for contacto in contact %}
+        <tr>
+            <th scope="row">{{contacto.id}}</th>
+            <td>{{ contacto.name }}</td>
+            <td>{{ contacto.email }}</td>
+             <td>{{ contacto.telefone }}</td>
+            <td>
+            <a href="/GetcontactID?id={{contacto.id}}" class="btn btn-primary">View</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
+
+{% endblock %}

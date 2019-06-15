@@ -1,0 +1,1 @@
+../atlas/cli/bin/atlas-skeleton.php

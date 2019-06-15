@@ -1,0 +1,14 @@
+{% extends 'layout.twig' %}
+
+
+{% block content %}
+    
+   
+   {% for message in messages %}
+    <div class="alert alert-danger">
+    <li>{{ message[0] }}</li>
+    </div>
+    {% endfor %}
+
+ 
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'layoutAdmin.twig' %}
+
+{% block content %}
+
+<div class="md-col-12">
+<br>
+<br>
+<br>
+<div class="md-col-12">
+     <table class="table table-bordered">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+             <th scope="col">Telefone</th>
+            <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+ {% for contacto in contact %}
+
+    <tr>
+            <th scope="row">{{contacto.id}}</th>
+            <td>{{ contacto.name }}</td>
+            <td>{{ contacto.email }}</td>
+             <td>{{ contacto.telefone }}</td>
+            <td>
+            <a href="/GetcontactID?id={{contacto.id}}" class="btn btn-primary" data-toggle="modal" data-target="#update" data-whatever="@fat">Update</a>
+            <a href="/DeleteContact?id={{contacto.id}}" class="btn btn-danger">Delete</a>
+            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">SMS</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">{{contacto.text}}</td>
+        </tr>
+    {% endfor %}
+     </tbody>
+    </table>
+
+
+</div>
+
+    </table>
+
+
+
+
+    <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="/putContact">
+         {% for contacto in contact %}
+
+        <input type="text" class="form-control" id="recipient-name" value="{{contacto.id}}" name="id">
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Telefone:</label>
+            <input type="text" class="form-control" id="recipient-name" value="{{contacto.telefone}}" name="telefone">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Email:</label>
+            <input type="text" class="form-control" id="recipient-name" value="{{contacto.email}}" name="email">
+          </div>
+           {% endfor %}
+          <input type="submit" value="Teste" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+{% endblock %}
