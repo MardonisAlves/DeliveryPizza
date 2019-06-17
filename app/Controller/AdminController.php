@@ -26,7 +26,7 @@ class AdminController extends Validate
 
 public function home(Request $request, Response $response, $args)
 {
-if(isset($_COOKIE["name"])){
+if(!isset($_COOKIE["name"])){
   //echo $_COOKIE["email"];
     $contact =  $this->em->getRepository('App\Model\Contact')->findAll();
     return $this->container->view->render($response ,'admin/home.twig' ,Array( 'contact' => $contact));
@@ -41,23 +41,9 @@ if(isset($_COOKIE["name"])){
 public function login($request, $response, $args)
 {
 
-  $user = new User();
-  $this->em->persist($user);
-  $user->setFullName = "Mardonis Alves" ;
-  $user->setEmail ="mardonisgp@gmail.com";
-  $user->setTypeUser = "Admin";
-  $user->setid = "1";
-  $user->setSenha = (password_hash('qwe123qwe@',PASSWORD_DEFAULT));
-  $this->em->flush();
 
-try{
 $login = $this->em->getRepository('App\Model\User')->findBy(array('email' => $_POST['email']));
 
-}catch(Exception $e){
-  if($login == false){
-  echo "Ocorreu um erro" , $e->getMessage();
-}
-}
 
 foreach($login as $l)
 {
@@ -194,7 +180,7 @@ if(!$mail->Send()) // Envia o email
     }
     public function newuser($request ,$response , $args)
     {
-        if(isset($_COOKIE['name']))
+        if(!isset($_COOKIE['name']))
         {
         return $this->container->view->render($response ,'admin/newuser.twig');
         }else{
