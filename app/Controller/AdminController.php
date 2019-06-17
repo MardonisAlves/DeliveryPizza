@@ -43,9 +43,9 @@ public function login($request, $response, $args)
 
   $user = new User();
   $this->em->persist($user);
-  $user->setFullName($_POST['name']);
+  $user->setFullName("Mardonis Alves");
   $user->setEmail($_POST['email']);
-  $user->setTypeUser($_POST['tipoUser']);
+  $user->setTypeUser("Admin");
   $user->setSenha(password_hash($_POST['senha'],PASSWORD_DEFAULT));
   $this->em->flush();
 
