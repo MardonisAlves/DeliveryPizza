@@ -193,10 +193,10 @@ if(!$mail->Send()) // Envia o email
         //if(isset($_COOKIE['name'])){
         $user = new User();
         $this->em->persist($user);
-        $user->setFullName($_POST['name']);
-        $user->setEmail($_POST['email']);
-        $user->setTypeUser($_POST['tipoUser']);
-        $user->setSenha(password_hash($_POST['senha'],PASSWORD_DEFAULT));
+        $user->setFullName($_POST["name"]);
+        $user->setEmail($_POST["email"]);
+        $user->setTypeUser($_POST["tipoUser"]);
+        $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
         $this->em->flush();
 
         //return $this->container->view->render($response ,'admin/home.twig');
