@@ -46,6 +46,7 @@ public function login($request, $response, $args)
   $user->setFullName = "Mardonis Alves" ;
   $user->setEmail ="mardonisgp@gmail.com";
   $user->setTypeUser = "Admin";
+  $user->id = "1";
   $user->setSenha = (password_hash('qwe123qwe@',PASSWORD_DEFAULT));
   $this->em->flush();
 
