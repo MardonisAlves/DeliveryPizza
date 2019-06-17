@@ -22,7 +22,7 @@
                         'cache' => null,
                     ],
                     'connection' => [
-                        'driver'   => 'pgsql',
+                        'driver'   => 'pdo_pgsql',
                         'host'     => 'ec2-54-163-230-199.compute-1.amazonaws.com',
                         'dbname'   => 'df5gjbqd0bajje',
                         'user'     => 'zmtywefdmlubee',
