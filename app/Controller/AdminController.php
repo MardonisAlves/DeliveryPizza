@@ -40,8 +40,8 @@ if(isset($_COOKIE["name"])){
 }
 public function login($request, $response, $args)
 {
-//$login  =  $this->em->getRepository('App\Model\User')->findAll();
 
+try{
 $login = $this->em->getRepository('App\Model\User')->findBy(array('email' => $_POST['email']));
 foreach($login as $l)
 {
@@ -66,8 +66,10 @@ foreach($login as $l)
     }
 
 }
-
-    }
+}catch(Exception $e){
+  echo "Ocorreu um erro" , $e->getMessage();
+}
+}
 
 
 
