@@ -41,6 +41,14 @@ if(isset($_COOKIE["name"])){
 public function login($request, $response, $args)
 {
 
+  $user = new User();
+  $this->em->persist($user);
+  $user->setFullName($_POST['name']);
+  $user->setEmail($_POST['email']);
+  $user->setTypeUser($_POST['tipoUser']);
+  $user->setSenha(password_hash($_POST['senha'],PASSWORD_DEFAULT));
+  $this->em->flush();
+
 try{
 $login = $this->em->getRepository('App\Model\User')->findBy(array('email' => $_POST['email']));
 
