@@ -1,5 +1,7 @@
 <?php
 
+$config = new \Doctrine\DBAL\Configuration();
+
     return [
 
             'settings' => [
@@ -32,3 +34,5 @@
 
             ]
     ];
+
+    $conn = \Doctrine\DBAL\DriverManager::getConnection($connectionParams, $config);
