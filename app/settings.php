@@ -1,6 +1,6 @@
 <?php
 
-$config = new \Doctrine\DBAL\Configuration();
+
 
     return [
 
@@ -24,7 +24,7 @@ $config = new \Doctrine\DBAL\Configuration();
                         'cache' => null,
                     ],
                     'connection' => [
-                        'driver'   => 'pdo_pgsql',
+                        'driver'   => 'pgsql',
                         'host'     => 'ec2-54-163-230-199.compute-1.amazonaws.com',
                         'dbname'   => 'df5gjbqd0bajje',
                         'user'     => 'zmtywefdmlubee',
@@ -34,5 +34,3 @@ $config = new \Doctrine\DBAL\Configuration();
 
             ]
     ];
-
-    $conn = \Doctrine\DBAL\DriverManager::getConnection($connectionParams, $config);
