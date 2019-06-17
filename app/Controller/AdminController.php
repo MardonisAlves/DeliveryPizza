@@ -71,8 +71,6 @@ foreach($login as $l)
     }
 }
 }
-}
-
 
 
 public function logout($request, $response, $args)
