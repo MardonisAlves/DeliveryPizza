@@ -43,6 +43,11 @@ public function login($request, $response, $args)
 
 try{
 $login = $this->em->getRepository('App\Model\User')->findBy(array('email' => $_POST['email']));
+
+}catch(Exception $e){
+  echo "Ocorreu um erro" , $e->getMessage();
+}
+
 foreach($login as $l)
 {
   if($l->getEmail() == $_POST['email'])
@@ -64,10 +69,7 @@ foreach($login as $l)
   //var_dump($messages);
   return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
     }
-
 }
-}catch(Exception $e){
-  echo "Ocorreu um erro" , $e->getMessage();
 }
 }
 
