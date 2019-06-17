@@ -16,7 +16,8 @@
         "atlas/orm": "~3.0",
         "monolog/monolog": "^1.17",
         "components/jquery": "^3.3",
-        "slim/flash": "^0.4.0"
+        "slim/flash": "^0.4.0",
+        "doctrine/migrations": "^2.1"
     },
     "autoload": {
  

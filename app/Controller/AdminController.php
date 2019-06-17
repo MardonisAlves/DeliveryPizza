@@ -195,7 +195,7 @@ if(!$mail->Send()) // Envia o email
 }
     public function addUser($request , $response , $args)
     {
-        if(isset($_COOKIE['name'])){
+        //if(isset($_COOKIE['name'])){
         $user = new User();
         $this->em->persist($user);
         $user->setFullName($_POST['name']);
@@ -204,11 +204,11 @@ if(!$mail->Send()) // Envia o email
         $user->setSenha(password_hash($_POST['senha'],PASSWORD_DEFAULT));
         $this->em->flush();
 
-        return $this->container->view->render($response ,'admin/home.twig');
-    }else{
-        $messages = $this->getValidate( $request,  $response, $args);
-        return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
-    }
+        //return $this->container->view->render($response ,'admin/home.twig');
+    //}else{
+        //$messages = $this->getValidate( $request,  $response, $args);
+        //return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
+    //}
 }
 
 // VALIDATE $_COOKIE
