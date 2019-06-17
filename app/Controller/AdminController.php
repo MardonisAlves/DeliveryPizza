@@ -45,7 +45,9 @@ try{
 $login = $this->em->getRepository('App\Model\User')->findBy(array('email' => $_POST['email']));
 
 }catch(Exception $e){
+  if($login == false){
   echo "Ocorreu um erro" , $e->getMessage();
+}
 }
 
 foreach($login as $l)
