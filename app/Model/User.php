@@ -10,6 +10,8 @@ use Doctrine\ORM\Mapping\Column;
 
 /**
 * Blog User entity
+*
+* @Entity( name = "User" )
 * @Table(indexes={*@Index(name="id",columns="id")})
 */
 class User
