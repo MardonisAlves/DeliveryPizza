@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping\Column;
 /**
 * Blog User entity
 *
-* @Entity
+* @Entity  (name = " User") ** /
 * @Table(indexes={*@Index(name="id",columns="id")})
 */
 class User
@@ -19,7 +19,7 @@ class User
 
 /**
  *     ATRIBUTOS $id , $senha , $email , $fullName , $typeUser;
- * 
+ *
  **/
     /**
 * @var int
@@ -30,10 +30,10 @@ class User
 */
 protected $id;
 
-/** 
+/**
 * @var string
 * @Column(type="string");
-* 
+*
 */
 protected $senha;
 
@@ -47,9 +47,9 @@ protected $email;
 
 /**
  * @var string
- *  
+ *
  * @Column(type="string")
- *  
+ *
  */
 protected $fullName;
 
@@ -63,10 +63,10 @@ protected $typeUser;
 
 
 
- /* 
+ /*
 
                     METHODOS SET e GET
- 
+
  */
     /**
      * Get id.
