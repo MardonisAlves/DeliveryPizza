@@ -97,7 +97,7 @@ public function logout($request, $response, $args)
         $this->em->flush();
         return $this->container->view->render($response ,'contact.twig');
 
-/*
+
 $mail = new PHPMailer();
  $mail->IsSMTP(); // envia por SMTP
  $mail->CharSet = 'UTF-8';
@@ -124,7 +124,7 @@ if(!$mail->Send()) // Envia o email
  {
  echo "Erro no envio da mensagem";
  }
-*/
+
 
 }
 
