@@ -25,10 +25,10 @@
                     ],
                     'connection' => [
                         'driver'   => 'pdo_pgsql',
-                        'host'     => 'ec2-23-21-91-183.compute-1.amazonaws.com',
-                        'dbname'   => 'd78rhjhg9jr8sj',
-                        'user'     => 'erntfcuxmvenhl',
-                        'password' => '4d0f4d8c0b980122c89540ca7639ef01b0e102df540bb9b93f7d7e59525c19d6',
+                        'host'     => '',
+                        'dbname'   => '',
+                        'user'     => '',
+                        'password' => '',
                     ]
                 ]
 
