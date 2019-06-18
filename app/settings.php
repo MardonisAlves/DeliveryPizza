@@ -25,10 +25,10 @@
                     ],
                     'connection' => [
                         'driver'   => 'pdo_pgsql',
-                        'host'     => 'ec2-54-163-230-199.compute-1.amazonaws.com',
-                        'dbname'   => 'df5gjbqd0bajje',
-                        'user'     => 'zmtywefdmlubee',
-                        'password' => '3fca1e8feebd65d3497207ccfde1c490b5d53edb6dd1bb38552a21e8ef02e974',
+                        'host'     => 'ec2-23-21-91-183.compute-1.amazonaws.com',
+                        'dbname'   => 'd78rhjhg9jr8sj',
+                        'user'     => 'erntfcuxmvenhl',
+                        'password' => '4d0f4d8c0b980122c89540ca7639ef01b0e102df540bb9b93f7d7e59525c19d6',
                     ]
                 ]
 
