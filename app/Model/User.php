@@ -12,9 +12,9 @@ use Doctrine\ORM\Mapping\Column;
 * Blog User entity
 *
 * @Entity
-* @Table(indexes={*@Index(name="id",columns="id")} ,  name = "User")
+* @Table(indexes={*@Index(name="id",columns="id")} ,  name = "Users")
 */
-class User
+class Users
 {
 
 /**
@@ -83,7 +83,7 @@ protected $typeUser;
      *
      * @param string $email
      *
-     * @return User
+     * @return Users
      */
     public function setEmail($email)
     {
@@ -107,7 +107,7 @@ protected $typeUser;
      *
      * @param string $senha
      *
-     * @return User
+     * @return Users
      */
     public function setSenha($senha)
     {
@@ -131,7 +131,7 @@ protected $typeUser;
      *
      * @param string $fullName
      *
-     * @return User
+     * @return Users
      */
     public function setFullName($fullName)
     {
@@ -155,7 +155,7 @@ protected $typeUser;
      *
      * @param string $typeUser
      *
-     * @return User
+     * @return Users
      */
     public function setTypeUser($typeUser)
     {
