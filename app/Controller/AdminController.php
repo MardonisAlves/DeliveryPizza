@@ -26,7 +26,7 @@ class AdminController extends Validate
 
 public function home(Request $request, Response $response, $args)
 {
-if(!isset($_COOKIE["name"])){
+if(isset($_COOKIE["name"])){
   //echo $_COOKIE["email"];
     $contact =  $this->em->getRepository('App\Model\Contact')->findAll();
     return $this->container->view->render($response ,'admin/home.twig' ,Array( 'contact' => $contact));
@@ -190,7 +190,7 @@ if(!$mail->Send()) // Envia o email
 }
     public function addUser($request , $response , $args)
     {
-        //if(isset($_COOKIE['name'])){
+        if(isset($_COOKIE['name'])){
         $user = new Users();
         $this->em->persist($user);
         $user->setFullName($_POST["name"]);
@@ -199,11 +199,11 @@ if(!$mail->Send()) // Envia o email
         $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
         $this->em->flush();
 
-        //return $this->container->view->render($response ,'admin/home.twig');
-    //}else{
-        //$messages = $this->getValidate( $request,  $response, $args);
-        //return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
-    //}
+        return $this->container->view->render($response ,'admin/home.twig');
+    }else{
+        $messages = $this->getValidate( $request,  $response, $args);
+        return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
+    }
 }
 
 // VALIDATE $_COOKIE
