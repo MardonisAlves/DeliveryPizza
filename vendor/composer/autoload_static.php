@@ -53,6 +53,7 @@ class ComposerStaticInitbd3da9460564c953e6c002f9d8185703
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
             'PackageVersions\\' => 16,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'M' => 
         array (
@@ -186,6 +187,10 @@ class ComposerStaticInitbd3da9460564c953e6c002f9d8185703
         'PackageVersions\\' => 
         array (
             0 => __DIR__ . '/..' . '/ocramius/package-versions/src/PackageVersions',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Monolog\\' => 
         array (

@@ -43,6 +43,7 @@ final class Versions
   'nikic/fast-route' => 'v1.3.0@181d480e08d9476e61381e04a71b34dc0432e812',
   'ocramius/package-versions' => '1.4.0@a4d4b60d0e60da2487bd21a2c6ac089f85570dbb',
   'ocramius/proxy-manager' => '2.2.2@14b137b06b0f911944132df9d51e445a35920ab1',
+  'phpmailer/phpmailer' => 'v6.0.7@0c41a36d4508d470e376498c1c0c527aa36a2d59',
   'pimple/pimple' => 'v3.2.3@9e403941ef9d65d20cba7d54e29fe906db42cf32',
   'psr/container' => '1.0.0@b7ce3b176482dbbc1245ebf52b181af44c2cf55f',
   'psr/http-message' => '1.0.1@f6561bf28d520154e4b0ec72be95418abe6d9363',
@@ -92,7 +93,7 @@ final class Versions
   'symfony/yaml' => 'v4.2.5@6712daf03ee25b53abb14e7e8e0ede1a770efdb1',
   'theseer/tokenizer' => '1.1.2@1c42705be2b6c1de5904f8afacef5895cab44bf8',
   'webmozart/assert' => '1.4.0@83e253c8e0be5b0257b881e1827274667c5c17a9',
-  'mardonis/slim-framework' => 'dev-master@c96289dcdcb13a7037241b082ada2e8b53d961f5',
+  'mardonis/slim-framework' => 'dev-master@b49aad1d9f575a2ab6faad2cdac6a528d22ae763',
 );
 
     private function __construct()
