@@ -42,7 +42,7 @@ public function login($request, $response, $args)
 {
 
 
-$login = $this->em->getRepository('App\Model\User')->findBy(array('email' => $_POST['email']));
+$login = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email']));
 
 
 foreach($login as $l)
