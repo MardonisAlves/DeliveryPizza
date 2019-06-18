@@ -180,7 +180,7 @@ if(!$mail->Send()) // Envia o email
     }
     public function newuser($request ,$response , $args)
     {
-        if(isset($_COOKIE['name']))
+        if(!isset($_COOKIE['name']))
         {
         return $this->container->view->render($response ,'admin/newuser.twig');
         }else{
@@ -190,7 +190,7 @@ if(!$mail->Send()) // Envia o email
 }
     public function addUser($request , $response , $args)
     {
-        if(isset($_COOKIE['name'])){
+        if(!isset($_COOKIE['name'])){
         $user = new Users();
         $this->em->persist($user);
         $user->setFullName($_POST["name"]);
