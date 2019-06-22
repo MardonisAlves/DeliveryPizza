@@ -29,7 +29,7 @@ public function home(Request $request, Response $response, $args)
 if(isset($_COOKIE["name"])){
   //echo $_COOKIE["email"];
     $contact =  $this->em->getRepository('App\Model\Contact')->findAll();
-    return $this->container->view->render($response ,'admin/home.twig' ,withJson->(Array( 'contact' => $contact));
+    return $this->container->view->render($response ,'admin/home.twig' ,Array( 'contact' => $contact);
 
 }else{
     $messages = $this->getValidate( $request,  $response, $args);
