@@ -713,12 +713,14 @@ Responsive media queries
     background: url('../img/ptcala.jpg') no-repeat center top;
     background-size: cover;
     
-    position: center;
-}
-
-.banner h2{
+    position: relative;
+    }   
+    bg-color{
+        margin: 0px;
+    }
+    .banner h2{
     font-size: 12px;
-}
+    }
   
     
 
