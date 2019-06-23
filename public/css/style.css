@@ -5,10 +5,14 @@
     Author URL: https://bootstrapmade.com
 */
 .top{
-    margin-top: 100px;
+    margin-top: 40px;
 }
 .card{
+    ali
     margin-top: 20px;
+}
+.col-md-4{
+    padding-left: -20px;
 }
 .table {
 	margin-top: 20px;
@@ -285,7 +289,8 @@ h2{
  Organisations
 ************************************/
 #organisations{
-    background-color: rgb(247, 247, 247);
+    /*background-color: rgb(247, 247, 247);*/
+    background: #ffffff;
 }
 .orga-stru
 {
