@@ -709,6 +709,20 @@ Responsive media queries
     }
 }
 @media (min-width: 451px) and (max-width: 768px) {
+
+      .banner{
+
+    background: url('../img/ptcala.jpg') no-repeat center top;
+    background-size: cover;
+    max-height: 480px;
+    position: relative;
+}
+h2{
+    font-size: 12pt;
+}
+  
+    
+
     .ser-text {
     font-size: 20px;
     }
