@@ -5,14 +5,13 @@
     
    
    {% for message in messages %}
-
     <div class="alert alert-danger">
-    	<li>{{ message[0] }}</li>
+    <li>{{ message[0] }}</li>
     </div>
-
     {% endfor %}
 
- <section id="feature" class="section-padding">
+<!--Serviço-->
+    <section id="feature" class="section-padding">
     <div class="container">
       <div class="row">
         <div class="header-section text-center">
@@ -23,21 +22,47 @@
           <hr class="bottom-line">
         </div>
         <div class="feature-info">
-        
-          <div class="card" style="width: 18rem;">
-				<img class="card-img-top" src="imagem/cinco.png" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Monitor</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">Mais Detalhes</a>
-				</div>
-			</div>
+          <div class="fea">
+            <div class="col-md-4">
+              <div class="heading pull-right">
+                <h4>Front-end</h4>
+                <p>Front-end com css3 ,html5 e JavaScript</p>
+              </div>
+              <div class="fea-img pull-left">
+                <i class="fa fa-css3"></i>
+              </div>
+            </div>
+          </div>
+          <div class="fea">
+            <div class="col-md-4">
+              <div class="heading pull-right">
+                <h4>Back-end</h4>
+                <p>php mvc e frameworks Slim,Laravel</p>
+              </div>
+              <div class="fea-img pull-left">
+                <i class="fa fa-flash"></i>
+              </div>
+            </div>
+          </div>
+          <div class="fea">
+            <div class="col-md-4">
+              <div class="heading pull-right">
+                <h4>Banco de dados</h4>
+                <p>Mysql , Postgresql e persistência de dados com  Doctrine ORM</p>
+              </div>
+              <div class="fea-img pull-left">
+                <i class="fa fa-database"></i>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="organisations" class="section-padding">
+<!-Sobre--->
+ 
+ <section id="organisations" class="section-padding">
     <div class="container">
       <div class="row">
         <div class="col-md-4">
@@ -61,6 +86,8 @@
       </div>
     </div>
   </section>
+
+<!-Contato-->
 
 <section id="contact" class="section-padding">
     <div class="container">
@@ -111,5 +138,5 @@
       </div>
     </div>
   </section>
- 
+
 {% endblock %}
