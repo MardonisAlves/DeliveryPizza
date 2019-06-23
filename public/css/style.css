@@ -724,6 +724,14 @@ Responsive media queries
     }
 }
 @media (min-width: 20px) and (max-width: 450px) {
+
+   .banner{
+
+    background: url('../img/ptcala.jpg') no-repeat center top;
+    background-size: cover;
+    min-height: 480px;
+    position: relative;
+}
     .text-dec {
     font-size: 20px;
     }
