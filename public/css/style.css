@@ -744,7 +744,11 @@ Responsive media queries
     background-size: cover;
     max-height: 480px;
     position: relative;
-}
+    }
+
+    .banner h2{
+    font-size: 12px;
+    }
     .text-dec {
     font-size: 20px;
     }
