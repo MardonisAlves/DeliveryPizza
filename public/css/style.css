@@ -712,7 +712,7 @@ Responsive media queries
 .banner{
     background: url('../img/ptcala.jpg') no-repeat center top;
     background-size: cover;
-    
+    min-width: 451px;
     position: relative;
     }   
     bg-color{
