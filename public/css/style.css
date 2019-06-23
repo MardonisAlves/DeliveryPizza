@@ -4,6 +4,9 @@
     Author: BootstrapMade.com
     Author URL: https://bootstrapmade.com
 */
+.top{
+    margin-top: 100px;
+}
 .table {
 	margin-top: 20px;
 }
@@ -115,12 +118,12 @@ Banner
 .banner{
 	background: url('../img/ptcala.jpg') no-repeat center top;
     background-size: cover;
-	min-height: 580px;
+	min-height: 680px;
     position: relative;
 }
 .bg-color{
 	background-color: RGBA(12, 11, 11, 0.82);
-	min-height: 580px;
+	min-height: 680px;
 }
 .text-dec{
 	font-size: 24px;
@@ -240,6 +243,7 @@ Banner
 /***********************************
 Features
 ************************************/
+
 h2{
 	font-size: 24px;
 	padding-bottom: 15px;
