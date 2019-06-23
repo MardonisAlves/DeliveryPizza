@@ -712,7 +712,7 @@ Responsive media queries
 .banner{
     background: url('../img/ptcala.jpg') no-repeat center top;
     background-size: cover;
-    max-height: 480px;
+    
     position: center;
 }
 
