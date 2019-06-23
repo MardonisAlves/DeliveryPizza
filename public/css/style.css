@@ -115,7 +115,7 @@ Banner
 .banner{
 	background: url('../img/ptcala.jpg') no-repeat center top;
     background-size: cover;
-	min-height: 520px;
+	min-height: 300px;
     position: relative;
 }
 .bg-color{
