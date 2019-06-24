@@ -68,7 +68,6 @@ foreach($login as $l)
   return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
     }
 }
-}
 }else{
   echo "false";
 }
