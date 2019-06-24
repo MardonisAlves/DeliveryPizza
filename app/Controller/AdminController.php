@@ -56,22 +56,16 @@ if($login){
           return $response->withStatus(302)->withHeader('Location', $url);
 
       }else{
-        $this->flash->addMessageNow('msg', 'verificar os dados');
-        $messages = $this->flash->getMessages();
-        //var_dump($messages);
-        return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
+      $messages = $this->getValidate( $request,  $response, $args);
+      return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
       }
       }else{
-        $this->flash->addMessageNow('msg', 'Você não tem Acesso 2 IF');
-        $messages = $this->flash->getMessages();
-        //var_dump($messages);
+      $messages = $this->getValidate( $request,  $response, $args);
       return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
           }
       }
 }else{
-      $this->flash->addMessageNow('msg', 'Você não tem Acesso 2 IF');
-        $messages = $this->flash->getMessages();
-        //var_dump($messages);
+      $messages = $this->getValidate( $request,  $response, $args);
       return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
 }
 
