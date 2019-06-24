@@ -51,7 +51,9 @@ if($login){
         if($l->getEmail() == $_POST['email'])
       {
         if(password_verify($_POST["senha"] , $l->getSenha())){
+
         setcookie("name",$l->getfullName());
+        
           $url = $this->container->get('router')->pathFor('home');
           return $response->withStatus(302)->withHeader('Location', $url);
 
