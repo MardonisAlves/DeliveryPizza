@@ -65,11 +65,14 @@ if($login == tru){
         $this->flash->addMessageNow('msg', 'Você não tem Acesso 2 IF');
         $messages = $this->flash->getMessages();
         //var_dump($messages);
-        return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
+      return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
           }
       }
 }else{
-  echo "false";
+      $this->flash->addMessageNow('msg', 'Você não tem Acesso 2 IF');
+        $messages = $this->flash->getMessages();
+        //var_dump($messages);
+      return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
 }
 
 }
