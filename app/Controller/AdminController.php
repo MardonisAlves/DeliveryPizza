@@ -44,7 +44,7 @@ public function login($request, $response, $args)
 
 $login = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email']));
 
-if($login == tru){
+if($login){
 
       foreach($login as $l)
       {
