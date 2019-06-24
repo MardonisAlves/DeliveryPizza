@@ -126,6 +126,7 @@ Banner
 	background: url('../img/ptcala.jpg') no-repeat center top;
     background-size: cover;
 	min-height: 480px;
+    width: auto;
     position: relative;
 }
 .bg-color{
@@ -709,10 +710,12 @@ Responsive media queries
     }
 }
 @media (min-width: 451px) and (max-width: 768px) {
+
 .banner{
-    background: url('../img/ptcala.jpg') no-repeat center top;
+    background: url('../img/ptcala.jpg') no-repeat;
     background-size: cover;
-    width: 451px;
+    width: auto;
+    margin: 0px;
     position: relative;
     }   
     bg-color{
@@ -742,12 +745,16 @@ Responsive media queries
 
    .banner{
 
-    background: url('../img/ptcala.jpg') no-repeat center top;
+    background-image: url('../img/ptcala.jpg') no-repeat;
+    background-position: inherit;
+    background-size: auto;
     background-size: cover;
-    
+    width: auto;
     position: relative;
     }
-
+    .bg-color{
+       width: auto; 
+    }
     .banner h2{
     font-size: 12px;
     }
