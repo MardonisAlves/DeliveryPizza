@@ -88,7 +88,7 @@
             {% include 'partials/nav.twig' %}
 
 
-
+<div class="container">
 <div class="banner">
     <div class="bg-color">
         <div class="row">
@@ -109,9 +109,13 @@
       </div>
     </div>
 
-            {% block content %} {% endblock %}
+            {% block content %} 
+
+            {% endblock %}
+
+
             {% include 'partials/footer.twig' %}
 
-
+</div>
     </body>
 </html>
