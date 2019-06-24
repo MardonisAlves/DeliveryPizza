@@ -72,6 +72,8 @@ if($login == tru){
   echo "false";
 }
 
+}
+
 
 
 public function logout($request, $response, $args)
