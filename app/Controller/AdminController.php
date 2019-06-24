@@ -44,33 +44,34 @@ public function login($request, $response, $args)
 
 $login = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email']));
 
-if($login){
+if($login == tru){
 
-foreach($login as $l)
-{
-  if($l->getEmail() == $_POST['email'])
-{
-  if(password_verify($_POST["senha"] , $l->getSenha())){
-  setcookie("name",$l->getfullName());
-    $url = $this->container->get('router')->pathFor('home');
-    return $response->withStatus(302)->withHeader('Location', $url);
+      foreach($login as $l)
+      {
+        if($l->getEmail() == $_POST['email'])
+      {
+        if(password_verify($_POST["senha"] , $l->getSenha())){
+        setcookie("name",$l->getfullName());
+          $url = $this->container->get('router')->pathFor('home');
+          return $response->withStatus(302)->withHeader('Location', $url);
 
-}else{
-  $this->flash->addMessageNow('msg', 'verificar os dados');
-  $messages = $this->flash->getMessages();
-  //var_dump($messages);
-  return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
-}
-}else{
-  $this->flash->addMessageNow('msg', 'Você não tem Acesso 2 IF');
-  $messages = $this->flash->getMessages();
-  //var_dump($messages);
-  return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
-    }
-}
+      }else{
+        $this->flash->addMessageNow('msg', 'verificar os dados');
+        $messages = $this->flash->getMessages();
+        //var_dump($messages);
+        return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
+      }
+      }else{
+        $this->flash->addMessageNow('msg', 'Você não tem Acesso 2 IF');
+        $messages = $this->flash->getMessages();
+        //var_dump($messages);
+        return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
+          }
+      }
 }else{
   echo "false";
 }
+
 
 
 public function logout($request, $response, $args)
