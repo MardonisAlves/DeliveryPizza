@@ -44,6 +44,7 @@ public function login($request, $response, $args)
 
 $login = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email']));
 
+if($login){
 
 foreach($login as $l)
 {
@@ -67,6 +68,9 @@ foreach($login as $l)
   return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
     }
 }
+}
+}else{
+  echo "false";
 }
 
 
