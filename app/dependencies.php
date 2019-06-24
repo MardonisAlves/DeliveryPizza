@@ -45,6 +45,9 @@ $container['AdminController'] = function ($container) {
 return new App\Controller\AdminController($container , $container->get('em') ,$container->get('flash'));
 };
 
+$container['CarroController'] = function ($container) {
+return new App\Controller\CarroController($container , $container->get('em') ,$container->get('flash'));
+};
 $container['Validate'] = function ($container) {
 return new App\Controller\Validate();
 };

@@ -28,4 +28,5 @@
     $app->post('/putContact', 'AdminController:putContact')->setName('putContact');
     $app->get('/DeleteContact' , 'AdminController:DeleteContact')->setName('DeleteContact');
 
-    //
+    // CarroController
+    $app->get('/carro', 'CarroController:carro')->setName('carro');
