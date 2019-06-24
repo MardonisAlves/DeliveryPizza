@@ -30,4 +30,4 @@
 
     // CarroController
 
-    $app->get('/CardCliente', 'CarroController:carro')->setName('carro');
+    $app->get('/CardCliente', 'CarroController:logincliente')->setName('logincliente');
