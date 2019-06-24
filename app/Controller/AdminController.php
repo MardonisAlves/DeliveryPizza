@@ -45,9 +45,9 @@ public function login($request, $response, $args)
 $login = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email']));
 
 
-
+foreach($login as $l)
 {
-  if(getEmail() == $_POST['email'])
+  if($l->getEmail() == $_POST['email'])
 {
   if(password_verify($_POST["senha"] , $l->getSenha())){
   setcookie("name",$l->getfullName());
@@ -67,7 +67,7 @@ $login = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_
   return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
     }
 }
-
+}
 
 
 public function logout($request, $response, $args)
