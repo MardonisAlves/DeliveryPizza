@@ -29,4 +29,5 @@
     $app->get('/DeleteContact' , 'AdminController:DeleteContact')->setName('DeleteContact');
 
     // CarroController
-    $app->get('/carro', 'CarroController:carro')->setName('carro');
+
+    $app->get('/CardCliente', 'CarroController:carro')->setName('carro');
