@@ -30,9 +30,11 @@ public function logincliente(Request $request, Response $response, $args)
     return $this->container->view->render($response ,'admin/home.twig' ,Array( 'contact' => $contact));
     }else{
       $messages = $this->getValidate( $request,  $response, $args);
-    return $this->container->view->render($response ,'CadCliente.twig'  ,Array( 'messages' => $messages));
+    return $this->container->view->render($response ,'CardCliente.twig'  ,Array( 'messages' => $messages));
     }
 }
+
+
 
 public function carro(Request $request, Response $response, $args)
 {
