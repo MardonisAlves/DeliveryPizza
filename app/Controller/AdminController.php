@@ -45,11 +45,11 @@ public function login($request, $response, $args)
 $login = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email']));
 
 
-foreach($login as $l)
-{
+
   if($l->getEmail() == $_POST['email'])
 {
   if(password_verify($_POST["senha"] , $l->getSenha())){
+
   setcookie("name",$l->getfullName());
     $url = $this->container->get('router')->pathFor('home');
     return $response->withStatus(302)->withHeader('Location', $url);
@@ -67,7 +67,7 @@ foreach($login as $l)
   return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
     }
 }
-}
+
 
 
 public function logout($request, $response, $args)
