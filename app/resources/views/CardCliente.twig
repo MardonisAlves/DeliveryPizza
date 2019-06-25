@@ -8,19 +8,21 @@
     <div class="container fluid">
       <div class="row">
         <div class="header-section text-center">
-          <h2>Contact Us</h2>
-          <p>Entre em contato para fazer um orçamento e tirar as suas duvidas,
-          <br>Maiores informações no telefone:989578193 ou email: mardonisgp@gmail.com</p>
+          <h2>Cadastro de Clientes</h2>
+          
           <hr class="bottom-line">
         </div>
+
         <div id="sendmessage">Your message has been sent. Thank you!</div>
         <div id="errormessage"></div>
-        <form action="/hometeste" method="post" role="form" class="contactForm">
+
+        <form action="#" method="post" role="form" class="contactForm">
           <div class="col-md-6 col-sm-6 col-xs-12 left">
             <div class="form-group">
-              <input type="text" name="name" class="form-control form" id="name" placeholder="Seu Nome" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+              <input type="text" name="name" class="form-control form" id="name" placeholder="Seu Nome" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required="obrigatorio" />
               <div class="validation"></div>
             </div>
+
             <div class="form-group">
               <input type="email" class="form-control" name="email" id="email" placeholder="Seu Email" data-rule="email" data-msg="Please enter a valid email" />
               <div class="validation"></div>
@@ -36,6 +38,8 @@
               <div class="validation"></div>
             </div>
           </div>
+
+
 
           <div class="col-md-6 col-sm-6 col-xs-12 right">
             <div class="form-group">
