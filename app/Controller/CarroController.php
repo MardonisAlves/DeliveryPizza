@@ -34,7 +34,7 @@ public function logincliente(Request $request, Response $response, $args)
    
 
     $id = $this->getValidate( $request,  $response, $args);
-    return $this->container->view->render($response ,'CardCliente.twig'  ,Array( 'id' => $id));
+    return $this->container->view->render($response ,'CardCliente.twig'  ,Array( 'ids' => $ids));
     }
 }
 
