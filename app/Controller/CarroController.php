@@ -29,8 +29,9 @@ public function logincliente(Request $request, Response $response, $args)
       $contact =  $this->em->getRepository('App\Model\Contact')->findAll();
     return $this->container->view->render($response ,'admin/home.twig' ,Array( 'contact' => $contact));
     }else{
-      $messages = $this->getValidate( $request,  $response, $args);
-    return $this->container->view->render($response ,'CardCliente.twig'  ,Array( 'messages' => $messages));
+    $_COOKIE['id'] = 1;
+    $messages = $this->getValidate( $request,  $response, $args);
+    return $this->container->view->render($response ,'CardCliente.twig'  ,Array( 'id' => $id));
     }
 }
 
