@@ -29,12 +29,12 @@ public function logincliente(Request $request, Response $response, $args)
       $contact =  $this->em->getRepository('App\Model\Contact')->findAll();
     return $this->container->view->render($response ,'admin/home.twig' ,Array( 'contact' => $contact));
     }else{
-    $id = setcookie('id',1);
-   
-   
 
+    //select o cardapio de pizza
+    // criar as sessions
+    setcookie('id',1);
     $id = $this->getValidate( $request,  $response, $args);
-    return $this->container->view->render($response ,'CardCliente.twig'  ,Array( 'ids' => $ids));
+    return $this->container->view->render($response ,'CardCliente.twig');
     }
 }
 
