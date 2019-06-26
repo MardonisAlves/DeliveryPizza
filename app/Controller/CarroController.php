@@ -31,10 +31,13 @@ public function logincliente(Request $request, Response $response, $args)
     }else{
 
     //select o cardapio de pizza
+
     // criar as sessions
-    setcookie("id",1);
+    $_SESSION['id'] = 1;
+
+    // PASSAR A SESSION NA ROTA
     $id = $this->getValidate( $request,  $response, $args);
-    return $this->container->view->render($response ,'CardCliente.twig');
+return $this->container->view->render($response ,'CardCliente.twig' ,['session' => $_SESSION['id']]);
     }
 }
 
