@@ -32,7 +32,7 @@ public function logincliente(Request $request, Response $response, $args)
 
     //select o cardapio de pizza
     // criar as sessions
-    setcookie('id',1);
+    setcookie("id",1);
     $id = $this->getValidate( $request,  $response, $args);
     return $this->container->view->render($response ,'CardCliente.twig');
     }
