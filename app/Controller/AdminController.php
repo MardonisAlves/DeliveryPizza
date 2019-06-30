@@ -59,16 +59,16 @@ if($login){
 
       }else{
       $messages = $this->getValidate( $request,  $response, $args);
-      return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
+      return $this->container->view->render($response ,'admin/loginCliente.twig'  ,Array( 'messages' => $messages));
       }
       }else{
       $messages = $this->getValidate( $request,  $response, $args);
-      return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
+      return $this->container->view->render($response ,'admin/loginCliente.twig'  ,Array( 'messages' => $messages));
           }
       }
 }else{
       $messages = $this->getValidate( $request,  $response, $args);
-      return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
+      return $this->container->view->render($response ,'admin/loginCliente.twig'  ,Array( 'messages' => $messages));
 }
 
 }

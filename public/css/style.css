@@ -4,6 +4,11 @@
     Author: BootstrapMade.com
     Author URL: https://bootstrapmade.com
 */
+.login-box-body{
+margin-top: 100px;
+margin-bottom: 100px;
+}
+
 .top{
     margin-top: 40px;
 }
@@ -126,7 +131,7 @@ Banner
 	background: url('../img/ptcala.jpg') no-repeat center top;
     background-size: cover;
 	min-height: 480px;
-    margin: 0px;
+    
     position: relative;
 }
 .bg-color{
