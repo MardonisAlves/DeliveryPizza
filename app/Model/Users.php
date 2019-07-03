@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping\Column;
 * Blog User entity
 *
 * @Entity
-* @Table(indexes={*@Index(name="id",columns="id")} ,  name = "Users")
+* @Table(indexes={*@Index(name="id",columns="id")})
 */
 class Users
 {
