@@ -1,5 +1,5 @@
 <?php
-namespace App\Model;
+//namespace App\Model;
 
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Table;
@@ -21,7 +21,8 @@ class Users
  *     ATRIBUTOS $id , $senha , $email , $fullName , $typeUser;
  *
  **/
-    /**
+
+/**
 * @var int
 *
 * @Id
@@ -45,7 +46,7 @@ protected $senha;
 protected $email;
 
 
-/*
+/**
  * @var string
  *
  * @Column(type="string")
@@ -53,7 +54,7 @@ protected $email;
  */
 protected $fullName;
 
-/*
+/**
  * @var string
  * @Column(type="string")
  *
@@ -61,7 +62,7 @@ protected $fullName;
 protected $typeUser;
 
 
-/*
+/**
  * @var string
  * @Column(type="string")
  *
@@ -69,7 +70,7 @@ protected $typeUser;
 protected $cidade;
 
 
-/*
+/**
  * @var string
  * @Column(type="string")
  *
@@ -77,16 +78,15 @@ protected $cidade;
 protected $rua;
 
 
-/*
- * @var string
- * @Column(type="int")
+/**
+ * @var int
+ * @Column(type="integer")
  *
  */
 protected $nemero;
- /*
 
 
- /*
+ /**
  * @var string
  * @Column(type="string")
  *
@@ -94,23 +94,23 @@ protected $nemero;
 protected $bairro;
 
 
-/*
+/**
  * @var string
  * @Column(type="string")
  *
  */
 protected $referencia;
 
-/*
- * @var string
- * @Column(type="int")
+/**
+ * @var int
+ * @Column(type="integer")
  *
  */
 protected $telefone;
 
-                    METHODOS SET e GET
+// METHODOS SET e GET
 
- */
+ 
     /**
      * Get id.
      *
@@ -215,5 +215,149 @@ protected $telefone;
     public function getTypeUser()
     {
         return $this->typeUser;
+    }
+
+    /**
+     * Set cidade.
+     *
+     * @param string $cidade
+     *
+     * @return Users
+     */
+    public function setCidade($cidade)
+    {
+        $this->cidade = $cidade;
+
+        return $this;
+    }
+
+    /**
+     * Get cidade.
+     *
+     * @return string
+     */
+    public function getCidade()
+    {
+        return $this->cidade;
+    }
+
+    /**
+     * Set rua.
+     *
+     * @param string $rua
+     *
+     * @return Users
+     */
+    public function setRua($rua)
+    {
+        $this->rua = $rua;
+
+        return $this;
+    }
+
+    /**
+     * Get rua.
+     *
+     * @return string
+     */
+    public function getRua()
+    {
+        return $this->rua;
+    }
+
+    /**
+     * Set nemero.
+     *
+     * @param \integer' $nemero
+     *
+     * @return Users
+     */
+    public function setNemero( $nemero)
+    {
+        $this->nemero = $nemero;
+
+        return $this;
+    }
+
+    /**
+     * Get nemero.
+     *
+     * @return int
+     */
+    public function getNemero()
+    {
+        return $this->nemero;
+    }
+
+    /**
+     * Set referencia.
+     *
+     * @param string $referencia
+     *
+     * @return Users
+     */
+    public function setReferencia($referencia)
+    {
+        $this->referencia = $referencia;
+
+        return $this;
+    }
+
+    /**
+     * Get referencia.
+     *
+     * @return string
+     */
+    public function getReferencia()
+    {
+        return $this->referencia;
+    }
+
+    /**
+     * Set telefone.
+     *
+     * @param int $telefone
+     *
+     * @return Users
+     */
+    public function setTelefone($telefone)
+    {
+        $this->telefone = $telefone;
+
+        return $this;
+    }
+
+    /**
+     * Get telefone.
+     *
+     * @return int
+     */
+    public function getTelefone()
+    {
+        return $this->telefone;
+    }
+
+    /**
+     * Set bairro.
+     *
+     * @param string $bairro
+     *
+     * @return Users
+     */
+    public function setBairro($bairro)
+    {
+        $this->bairro = $bairro;
+
+        return $this;
+    }
+
+    /**
+     * Get bairro.
+     *
+     * @return string
+     */
+    public function getBairro()
+    {
+        return $this->bairro;
     }
 }

@@ -72,7 +72,10 @@ public function InserCliente(Request $request, Response $response, $args)
         $user->setEmail($_POST["email"]);
         $user->setTypeUser('cliente');
         $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
-        $this->em->flush();      
+        $this->em->flush(); 
+
+
+       
   // redirect para o login
 }
  
