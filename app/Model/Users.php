@@ -64,7 +64,7 @@ protected $typeUser;
 
 /**
  * @var string
- * @Column(type="string" , nullable="true")
+ * @Column(type="string" nullable=true)
  *
  */
 protected $cidade;
