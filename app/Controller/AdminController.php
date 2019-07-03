@@ -126,6 +126,7 @@ public function logout($request, $response, $args)
         $this->em->flush();
       //  return $this->container->view->render($response ,'contact.twig');
 
+/*
 
 $mail = new PHPMailer();
  $mail->IsSMTP(); // envia por SMTP
@@ -156,6 +157,7 @@ if(!$mail->Send()) // Envia o email
 
 return $this->container->view->render($response ,'contact.twig');
 
+*/
 }
 
     // GET Contact By Id //
