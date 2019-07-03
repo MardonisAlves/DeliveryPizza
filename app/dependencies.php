@@ -36,18 +36,22 @@ $container['em'] = function ($c) {
     return \Doctrine\ORM\EntityManager::create($settings['doctrine']['connection'], $config);
 };
 
-
+// HOME CONTROLER
 $container['HomeController'] = function ($container) {
 return new \App\Controller\HomeController($container  , $container->get('em') );
 };
-
+// ADMINCONTROLLER
 $container['AdminController'] = function ($container) {
 return new App\Controller\AdminController($container , $container->get('em') ,$container->get('flash'));
 };
 
+// CAROOCONTROLLER
 $container['CarroController'] = function ($container) {
 return new App\Controller\CarroController($container , $container->get('em') ,$container->get('flash'));
 };
-$container['Validate'] = function ($container) {
-return new App\Controller\Validate();
+
+// FILECONTROLER
+$container['FileController'] = function ($container) {
+return new App\Controller\FileController($container , $container->get('em') ,$container->get('flash'));
 };
+

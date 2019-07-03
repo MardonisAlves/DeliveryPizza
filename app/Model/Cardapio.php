@@ -12,9 +12,9 @@ use Doctrine\ORM\Mapping\Column;
 * Blog User entity
 *
 * @Entity
-* @Table(indexes={*@Index(name="id",columns="id")} ,  name = "Users")
+* @Table(indexes={*@Index(name="id",columns="id")} ,  name = "Cardapio")
 */
-class Users
+class Cardapio
 {
 
 /**
@@ -45,7 +45,7 @@ protected $senha;
 protected $email;
 
 
-/*
+/**
  * @var string
  *
  * @Column(type="string")
@@ -53,7 +53,7 @@ protected $email;
  */
 protected $fullName;
 
-/*
+/**
  * @var string
  * @Column(type="string")
  *
@@ -61,52 +61,9 @@ protected $fullName;
 protected $typeUser;
 
 
-/*
- * @var string
- * @Column(type="string")
- *
- */
-protected $cidade;
-
-
-/*
- * @var string
- * @Column(type="string")
- *
- */
-protected $rua;
-
-
-/*
- * @var string
- * @Column(type="int")
- *
- */
-protected $nemero;
- /*
 
 
  /*
- * @var string
- * @Column(type="string")
- *
- */
-protected $bairro;
-
-
-/*
- * @var string
- * @Column(type="string")
- *
- */
-protected $referencia;
-
-/*
- * @var string
- * @Column(type="int")
- *
- */
-protected $telefone;
 
                     METHODOS SET e GET
 

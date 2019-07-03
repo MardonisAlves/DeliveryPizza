@@ -17,26 +17,36 @@
         <div id="sendmessage">Your message has been sent. Thank you!</div>
         <div id="errormessage"></div>
 
-        <form action="#" method="post" role="form" class="contactForm">
+        <form action="/InserCliente" method="post" role="form" class="contactForm">
           <div class="col-md-6 col-sm-6 col-xs-12 left">
             <div class="form-group">
+              <div class="col-sm-12">
               <input type="text" name="name" class="form-control form" id="name" placeholder="Seu Nome" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required="obrigatorio" />
-              <div class="validation"></div>
+            
+            </div>
             </div>
 
             <div class="form-group">
+              <div class="col-sm-12">
               <input type="email" class="form-control" name="email" id="email" placeholder="Seu Email" data-rule="email" data-msg="Please enter a valid email" required="obrigatorio"/>
-              <div class="validation"></div>
+              </div>
             </div>
 
             <div class="form-group">
+              <div class="col-sm-12">
               <input type="telefone" class="form-control" name="telefone" id="telefone" placeholder="Seu Telefone" data-rule="email" data-msg="Please enter a valid email" required="obrigatorio"/>
-              <div class="validation"></div>
+              </div>
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" required="obrigatorio" />
+            <div class="col-sm-6">
+              <input type="password" class="form-control" name="senha" id="subject" placeholder="senha" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" required="obrigatorio" />
+            </div>
+            <div class="col-sm-6">
+              <input type="password" class="form-control col-sm-4" name="senha" id="subject" placeholder="repet senha" data-rule="minlen:4" required="obrigatorio" />
+
               <div class="validation"></div>
+            </div>
             </div>
           </div>
 
@@ -44,31 +54,44 @@
 
           <div class="col-md-6 col-sm-6 col-xs-12 right">
             <div class="form-group">
+              <div class="col-sm-12">
               <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" required="obrigatorio"/>
-              <div class="validation"></div>
+             </div>
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-control" name="rua" id="subject" placeholder="Rua" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" required="obrigatorio"/>
-              <div class="validation"></div>
+              <div class="col-sm-8">
+              <input type="text" class="form-control" name="rua" id="rua" placeholder="Rua" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" required="obrigatorio"/>
+            </div>
+
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="numero" id="numero" placeholder="numero"required="obrigatorio"/>
+            </div>
+
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-control" name="bairro" id="subject" placeholder="Bairro" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" required="obrigatorio"/>
-              <div class="validation"></div>
+              <div class="col-sm-12">
+              <input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" required="obrigatorio"/>
+              </div>
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-control" name="referencia" id="subject" placeholder="Referencia" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject"/>
-              <div class="validation"></div>
+              <div class="col-sm-12">
+              <input type="text" class="form-control" name="referencia" id="referencia" placeholder="Referencia"/>
+          </div>
             </div>
 
           </div>
 
           <div class="col-xs-12">
             <!-- Button -->
-            <button type="submit" id="submit" name="submit" class="form contact-form-button light-form-button oswald light">SEND EMAIL</button>
+            <div class="col-md-6">
+            <button type="submit" id="submit" name="submit" class="btn btn-green">Finalizar</button>
+
+            <button type="reset" id="submit" name="submit" class="btn btn-warning">Limpar</button>
           </div>
+        </div>
         </form>
 
       </div>

@@ -12,7 +12,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-class AdminController extends Validate
+class AdminController 
 {
     protected $em;
     private $container;
@@ -27,13 +27,20 @@ class AdminController extends Validate
 public function home(Request $request, Response $response, $args)
 {
 if(isset($_COOKIE["name"])){
-  //echo $_COOKIE["email"];
-    $contact =  $this->em->getRepository('App\Model\Contact')->findAll();
-    return $this->container->view->render($response ,'admin/home.twig' ,Array( 'contact' => $contact));
+  $contact =  $this->em->getRepository('App\Model\Contact')->findAll();
+  return $this->container->view->render(
+                            $response ,
+                            'admin/home.twig' ,
+                            Array( 
+                              'contact' => $contact));
 
 }else{
     $messages = $this->getValidate( $request,  $response, $args);
-    return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
+    return $this->container->view->render(
+                            $response ,
+                            'index.twig',
+                            Array( 
+                              'messages' => $messages));
     }
 
 
@@ -42,7 +49,8 @@ public function login($request, $response, $args)
 {
 
 
-$login = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email']));
+$login = $this->em->getRepository(
+            'App\Model\Users')->findBy(array('email' => $_POST['email']));
 
 if($login){
 
@@ -50,7 +58,9 @@ if($login){
       {
         if($l->getEmail() == $_POST['email'])
       {
-        if(password_verify($_POST["senha"] , $l->getSenha())){
+        if(password_verify(
+          $_POST["senha"] 
+          , $l->getSenha())){
 
         setcookie("name",$l->getfullName());
         
@@ -58,17 +68,31 @@ if($login){
           return $response->withStatus(302)->withHeader('Location', $url);
 
       }else{
+
       $messages = $this->getValidate( $request,  $response, $args);
-      return $this->container->view->render($response ,'admin/loginCliente.twig'  ,Array( 'messages' => $messages));
+      return $this->container->view->render(
+        $response ,
+        'admin/loginCliente.twig',
+        Array( 'messages' => $messages));
       }
+
       }else{
+
       $messages = $this->getValidate( $request,  $response, $args);
-      return $this->container->view->render($response ,'admin/loginCliente.twig'  ,Array( 'messages' => $messages));
+      return $this->container->view->render(
+        $response ,
+        'admin/loginCliente.twig',
+        Array( 'messages' => $messages));
           }
       }
+
 }else{
+
       $messages = $this->getValidate( $request,  $response, $args);
-      return $this->container->view->render($response ,'admin/loginCliente.twig'  ,Array( 'messages' => $messages));
+      return $this->container->view->render(
+        $response ,
+        'admin/loginCliente.twig',
+        Array( 'messages' => $messages));
 }
 
 }
@@ -139,11 +163,22 @@ return $this->container->view->render($response ,'contact.twig');
     {
         if(isset($_COOKIE['name']))
         {
-        $contact =  $this->em->getRepository('App\Model\Contact')->findBy(Array('id' => $_GET['id']));
-        return $this->container->view->render($response ,'admin/updatecontato.twig',Array( 'contact' => $contact));
+
+        $contact =  $this->em->getRepository(
+          'App\Model\Contact')->findBy(Array(
+            'id' => $_GET['id']));
+
+        return $this->container->view->render(
+          $response ,
+          'admin/updatecontato.twig',
+          Array( 'contact' => $contact));
+
         }else{
             $messages = $this->getValidate( $request,  $response, $args);
-            return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
+            return $this->container->view->render(
+              $response ,
+              'index.twig',
+              Array( 'messages' => $messages));
         }
 }
 
@@ -163,7 +198,10 @@ return $this->container->view->render($response ,'contact.twig');
 
        }else{
          $messages = $this->getValidate( $request,  $response, $args);
-        return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
+        return $this->container->view->render(
+          $response ,
+          'index.twig',
+          Array( 'messages' => $messages));
        }
     }
 
@@ -172,7 +210,11 @@ return $this->container->view->render($response ,'contact.twig');
     public function DeleteContact($request, $response, $args)
     {
         if(isset($_COOKIE['name'])){
-        $contact =  $this->em->find('App\Model\Contact',$_GET['id']);
+
+        $contact =  $this->em->find(
+          'App\Model\Contact',
+          $_GET['id']);
+
         $this->em->remove($contact);
         $this->em->flush();
 
@@ -180,8 +222,12 @@ return $this->container->view->render($response ,'contact.twig');
          $url = $this->container->get('router')->pathFor('home');
          return $response->withStatus(302)->withHeader('Location', $url);
         }else{
+
             $messages = $this->getValidate( $request,  $response, $args);
-            return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
+            return $this->container->view->render(
+              $response ,
+              'index.twig',
+              Array( 'messages' => $messages));
         }
     }
     public function newuser($request ,$response , $args)
@@ -191,7 +237,10 @@ return $this->container->view->render($response ,'contact.twig');
         return $this->container->view->render($response ,'admin/newuser.twig');
         }else{
             $messages = $this->getValidate( $request,  $response, $args);
-            return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
+            return $this->container->view->render(
+              $response ,
+              'index.twig',
+              Array( 'messages' => $messages));
         }
 }
     public function addUser($request , $response , $args)
@@ -208,7 +257,10 @@ return $this->container->view->render($response ,'contact.twig');
         return $this->container->view->render($response ,'admin/home.twig');
     }else{
         $messages = $this->getValidate( $request,  $response, $args);
-        return $this->container->view->render($response ,'index.twig'  ,Array( 'messages' => $messages));
+        return $this->container->view->render(
+          $response ,
+          'index.twig',
+          Array( 'messages' => $messages));
     }
 }
 

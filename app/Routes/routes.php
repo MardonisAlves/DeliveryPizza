@@ -7,18 +7,16 @@
     use Psr\Http\Message\ResponseInterface as Response;
 
     // HOME ROUTE
-    //
-
     $app->get('/', 'HomeController:index')->setName('index');
     $app->get('/servicos', 'HomeController:servicos')->setName('servicos');
     $app->get('/about','HomeController:about')->setName('about');
     $app->get('/contact', 'HomeController:contact')->setName('contact');
     $app->post('/createContact' , 'HomeController:createContact')->setName('createContact');
+    $app->get('/CardCliente' ,'HomeController:CardCliente')->setName('CardCliente');
+    $app->post('/InserCliente' , 'HomeController:InserCliente')->setName('InserCliente');
 
     // ADMIN-CONTROLLER
-
     $app->post('/hometeste', 'AdminController:hometeste')->setName('teste');
-
     $app->get('/logout', 'AdminController:logout')->setName('logout');
     $app->post('/login', 'AdminController:login')->setName('login');
     $app->get('/newuser', 'AdminController:newuser')->setName('newuser');
@@ -29,5 +27,11 @@
     $app->get('/DeleteContact' , 'AdminController:DeleteContact')->setName('DeleteContact');
 
     // CarroController
-
     $app->get('/loginCliente', 'CarroController:logincliente')->setName('logincliente');
+
+
+    //FileController
+    $app->get('/file', 'FileController:file')->setName('file');
+
+
+
