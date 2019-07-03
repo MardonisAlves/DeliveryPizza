@@ -1,5 +1,5 @@
 <?php
-namespace App\Model;
+//namespace App\Model;
 
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Table;
@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping\Column;
 * @Entity
 * @Table(indexes={*@Index(name="id",columns="id")})
 */
-class Users
+class Cardapio
 {
 
 /**
@@ -61,52 +61,6 @@ protected $fullName;
  */
 protected $typeUser;
 
-
-/**
- * @var string
- * @Column(type="string")
- *
- */
-protected $cidade;
-
-
-/**
- * @var string
- * @Column(type="string")
- *
- */
-protected $rua;
-
-
-/**
- * @var int
- * @Column(type="integer")
- *
- */
-protected $nemero;
-
-
- /**
- * @var string
- * @Column(type="string")
- *
- */
-protected $bairro;
-
-
-/**
- * @var string
- * @Column(type="string")
- *
- */
-protected $referencia;
-
-/**
- * @var int
- * @Column(type="integer")
- *
- */
-protected $telefone;
 
 // METHODOS SET e GET
 
