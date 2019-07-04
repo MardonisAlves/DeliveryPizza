@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Slim\Views\Twig as View;
 use App\Model\Contact;
-use App\Model\users;
+use App\Model\Users;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -250,7 +250,7 @@ return $this->container->view->render($response ,'contact.twig');
     public function addUser($request , $response , $args)
     {
         //if(isset($_COOKIE['name'])){
-        $user = new users();
+        $user = new Users();
         $this->em->persist($user);
         $user->setFullName($_POST["name"]);
         $user->setEmail($_POST["email"]);
@@ -268,6 +268,7 @@ return $this->container->view->render($response ,'contact.twig');
           Array( 'messages' => $messages));
     }
     */
+
 }
 
 // VALIDATE $_COOKIE
