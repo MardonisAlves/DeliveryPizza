@@ -124,7 +124,7 @@ public function logout($request, $response, $args)
         $contact->setText($_POST['message']);
         $contact->setPublicationDate(new \DateTime());
         $this->em->flush();
-      //  return $this->container->view->render($response ,'contact.twig');
+       return $this->container->view->render($response ,'contact.twig');
 
 /*
 
