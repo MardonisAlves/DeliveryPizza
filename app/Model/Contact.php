@@ -9,10 +9,10 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Column;
 
 /**
-* Blog post entity
+* Blog Contact entity
 *
 * @Entity
-* @Table(indexes={*@Index(name="publication_date_idx",columns="publicationDate")
+* @Table(indexes={*@Index(name="id",columns="id")
 * })
 */
 class Contact
