@@ -235,7 +235,7 @@ return $this->container->view->render($response ,'contact.twig');
     public function newuser($request ,$response , $args)
     {
         //if(isset($_COOKIE['name']))
-        {
+        //{
         return $this->container->view->render($response ,'admin/newuser.twig');
         /*
         }else{
