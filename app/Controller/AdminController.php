@@ -234,9 +234,10 @@ return $this->container->view->render($response ,'contact.twig');
     }
     public function newuser($request ,$response , $args)
     {
-        if(isset($_COOKIE['name']))
+        //if(isset($_COOKIE['name']))
         {
         return $this->container->view->render($response ,'admin/newuser.twig');
+        /*
         }else{
             $messages = $this->getValidate( $request,  $response, $args);
             return $this->container->view->render(
@@ -244,6 +245,7 @@ return $this->container->view->render($response ,'contact.twig');
               'index.twig',
               Array( 'messages' => $messages));
         }
+        */
 }
     public function addUser($request , $response , $args)
     {
