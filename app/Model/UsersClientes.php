@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping\Column;
 * Blog UsersClientes entity
 *
 * @Entity
-* @Table(indexes={*@Index(name="id",columns="id")})
 */
 class UsersClientes
 {
