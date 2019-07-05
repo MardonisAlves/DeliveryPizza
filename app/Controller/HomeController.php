@@ -6,7 +6,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
-use App\Model\Clientes;
+use App\Model\UsersClientes;
 
 
 
@@ -64,19 +64,34 @@ public function CardCliente($request,  $response)
 
 public function InserCliente(Request $request, Response $response, $args)
 {
-  // insert cliente
+  
 
-  $user = new Clientes();
-        $this->em->persist($user);
-        $user->setFullName($_POST["name"]);
-        $user->setEmail($_POST["email"]);
-        $user->setTypeUser('cliente');
-        $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
+
+  // verificar a senha do post de é igual 
+   // criar a rota
+  // verificar os canpos vazios
+
+
+// insert cliente
+
+  $cliente = new UsersClientes();
+        $this->em->persist($cliente);
+        $cliente->setFullName($_POST["name"]);
+        $cliente->setEmail($_POST["email"]);
+        $cliente->setTypeUser('cliente');
+        $cliente->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
+        $cliente->setCidade($_POST['cidade']);
+        $cliente->setRua($_POST['rua']);
+        $cliente->setBairro($_POST['bairro']);
+        $cliente->setTelefone($_POST['telefone']);
+        $cliente->setNumero($_POST['numero']);
+        $cliente->setReferencia($_POST['referencia']);
+
         $this->em->flush(); 
 
 
        
-  // redirect para o login
+  // redirect para o login do user view
 }
  
 }
