@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Column;
 
 /**
-* Blog Clientes entity
+* Blog UsersClientes entity
 *
 * @Entity
 * @Table(indexes={*@Index(name="id",columns="id")})
