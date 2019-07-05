@@ -6,7 +6,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
-use App\Model\Users;
+use App\Model\Clientes;
 
 
 
@@ -66,7 +66,7 @@ public function InserCliente(Request $request, Response $response, $args)
 {
   // insert cliente
 
-  $user = new Users();
+  $user = new Clientes();
         $this->em->persist($user);
         $user->setFullName($_POST["name"]);
         $user->setEmail($_POST["email"]);

@@ -126,7 +126,7 @@ public function logout($request, $response, $args)
         $this->em->flush();
        return $this->container->view->render($response ,'contact.twig');
 
-/*
+
 
 $mail = new PHPMailer();
  $mail->IsSMTP(); // envia por SMTP
@@ -157,7 +157,7 @@ if(!$mail->Send()) // Envia o email
 
 return $this->container->view->render($response ,'contact.twig');
 
-*/
+
 }
 
     // GET Contact By Id //
@@ -232,12 +232,14 @@ return $this->container->view->render($response ,'contact.twig');
               Array( 'messages' => $messages));
         }
     }
+
+    // NEW USER
     public function newuser($request ,$response , $args)
     {
-        //if(isset($_COOKIE['name']))
-        //{
+        if(isset($_COOKIE['name']))
+        {
         return $this->container->view->render($response ,'admin/newuser.twig');
-        /*
+        
         }else{
             $messages = $this->getValidate( $request,  $response, $args);
             return $this->container->view->render(
@@ -245,8 +247,9 @@ return $this->container->view->render($response ,'contact.twig');
               'index.twig',
               Array( 'messages' => $messages));
         }
-        */
+        
 }
+// ADD USER
     public function addUser($request , $response , $args)
     {
         //if(isset($_COOKIE['name'])){
@@ -260,14 +263,14 @@ return $this->container->view->render($response ,'contact.twig');
 
         return $this->container->view->render($response ,'admin/home.twig');
 
-    /*}else{
+    }else{
         $messages = $this->getValidate( $request,  $response, $args);
         return $this->container->view->render(
           $response ,
           'index.twig',
           Array( 'messages' => $messages));
     }
-    */
+    
 
 }
 

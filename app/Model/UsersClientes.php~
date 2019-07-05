@@ -9,12 +9,12 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Column;
 
 /**
-* Blog User entity
+* Blog Clientes entity
 *
 * @Entity
 * @Table(indexes={*@Index(name="id",columns="id")})
 */
-class Users
+class UsersClientes
 {
 
 /**
@@ -22,44 +22,45 @@ class Users
  *
  **/
 
-/**
-* @var int
-*
+/** @var int
 * @Id
 * @GeneratedValue
 * @Column(type="integer")
 */
 protected $id;
 
-/**
-* @var string
-* @Column(type="string");
-*
-*/
+/** @var string @Column(type="string")**/
 protected $senha;
 
-/**
-* @var string
-*
-* @Column(type="string")
-*/
+/** @var string @Column(type="string")**/
 protected $email;
 
-
-/**
- * @var string
- *
- * @Column(type="string")
- *
- */
+/** @var string @Column(type="string")**/
 protected $fullName;
 
-/**
- * @var string
- * @Column(type="string")
- *
- */
+/** @var string * @Column(type="string") **/
 protected $typeUser;
+
+/** @var string @Column(type = "string") **/
+protected $cidade;
+
+/** @var string @Column(type="string")**/
+protected $rua;
+
+/** @var int @Column(type="integer")**/
+protected $numero;
+
+/** @var string @Column(type="string")**/
+protected $bairro;
+
+/** @var string @Column(type="string")**/
+protected $referencia;
+
+/** @var int @Column(type="integer")**/
+protected $telefone;
+
+
+
 
 
 
@@ -171,5 +172,29 @@ protected $typeUser;
     public function getTypeUser()
     {
         return $this->typeUser;
+    }
+
+    /**
+     * Set cidade.
+     *
+     * @param string $cidade
+     *
+     * @return Clientes
+     */
+    public function setCidade($cidade)
+    {
+        $this->cidade = $cidade;
+
+        return $this;
+    }
+
+    /**
+     * Get cidade.
+     *
+     * @return string
+     */
+    public function getCidade()
+    {
+        return $this->cidade;
     }
 }
