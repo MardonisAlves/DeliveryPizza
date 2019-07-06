@@ -68,11 +68,11 @@ public function InserCliente(Request $request, Response $response, $args)
 
 
   // verificar a senha do post de é igual 
-   // criar a rota
+  
   // verificar os canpos vazios
 
 
-// insert cliente
+// insert cliente ja esta em funcionamento
 
   $cliente = new UsersClientes();
         $this->em->persist($cliente);
@@ -92,6 +92,14 @@ public function InserCliente(Request $request, Response $response, $args)
 
        
   // redirect para o login do user view
+}
+
+
+public function clientelogin()
+{
+  // selecionar o clinte
+
+  // pagina de acesso cliente
 }
  
 }

@@ -236,23 +236,24 @@ return $this->container->view->render($response ,'contact.twig');
     // NEW USER
     public function newuser($request ,$response , $args)
     {
-        if(isset($_COOKIE['name']))
-        {
+        //if(isset($_COOKIE['name']))
+        //{
         return $this->container->view->render($response ,'admin/newuser.twig');
         
-        }else{
+        /*}else{
             $messages = $this->getValidate( $request,  $response, $args);
             return $this->container->view->render(
               $response ,
               'index.twig',
               Array( 'messages' => $messages));
         }
+        */
         
 }
 // ADD USER
     public function addUser($request , $response , $args)
     {
-        if(isset($_COOKIE['name'])){
+        //if(isset($_COOKIE['name'])){
         $user = new Users();
         $this->em->persist($user);
         $user->setFullName($_POST["name"]);
@@ -263,13 +264,13 @@ return $this->container->view->render($response ,'contact.twig');
 
         return $this->container->view->render($response ,'admin/home.twig');
 
-    }else{
+    /*}else{
         $messages = $this->getValidate( $request,  $response, $args);
         return $this->container->view->render(
           $response ,
           'index.twig',
           Array( 'messages' => $messages));
-    }
+    } */
     
 
 }

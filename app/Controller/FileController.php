@@ -26,13 +26,7 @@ public function file(Request $request, Response $response, $args)
 
       // Get form do Uplodad return  view
 
-   $data = array('name' => 'Rob', 'age' => 40);
-   echo $newResponse = $response->withJson($data, 201);
-
-   foreach ($newResponse as $key => $value) {
-     echo $value['name'];
-   }
-
+   $ echo "VIEW UPLPOADS";
   
 
 
