@@ -33,7 +33,10 @@ public function file(Request $request, Response $response, $args)
   }
 public function Uploads(Request $req , Response $res , $args)
   {
+    
     // Receber os dados do form do produto com uplodas das images  
+
+
 
     // fazer o merge no banco de dados
   }
