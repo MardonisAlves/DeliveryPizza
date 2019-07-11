@@ -35,7 +35,15 @@ public function validate(Request $request , Response $response , $flash)
 
 }else{
 
-   $this->flash->addMessageNow('msg', 'Acesso Restrito
+   $this->flash->addMessageNow('msg', 'Acesso Negado');
+  $messages = $this->flash->getMessages();
+
+    return $this->container->view->render(
+                            $response ,
+                            'index.twig',
+                            Array( 
+                              'messages' => $messages));
+    }
                             }
 
 }
