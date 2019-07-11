@@ -35,15 +35,7 @@ public function validate(Request $request , Response $response , $flash)
 
 }else{
 
-   $this->flash->addMessageNow('msg', 'Você não tem acesso a esta Funcionalidade');
-  $messages = $this->flash->getMessages();
-
-    return $this->container->view->render(
-                            $response ,
-                            'index.twig',
-                            Array( 
-                              'messages' => $messages));
-    }
+   $this->flash->addMessageNow('msg', 'Acesso Restrito
                             }
 
 }
