@@ -6,6 +6,7 @@ use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Slim\Container;
 
+
 // START SESSION//
 /*
 session_start();

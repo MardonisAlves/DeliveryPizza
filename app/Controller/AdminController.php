@@ -11,8 +11,9 @@ use Psr\Http\Message\ResponseInterface as Response;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
+use App\Validate\Validate;
 
-class AdminController 
+class AdminController extends Validate
 {
     protected $em;
     private $container;
@@ -22,11 +23,16 @@ class AdminController
         $this->em = $em;
         $this->container=$container;
         $this->flash = $flash;
+
+        parent::__construct($container , $flash);
+
 }
 
 public function home(Request $request, Response $response, $args)
 {
+
 if(isset($_COOKIE["name"])){
+
   $contact =  $this->em->getRepository('App\Model\Contact')->findAll();
   return $this->container->view->render(
                             $response ,
@@ -34,8 +40,12 @@ if(isset($_COOKIE["name"])){
                             Array( 
                               'contact' => $contact));
 
+
 }else{
-    $messages = $this->getValidate( $request,  $response, $args);
+
+    
+    $messages = parent::validate($request,  $response, $args);
+
     return $this->container->view->render(
                             $response ,
                             'index.twig',

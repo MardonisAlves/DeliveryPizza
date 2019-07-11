@@ -7,10 +7,10 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
 use App\Model\UsersClientes;
+use App\Validate\Validate;
 
 
-
-class HomeController 
+class HomeController extends Validate
 {
       private $em;
       private $container;
@@ -24,9 +24,16 @@ public function __construct($container ,EntityManager $em)
 public function index(Request $request, Response $response, $args) 
 {
 // Return os cardapio pizzza
+  // Criar as Session
   return $this->container->view->render(
     $response ,
     'index.twig');
+  
+
+  // teste validate 
+  //$v = new Validate();
+  //$v->validate($request ,  $response , $args);
+
 }
 
 

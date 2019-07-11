@@ -40,6 +40,12 @@ $container['em'] = function ($c) {
 $container['HomeController'] = function ($container) {
 return new \App\Controller\HomeController($container  , $container->get('em') );
 };
+ // ValidateHomeController
+$container['Validate'] = function ($container) {
+return new \App\Validate\Validate($container  ,$container->get('flash'));
+};
+
+
 // ADMINCONTROLLER
 $container['AdminController'] = function ($container) {
 return new App\Controller\AdminController($container , $container->get('em') ,$container->get('flash'));
