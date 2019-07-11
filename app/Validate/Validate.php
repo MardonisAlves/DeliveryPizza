@@ -21,9 +21,29 @@ abstract class Validate
 
 public function validate(Request $request , Response $response , $flash)
 {
-  //echo $_COOKIE["email"];
-  $this->flash->addMessageNow('msg', 'Acesso não permitido');
-  return $messages = $this->flash->getMessages();
+  
+
+  if(isset($_COOKIE["name"])){
+
+  $contact =  $this->em->getRepository('App\Model\Contact')->findAll();
+  return $this->container->view->render(
+                            $response ,
+                            'admin/home.twig' ,
+                            Array( 
+                              'contact' => $contact));
+
+
+}else{
+
+   $this->flash->addMessageNow('msg', 'Você não tem acesso a esta Funcionalidade');
+  $messages = $this->flash->getMessages();
+
+    return $this->container->view->render(
+                            $response ,
+                            'index.twig',
+                            Array( 
+                              'messages' => $messages));
+    }
                             }
 
 }

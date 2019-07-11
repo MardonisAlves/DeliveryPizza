@@ -31,27 +31,8 @@ class AdminController extends Validate
 public function home(Request $request, Response $response, $args)
 {
 
-if(isset($_COOKIE["name"])){
-
-  $contact =  $this->em->getRepository('App\Model\Contact')->findAll();
-  return $this->container->view->render(
-                            $response ,
-                            'admin/home.twig' ,
-                            Array( 
-                              'contact' => $contact));
-
-
-}else{
-
-    
-    $messages = parent::validate($request,  $response, $args);
-
-    return $this->container->view->render(
-                            $response ,
-                            'index.twig',
-                            Array( 
-                              'messages' => $messages));
-    }
+// Vamos trabalhar com metodos staticos
+$messages = parent::validate($request,  $response, $args);
 
 
 }
