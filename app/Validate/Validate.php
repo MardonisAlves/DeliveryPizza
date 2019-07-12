@@ -26,7 +26,27 @@ public function validate(Request $request , Response $response , $flash)
 {
   
 
-  
+  if(isset($_SESSION['typeUser'])){
+
+  $contact =  $this->em->getRepository('App\Model\UsersClientes')->findAll();
+  return $this->container->view->render(
+                            $response ,
+                            'admin/home.twig' ,
+                            Array( 
+                              'contact' => $contact));
+
+
+}else{
+
+   $this->flash->addMessageNow('msg', 'Acesso Negado');
+  $messages = $this->flash->getMessages();
+
+    return $this->container->view->render(
+                            $response ,
+                            'index.twig',
+                            Array( 
+                              'messages' => $messages));
+    }
 }
 
 // VALIDATE LOGIN
@@ -46,10 +66,9 @@ if($login){
         if(password_verify($_POST['senha'], $l->getSenha())){
 
         $_SESSION['typeUser'] = $l->getTypeUser();
-       // echo $_SESSION['typeUser'];
         
         $url = $this->container->get('router')->pathFor('home');
-         return $response->withStatus(302)->withHeader('Location', $url);      
+        return $response->withStatus(302)->withHeader('Location', $url);
 
 
       }else{
