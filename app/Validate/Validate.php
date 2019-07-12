@@ -48,12 +48,8 @@ if($login){
         $_SESSION['typeUser'] = $l->getTypeUser();
        // echo $_SESSION['typeUser'];
         
-        return $this->container->view->render(
-                                    $response ,
-                                    'admin/home.twig',
-                                    Array( 'messages' => $messages));
-
-        
+        $url = $this->container->get('router')->pathFor('home');
+         return $response->withStatus(302)->withHeader('Location', $url);      
 
 
       }else{
