@@ -26,7 +26,7 @@ public function validate(Request $request , Response $response , $flash)
 {
   
 
-  if(isset($_SESSION['getTypeUser'])){
+  if(isset($_SESSION['typeUser'])){
 
   $contact =  $this->em->getRepository('App\Model\Contact')->findAll();
   return $this->container->view->render(
