@@ -9,7 +9,8 @@ use Doctrine\ORM\Tools\Setup;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-use App\Model\Contact;
+
+use App\Model\UsersClientes;
 
 abstract class Validate
 {
@@ -27,9 +28,9 @@ public function validate(Request $request , Response $response , $flash)
 {
   
 
-  //if(isset($_SESSION['typeUser'])){
+  if(isset($_SESSION['typeUser'])){
 
-  $contact =  $this->em->getRepository('App\Model\Contact')->findAll();
+  $contact =  $this->em->getRepository('App\Model\UsersClientes')->findAll();
   return $this->container->view->render(
                             $response ,
                             'admin/home.twig' ,
@@ -37,7 +38,7 @@ public function validate(Request $request , Response $response , $flash)
                               'contact' => $contact));
 
 
-/*}else{
+}else{
 
    $this->flash->addMessageNow('msg', 'Acesso Negado');
   $messages = $this->flash->getMessages();
@@ -47,7 +48,7 @@ public function validate(Request $request , Response $response , $flash)
                             'index.twig',
                             Array( 
                               'messages' => $messages));
-    }*/
+    }
 }
 
 // VALIDATE LOGIN

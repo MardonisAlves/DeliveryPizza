@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Slim\Views\Twig as View;
+use App\Model\Contact;
 use App\Model\Users;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -59,6 +60,8 @@ public function hometeste($request, $response, $args)
   $messages = parent::sendemail($request , $response , $args);
 
   return $this->container->view->render($response ,'contact.twig');
+
+
 }
 
     // GET Contact By Id //
