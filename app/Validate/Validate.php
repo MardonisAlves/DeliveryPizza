@@ -32,7 +32,7 @@ public function validate(Request $request , Response $response , $flash)
 // VALIDATE LOGIN
 public function validatelogin($request , $response , $args)
 {
-  $messages = $this->em->getRepository(
+  $login = $this->em->getRepository(
             'App\Model\Users')->findBy(array('email' => $_POST['email']));
 
 if($login){
