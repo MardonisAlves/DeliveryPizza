@@ -26,33 +26,13 @@ public function validate(Request $request , Response $response , $flash)
 {
   
 
-  //if(isset($_SESSION['typeUser'])){
-
-  $contact =  $this->em->getRepository('App\Model\UsersClientes')->findAll();
-  return $this->container->view->render(
-                            $response ,
-                            'admin/home.twig' ,
-                            Array( 
-                              'contact' => $contact));
-
-
-/*}else{
-
-   $this->flash->addMessageNow('msg', 'Acesso Negado');
-  $messages = $this->flash->getMessages();
-
-    return $this->container->view->render(
-                            $response ,
-                            'index.twig',
-                            Array( 
-                              'messages' => $messages));
-    }*/
+  
 }
 
 // VALIDATE LOGIN
 public function validatelogin($request , $response , $args)
 {
-  $login = $this->em->getRepository(
+  $messages = $this->em->getRepository(
             'App\Model\Users')->findBy(array('email' => $_POST['email']));
 
 if($login){
@@ -66,10 +46,15 @@ if($login){
         if(password_verify($_POST['senha'], $l->getSenha())){
 
         $_SESSION['typeUser'] = $l->getTypeUser();
+       // echo $_SESSION['typeUser'];
         
-          return $this->container->view->render(
+        return $this->container->view->render(
                                     $response ,
-                                    'admin/home.twig');
+                                    'admin/home.twig',
+                                    Array( 'messages' => $messages));
+
+        
+
 
       }else{
 

@@ -31,8 +31,7 @@ public function home(Request $request, Response $response, $args)
 
 $messages = parent::validate($request,  $response, $args);
 
-var_dump($messages);
-
+  
 }
 // login
 public function login(Request $request, Response $response, $args)
