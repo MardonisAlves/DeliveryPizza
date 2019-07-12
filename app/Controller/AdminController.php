@@ -8,9 +8,6 @@ use App\Model\Users;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\SMTP;
 use App\Validate\Validate;
 
 class AdminController extends Validate
@@ -27,128 +24,42 @@ class AdminController extends Validate
         parent::__construct($container , $flash);
 
 }
-
+// home
 public function home(Request $request, Response $response, $args)
 {
 
-// Vamos trabalhar com metodos staticos
 $messages = parent::validate($request,  $response, $args);
 
-
 }
-public function login($request, $response, $args)
+// login
+public function login(Request $request, Response $response, $args)
 {
 
-
-$login = $this->em->getRepository(
-            'App\Model\Users')->findBy(array('email' => $_POST['email']));
-
-if($login){
-
-      foreach($login as $l)
-      {
-        if($l->getEmail() == $_POST['email'])
-      {
-        if(password_verify(
-          $_POST["senha"] 
-          , $l->getSenha())){
-
-        setcookie("name",$l->getfullName());
-        
-          $url = $this->container->get('router')->pathFor('home');
-          return $response->withStatus(302)->withHeader('Location', $url);
-
-      }else{
-
-      $messages = $this->getValidate( $request,  $response, $args);
-      return $this->container->view->render(
-        $response ,
-        'admin/loginCliente.twig',
-        Array( 'messages' => $messages));
-      }
-
-      }else{
-
-      $messages = $this->getValidate( $request,  $response, $args);
-      return $this->container->view->render(
-        $response ,
-        'admin/loginCliente.twig',
-        Array( 'messages' => $messages));
-          }
-      }
-
-}else{
-
-      $messages = $this->getValidate( $request,  $response, $args);
-      return $this->container->view->render(
-        $response ,
-        'admin/loginCliente.twig',
-        Array( 'messages' => $messages));
+$messages = parent::validatelogin($request , $response ,$args);
+  
 }
-
-}
-
-
-
+// logout
 public function logout($request, $response, $args)
 {
-  if(isset($_COOKIE["name"])){
-    setcookie("name", "", time() - 3600);
-
-    $url = $this->container->get('router')->pathFor('index');
-    return $response->withStatus(302)->withHeader('Location', $url);
+  $messages = parent::validatelogout($request , $response , $args);
 
 }
-}
 
+// New Contact 
+public function hometeste($request, $response, $args)
+{
+  $contact = new Contact();
+  $this->em->persist($contact);
+  $contact->setName($_POST['name']);
+  $contact->setEmail($_POST['email']);
+  $contact->setTelefone($_POST['telefone']);
+  $contact->setText($_POST['message']);
+  $contact->setPublicationDate(new \DateTime());
+  $this->em->flush();
 
-    // New Contact //
-    public function hometeste($request, $response, $args)
-    {
+  $messages = parent::sendemail($request , $response , $args);
 
-
-        $contact = new Contact();
-        $this->em->persist($contact);
-        $contact->setName($_POST['name']);
-        $contact->setEmail($_POST['email']);
-        $contact->setTelefone($_POST['telefone']);
-        $contact->setText($_POST['message']);
-        $contact->setPublicationDate(new \DateTime());
-        $this->em->flush();
-       return $this->container->view->render($response ,'contact.twig');
-
-
-
-$mail = new PHPMailer();
- $mail->IsSMTP(); // envia por SMTP
- $mail->CharSet = 'UTF-8';
-$mail->SMTPDebug = 2;
- $mail->True;
- $mail->Host = "smtp.gmail.com"; // Servidor SMTP
- $mail->Port = 465;
-  $mail->SMTPSecure = 'ssl';
- $mail->SMTPAuth = true; // Caso o servidor SMTP precise de autenticação
- $mail->Username = "mardonisgp@gmail.com"; // SMTP username
- $mail->Password = "#qwe123qwe@"; // SMTP password
-
- $mail->From = $_POST['email']; // From
- $mail->FromName = $_POST['name'] ; // Nome de quem envia o email
-
- $mail->AddAddress("donyfic@bol.com.br", "Mardonis"); // Email e nome de quem receberá //Responder
- $mail->WordWrap = 50; // Definir quebra de linha
- $mail->IsHTML = true ; // Enviar como HTML
- $mail->Subject = $_POST['subject'] ; // Assunto
- $mail->Body = $_POST['message'] ; //Corpo da mensagem caso seja HTML
- $mail->AltBody = "$mensagem" ; //PlainText, para caso quem receber o email não aceite o corpo HTML
-
-if(!$mail->Send()) // Envia o email
- {
- echo "Erro no envio da mensagem";
- }
-
-return $this->container->view->render($response ,'contact.twig');
-
-
+  return $this->container->view->render($response ,'contact.twig');
 }
 
     // GET Contact By Id //

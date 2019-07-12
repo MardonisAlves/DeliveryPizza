@@ -7,12 +7,6 @@ use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Slim\Container;
 
 
-// START SESSION//
-/*
-session_start();
-ini_set("session.gc_maxlifetime", 18000);
-$session_life = ini_get("session.gc_maxlifetime");
-*/
 
 /**
  *  Slim Application setting
