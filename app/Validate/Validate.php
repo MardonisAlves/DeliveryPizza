@@ -65,7 +65,7 @@ if($login){
       {
         if(password_verify($_POST['senha'], $l->getSenha())){
 
-        $_SESSION['typeUser'] = $l->getTypeUser();
+        echo $_SESSION['typeUser'] = $l->getTypeUser();
         
         $url = $this->container->get('router')->pathFor('home');
         return $response->withStatus(302)->withHeader('Location', $url);
