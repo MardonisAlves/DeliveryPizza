@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use App\Validate\Validate;
+use App\Model\UsersClientes;
 
 class AdminController extends Validate
 {
@@ -29,6 +30,8 @@ public function home(Request $request, Response $response, $args)
 {
 
 $messages = parent::validate($request,  $response, $args);
+
+var_dump($messages);
 
 }
 // login

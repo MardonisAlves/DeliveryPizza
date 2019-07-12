@@ -10,8 +10,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-use App\Model\UsersClientes;
-
 abstract class Validate
 {
 
