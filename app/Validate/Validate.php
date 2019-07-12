@@ -52,23 +52,25 @@ public function validate(Request $request , Response $response , $flash)
 // VALIDATE LOGIN
 public function validatelogin($request , $response , $args)
 {
-  $login = $this->em->getRepository(
+  $contact = $this->em->getRepository(
             'App\Model\Users')->findBy(array('email' => $_POST['email']));
 
-if($login){
+if($contact){
 
 
-      foreach($login as $l)
+      foreach($contact as $l)
       {
        
         if($l->getEmail() == $_POST['email'])
       {
         if(password_verify($_POST['senha'], $l->getSenha())){
 
-        echo $_SESSION['typeUser'] = $l->getTypeUser();
+         $_SESSION['typeUser'] = $l->getTypeUser();
         
-        $url = $this->container->get('router')->pathFor('home');
-        return $response->withStatus(302)->withHeader('Location', $url);
+       return $this->container->view->render(
+                                    $response ,
+                                    'admin/loginCliente.twig',
+                                    Array('contact' => $contact));
 
 
       }else{
