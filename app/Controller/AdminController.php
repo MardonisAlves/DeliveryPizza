@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use Slim\Views\Twig as View;
-use App\Model\Contact;
 use App\Model\Users;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ServerRequestInterface as Request;

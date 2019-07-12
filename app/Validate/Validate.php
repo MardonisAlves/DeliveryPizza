@@ -9,6 +9,7 @@ use Doctrine\ORM\Tools\Setup;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
+use App\Model\Contact;
 
 abstract class Validate
 {
