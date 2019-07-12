@@ -69,7 +69,7 @@ if($contact){
         
        return $this->container->view->render(
                                     $response ,
-                                    'admin/loginCliente.twig',
+                                    'admin/home.twig',
                                     Array('contact' => $contact));
 
 
