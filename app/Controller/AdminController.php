@@ -30,8 +30,7 @@ public function home(Request $request, Response $response, $args)
 {
 
 $messages = parent::validate($request,  $response, $args);
-
-  
+ 
 }
 // login
 public function login(Request $request, Response $response, $args)
@@ -46,7 +45,6 @@ public function logout($request, $response, $args)
   $messages = parent::validatelogout($request , $response , $args);
 
 }
-
 // New Contact 
 public function hometeste($request, $response, $args)
 {
@@ -66,81 +64,26 @@ public function hometeste($request, $response, $args)
 
 }
 
-    // GET Contact By Id //
-    public function GetcontactID($request, $response, $args)
-    {
-        if(isset($_COOKIE['name']))
-        {
-
-        $contact =  $this->em->getRepository(
-          'App\Model\Contact')->findBy(Array(
-            'id' => $_GET['id']));
-
-        return $this->container->view->render(
-          $response ,
-          'admin/updatecontato.twig',
-          Array( 'contact' => $contact));
-
-        }else{
-            $messages = $this->getValidate( $request,  $response, $args);
-            return $this->container->view->render(
-              $response ,
-              'index.twig',
-              Array( 'messages' => $messages));
-        }
+// GET Contact By Id //
+public function GetcontactID($request, $response, $args)
+{
+  $messages = parent::Validateid($request , $response , $args);     
 }
 
-    // Update Contact //
-    public function putContact($request, $response, $args)
-    {
+// Update Contact //
+public function putContact($request, $response, $args)
+{
+  $messages = parent::validateupdatecontact($request, $response, $args);     
+}
 
-       if(isset($_COOKIE['name'])){
-        $contact =  $this->em->find('App\Model\Contact',$_POST['id']);
-        $contact->setEmail($_POST['email']);
-        $contact->setTelefone($_POST['telefone']);
-        $contact->setPublicationDate(new \DateTime());
-        $this->em->flush();
-    // Retornando o nome da rota
-        $url = $this->container->get('router')->pathFor('home');
-        return $response->withStatus(302)->withHeader('Location', $url);
+// Delete Contact //
+public function DeleteContact($request, $response, $args)
+{
+ $messages = parent::validatedelete($request, $response, $args);
+}
 
-       }else{
-         $messages = $this->getValidate( $request,  $response, $args);
-        return $this->container->view->render(
-          $response ,
-          'index.twig',
-          Array( 'messages' => $messages));
-       }
-    }
-
-    // Delete Contact //
-
-    public function DeleteContact($request, $response, $args)
-    {
-        if(isset($_COOKIE['name'])){
-
-        $contact =  $this->em->find(
-          'App\Model\Contact',
-          $_GET['id']);
-
-        $this->em->remove($contact);
-        $this->em->flush();
-
-         // Retornando o nome da rota
-         $url = $this->container->get('router')->pathFor('home');
-         return $response->withStatus(302)->withHeader('Location', $url);
-        }else{
-
-            $messages = $this->getValidate( $request,  $response, $args);
-            return $this->container->view->render(
-              $response ,
-              'index.twig',
-              Array( 'messages' => $messages));
-        }
-    }
-
-    // NEW USER
-    public function newuser($request ,$response , $args)
+// NEW USER
+public function newuser($request ,$response , $args)
     {
         if(isset($_COOKIE['name']))
         {
@@ -156,8 +99,8 @@ public function hometeste($request, $response, $args)
         
 }
 // ADD USER
-    public function addUser($request , $response , $args)
-    {
+public function addUser($request , $response , $args)
+{
         if(isset($_COOKIE['name'])){
         $user = new Users();
         $this->em->persist($user);
@@ -180,14 +123,4 @@ public function hometeste($request, $response, $args)
 
 }
 
-// VALIDATE $_COOKIE
-
-public function getValidate($request , $response , $args)
-{
-if(!isset($_COOKIE["name"])){
-  //echo $_COOKIE["email"];
-  $this->flash->addMessageNow('msg', 'Você não tem acesso a esta Funcionalidade');
-  return $messages = $this->flash->getMessages();
-                            }
-}
 }

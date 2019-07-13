@@ -35,7 +35,6 @@ public function validate(Request $request , Response $response , $flash)
                             Array( 
                               'contact' => $contact));
 
-
 }else{
 
    $this->flash->addMessageNow('msg', 'Acesso Negado');
@@ -136,6 +135,81 @@ if(!$mail->Send()) // Envia o email
  echo "Erro no envio da mensagem";
  }
 }
+// VALIDATE GET CONTACT ID
+public function Validateid($request  , $response , $args){
+    if(isset($_SESSION['typeUser']) == 'admin'){
+  $contact =  $this->em->getRepository(
+          'App\Model\Contact')->findBy(Array(
+            'id' => $_GET['id']));
+
+        return $this->container->view->render(
+          $response ,
+          'admin/updatecontato.twig',
+          Array( 'contact' => $contact));
+
+        }else{
+            $this->flash->addMessageNow('msg', 'Acesso negado!');
+            $messages = $this->flash->getMessages();
+            return $this->container->view->render(
+              $response ,
+              'index.twig',
+              Array( 'messages' => $messages));
+        }
+}
+
+
+
+// VALIDATE UPDATE CONTACT
+public function validateupdatecontact($request  , $response , $args)
+{
+
+   if(isset($_SESSION['typeUser']) == 'admin' AND $_SERVER['REQUEST_METHOD'] == 'POST'){
+        $contact =  $this->em->find('App\Model\Contact',$_POST['id']);
+        $contact->setEmail($_POST['email']);
+        $contact->setTelefone($_POST['telefone']);
+        $contact->setPublicationDate(new \DateTime());
+        $this->em->flush();
+// Retornando o nome da rota
+       return $this->container->view->render(
+          $response ,
+          'admin/home.twig',
+          Array( 'messages' => $messages));
+
+       }else{
+        $this->flash->addMessageNow('msg', 'Acesso negado!');
+        $messages = $this->flash->getMessages();
+        return $this->container->view->render(
+          $response ,
+          'index.twig',
+          Array( 'messages' => $messages));
+       }
+}
+
+// VALIDATE DELETE
+public function validatedelete($request  , $response , $args)
+{
+  if(isset($_SESSION['typeUser']) == 'admin' AND $_SERVER['REQUEST_METHOD'] == 'GET'){
+
+        $contact =  $this->em->find(
+          'App\Model\Contact',
+          $_GET['id']);
+
+        $this->em->remove($contact);
+        $this->em->flush();
+
+         // Retornando o nome da rota
+         $url = $this->container->get('router')->pathFor('home');
+         return $response->withStatus(302)->withHeader('Location', $url);
+        }else{
+
+             $this->flash->addMessageNow('msg', 'Acesso negado!');
+            $messages = $this->flash->getMessages();
+            return $this->container->view->render(
+              $response ,
+              'index.twig',
+              Array( 'messages' => $messages));
+        }
+}
 
 
 public function validatelogout($request, $response, $args)
@@ -144,7 +218,7 @@ public function validatelogout($request, $response, $args)
     
     session_unset();
 
-return $this->container->view->render(
+    return $this->container->view->render(
                                     $response ,
                                     'index.twig');
 
