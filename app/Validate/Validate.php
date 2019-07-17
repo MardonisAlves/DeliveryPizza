@@ -232,7 +232,7 @@ public function validatenewuser($request, $response, $args)
 
 // VALIDATE ADD USER
 
-public function validateadduser()
+public function validateadduser($request , $response , $args)
 {
    if(isset($_SESSION['typeUser']) == 'admin')
    {
