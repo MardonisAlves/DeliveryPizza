@@ -230,6 +230,32 @@ public function validatenewuser($request, $response, $args)
 
 }
 
+// VALIDATE ADD USER
+
+public function validateadduser()
+{
+   if(isset($_SESSION['typeUser']) == 'admin' AND $_SERVER['REQUEST_METHOD'] == 'POST')
+   {
+        $user = new Users();
+        $this->em->persist($user);
+        $user->setFullName($_POST["name"]);
+        $user->setEmail($_POST["email"]);
+        $user->setTypeUser($_POST["tipoUser"]);
+        $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
+        $this->em->flush();
+
+        return $this->container->view->render($response ,'admin/home.twig');
+
+    }else{
+        $this->flash->addMessageNow('msg', 'Acesso negado!');
+        $messages = $this->flash->getMessages();
+        return $this->container->view->render(
+          $response ,
+          'index.twig',
+          Array( 'messages' => $messages));
+    }
+    
+}
 
 // VALIDATE LOGOUT
 public function validatelogout($request, $response, $args)

@@ -87,28 +87,12 @@ public function newuser($request ,$response , $args)
 {    
   $messages = parent::validatenewuser($request ,$response , $args);        
 }
+
 // ADD USER
 public function addUser($request , $response , $args)
 {
-        if(isset($_COOKIE['name'])){
-        $user = new Users();
-        $this->em->persist($user);
-        $user->setFullName($_POST["name"]);
-        $user->setEmail($_POST["email"]);
-        $user->setTypeUser($_POST["tipoUser"]);
-        $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
-        $this->em->flush();
-
-        return $this->container->view->render($response ,'admin/home.twig');
-
-    }else{
-        $messages = $this->getValidate( $request,  $response, $args);
-        return $this->container->view->render(
-          $response ,
-          'index.twig',
-          Array( 'messages' => $messages));
-    }
-    
+  
+  $messages = parent::validateadduser($request , $response , $args);
 
 }
 
