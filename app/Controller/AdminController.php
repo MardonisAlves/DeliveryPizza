@@ -91,7 +91,7 @@ public function newuser($request ,$response , $args)
 // ADD USER
 public function addUser($request , $response , $args)
 {
-  if($request->isPost()){
+  if($request->isGet()){
   $messages = parent::validateadduser($request , $response , $args);
 }else{
   echo "ola";
