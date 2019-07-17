@@ -211,7 +211,27 @@ public function validatedelete($request  , $response , $args)
         }
 }
 
+// VALIDATE NEW USER
 
+public function validatenewuser($request, $response, $args)
+{
+  if(isset($_SESSION['typeUser']) AND $_SERVER['REQUEST_METHOD'] == 'GET'))
+        {
+        return $this->container->view->render($response ,'admin/newuser.twig');
+        
+        }else{
+            $this->flash->addMessageNow('msg', 'Acesso negado!');
+            $messages = $this->flash->getMessages();
+            return $this->container->view->render(
+              $response ,
+              'index.twig',
+              Array( 'messages' => $messages));
+        }
+
+}
+
+
+// VALIDATE LOGOUT
 public function validatelogout($request, $response, $args)
 {
   if(isset($_SESSION["typeUser"])){
