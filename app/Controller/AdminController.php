@@ -84,19 +84,8 @@ public function DeleteContact($request, $response, $args)
 
 // NEW USER
 public function newuser($request ,$response , $args)
-    {
-        if(isset($_COOKIE['name']))
-        {
-        return $this->container->view->render($response ,'admin/newuser.twig');
-        
-        }else{
-            $messages = $this->getValidate( $request,  $response, $args);
-            return $this->container->view->render(
-              $response ,
-              'index.twig',
-              Array( 'messages' => $messages));
-        }
-        
+{    
+  $messages = parent::validatenewuser($request ,$response , $args);        
 }
 // ADD USER
 public function addUser($request , $response , $args)
