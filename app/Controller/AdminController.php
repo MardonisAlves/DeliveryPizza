@@ -91,9 +91,9 @@ public function newuser($request ,$response , $args)
 // ADD USER
 public function addUser($request , $response , $args)
 {
-  
+  if(isset($_SERVER['REQUEST_METHOD'] == 'POST'){
   $messages = parent::validateadduser($request , $response , $args);
-
+}
 }
 
 }
