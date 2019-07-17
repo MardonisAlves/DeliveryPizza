@@ -234,7 +234,7 @@ public function validatenewuser($request, $response, $args)
 
 public function validateadduser()
 {
-   if(isset($_SESSION['typeUser']) == 'admin' AND $_SERVER['REQUEST_METHOD'] == 'POST')
+   if(isset($_SESSION['typeUser']) == 'admin')
    {
         $user = new Users();
         $this->em->persist($user);
