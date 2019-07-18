@@ -104,7 +104,7 @@ if($contact){
                                     'admin/loginCliente.twig',
                                     Array( 'messages' => $messages));*/
 
-      return $response->withRedirect('/dmin/loginCliente', 301);
+      return $response->withRedirect('/', 301);
 }
 }
 // Send email
