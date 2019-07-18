@@ -99,12 +99,10 @@ if($contact){
         $this->flash->addMessageNow('msg', 'Usuario não existe!');
         $messages = $this->flash->getMessages();
 
-     /* return $this->container->view->render(
+      return $this->container->view->render(
                                     $response ,
                                     'admin/loginCliente.twig',
-                                    Array( 'messages' => $messages));*/
-
-      return $response->withRedirect('/', 301);
+                                    Array( 'messages' => $messages));
 }
 }
 // Send email
