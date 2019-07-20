@@ -49,8 +49,19 @@ public function validate(Request $request , Response $response , $flash)
 }
 
 // VALIDATE LOGIN
-public function validatelogin($request , $response , $args)
+public function validatelogin($request request, $response , $args)
 {
+
+  try{
+    if(isset($request->isPost())){
+      echo('ola');
+    }
+  }catch(Exception $e){
+
+    echo 'Ola deu error:' . $e->getMessages();
+  }
+
+
   $contact = $this->em->getRepository(
             'App\Model\Users')->findBy(array('email' => $_POST['email']));
 
