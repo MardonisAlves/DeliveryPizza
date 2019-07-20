@@ -18,7 +18,7 @@
     // ADMIN-CONTROLLER
     $app->post('/hometeste', 'AdminController:hometeste')->setName('teste');
     $app->get('/logout', 'AdminController:logout')->setName('logout');
-    $app->map('/login', 'AdminController:login')->setName('login')->via('GET','POST');
+    $app->post('/login', 'AdminController:login')->setName('login');
     $app->get('/newuser', 'AdminController:newuser')->setName('newuser');
     $app->post('/addUser', 'AdminController:addUser')->setName('addUser');
     $app->get('/home', 'AdminController:home')->setName('home');
