@@ -17,10 +17,6 @@ use Doctrine\ORM\Mapping\Column;
 class Users
 {
 
-/**
- *     ATRIBUTOS $id , $senha , $email , $fullName , $typeUser;
- *
- **/
 
 /**
 * @var int

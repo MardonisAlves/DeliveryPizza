@@ -23,32 +23,6 @@ class CarroController
         $this->container=$container;
         $this->flash = $flash;
 }
-public function logincliente(Request $request, Response $response, $args)
-{
-
-    if(isset($_COOKIE['name'])){
-      // redirecionar a rota para login
-      $contact =  $this->em->getRepository('App\Model\Contact')->findAll();
-    return $this->container->view->render($response ,'admin/home.twig' ,Array( 'contact' => $contact));
-    }else{
-
-    //select o cardapio de pizza
-
-    // criar as sessions
-    $_SESSION['id'] = 1;
-
-    // PASSAR A SESSION NA ROTA
-    $id = $this->getValidate( $request,  $response, $args);
-    
-    return $this->container->view->render(
-                  $response ,
-                  'admin/loginCliente.twig' 
-                  ,['session' => $_SESSION['id']]);
-
-    }
-}
-
-
 
 public function carro(Request $request, Response $response, $args)
 {
@@ -57,11 +31,7 @@ public function carro(Request $request, Response $response, $args)
 
 public function getValidate($request , $response , $args)
 {
-if(!isset($_COOKIE["name"])){
-  //echo $_COOKIE["email"];
-  $this->flash->addMessageNow('msg', 'Você não tem acesso a esta Funcionalidade');
-  return $messages = $this->flash->getMessages();
-  }
-}
 
+
+}
 }
