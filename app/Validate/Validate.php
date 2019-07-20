@@ -53,7 +53,7 @@ public function validatelogin($request request, $response , $args)
 {
 
   try{
-    if(isset($request->isPost())){
+    if($_SERVER['REQUEST_METHOD'] == 'GET'){
       echo('ola');
     }
   }catch(Exception $e){
