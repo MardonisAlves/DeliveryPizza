@@ -97,7 +97,7 @@ foreach($cliente as $l)
                                     Array( 'messages' => $messages));
 
 
-      }elseif(($_POST['senha'] =! $_POST['repetsenha']){
+      }elseif($_POST['senha'] =! $_POST['repetsenha']){
 
         $this->flash->addMessageNow('msg', 'As senha não conferem');
         $messages = $this->flash->getMessages();
