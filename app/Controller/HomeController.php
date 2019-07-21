@@ -109,7 +109,7 @@ foreach($cliente as $l)
 
 
   }else{
-        /*
+        
         $user = new Users();
         $this->em->persist($user);
         $user->setFullName($_POST["name"]);
@@ -124,7 +124,7 @@ foreach($cliente as $l)
         return $this->container->view->render(
                                           $response ,
                                           'admin/loginCliente.twig',
-                                          Array( 'messages' => $messages));*/
+                                          Array( 'messages' => $messages));
 
       
     }
