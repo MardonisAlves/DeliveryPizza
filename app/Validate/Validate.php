@@ -62,7 +62,7 @@ if($contact){
       foreach($contact as $l)
       {
        
-        if($l->getEmail() == $_POST['email'])
+        if(password_verify($_POST['senha'], $l->getSenha()))
       {
         if(password_verify($_POST['senha'], $l->getSenha())){
 
