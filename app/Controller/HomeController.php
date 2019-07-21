@@ -75,10 +75,19 @@ public function InserCliente(Request $request, Response $response, $args)
 {
   
 // verificar a senha do post de é igual 
-  
+if(empty($_POST['email'],empty($_POST['senha']) , empty($_POST['typeUser'])))
+{
+
+        $this->flash->addMessageNow('msg', 'O Campo esta Vazio');
+        $messages = $this->flash->getMessages();
+      return $this->container->view->render(
+                                    $response ,
+                                    '/CardCliente.twig',
+                                    Array( 'messages' => $messages));
+}
 // verificar os canpos vazios
 if($_POST['senha'] != $_POST['repetsenha'])
-      {
+{
 
         $this->flash->addMessageNow('msg', 'As senha não conferem');
         $messages = $this->flash->getMessages();
@@ -86,29 +95,29 @@ if($_POST['senha'] != $_POST['repetsenha'])
                                     $response ,
                                     '/CardCliente.twig',
                                     Array( 'messages' => $messages));
-      }
+}
 
-      
+
 // verificar se o email ja existe
 $cliente = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email']));
 // insert cliente ja esta em funcionamento
 
 
 foreach($cliente as $l)
-      {
+{
        
-        if($l->getEmail() == $_POST['email'])
-      {
+  if($l->getEmail() == $_POST['email'])
+  {
         
-       $this->flash->addMessageNow('msg', 'E-mail js esta cadstrado');
-        $messages = $this->flash->getMessages();
-      return $this->container->view->render(
+  $this->flash->addMessageNow('msg', 'E-mail js esta cadstrado');
+  $messages = $this->flash->getMessages();
+  return $this->container->view->render(
                                     $response ,
                                     '/CardCliente.twig',
                                     Array( 'messages' => $messages));
 
 
-      }else{
+  }else{
         /*
         $user = new Users();
         $this->em->persist($user);
