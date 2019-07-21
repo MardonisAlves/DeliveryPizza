@@ -54,7 +54,7 @@ public function validatelogin($request , $response , $args)
   
 
   $contact = $this->em->getRepository(
-        'App\Model\Users')->findAll();
+        'App\Model\Users')->findBy('name' => $_POST['name']);
 
 if($contact){
 
@@ -62,7 +62,7 @@ if($contact){
       foreach($contact as $l)
       {
        
-        if(password_verify($_POST['senha'], $l->getSenha()))
+        if($l->getEmail() == $_POST['email'])
       {
         if(password_verify($_POST['senha'], $l->getSenha())){
 
