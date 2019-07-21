@@ -47,7 +47,7 @@ return new \App\Validate\Validate($container  ,$container->get('flash'));
 
 
 // ADMINCONTROLLER
-$container['AdminController'] = function ($container) {
+$container['AdminController'] = function ($container){
 return new App\Controller\AdminController($container , $container->get('em') ,$container->get('flash'));
 };
 

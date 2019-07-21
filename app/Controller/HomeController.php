@@ -6,7 +6,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
-use App\Model\UsersClientes;
+use App\Model\Users;
 use App\Validate\Validate;
 
 
@@ -81,20 +81,13 @@ public function InserCliente(Request $request, Response $response, $args)
 
 // insert cliente ja esta em funcionamento
 
-  $cliente = new UsersClientes();
-        $this->em->persist($cliente);
-        $cliente->setFullName($_POST["name"]);
-        $cliente->setEmail($_POST["email"]);
-        $cliente->setTypeUser('cliente');
-        $cliente->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
-        $cliente->setCidade($_POST['cidade']);
-        $cliente->setRua($_POST['rua']);
-        $cliente->setBairro($_POST['bairro']);
-        $cliente->setTelefone($_POST['telefone']);
-        $cliente->setNumero($_POST['numero']);
-        $cliente->setReferencia($_POST['referencia']);
-
-        $this->em->flush(); 
+   $user = new Users();
+        $this->em->persist($user);
+        $user->setFullName($_POST["name"]);
+        $user->setEmail($_POST["email"]);
+        $user->setTypeUser($_POST["typeUser"]);
+        $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
+        $this->em->flush();
 
 
        

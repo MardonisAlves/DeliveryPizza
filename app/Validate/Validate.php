@@ -26,9 +26,9 @@ public function validate(Request $request , Response $response , $flash)
 {
   
 
-  if(isset($_SESSION['typeUser'])){
+  if(isset($_SESSION['typeUser']) == 'admin'){
 
-  $contact =  $this->em->getRepository('App\Model\UsersClientes')->findAll();
+  $contact =  $this->em->getRepository('App\Model\Users')->findAll();
   return $this->container->view->render(
                             $response ,
                             'admin/home.twig' ,
@@ -49,18 +49,9 @@ public function validate(Request $request , Response $response , $flash)
 }
 
 // VALIDATE LOGIN
-public function validatelogin($request request, $response , $args)
+public function validatelogin($request , $response , $args)
 {
-
-  try{
-    if($_SERVER['REQUEST_METHOD'] == 'GET'){
-      echo('ola');
-    }
-  }catch(Exception $e){
-
-    echo 'Ola deu error:' . $e->getMessages();
-  }
-
+  
 
   $contact = $this->em->getRepository(
             'App\Model\Users')->findBy(array('email' => $_POST['email']));
@@ -107,12 +98,12 @@ if($contact){
 
 }else{
 
-        $this->flash->addMessageNow('msg', 'Usuario não existe!');
+        $this->flash->addMessageNow('msg', 'Você deve Criar user!');
         $messages = $this->flash->getMessages();
 
       return $this->container->view->render(
                                     $response ,
-                                    'admin/loginCliente.twig',
+                                    '/CardCliente.twig',
                                     Array( 'messages' => $messages));
 }
 }
