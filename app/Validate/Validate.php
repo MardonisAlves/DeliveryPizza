@@ -52,16 +52,14 @@ public function validate(Request $request , Response $response , $flash)
 public function validatelogin($request , $response , $args)
 {
   
-$query = $em->createQuery('SELECT u FROM App\Model\Users u WHERE u.email == $_POST[email]');
-$users = $query->getResult();
 
   $contact = $this->em->getRepository(
-        'App\Model\Users')->findBy(array('fullName' => $_POST['name']));
+        'App\Model\Users')->findBy(array('email' => $_POST['email']));
 
-if($users){
+if($contact){
 
 
-      foreach($users as $l)
+      foreach($contact as $l)
       {
        
         if($l->getEmail() == $_POST['email'])
@@ -73,7 +71,7 @@ if($users){
        return $this->container->view->render(
                                     $response ,
                                     'admin/home.twig',
-                                    Array('contact' => $users));
+                                    Array('contact' => $contact));
 
 
       }else{
