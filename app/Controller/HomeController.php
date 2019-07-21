@@ -108,9 +108,10 @@ foreach($cliente as $l)
                                     Array( 'messages' => $messages));
 
 
-  }else{
-        
-        $user = new Users();
+  }
+}
+
+$user = new Users();
         $this->em->persist($user);
         $user->setFullName($_POST["name"]);
         $user->setEmail($_POST["email"]);
@@ -125,10 +126,6 @@ foreach($cliente as $l)
                                           $response ,
                                           'admin/loginCliente.twig',
                                           Array( 'messages' => $messages));
-
-      
-    }
-}
 }
 }
 
