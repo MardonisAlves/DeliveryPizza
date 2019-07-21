@@ -54,7 +54,7 @@ public function validatelogin($request , $response , $args)
   
 
   $contact = $this->em->getRepository(
-        'App\Model\Users')->findBy(array('name' => $_POST['name']));
+        'App\Model\Users')->findBy(array('fullname' => $_POST['name']));
 
 if($contact){
 
