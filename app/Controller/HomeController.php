@@ -89,17 +89,38 @@ foreach($cliente as $l)
         if($l->getEmail() == $_POST['email'])
       {
         
-       echo $l->getEmail();
-
-
-      }else{
-
-        $this->flash->addMessageNow('msg', 'E-mail js esta cadstrado');
+       $this->flash->addMessageNow('msg', 'E-mail js esta cadstrado');
         $messages = $this->flash->getMessages();
       return $this->container->view->render(
                                     $response ,
                                     'admin/loginCliente.twig',
                                     Array( 'messages' => $messages));
+
+
+      }elseif(($_POST['senha'] =! $_POST['repetsenha']){
+
+        $this->flash->addMessageNow('msg', 'As senha não conferem');
+        $messages = $this->flash->getMessages();
+      return $this->container->view->render(
+                                    $response ,
+                                    'admin/loginCliente.twig',
+                                    Array( 'messages' => $messages));
+      }else{
+        $user = new Users();
+        $this->em->persist($user);
+        $user->setFullName($_POST["name"]);
+        $user->setEmail($_POST["email"]);
+        $user->setTypeUser($_POST["typeUser"]);
+        $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
+        $this->em->flush();
+
+// redirect para o login do user view
+        $this->flash->addMessageNow('msg', 'Cadatrado com Sucesso');
+        $messages = $this->flash->getMessages();
+        return $this->container->view->render(
+                                          $response ,
+                                          'admin/loginCliente.twig',
+                                          Array( 'messages' => $messages));
       }
     }
 
@@ -123,5 +144,5 @@ $user = new Users();
 }
  */
 }
-}
+
    
