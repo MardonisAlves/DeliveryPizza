@@ -16,14 +16,14 @@
 
         <div id="sendmessage">Your message has been sent. Thank you!</div>
 
-        <form action="/InserCliente" method="post" role="form" class="contactForm">
+        <form action="/InserCliente" method="POST" role="form" class="contactForm">
           <div class="col-md-12 col-sm-6 col-xs-12 right">
 
             <div class="form-group">
               <div class="col-sm-12">
               <input type="email" class="form-control" name="email" id="email" placeholder="Seu Email" data-rule="email" data-msg="Please enter a valid email" required="obrigatorio"/>
 
-               <input type="name" class="form-control" name="email" id="email" placeholder="name" data-rule="email" data-msg="Please enter a valid email" required="obrigatorio"/>
+               <input type="text" class="form-control" name="name" id="name" placeholder="name"  required="obrigatorio"/>
 
               <input type="hidden" class="form-control" name="typeUser" value="cliente" required="obrigatorio"/>
               </div>

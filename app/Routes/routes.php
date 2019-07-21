@@ -30,6 +30,7 @@
             $this->get('/GetcontactID', 'AdminController:GetcontactID')->setName('GetcontactID');
             $this->map(['POST','GET'],'/putContact', 'AdminController:putContact')->setName('putContact');
             $this->get('/DeleteContact' , 'AdminController:DeleteContact')->setName('DeleteContact');
+            $this->get('/deleteuser' , 'AdminController:deleteuser')->setName('deleteuser');
 });
     // CarroController
     $app->get('/loginCliente', 'CarroController:logincliente')->setName('logincliente');

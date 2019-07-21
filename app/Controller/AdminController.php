@@ -83,6 +83,18 @@ public function DeleteContact($request, $response, $args)
  $messages = parent::validatedelete($request, $response, $args);
 }
 
+// DELETE USER
+
+public function deleteuser(Request  $request, Response $response, $args)
+{
+  $users =  $this->em->find(
+          'App\Model\Users',
+          $_GET['id']);
+
+        $this->em->remove($users);
+        $this->em->flush();
+}
+
 // NEW USER
 public function newuser($request ,$response , $args)
 {    

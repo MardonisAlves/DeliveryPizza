@@ -54,7 +54,7 @@ public function validatelogin($request , $response , $args)
   
 
   $contact = $this->em->getRepository(
-            'App\Model\Users')->findBy(array('email' => $_POST['email']));
+        'App\Model\Users')->findBy(array('email' => $_POST['email'] , 'senha' => $_POST['senha']));
 
 if($contact){
 
@@ -103,7 +103,7 @@ if($contact){
 
       return $this->container->view->render(
                                     $response ,
-                                    '/CardCliente.twig',
+                                    '/loginCliente.twig',
                                     Array( 'messages' => $messages));
 }
 }

@@ -14,11 +14,13 @@ class HomeController extends Validate
 {
       private $em;
       private $container;
-
-public function __construct($container ,EntityManager $em)
+      private $flash;
+public function __construct($container ,EntityManager $em ,$flash)
 {
           $this->em = $em;
           $this->container=$container;
+          $this->flash = $flash;
+           parent::__construct($container , $flash);
 }
 
 public function index(Request $request, Response $response, $args) 
@@ -89,17 +91,13 @@ public function InserCliente(Request $request, Response $response, $args)
         $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
         $this->em->flush();
 
-
-       
-  // redirect para o login do user view
-}
-
-
-public function clientelogin()
-{
-  // selecionar o clinte
-
-  // pagina de acesso cliente
+// redirect para o login do user view
+  $this->flash->addMessageNow('msg', 'Cadatrado com Sucesso');
+  $messages = $this->flash->getMessages();
+  return $this->container->view->render(
+                                    $response ,
+                                    'admin/loginCliente.twig',
+                                    Array( 'messages' => $messages));
 }
  
 }

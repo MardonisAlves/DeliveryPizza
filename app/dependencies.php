@@ -38,7 +38,7 @@ $container['em'] = function ($c) {
 
 // HOME CONTROLER
 $container['HomeController'] = function ($container) {
-return new \App\Controller\HomeController($container  , $container->get('em') );
+return new \App\Controller\HomeController($container  , $container->get('em') , $container->get('flash'));
 };
  // ValidateHomeController
 $container['Validate'] = function ($container) {
