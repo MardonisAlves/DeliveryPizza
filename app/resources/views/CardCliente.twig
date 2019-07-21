@@ -4,13 +4,15 @@
 
     <div class="container">
       <div class="login-box-body">
-
-        {% for message in messages %}
+        <div class="col-sm-12">
+        <div class="header-section text-center">
+           {% for message in messages %}
         <div class="alert alert-danger">
         <li>{{ message[0] }}</li>
         </div>
         {% endfor %}
-      
+       
+        </div>
       </div>
 
         
