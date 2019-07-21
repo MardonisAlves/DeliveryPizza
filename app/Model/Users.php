@@ -19,7 +19,7 @@ class Users
 {
 
 // ...
-    /**
+    /** BIDIRECIONAL USERS
      * One product has many features. This is the inverse side.
      * @OneToMany(targetEntity="UsersClientes", mappedBy="users")
      */
@@ -180,5 +180,41 @@ protected $typeUser;
     public function getTypeUser()
     {
         return $this->typeUser;
+    }
+
+    /**
+     * Add userscliente.
+     *
+     * @param \UsersClientes $userscliente
+     *
+     * @return Users
+     */
+    public function addUserscliente(\UsersClientes $userscliente)
+    {
+        $this->usersclientes[] = $userscliente;
+
+        return $this;
+    }
+
+    /**
+     * Remove userscliente.
+     *
+     * @param \UsersClientes $userscliente
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeUserscliente(\UsersClientes $userscliente)
+    {
+        return $this->usersclientes->removeElement($userscliente);
+    }
+
+    /**
+     * Get usersclientes.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsersclientes()
+    {
+        return $this->usersclientes;
     }
 }

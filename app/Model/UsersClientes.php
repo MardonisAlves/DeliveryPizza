@@ -19,7 +19,7 @@ class UsersClientes
 
 
 // ...
-    /**
+    /** BIDIRECIONAL 
      * Many features have one product. This is the owning side.
      * @ManyToOne(targetEntity="Users", inversedBy="usersclientes")
      * @JoinColumn(name="users_id", referencedColumnName="id")
@@ -215,5 +215,29 @@ protected $telefone;
     public function getTelefone()
     {
         return $this->telefone;
+    }
+
+    /**
+     * Set users.
+     *
+     * @param \Users|null $users
+     *
+     * @return UsersClientes
+     */
+    public function setUsers(\Users $users = null)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users.
+     *
+     * @return \Users|null
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }
