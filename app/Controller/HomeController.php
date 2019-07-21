@@ -77,7 +77,18 @@ public function InserCliente(Request $request, Response $response, $args)
 // verificar a senha do post de é igual 
   
 // verificar os canpos vazios
+if($_POST['senha'] != $_POST['repetsenha'])
+      {
 
+        $this->flash->addMessageNow('msg', 'As senha não conferem');
+        $messages = $this->flash->getMessages();
+      return $this->container->view->render(
+                                    $response ,
+                                    '/CardCliente.twig',
+                                    Array( 'messages' => $messages));
+      }
+
+      
 // verificar se o email ja existe
 $cliente = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email']));
 // insert cliente ja esta em funcionamento
@@ -97,15 +108,6 @@ foreach($cliente as $l)
                                     Array( 'messages' => $messages));
 
 
-      }elseif($_POST['senha'] != $_POST['repetsenha'])
-      {
-
-        $this->flash->addMessageNow('msg', 'As senha não conferem');
-        $messages = $this->flash->getMessages();
-      return $this->container->view->render(
-                                    $response ,
-                                    '/CardCliente.twig',
-                                    Array( 'messages' => $messages));
       }else{
         /*
         $user = new Users();
