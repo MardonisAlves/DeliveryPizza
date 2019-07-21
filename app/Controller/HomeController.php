@@ -74,16 +74,37 @@ public function CardCliente($request,  $response)
 public function InserCliente(Request $request, Response $response, $args)
 {
   
-
-
-  // verificar a senha do post de é igual 
+// verificar a senha do post de é igual 
   
-  // verificar os canpos vazios
+// verificar os canpos vazios
 
-
+// verificar se o email ja existe
+$cliente = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email']));
 // insert cliente ja esta em funcionamento
 
-   $user = new Users();
+
+foreach($cliente as $l)
+      {
+       
+        if($l->getEmail() == $_POST['email'])
+      {
+        
+       echo $l->getEmail();
+
+
+      }else{
+
+        $this->flash->addMessageNow('msg', 'E-mail js esta cadstrado');
+        $messages = $this->flash->getMessages();
+      return $this->container->view->render(
+                                    $response ,
+                                    'admin/loginCliente.twig',
+                                    Array( 'messages' => $messages));
+      }
+
+
+/*
+$user = new Users();
         $this->em->persist($user);
         $user->setFullName($_POST["name"]);
         $user->setEmail($_POST["email"]);
@@ -99,6 +120,6 @@ public function InserCliente(Request $request, Response $response, $args)
                                     'admin/loginCliente.twig',
                                     Array( 'messages' => $messages));
 }
- 
+ */
 }
    
