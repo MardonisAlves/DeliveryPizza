@@ -103,7 +103,7 @@ if($contact){
 
       return $this->container->view->render(
                                     $response ,
-                                    '/loginCliente.twig',
+                                    'admin/loginCliente.twig',
                                     Array( 'messages' => $messages));
 }
 }
