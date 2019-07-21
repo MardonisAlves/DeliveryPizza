@@ -101,6 +101,7 @@ foreach($cliente as $l)
                                     'admin/loginCliente.twig',
                                     Array( 'messages' => $messages));
       }
+    }
 
 
 /*
