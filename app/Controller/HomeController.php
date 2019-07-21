@@ -97,9 +97,8 @@ foreach($cliente as $l)
                                     Array( 'messages' => $messages));
 
 
-      }
-
-      if($_POST['senha'] != $_POST['repetsenha']){
+      }elseif($_POST['senha'] != $_POST['repetsenha'])
+      {
 
         $this->flash->addMessageNow('msg', 'As senha não conferem');
         $messages = $this->flash->getMessages();
@@ -107,7 +106,7 @@ foreach($cliente as $l)
                                     $response ,
                                     '/CardCliente.twig',
                                     Array( 'messages' => $messages));
-      }
+      }else{
         /*
         $user = new Users();
         $this->em->persist($user);
