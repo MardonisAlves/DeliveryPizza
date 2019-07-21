@@ -52,7 +52,7 @@ public function validate(Request $request , Response $response , $flash)
 public function validatelogin($request , $response , $args)
 {
   
-$query = $em->createQuery('SELECT * FROM App\Model\Users WHERE email == $_POST[email]');
+$query = $em->createQuery("SELECT * FROM  .'App\Model\Users'. WHERE email == $_POST['email']");
 $users = $query->getResult();
 
   $contact = $this->em->getRepository(
