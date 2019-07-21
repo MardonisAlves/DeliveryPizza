@@ -93,7 +93,7 @@ foreach($cliente as $l)
         $messages = $this->flash->getMessages();
       return $this->container->view->render(
                                     $response ,
-                                    'admin/loginCliente.twig',
+                                    '/CardCliente.twig',
                                     Array( 'messages' => $messages));
 
 
@@ -103,7 +103,7 @@ foreach($cliente as $l)
         $messages = $this->flash->getMessages();
       return $this->container->view->render(
                                     $response ,
-                                    'admin/loginCliente.twig',
+                                    '/CardCliente.twig',
                                     Array( 'messages' => $messages));
       }else{
         $user = new Users();
