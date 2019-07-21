@@ -75,16 +75,7 @@ public function InserCliente(Request $request, Response $response, $args)
 {
   
 // verificar a senha do post de é igual 
-if(empty($_POST['email'],empty($_POST['senha']) , empty($_POST['typeUser'])))
-{
 
-        $this->flash->addMessageNow('msg', 'O Campo esta Vazio');
-        $messages = $this->flash->getMessages();
-      return $this->container->view->render(
-                                    $response ,
-                                    '/CardCliente.twig',
-                                    Array( 'messages' => $messages));
-}
 // verificar os canpos vazios
 if($_POST['senha'] != $_POST['repetsenha'])
 {
