@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\Common\Collections\ArrayCollection;
-
+use Doctrine\ORM\Mapping\OneToMany;
 /**
 * Blog User entity
 *
