@@ -16,6 +16,17 @@ use Doctrine\ORM\Mapping\Column;
 class UsersClientes
 {
 
+
+// ...
+    /**
+     * Many features have one product. This is the owning side.
+     * @ManyToOne(targetEntity="Users", inversedBy="usersclientes")
+     * @JoinColumn(name="users_id", referencedColumnName="id")
+     */
+protected $users;
+
+
+
 /** @var int
 * @Id
 * @GeneratedValue

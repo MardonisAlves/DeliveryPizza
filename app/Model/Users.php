@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping\Index;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Column;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
 * Blog User entity
@@ -16,6 +17,18 @@ use Doctrine\ORM\Mapping\Column;
 */
 class Users
 {
+
+// ...
+    /**
+     * One product has many features. This is the inverse side.
+     * @OneToMany(targetEntity="UsersClientes", mappedBy="users")
+     */
+protected $usersclientes;
+
+public function __construct()
+{
+    $this->usersClientes= new ArrayCollection();
+}
 
 
 /**
