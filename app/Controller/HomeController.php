@@ -123,26 +123,7 @@ foreach($cliente as $l)
                                           Array( 'messages' => $messages));
       }
     }
-
-
-/*
-$user = new Users();
-        $this->em->persist($user);
-        $user->setFullName($_POST["name"]);
-        $user->setEmail($_POST["email"]);
-        $user->setTypeUser($_POST["typeUser"]);
-        $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
-        $this->em->flush();
-
-// redirect para o login do user view
-  $this->flash->addMessageNow('msg', 'Cadatrado com Sucesso');
-  $messages = $this->flash->getMessages();
-  return $this->container->view->render(
-                                    $response ,
-                                    'admin/loginCliente.twig',
-                                    Array( 'messages' => $messages));
 }
- */
 }
 
    
