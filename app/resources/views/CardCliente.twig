@@ -4,19 +4,15 @@
 
 <div class="container">
 
-<section  class="section-padding">
+<section id="contact" class="section-padding">
       <div class="login-box-body">
-        <br>
-        <div class="row">
-        <div class="col-sm-6">
+
            {% for message in messages %}
         <div class="alert alert-danger">
         <li>{{ message[0] }}</li>
         </div>
         {% endfor %}
        
-        </div>
-      </div>
 
         
         <form action="/InserCliente" method="POST" role="form" class="contactForm">
