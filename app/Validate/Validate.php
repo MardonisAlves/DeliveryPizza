@@ -26,21 +26,11 @@ public function validate(Request $request , Response $response , $flash)
 {
   
 
-  //if(isset($_SESSION['typeUser']) == 'admin'){
+  if(isset($_SESSION['typeUser']) == 'admin'){
 
   $contact =  $this->em->getRepository('App\Model\Users')->findAll();
   
     
-
-      foreach ($contact as $clientes){
-        echo $clientes->getCidade();
-      }
-
-
-}
-//}
-
-/*
   
   return $this->container->view->render(
                             $response ,
@@ -61,7 +51,7 @@ public function validate(Request $request , Response $response , $flash)
     }
     
 }
-*/
+
 // VALIDATE LOGIN
 public function validatelogin($request , $response , $args)
 {
