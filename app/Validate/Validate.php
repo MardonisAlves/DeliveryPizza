@@ -29,9 +29,9 @@ public function validate(Request $request , Response $response , $flash)
   //if(isset($_SESSION['typeUser']) == 'admin'){
 
   $contact =  $this->em->getRepository('App\Model\UsersClientes')->findAll();
-  $json = json_encode($contact);
+ 
   var_dump($json);
-  foreach ($variable as $json) {
+  foreach ($variable as $contact) {
 
       echo $variable->getId();
     }
