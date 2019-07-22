@@ -32,7 +32,7 @@ public function validate(Request $request , Response $response , $flash)
   
     
 
-      foreach ($contact->getUsersclientes() as $clientes){
+      foreach ($contact as $clientes){
         echo $clientes->getCidade();
       }
 
