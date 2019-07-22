@@ -30,13 +30,13 @@ public function validate(Request $request , Response $response , $flash)
 
   $contact =  $this->em->getRepository('App\Model\Users')->findAll();
   
-    if (count($contact->getUsersclientes())){
+    
 
       foreach ($contact->getUsersclientes() as $clientes){
         echo $clientes->getCidade();
       }
 
-}
+
 }
 //}
 
