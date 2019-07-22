@@ -33,7 +33,7 @@ public function validate(Request $request , Response $response , $flash)
     if (count($contact->getUsersclientes())){
 
       foreach ($contact->getComments() as $Usersclientes){
-        echo $contact->getId();
+        echo $contact->getCidade();
       }
 
 }
