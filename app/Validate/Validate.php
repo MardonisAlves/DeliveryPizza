@@ -31,6 +31,10 @@ public function validate(Request $request , Response $response , $flash)
   $contact =  $this->em->getRepository('App\Model\UsersClientes')->findAll();
   $json = json_encode($contact);
   var_dump($json);
+  foreach ($variable as $json) {
+
+      echo $variable->getId();
+    }
   /*
   return $this->container->view->render(
                             $response ,
