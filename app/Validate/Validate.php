@@ -30,7 +30,17 @@ public function validate(Request $request , Response $response , $flash)
 
   $contact =  $this->em->getRepository('App\Model\Users')->findAll();
   
-    
+    if (count($contact->getUsersclientes())){
+
+      foreach ($contact->getComments() as $Usersclientes){
+        echo $contact->getId();
+      }
+
+}
+}
+}
+
+/*
   
   return $this->container->view->render(
                             $response ,
@@ -51,7 +61,7 @@ public function validate(Request $request , Response $response , $flash)
     }
     
 }
-
+*/
 // VALIDATE LOGIN
 public function validatelogin($request , $response , $args)
 {
