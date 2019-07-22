@@ -26,16 +26,14 @@ public function validate(Request $request , Response $response , $flash)
 {
   
 
-  //if(isset($_SESSION['typeUser']) == 'admin'){
+  if(isset($_SESSION['typeUser']) == 'admin'){
 
   $contact =  $this->em->getRepository('App\Model\UsersClientes')->findAll();
- 
+  $json = json_encode($contact);
   var_dump($json);
-  foreach ($variable as $contact) {
-
-      echo $variable->getId();
-    }
-  /*
+  foreach ($variable as $key => $value) {
+    
+  
   return $this->container->view->render(
                             $response ,
                             'admin/home.twig' ,
@@ -53,7 +51,7 @@ public function validate(Request $request , Response $response , $flash)
                             Array( 
                               'messages' => $messages));
     }
-    */
+    
 }
 
 // VALIDATE LOGIN
