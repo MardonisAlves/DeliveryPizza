@@ -72,6 +72,15 @@ protected $telefone;
         return $this->id;
     }
 
+    /** 
+    * @param int $Id
+    */
+    public function setId($id)
+    {
+        $this->id=$id;
+        return $this;
+    }
+
     
     /**
      * Set cidade.

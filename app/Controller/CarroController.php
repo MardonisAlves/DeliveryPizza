@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Slim\Views\Twig as View;
 use App\Model\Contact;
-use App\Model\Users;
+use App\Model\UsersClientes;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -28,7 +28,7 @@ public function update(Request $request, Response $response, $args)
 {
 
   $contact =  $this->em->find('App\Model\UsersClientes',$_GET['id']);
-        $contact->user_id($_GET['id']);
+        $contact->setId($_GET['id']);
         $this->em->flush();   
 }
 
