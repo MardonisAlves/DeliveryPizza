@@ -28,7 +28,9 @@ public function validate(Request $request , Response $response , $flash)
 
   if(isset($_SESSION['typeUser']) == 'admin'){
 
-  $contact =  $this->em->getRepository('App\Model\UsersClientes')->findAll();
+  $contact =  $this->em->getRepository('App\Model\Users')->findAll();
+  var_dump($contact);
+  /*
   return $this->container->view->render(
                             $response ,
                             'admin/home.twig' ,
@@ -46,6 +48,7 @@ public function validate(Request $request , Response $response , $flash)
                             Array( 
                               'messages' => $messages));
     }
+    */
 }
 
 // VALIDATE LOGIN
