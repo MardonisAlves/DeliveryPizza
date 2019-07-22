@@ -34,7 +34,7 @@
 });
     // CarroController
     $app->group('',function(){
-        $app->map(['GET','POST'],'/update', 'CarroController:update')->setName('update');
+        $this->map(['GET','POST'],'/update', 'CarroController:update')->setName('update');
     });
     
 
