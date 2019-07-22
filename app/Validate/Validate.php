@@ -36,7 +36,7 @@ public function validate(Request $request , Response $response , $flash)
                             $response ,
                             'admin/home.twig' ,
                             Array( 
-                              'contact' => $contact));
+                              'contact' => $contact->getUsersclientes()));
 
 }else{
 
@@ -47,7 +47,7 @@ public function validate(Request $request , Response $response , $flash)
                             $response ,
                             'index.twig',
                             Array( 
-                              'messages' => $messages->getUsersclientes()));
+                              'messages' => $messages));
     }
     
 }
