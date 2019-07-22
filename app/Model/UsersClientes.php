@@ -75,7 +75,7 @@ protected $telefone;
     /** 
     * @param int $Id
     */
-    public function setId($id)
+    public function user_id($id)
     {
         $this->id=$id;
         return $this;
