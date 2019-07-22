@@ -28,7 +28,7 @@ public function update(Request $request, Response $response, $args)
 {
 
   $contact =  $this->em->find('App\Model\UsersClientes',$_GET['id']);
-        $contact->user_id($_GET['id']);
+        $contact->users_id($_GET['id']);
         $this->em->flush();   
 }
 
