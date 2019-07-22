@@ -33,7 +33,10 @@
             $this->get('/deleteuser' , 'AdminController:deleteuser')->setName('deleteuser');
 });
     // CarroController
-    $app->get('/loginCliente', 'CarroController:logincliente')->setName('logincliente');
+    $app->group('',function(){
+        $app->map(['GET','POST'],'/update', 'CarroController:update')->setName('update');
+    });
+    
 
 
     //FileController
