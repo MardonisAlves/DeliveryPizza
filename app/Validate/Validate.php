@@ -36,7 +36,7 @@ public function validate(Request $request , Response $response , $flash)
                             $response ,
                             'admin/home.twig' ,
                             Array( 
-                              'contact' => $contact->getUsersclientes()));
+                              'contact' => $contact));
 
 }else{
 
