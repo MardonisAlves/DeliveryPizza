@@ -1,13 +1,11 @@
 <?php
 namespace App\Controller; 
 
-use Slim\Views\Twig as View;
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Tools\Setup;
 use App\Model\Users;
 use App\Validate\Validate;
+use Doctrine\ORM\EntityManager;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 
 
 class HomeController extends Validate
@@ -92,8 +90,6 @@ if($_POST['senha'] != $_POST['repetsenha'])
 // verificar se o email ja existe
 $cliente = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email']));
 // insert cliente ja esta em funcionamento
-
-
 foreach($cliente as $l)
 {
        
@@ -127,6 +123,8 @@ $user = new Users();
                                           'admin/loginCliente.twig',
                                           Array( 'messages' => $messages));
 }
+
+
 }
 
    

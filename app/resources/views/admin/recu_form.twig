@@ -1,0 +1,43 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+
+
+
+<div class="container">
+    <div class="login-box-body">
+
+      {% for message in messages %}
+        <div class="alert alert-danger">
+        <li>{{ message[0] }}</li>
+        </div>
+      {% endfor %}
+
+
+            <p class="login-box-msg">Infome seu Email cadastrado</p>
+            <div class="form-group">
+              <form name="" id="loginForm" action="/enviartoken" method="post">
+
+                <div class="form-group has-feedback">
+                  <!----- email -------------->
+                  <input class="form-control" placeholder="E-mail" id="loginid" type="email" autocomplete="off" name="email" value=""/>
+                </div>
+
+                
+                <div class="row">
+                <div class="col-sm-12">
+                <input type="submit" class="btn btn-green" value="Enviar">
+                
+                </div>
+                </div>
+
+                </div>
+              </form>
+            </div>
+          </div>
+
+     
+    </div>
+  </div>
+
+{% endblock  %}

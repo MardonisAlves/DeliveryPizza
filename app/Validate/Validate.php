@@ -274,7 +274,11 @@ public function validatelogout($request, $response, $args)
                                     $response ,
                                     'index.twig');
 
-}
+  }else{
+      return $this->container->view->render(
+          $response ,
+          'admin/loginCliente.twig');
+  }
 
 }
 }

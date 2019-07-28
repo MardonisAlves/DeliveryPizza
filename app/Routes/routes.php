@@ -15,6 +15,7 @@
             $this->map(['POST','GET'],'/createContact' , 'HomeController:createContact')->setName('createContact');
             $this->get('/CardCliente' ,'HomeController:CardCliente')->setName('CardCliente');
             $this->map(['POST','GET'] ,'/InserCliente' , 'HomeController:InserCliente')->setName('InserCliente');
+            
     });
    
 
@@ -31,16 +32,13 @@
             $this->map(['POST','GET'],'/putContact', 'AdminController:putContact')->setName('putContact');
             $this->get('/DeleteContact' , 'AdminController:DeleteContact')->setName('DeleteContact');
             $this->get('/deleteuser' , 'AdminController:deleteuser')->setName('deleteuser');
+            
 });
-    // CarroController
+    // SENHACONTROLLER
     $app->group('',function(){
-        $this->map(['GET','POST'],'/update', 'CarroController:update')->setName('update');
+        $this->map(['GET','POST'],'/recu_form', 'SenhaController:recu_form')->setName('recu_form');
+        $this->map(['GET','POST'],'/enviartoken', 'SenhaController:enviartoken')->setName('enviartoken');
     });
-    
-
-
-    //FileController
-    $app->get('/file', 'FileController:file')->setName('file');
 
 
 

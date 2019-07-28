@@ -42,7 +42,7 @@ return new \App\Controller\HomeController($container  , $container->get('em') , 
 };
  // ValidateHomeController
 $container['Validate'] = function ($container) {
-return new \App\Validate\Validate($container  ,$container->get('flash'));
+return  \App\Validate\Validate($container  ,$container->get('flash'));
 };
 
 
@@ -51,13 +51,10 @@ $container['AdminController'] = function ($container){
 return new App\Controller\AdminController($container , $container->get('em') ,$container->get('flash'));
 };
 
-// CAROOCONTROLLER
-$container['CarroController'] = function ($container) {
-return new App\Controller\CarroController($container , $container->get('em') ,$container->get('flash'));
+// SenhaController
+$container['SenhaController'] = function ($container){
+    return new App\Controller\SenhaController($container , $container->get('em') ,$container->get('flash'));
 };
 
-// FILECONTROLER
-$container['FileController'] = function ($container) {
-return new App\Controller\FileController($container , $container->get('em') ,$container->get('flash'));
-};
+
 
