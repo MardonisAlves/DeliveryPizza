@@ -38,6 +38,8 @@
     $app->group('',function(){
         $this->map(['GET','POST'],'/recu_form', 'SenhaController:recu_form')->setName('recu_form');
         $this->map(['GET','POST'],'/enviartoken', 'SenhaController:enviartoken')->setName('enviartoken');
+        $this->map(['GET','POST'],'/atu_senha', 'SenhaController:atu_senha')->setName('atu_senha');
+        $this->map(['GET','POST'],'/updatesenha', 'SenhaController:updatesenha')->setName('updatesenha');
     });
 
 

@@ -114,14 +114,14 @@ if($contact){
 // Send email
 public function sendemail($request, $response, $args)
 {
-  $mail = new PHPMailer();
+ $mail = new PHPMailer();
  $mail->IsSMTP(); // envia por SMTP
  $mail->CharSet = 'UTF-8';
-$mail->SMTPDebug = 2;
+ $mail->SMTPDebug = 2;
  $mail->True;
  $mail->Host = "smtp.gmail.com"; // Servidor SMTP
  $mail->Port = 465;
-  $mail->SMTPSecure = 'ssl';
+ $mail->SMTPSecure = 'ssl';
  $mail->SMTPAuth = true; // Caso o servidor SMTP precise de autenticação
  $mail->Username = "mardonisgp@gmail.com"; // SMTP username
  $mail->Password = "#qwe123qwe@"; // SMTP password
