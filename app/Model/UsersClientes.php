@@ -22,7 +22,7 @@ class UsersClientes
     /** BIDIRECIONAL 
      * Many features have one product. This is the owning side.
      * @ManyToOne(targetEntity="Users", inversedBy="usersclientes")
-     * @JoinColumn(name="users_id", referencedColumnName="id")
+     * @JoinColumn(name="id", referencedColumnName="id")
      */
 protected $users;
 
@@ -53,7 +53,8 @@ protected $referencia;
 /** @var int @Column(type="integer")**/
 protected $telefone;
 
-
+/** @var int @Column(type="integer")**/
+protected $users_id;
 
 
 

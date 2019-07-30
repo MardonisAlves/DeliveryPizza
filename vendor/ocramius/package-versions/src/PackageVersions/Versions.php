@@ -14,11 +14,6 @@ final class Versions
 {
     public const ROOT_PACKAGE_NAME = 'mardonis/slim-framework';
     public const VERSIONS          = array (
-  'atlas/mapper' => '1.3.0@a674403aa696b70904cf55af71c8cec21c4a9d09',
-  'atlas/orm' => '3.1.0@3957c1880cf60d722b51f3152e966e19346049de',
-  'atlas/pdo' => '1.1.1@31e9aa28f86d999260ac842da45a81f46b8c4826',
-  'atlas/query' => '1.2.0@6b3e6fcc6ca9be8ac1685cfe8ccecf90e03e68dc',
-  'atlas/table' => '1.3.0@4c82ae75df1b04d7afadeab5ae0b421f7c8941d7',
   'components/jquery' => '3.3.1@459648cda77875519c5da3ae1dd0ed5d170aa649',
   'container-interop/container-interop' => '1.2.0@79cbf1341c22ec75643d841642dd5d6acd83bdb8',
   'doctrine/annotations' => 'v1.6.1@53120e0eb10355388d6ccbe462f1fea34ddadb24',
@@ -63,8 +58,6 @@ final class Versions
   'twig/twig' => 'v2.7.4@ed9c49220e09bfaeb1ba4d48077c08a7b09908dd',
   'zendframework/zend-code' => '3.3.1@c21db169075c6ec4b342149f446e7b7b724f95eb',
   'zendframework/zend-eventmanager' => '3.2.1@a5e2583a211f73604691586b8406ff7296a946dd',
-  'atlas/cli' => '2.2.1@e307cc1ab1b81bb32a30507f76906029f4ce5153',
-  'atlas/info' => '1.2.0@6c198cc63b19950d25d009e2d7679449407b8183',
   'myclabs/deep-copy' => '1.9.1@e6828efaba2c9b79f4499dae1d66ef8bfa7b2b72',
   'phar-io/manifest' => '1.0.3@7761fcacf03b4d4f16e7ccb606d4879ca431fcf4',
   'phar-io/version' => '2.0.1@45a2ec53a73c70ce41d55cedef9063630abaf1b6',
@@ -93,7 +86,7 @@ final class Versions
   'symfony/yaml' => 'v4.2.5@6712daf03ee25b53abb14e7e8e0ede1a770efdb1',
   'theseer/tokenizer' => '1.1.2@1c42705be2b6c1de5904f8afacef5895cab44bf8',
   'webmozart/assert' => '1.4.0@83e253c8e0be5b0257b881e1827274667c5c17a9',
-  'mardonis/slim-framework' => 'dev-master@b49aad1d9f575a2ab6faad2cdac6a528d22ae763',
+  'mardonis/slim-framework' => 'dev-master@e5c39976bd94aceb580cff73c8840e73e0454e03',
 );
 
     private function __construct()

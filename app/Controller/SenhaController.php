@@ -47,7 +47,11 @@ public function enviartoken(Request $request, Response $response, $args)
         $_SESSION['tk'] = $tk;
         $_SESSION['id'] = $sms->getId();
         
-        $message =  "<a href='http://localhost:8080/atu_senha?tk=$tk'>Click Aqui</a>";
+        $message =  " <p>Ola tudo bem! Seu acesso para atualizar a senha </p>
+                        <img src='http://localhost:8080/public/img/delivery.jpg' height ='200px' width='200'>
+                        <br>
+                        <a href='http://localhost:8080/atu_senha?tk=$tk'>Click Aqui</a>
+                    ";
         
         $mail = new PHPMailer();
         $mail->IsSMTP(); // envia por SMTP
@@ -66,9 +70,12 @@ public function enviartoken(Request $request, Response $response, $args)
         
         $mail->AddAddress($_POST['email'], $sms->getFullName()); // Email e nome de quem receberá //Responder
         $mail->WordWrap = 50; // Definir quebra de linha
+        
+       
+        
         $mail->IsHTML = true ; // Enviar como HTML
         $mail->Subject = "Senha" ; // Assunto
-        $mail->Body = "Ola tudo bem! Seu acesso para atualizar a senha" .  $message ; //Corpo da mensagem caso seja HTML
+        $mail->Body =  $message ; //Corpo da mensagem caso seja HTML
         $mail->AltBody = "ola" ; //PlainText, para caso quem receber o email não aceite o corpo HTML
                    
             
@@ -150,6 +157,11 @@ public function updatesenha(Request $request, Response $response, $args)
        $messages = $this->flash->getMessages();
        return $this->container->view->render($response ,'admin/loginCliente.twig', Array('messages' => $messages));
        
+    }else {
+        
+        $this->flash->addMessageNow('msg', 'Digite seu email!');
+        $messages = $this->flash->getMessages();
+        return $this->container->view->render($response ,'admin/recu_senha.twig', Array('messages' => $messages));
     }
 }
 

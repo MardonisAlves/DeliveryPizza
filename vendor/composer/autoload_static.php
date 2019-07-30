@@ -90,13 +90,6 @@ class ComposerStaticInitbd3da9460564c953e6c002f9d8185703
         ),
         'A' => 
         array (
-            'Atlas\\Table\\' => 12,
-            'Atlas\\Query\\' => 12,
-            'Atlas\\Pdo\\' => 10,
-            'Atlas\\Orm\\' => 10,
-            'Atlas\\Mapper\\' => 13,
-            'Atlas\\Info\\' => 11,
-            'Atlas\\Cli\\' => 10,
             'App\\' => 4,
         ),
     );
@@ -266,34 +259,6 @@ class ComposerStaticInitbd3da9460564c953e6c002f9d8185703
         'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
-        ),
-        'Atlas\\Table\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/atlas/table/src',
-        ),
-        'Atlas\\Query\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/atlas/query/src',
-        ),
-        'Atlas\\Pdo\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/atlas/pdo/src',
-        ),
-        'Atlas\\Orm\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/atlas/orm/src',
-        ),
-        'Atlas\\Mapper\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/atlas/mapper/src',
-        ),
-        'Atlas\\Info\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/atlas/info/src',
-        ),
-        'Atlas\\Cli\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/atlas/cli/src',
         ),
         'App\\' => 
         array (

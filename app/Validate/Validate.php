@@ -71,7 +71,7 @@ if($contact){
         if(password_verify($_POST['senha'], $l->getSenha())){
 
          $_SESSION['typeUser'] = $l->getTypeUser();
-        
+         $_SESSION['id'] = $l->getId();
        return $this->container->view->render(
                                     $response ,
                                     'admin/home.twig',

@@ -33,6 +33,10 @@
             $this->get('/DeleteContact' , 'AdminController:DeleteContact')->setName('DeleteContact');
             $this->get('/deleteuser' , 'AdminController:deleteuser')->setName('deleteuser');
             
+            // Teste admin 
+            $this->get('/Teste' , 'AdminController:Teste')->setName('Teste');
+            $this->get('/Teste_insert' , 'AdminController:Teste_insert')->setName('Teste_insert');
+            
 });
     // SENHACONTROLLER
     $app->group('',function(){

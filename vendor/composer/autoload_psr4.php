@@ -46,12 +46,5 @@ return array(
     'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/lib/Doctrine/Common', $vendorDir . '/doctrine/event-manager/lib/Doctrine/Common', $vendorDir . '/doctrine/persistence/lib/Doctrine/Common', $vendorDir . '/doctrine/reflection/lib/Doctrine/Common'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
-    'Atlas\\Table\\' => array($vendorDir . '/atlas/table/src'),
-    'Atlas\\Query\\' => array($vendorDir . '/atlas/query/src'),
-    'Atlas\\Pdo\\' => array($vendorDir . '/atlas/pdo/src'),
-    'Atlas\\Orm\\' => array($vendorDir . '/atlas/orm/src'),
-    'Atlas\\Mapper\\' => array($vendorDir . '/atlas/mapper/src'),
-    'Atlas\\Info\\' => array($vendorDir . '/atlas/info/src'),
-    'Atlas\\Cli\\' => array($vendorDir . '/atlas/cli/src'),
     'App\\' => array($baseDir . '/app'),
 );

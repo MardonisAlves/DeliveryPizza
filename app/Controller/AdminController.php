@@ -4,16 +4,21 @@ namespace App\Controller;
 
 
 use App\Model\Contact;
-use Doctrine\ORM\EntityManager;
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
 use App\Validate\Validate;
-
+use Doctrine\ORM\EntityManager;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use PHPUnit\Framework\Constraint\Count;
+use Doctrine\Common\Collections\ArrayCollection;
+use phpDocumentor\Reflection\Types\Null_;
+use App\Model\UsersClientes;
 class AdminController extends Validate
 {
     protected $em;
     private $container;
     private $flash;
+    
+    
     public function __construct($container ,EntityManager $em ,$flash)
 {
         $this->em = $em;
@@ -105,6 +110,36 @@ public function addUser($request , $response , $args)
   
    parent::validateadduser($request , $response , $args);
 
+}
+
+/*=================================================================
+ *================== METHODS FOR TEST==============================*/
+
+public function Teste(Request  $request, Response $response, $args)
+{
+    $teste =  $this->em->find('App\Model\Users' , 1);
+    
+    /*verifica se o array esta vazio*/
+    var_export( $teste->getUsersclientes()->isEmpty());
+    
+    
+    foreach ($teste->getUsersclientes() as $u){
+       echo  $u->getCidade();
+    }
+}
+
+public function Teste_insert(Request  $request, Response $response, $args)
+{
+    $UsersClientes = new UsersClientes();
+    $this->em->persist($UsersClientes);
+    $UsersClientes->setCidade("Pacatuba");
+    $UsersClientes->setRua("Fran Pereira da silva");
+    $UsersClientes->setBairro("São Bento");
+    $UsersClientes->setNumero("53");
+    $UsersClientes->setReferencia("Dona Maria");
+    $UsersClientes->setTelefone("989578192");
+    $UsersClientes->users_id("3");
+    $this->em->flush();
 }
 
 }

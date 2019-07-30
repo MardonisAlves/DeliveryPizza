@@ -13,7 +13,6 @@
         "twbs/bootstrap": "4.2.1",
         "doctrine/orm": "^2",
         "illuminate/database": "~5.1",
-        "atlas/orm": "~3.0",
         "monolog/monolog": "^1.17",
         "components/jquery": "^3.3",
         "slim/flash": "^0.4.0",
@@ -30,7 +29,6 @@
   
     },
     "require-dev": {
-        "atlas/cli": "~2.0",
         "phpunit/phpunit": "^7",
         "phpunit/dbunit": "^4.0"
     }
