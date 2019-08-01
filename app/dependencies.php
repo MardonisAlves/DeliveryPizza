@@ -56,5 +56,10 @@ $container['SenhaController'] = function ($container){
     return new App\Controller\SenhaController($container , $container->get('em') ,$container->get('flash'));
 };
 
+// TesteController
+$container['TesteController'] = function ($container){
+    return new App\Controller\TesteController($container , $container->get('em') ,$container->get('flash'));
+};
+
 
 

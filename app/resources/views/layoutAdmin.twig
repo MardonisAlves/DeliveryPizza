@@ -4,34 +4,55 @@
         <meta charset="utf-8">
         <meta name="description" content="{{ page.description }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>{{ page.title }}</title>
 
         {# Google fonts:Open Sans #}
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 
-    <link href="public/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
-    <link href="public/css/imagehover.min.css" type="text/css" rel="stylesheet"/>
-    <link href="public/css/style.css" type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="public/css/font-awesome.min.css">
+    <link href="public/css/bootstrap-4.1.min.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="public/css/style4.css">
+  
 
-    <script src="public/js/jquery.min.js"></script>
-    <script src="public/js/bootstrap.min.js"></script>
-    <script src="public/js/custom.js"></script>
-    <script src="public/js/jquery.easing.min.js"></script>
+    
+   
+    
 
 
 
     </head>
-    <body id="bg">
+    <body>
 
-        <div class="container-fluid">
-            {% include 'partials/navAdmin.twig' %}
+        <div class="wrapper">
+        	
+            {% include 'partials/navsideBar.twig' %}
+           
             {% block content %}
 
               
             {% endblock %}
 
+       
         </div>
-
+        </div>
+      
     </body>
+    
+    <script src="public/js/jquery.min.js"></script>
+    <script src="public/js/bootstrap-4.1.min.js"></script>
+   
+    
+     <script src="public/js/solid.js"></script>
+     <script src="public/js/fontawesome.js"></script>
+   
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+    
+    
 </html>

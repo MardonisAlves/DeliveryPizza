@@ -42,7 +42,7 @@ protected $id;
 
 /**
 * @var string
-* @Column(type="string");
+* @Column(type="string")
 *
 */
 protected $senha;

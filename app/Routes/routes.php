@@ -33,9 +33,7 @@
             $this->get('/DeleteContact' , 'AdminController:DeleteContact')->setName('DeleteContact');
             $this->get('/deleteuser' , 'AdminController:deleteuser')->setName('deleteuser');
             
-            // Teste admin 
-            $this->get('/Teste' , 'AdminController:Teste')->setName('Teste');
-            $this->get('/Teste_insert' , 'AdminController:Teste_insert')->setName('Teste_insert');
+            
             
 });
     // SENHACONTROLLER
@@ -44,6 +42,12 @@
         $this->map(['GET','POST'],'/enviartoken', 'SenhaController:enviartoken')->setName('enviartoken');
         $this->map(['GET','POST'],'/atu_senha', 'SenhaController:atu_senha')->setName('atu_senha');
         $this->map(['GET','POST'],'/updatesenha', 'SenhaController:updatesenha')->setName('updatesenha');
+    });
+    
+    // TESTECONTROLLER
+    $app->group('', function() {
+        $this->get('/Teste' , 'TesteController:Teste')->setName('Teste');
+        $this->get('/Teste_insert' , 'TesteController:Teste_insert')->setName('Teste_insert');
     });
 
 
