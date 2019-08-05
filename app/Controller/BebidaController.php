@@ -48,7 +48,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 {
     // Validar o nome da imagem se ja existe no banco de dado
     // validar o nome da pizza
-   $directory = $this->container->get('upload_directory');
+   var_dump($directory = $this->container->get('upload_directory'));
    $uploadedFiles = $request->getUploadedFiles();
 
     // handle single input with single file upload
@@ -60,7 +60,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 
 
     //Gravar no Banco de dados o produto
-    
+
     /*
     $Produtos = new Produtos();
     $this->em->persist($Produtos);
