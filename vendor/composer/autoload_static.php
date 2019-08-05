@@ -267,6 +267,13 @@ class ComposerStaticInitbd3da9460564c953e6c002f9d8185703
     );
 
     public static $prefixesPsr0 = array (
+        'W' => 
+        array (
+            'Wobeto\\EasyChart\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/wobeto/easychart',
+            ),
+        ),
         'T' => 
         array (
             'Twig_' => 

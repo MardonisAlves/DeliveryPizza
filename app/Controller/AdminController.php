@@ -12,6 +12,8 @@ use PHPUnit\Framework\Constraint\Count;
 use Doctrine\Common\Collections\ArrayCollection;
 use phpDocumentor\Reflection\Types\Null_;
 use App\Model\UsersClientes;
+
+
 class AdminController extends Validate
 {
     protected $em;
@@ -33,7 +35,7 @@ public function home(Request $request, Response $response, $args)
 {
 
  parent::validate($request,  $response, $args);
- 
+  
 }
 // login
 public function login(Request $request, Response $response, $args)
@@ -42,7 +44,7 @@ public function login(Request $request, Response $response, $args)
   
 }
 // logout
-public function logout($request, $response, $args)
+public function logout(Request $request, Response $response, $args)
 {
  parent::validatelogout($request , $response , $args);
   
@@ -90,10 +92,7 @@ public function DeleteContact($request, $response, $args)
 
 public function deleteuser(Request  $request, Response $response, $args)
 {
-  $users =  $this->em->find(
-          'App\Model\Users',
-          $_GET['id']);
-
+  $users =  $this->em->find('App\Model\Users',$_GET['id']);
         $this->em->remove($users);
         $this->em->flush();
 }
@@ -110,36 +109,6 @@ public function addUser($request , $response , $args)
   
    parent::validateadduser($request , $response , $args);
 
-}
-
-/*=================================================================
- *================== METHODS FOR TEST==============================*/
-
-public function Teste(Request  $request, Response $response, $args)
-{
-    $teste =  $this->em->find('App\Model\Users' , 1);
-    
-    /*verifica se o array esta vazio*/
-    var_export( $teste->getUsersclientes()->isEmpty());
-    
-    
-    foreach ($teste->getUsersclientes() as $u){
-       echo  $u->getCidade();
-    }
-}
-
-public function Teste_insert(Request  $request, Response $response, $args)
-{
-    $UsersClientes = new UsersClientes();
-    $this->em->persist($UsersClientes);
-    $UsersClientes->setCidade("Pacatuba");
-    $UsersClientes->setRua("Fran Pereira da silva");
-    $UsersClientes->setBairro("São Bento");
-    $UsersClientes->setNumero("53");
-    $UsersClientes->setReferencia("Dona Maria");
-    $UsersClientes->setTelefone("989578192");
-    $UsersClientes->users_id("3");
-    $this->em->flush();
 }
 
 }

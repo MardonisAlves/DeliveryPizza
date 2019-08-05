@@ -2,42 +2,55 @@
 
 namespace App\Model;
 
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping\Index;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\date;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Cardapio Entities
  *
  * @Entity
- * @Table(indexes={*@Index(name="$codigo",columns="$codigo")})
+ * @Table(indexes={*@Index(name="id",columns="id")})
  */
 
 class Cardapio
 {
     
-    /** @var
+    /** @var int
      *  
      * @Id int 
      * @GeneratedValue 
      * @Column(type="integer") 
      * 
      */
-    protected $id;
+    protected $Id;
     
-    /** @var string @Collumn(type= "string" , unique=true) **/
-    protected $codigo;
-    
-    /** @var string @Collumn(type="string" , length=50) **/
+    /** @var string @Column(type="string" , length=50) **/
     protected $name;
-    /** @var string @Collumn(type="string" , length=80) **/
-    protected $sabor;
-    
-    /** @var string @Collumn(type="string" , length=255) **/
+   
+
+    /** @var string @Column(type="string" , length=255) **/
     protected $descricao;
     
-    /** @var string @Collumn(type="string" , length=50) **/
+
+    /** @var string @Column(type="string" , length=50) **/
     protected $tamanho;
+
     
-    /** @var string @Collumn(type="string" , length=100) **/
+    /** @var string @Column(type="string" , length=100) **/
     protected $url_image;
+
+    /** @var string @Column(type="decimal" ,  precision=2, scale=1) **/
+    protected $preco;
+
+    /** @var @Column(type="date")**/
+    protected $date;  
+  
 
 
 }

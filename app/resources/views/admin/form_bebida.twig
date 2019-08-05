@@ -1,0 +1,78 @@
+{% extends 'layoutAdmin.twig' %}
+
+{% block content %}
+
+
+
+<div class="container">
+  <div class="login-box-body">
+    {% for message in messages %}
+      <div class="alert alert-info">
+      <li>{{ message[0] }}</li>
+      </div>
+    {% endfor %}
+
+    <form method="post" action="/insert_bebidas" enctype="multipart/form-data">
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <input type="text" class="form-control" id="name" placeholder="name" name="name">
+    </div>
+
+    <div class="form-group col-md-4"> 
+      <input type="date" class="form-control" id="date" placeholder="data" name="date">
+    </div>
+
+    <div class="form-group col-md-3">
+    </div>
+
+  <div class="form-group col-md-2">
+  </div>
+</div>
+
+  <div class="form-group">
+    <div class="input-group mb-3"2ta
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="url_image">
+    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+  </div>
+</div>
+</div>
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <input type="text" class="form-control" id="input" name="preco_compra" placeholder="preço compra">
+    </div>
+
+    <div class="form-group col-md-4">
+     
+      <select  class="form-control" id="input2">
+        <option value="">Ecolha A %....</option>
+        <option value="5">5%</option>
+        <option value="10">10%</option>
+        <option value="15">15%</option>
+        <option value="20">20%</option>
+        <option value="25">25%</option>
+        <option value="35">35%</option>
+        <option value="40">40%</option>
+        <option value="45">45%</option>
+        <option value="50">50%</option>
+      </select>
+    </div> 
+
+  <div class="form-group col-md-4">
+    <input type="text" class="form-control" id="qt_dade" name="qt_dade" placeholder="quantidade">
+  </div>
+
+    <div class="form-group col-md-12">
+      <textarea name="descricao"  class="form-control" id="descricao"  placeholder="descricao"></textarea>
+    </div>
+
+</div>
+  <button type="submit" class="btn btn-primary" id="click">Cadastrar</button>
+  <button type="reset" class="btn btn-success">Reset</button>
+</form>
+  </div>
+</div>
+ 
+
+{% endblock  %}

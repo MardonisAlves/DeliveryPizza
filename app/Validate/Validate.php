@@ -29,14 +29,10 @@ public function validate(Request $request , Response $response , $flash)
   if(isset($_SESSION['typeUser']) == 'admin'){
 
   $contact =  $this->em->getRepository('App\Model\Users')->findAll();
-  
     
-  
-  return $this->container->view->render(
-                            $response ,
-                            'admin/home.twig' ,
-                            Array( 
-                              'contact' => $contact));
+  return $this->container->view->render($response,
+                                        'admin/home.twig' ,
+                                        Array('contact' => $contact));
 
 }else{
 

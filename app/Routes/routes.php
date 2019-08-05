@@ -50,5 +50,11 @@
         $this->get('/Teste_insert' , 'TesteController:Teste_insert')->setName('Teste_insert');
     });
 
+    // BEBIDACONTROLLER
+    $app->group('',function(){
+    $this->get('/form_bebida' , 'BebidaController:form_bebida')->setName('form_bebida'); 
+    $this->post('/insert_bebidas' , 'BebidaController:insert_bebidas')->setName('insert_bebidas'); 
+    });
+
 
 

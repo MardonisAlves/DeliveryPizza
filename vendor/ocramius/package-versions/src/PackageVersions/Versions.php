@@ -56,6 +56,7 @@ final class Versions
   'symfony/translation' => 'v4.2.5@e46933cc31b68f51f7fc5470fb55550407520f56',
   'twbs/bootstrap' => 'v4.2.1@9e4e94747bd698f4f61d48ed54c9c6d4d199bd32',
   'twig/twig' => 'v2.7.4@ed9c49220e09bfaeb1ba4d48077c08a7b09908dd',
+  'wobeto/easychart' => '0.6.0@05565a3fbf2d99e78b07c761802df24adc7ddee9',
   'zendframework/zend-code' => '3.3.1@c21db169075c6ec4b342149f446e7b7b724f95eb',
   'zendframework/zend-eventmanager' => '3.2.1@a5e2583a211f73604691586b8406ff7296a946dd',
   'myclabs/deep-copy' => '1.9.1@e6828efaba2c9b79f4499dae1d66ef8bfa7b2b72',
@@ -86,7 +87,7 @@ final class Versions
   'symfony/yaml' => 'v4.2.5@6712daf03ee25b53abb14e7e8e0ede1a770efdb1',
   'theseer/tokenizer' => '1.1.2@1c42705be2b6c1de5904f8afacef5895cab44bf8',
   'webmozart/assert' => '1.4.0@83e253c8e0be5b0257b881e1827274667c5c17a9',
-  'mardonis/slim-framework' => 'dev-master@e5c39976bd94aceb580cff73c8840e73e0454e03',
+  'mardonis/slim-framework' => 'dev-master@17a9196f6df60711700d1decefc5bc462625b1c3',
 );
 
     private function __construct()

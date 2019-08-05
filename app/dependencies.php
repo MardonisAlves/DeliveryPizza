@@ -23,6 +23,10 @@ $container['flash'] = function () {
 };
 
 
+// UPLOADS IMAGES
+$container = $app->getContainer();
+$container['upload_directory'] = 'public/img/uploads/';
+
 // DOCTRINE
 $container['em'] = function ($c) {
     $settings = $c->get('settings');
@@ -59,6 +63,12 @@ $container['SenhaController'] = function ($container){
 // TesteController
 $container['TesteController'] = function ($container){
     return new App\Controller\TesteController($container , $container->get('em') ,$container->get('flash'));
+};
+
+
+// BebidaController
+$container['BebidaController'] = function ($container){
+    return new App\Controller\BebidaController($container , $container->get('em') ,$container->get('flash'));
 };
 
 

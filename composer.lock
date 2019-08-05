@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8963aa75e96c56ef069447015ab78658",
+    "content-hash": "58d3f4c60a3c44b709aafc11c0938203",
     "packages": [
         {
             "name": "components/jquery",
@@ -2576,6 +2576,42 @@
                 "templating"
             ],
             "time": "2019-03-23T14:28:58+00:00"
+        },
+        {
+            "name": "wobeto/easychart",
+            "version": "0.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fernandowobeto/easychart.git",
+                "reference": "05565a3fbf2d99e78b07c761802df24adc7ddee9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fernandowobeto/easychart/zipball/05565a3fbf2d99e78b07c761802df24adc7ddee9",
+                "reference": "05565a3fbf2d99e78b07c761802df24adc7ddee9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Wobeto\\EasyChart\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fernando Wobeto",
+                    "email": "fernandowobeto@gmail.com"
+                }
+            ],
+            "description": "PHP chart library based in Libchart.",
+            "time": "2015-01-04T20:51:18+00:00"
         },
         {
             "name": "zendframework/zend-code",
