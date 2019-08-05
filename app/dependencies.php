@@ -25,11 +25,11 @@ $container['flash'] = function () {
 
 /* UPLOADS IMAGES Local
 $container = $app->getContainer();
-$container['upload_directory'] = '/public/img/uploads/';*/
+$container['upload_directory'] = __DIR__ . '/public/img/uploads/';*/
 
 //UPLOADS IMAGES Hroku
 $container = $app->getContainer();
-$container['upload_directory'] =  '/public/img/uploads/';
+$container['upload_directory'] = './../public/img/uploads/';
 
 // DOCTRINE
 $container['em'] = function ($c) {
