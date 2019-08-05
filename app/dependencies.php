@@ -25,7 +25,7 @@ $container['flash'] = function () {
 
 // UPLOADS IMAGES
 $container = $app->getContainer();
-$container['upload_directory'] = 'public/img/uploads/';
+$container['upload_directory'] = __DIR__ . 'public/img/uploads/';
 
 // DOCTRINE
 $container['em'] = function ($c) {
