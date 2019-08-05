@@ -49,6 +49,8 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     // Validar o nome da imagem se ja existe no banco de dado
     // validar o nome da pizza
    var_dump($directory = $this->container->get('upload_directory'));
+
+   
    $uploadedFiles = $request->getUploadedFiles();
 
     // handle single input with single file upload
