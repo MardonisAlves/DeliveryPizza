@@ -80,11 +80,13 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     $mul_preco_compra = $preco_compra * $_POST['porcentagemVenda'];
     $soma  = $mul_preco_compra + $_POST['preco_compra'];
 
-   var_dump($Produtos->setPrecoVenda($soma));
+   $Produtos->setPrecoVenda($soma);
 
-    $Produtos->setQtDade($_POST['setQtDade']);
+    $Produtos->setQtDade($_POST['qt_dade']);
 
-    //$this->em->flush();
+    $Produtos->setQtDade('1');
+
+    $this->em->flush();
 
     
 }
