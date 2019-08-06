@@ -76,7 +76,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     $Produtos->setPrecoCompra($_POST['preco_compra']);
     $Produtos->setDescricao($_POST['descricao']);
 
-    $preco_compra = $_POST['preco_compra']/ 100;
+    $preco_compra = $_POST['preco_compra'] / 100;
     $mul_preco_compra = $preco_compra * $_POST['porcentagemVenda'];
     $soma  = $mul_preco_compra + $_POST['preco_compra'];
 
