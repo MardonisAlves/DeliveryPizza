@@ -70,7 +70,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     $Produtos = new Produtos();
     $this->em->persist($Produtos);
     $Produtos->setName($_POST['name']);
-    $Produtos->setDateValidade($_POST['date']);
+    $Produtos->setDateValidade(new date('dd.m.yy'));
     $Produtos->setUrlImage($uploadedFiles);
     $Produtos->setPrecoCompra($_POST['preco_compra']);
     $Produtos->setPorcentagemVenda($_POST['porcentagemVenda']);
