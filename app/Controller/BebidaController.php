@@ -71,12 +71,20 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     $this->em->persist($Produtos);
     $Produtos->setName($_POST['name']);
     $Produtos->setDateValidade(new \DateTime($_POST['date']));
-    $Produtos->setUrlImage($uploadedFiles);
-    $Produtos->setPrecoCompra($_POST['preco_compra']);
+    $Produtos->setUrlImage('url_image');
     $Produtos->setPorcentagemVenda($_POST['porcentagemVenda']);
+    $Produtos->setPrecoCompra($_POST['preco_compra']);
+    $Produtos->setDescricao($_POST['descricao']);
+
+    $preco_compra = $_POST['preco_compra']/ 100;
+    $mul_preco_compra = $preco_compra * $_POST['porcentagemVenda'];
+    $soma  = $mul_preco_compra + $_POST['preco_compra'];
+
+   var_dump($Produtos->setPrecoVenda($soma));
+
     $Produtos->setQtDade($_POST['setQtDade']);
 
-    $this->em->flush();
+    //$this->em->flush();
 
     
 }
