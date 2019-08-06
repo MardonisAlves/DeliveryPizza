@@ -250,4 +250,28 @@ protected $users_id;
     {
         return $this->users;
     }
+
+    /**
+     * Set usersId.
+     *
+     * @param int $usersId
+     *
+     * @return UsersClientes
+     */
+    public function setUsersId($usersId)
+    {
+        $this->users_id = $usersId;
+
+        return $this;
+    }
+
+    /**
+     * Get usersId.
+     *
+     * @return int
+     */
+    public function getUsersId()
+    {
+        return $this->users_id;
+    }
 }

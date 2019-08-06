@@ -53,4 +53,158 @@ class Cardapio
   
 
 
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->Id;
+    }
+
+    /**
+     * Set name.
+     *
+     * @param string $name
+     *
+     * @return Cardapio
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set descricao.
+     *
+     * @param string $descricao
+     *
+     * @return Cardapio
+     */
+    public function setDescricao($descricao)
+    {
+        $this->descricao = $descricao;
+
+        return $this;
+    }
+
+    /**
+     * Get descricao.
+     *
+     * @return string
+     */
+    public function getDescricao()
+    {
+        return $this->descricao;
+    }
+
+    /**
+     * Set tamanho.
+     *
+     * @param string $tamanho
+     *
+     * @return Cardapio
+     */
+    public function setTamanho($tamanho)
+    {
+        $this->tamanho = $tamanho;
+
+        return $this;
+    }
+
+    /**
+     * Get tamanho.
+     *
+     * @return string
+     */
+    public function getTamanho()
+    {
+        return $this->tamanho;
+    }
+
+    /**
+     * Set urlImage.
+     *
+     * @param string $urlImage
+     *
+     * @return Cardapio
+     */
+    public function setUrlImage($urlImage)
+    {
+        $this->url_image = $urlImage;
+
+        return $this;
+    }
+
+    /**
+     * Get urlImage.
+     *
+     * @return string
+     */
+    public function getUrlImage()
+    {
+        return $this->url_image;
+    }
+
+    /**
+     * Set preco.
+     *
+     * @param string $preco
+     *
+     * @return Cardapio
+     */
+    public function setPreco($preco)
+    {
+        $this->preco = $preco;
+
+        return $this;
+    }
+
+    /**
+     * Get preco.
+     *
+     * @return string
+     */
+    public function getPreco()
+    {
+        return $this->preco;
+    }
+
+    /**
+     * Set date.
+     *
+     * @param \DateTime $date
+     *
+     * @return Cardapio
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date.
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
 }

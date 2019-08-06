@@ -38,11 +38,6 @@ class Produtos
     /** @var string @Column(type="text" , length=255 , nullable=true) **/
     protected $descricao;
     
-
-    /** @var string @Column(type="string" , length=50) **/
-    protected $litros;
-
-    
     /** @var string @Column(type="string" , length=100) **/
     protected $url_image;
 
@@ -123,30 +118,6 @@ class Produtos
     public function getDescricao()
     {
         return $this->descricao;
-    }
-
-    /**
-     * Set litros.
-     *
-     * @param string $litros
-     *
-     * @return Produtos
-     */
-    public function setLitros($litros)
-    {
-        $this->litros = $litros;
-
-        return $this;
-    }
-
-    /**
-     * Get litros.
-     *
-     * @return string
-     */
-    public function getLitros()
-    {
-        return $this->litros;
     }
 
     /**
