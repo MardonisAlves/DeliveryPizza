@@ -48,13 +48,16 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 {
     // Validar o nome da imagem se ja existe no banco de dado
     // validar o nome da pizza
-   var_dump($directory = $this->container->get('upload_directory'));
+   //var_dump($directory = $this->container->get('upload_directory'));
+
+    $directory = $this->container->get('upload_directory');
 
    
-   $uploadedFiles = $request->getUploadedFiles();
+    $uploadedFiles = $request->getUploadedFiles();
 
     // handle single input with single file upload
     $uploadedFile = $uploadedFiles['url_image'];
+
     if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
         $filename = $this->moveUploadedFile($directory, $uploadedFile);
         $response->write('uploaded ' . $filename . '<br/>');
@@ -63,15 +66,17 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 
     //Gravar no Banco de dados o produto
 
-    /*
+    
     $Produtos = new Produtos();
     $this->em->persist($Produtos);
     $Produtos->setName($_POST['name']);
+    $Produtos->setDateValidade($_POST['date']);
+    $Produtos->setUrlImage($uploadedFiles);
+    $Produtos->setPrecoCompra($_POST['preco_compra']);
+    $Produtos->setPorcentagemVenda($_POST['porcentagemVenda']);
+    $Produtos->setQtDade($_POST['setQtDade']);
 
-    //var_dump($Produtos->setDateValidade($_POST['date']));
-
-
-    //$this->em->flush();*/
+    $this->em->flush();
 
     
 }
