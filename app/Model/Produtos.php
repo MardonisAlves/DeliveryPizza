@@ -41,17 +41,17 @@ class Produtos
     /** @var string @Column(type="string" , length=100) **/
     protected $url_image;
 
-    /** @var @Column(type="decimal" ,  precision=2, scale=1) **/
+    /** @var @Column(type="decimal" ,  precision=100, scale=1) **/
     protected $preco_compra;
 
     /** @var int @Column(type="integer") **/
     protected $porcentagem_venda;
 
     
-    /** @var @Column(type="decimal" , precision=2 , scale=1) **/
+    /** @var @Column(type="decimal" , precision=100 , scale=1) **/
     protected $preco_venda;
 
-    /** @var  @Column(type="decimal" ,  precision=2, scale=1) **/
+    /** @var  @Column(type="decimal" ,  precision=100, scale=1) **/
     protected $valor_total_stoque;
 
     /** @var int  @Column(type="integer") **/
