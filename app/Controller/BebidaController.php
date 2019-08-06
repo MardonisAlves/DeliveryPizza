@@ -86,7 +86,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 
     $Produtos->setQtDade('1');
 
-    $this->em->flush();
+    //$this->em->flush();
 
     
 }
