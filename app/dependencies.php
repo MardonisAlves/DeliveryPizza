@@ -29,7 +29,7 @@ $container['upload_directory'] = __DIR__ . '/public/img/uploads/';*/
 
 //UPLOADS IMAGES Hroku
 $container = $app->getContainer();
-$container['upload_directory'] = __DIR__ . '/public/img/uploads/';
+$container['upload_directory'] = __DIR__ . '/storage';
 
 // DOCTRINE
 $container['em'] = function ($c) {
