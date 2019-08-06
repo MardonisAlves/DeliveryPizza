@@ -87,7 +87,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 
     $Produtos->setQtDade($_POST['qt_dade']);
 
-    $Produtos->setQtDade('1');
+    $Produtos->setValorTotalStoque('1');
 
     $this->em->flush();
 
