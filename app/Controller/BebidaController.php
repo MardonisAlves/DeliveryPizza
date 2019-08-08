@@ -85,7 +85,8 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     
 
     //Gravar no Banco de dados o produto
-   
+   if(empty($_POST['name']))
+   {
     $Produtos = new Produtos();
     $this->em->persist($Produtos);
     $Produtos->setName($_POST['name']);
@@ -109,7 +110,16 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     $Produtos->setValorTotalStoque($valorstoque);
 
     $this->em->flush();
+}else{
+  $this->flash->addMessageNow('msg', 'Campo obrigatorio');
+            $messages = $this->flash->getMessages();
 
+    return $this->container->view->render(
+                            $response ,
+                            'admin/form_bebida.twig',
+                            Array( 
+                              'messages' => $messages));  
+}
 
     
 }
