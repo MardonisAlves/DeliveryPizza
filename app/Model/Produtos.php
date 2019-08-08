@@ -44,7 +44,7 @@ class Produtos
     /** @var @Column(type="decimal") **/
     protected $preco_compra;
 
-    /** @var int @Column(type="integer") **/
+    /** @var @Column(type="integer") **/
     protected $porcentagem_venda;
 
     
@@ -54,7 +54,7 @@ class Produtos
     /** @var  @Column(type="decimal" ) **/
     protected $valor_total_stoque;
 
-    /** @var int  @Column(type="integer") **/
+    /** @var @Column(type="integer") **/
     protected $qt_dade;
     
     /** @var  @Column(type="date") **/

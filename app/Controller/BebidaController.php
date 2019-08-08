@@ -46,27 +46,46 @@ public function form_bebida(Request  $request, Response $response, $args)
 //InsertBebidas
 public function insert_bebidas(Request  $request, Response $response,  array $args)
 {
-    // Validar o nome da imagem se ja existe no banco de dado
-    // validar o nome da pizza
-   //var_dump($directory = $this->container->get('upload_directory'));
+    // Validar o nome da imagem se ja existe no banco de dado // validar o nome da pizza
+    $produto =  $this->em->getRepository('App\Model\Produtos')->findAll();
+        foreach ($produto as $value) {
+           echo  $value->getId()."<br>";
+           echo  $value->getName()."<br>";
+           echo  $value->getQtDade()."<br>";
+           echo  $value->getValorTotalStoque()."<br>";
+           echo  $value->getPrecoVenda()."<br>";
+           echo  $value->getPorcentagemVenda()."<br>";
+           echo  $value->getPrecoCompra()."<br>";
+           echo "---------------------------------";
+        }
 
-    $directory = $this->container->get('upload_directory');
 
-   
-    $uploadedFiles = $request->getUploadedFiles();
 
-    // handle single input with single file upload
-    $uploadedFile = $uploadedFiles['url_image'];
+      
+    /*
+    foreach ($produto as  $value) {
+        if($value->getUrlImage() == $_FILES['url_image']['name'])
+        {
+            $this->flash->addMessageNow('msg', 'Escolha outro nome para imagem');
+            $messages = $this->flash->getMessages();
 
-    if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
-        $filename = $this->moveUploadedFile($directory, $uploadedFile);
-        $response->write('uploaded ' . $filename . '<br/>');
-    }
+    return $this->container->view->render(
+                            $response ,
+                            'admin/form_bebida.twig',
+                            Array( 
+                              'messages' => $messages));
+        }else{
 
+        $directory = $this->container->get('upload_directory');
+        $destination  = $directory . $_FILES['url_image']['name'];
+        $move = move_uploaded_file($_FILES['url_image']['tmp_name'], $destination);
+
+        }
+    }*/
+    
 
     //Gravar no Banco de dados o produto
-
-    
+   
     $Produtos = new Produtos();
     $this->em->persist($Produtos);
     $Produtos->setName($_POST['name']);
@@ -77,36 +96,25 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     $Produtos->setDescricao($_POST['descricao']);
 
     $a = floatval($_POST['preco_compra']);
-    var_dump($preco_compra = $a / 100);
+    $preco_compra = $a / 100;
 
-    var_dump($mul_preco_compra = floatval($preco_compra) * ($_POST['porcentagemVenda']));
+    $mul_preco_compra = floatval($preco_compra) * ($_POST['porcentagemVenda']);
 
     $soma  = $mul_preco_compra + $_POST['preco_compra'];
-    var_dump($soma);
-   $Produtos->setPrecoVenda($soma);
+    floatval($soma);
+    $Produtos->setPrecoVenda($soma);
 
     $Produtos->setQtDade($_POST['qt_dade']);
 
-    $Produtos->setValorTotalStoque('1');
+    $valorstoque = $_POST['qt_dade'];
+    
+
+    $Produtos->setValorTotalStoque($valorstoque);
 
     $this->em->flush();
 
     
 }
-// Function para uploadsfile
-public function moveUploadedFile($directory, UploadedFile $uploadedFile)
-{
-    $extension = pathinfo($uploadedFile->getClientFilename(), PATHINFO_EXTENSION);
-    $basename = bin2hex(random_bytes(8)); // see http://php.net/manual/en/function.random-bytes.php
-    $filename = sprintf('%s.%0.8s', $basename, $extension);
-
-    $uploadedFile->moveTo($directory . DIRECTORY_SEPARATOR . $filename);
-
-    return $filename;
-}
-
-
-
 
 //GetIdBebidas
 public function GetIdBebidas(Request  $request, Response $response, $args)
