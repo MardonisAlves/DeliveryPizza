@@ -48,7 +48,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 {
     //Validar o nome da imagem se ja existe no banco de dado // validar o nome da pizza
     $produto =  $this->em->getRepository('App\Model\Produtos')->findAll();
-    /*
+    
         foreach ($produto as $value) {
            echo   "ID=" . $value->getId()."<br>";
            echo "Name=" .  $value->getName()."<br>";
@@ -61,7 +61,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 
     
 
-    }*/
+    }
       
     
     /*foreach ($produto as  $value) {
