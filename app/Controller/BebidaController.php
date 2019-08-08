@@ -46,7 +46,7 @@ public function form_bebida(Request  $request, Response $response, $args)
 //InsertBebidas
 public function insert_bebidas(Request  $request, Response $response,  array $args)
 {
-    /* Validar o nome da imagem se ja existe no banco de dado // validar o nome da pizza
+    //Validar o nome da imagem se ja existe no banco de dado // validar o nome da pizza
     $produto =  $this->em->getRepository('App\Model\Produtos')->findAll();
         foreach ($produto as $value) {
            echo   "ID=" . $value->getId()."<br>";
@@ -60,7 +60,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 
     
 
-    }*/
+    }
       
     /*
     foreach ($produto as  $value) {
@@ -108,7 +108,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     $valorstoque = floatval($resVAlorVenda * $Quantidade);
     $Produtos->setValorTotalStoque($valorstoque);
 
-    $this->em->flush();
+    //$this->em->flush();
 
 
     
