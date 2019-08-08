@@ -63,7 +63,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     }
       
     
-    foreach ($produto as  $value) {
+    /*foreach ($produto as  $value) {
         if($value->getUrlImage() == $_FILES['url_image']['name'])
         {
             $this->flash->addMessageNow('msg', 'Escolha outro nome para imagem');
@@ -81,7 +81,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
         $move = move_uploaded_file($_FILES['url_image']['tmp_name'], $destination);
 
         }
-    }
+    }*/
     
 
     //Gravar no Banco de dados o produto
