@@ -46,7 +46,7 @@ public function form_bebida(Request  $request, Response $response, $args)
 //InsertBebidas
 public function insert_bebidas(Request  $request, Response $response,  array $args)
 {
-    // Validar o nome da imagem se ja existe no banco de dado // validar o nome da pizza
+    /* Validar o nome da imagem se ja existe no banco de dado // validar o nome da pizza
     $produto =  $this->em->getRepository('App\Model\Produtos')->findAll();
         foreach ($produto as $value) {
            echo   "ID=" . $value->getId()."<br>";
@@ -56,11 +56,11 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
            echo  "PrecoVenda=" . $value->getPrecoVenda()."<br>";
            echo  "PorcentagemVenda".$value->getPorcentagemVenda()."<br>";
            echo  "PrecoCompra" . $value->getPrecoCompra()."<br>";
-           echo "---------------------------------";
-        }
+           echo "---------------------------------". "</br>";
 
+    
 
-
+    }*/
       
     /*
     foreach ($produto as  $value) {
@@ -95,8 +95,18 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     $Produtos->setPrecoCompra($_POST['preco_compra']);
     $Produtos->setDescricao($_POST['descricao']);
     $Produtos->setQtDade($_POST['qt_dade']);
-    $Produtos->setPrecoVenda("190.90");
-    $Produtos->setValorTotalStoque("120");
+    
+
+    $preco_compra = floatval($_POST['preco_compra']);
+    $porcentagemVenda= floatval($_POST['porcentagemVenda']);
+    $Quantidade = floatval($_POST['qt_dade']);
+
+    $resVAlorVenda = $preco_compra / 100 * ($porcentagemVenda) + ($preco_compra);
+
+    $Produtos->setPrecoVenda($resVAlorVenda);
+
+    $valorstoque = floatval($resVAlorVenda * $Quantidade);
+    $Produtos->setValorTotalStoque($valorstoque);
 
     $this->em->flush();
 
