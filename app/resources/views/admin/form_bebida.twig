@@ -13,6 +13,12 @@
       </div>
     {% endfor %}
 
+    {% for name in names %}
+      <div class="alert alert-info">
+      <li>{{ names[0] }}</li>
+      </div>
+    {% endfor %}
+
     <form method="post" action="/insert_bebidas" enctype="multipart/form-data">
   <div class="form-row">
     <div class="form-group col-md-8">
