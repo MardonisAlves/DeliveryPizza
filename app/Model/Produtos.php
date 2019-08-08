@@ -51,7 +51,7 @@ class Produtos
     /** @var @Column(type="decimal" ) **/
     protected $preco_venda;
 
-    /** @var  @Column(type="decimal" ) **/
+    /** @var  @Column(type="decimal" ,length=50) **/
     protected $valor_total_stoque;
 
     /** @var @Column(type="integer") **/
