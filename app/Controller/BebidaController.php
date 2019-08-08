@@ -85,7 +85,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     
 
     //Gravar no Banco de dados o produto
-   if(empty($_POST['name'] AND $_POST['url_image']))
+   if(empty($_POST['name'] OR $_POST['url_image']))
    {
     $Produtos = new Produtos();
     $this->em->persist($Produtos);
