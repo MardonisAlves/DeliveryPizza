@@ -94,24 +94,12 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     $Produtos->setPorcentagemVenda($_POST['porcentagemVenda']);
     $Produtos->setPrecoCompra($_POST['preco_compra']);
     $Produtos->setDescricao($_POST['descricao']);
-
-    $a = floatval($_POST['preco_compra']);
-    $preco_compra = $a / 100;
-
-    $mul_preco_compra = floatval($preco_compra) * ($_POST['porcentagemVenda']);
-
-    $soma  = $mul_preco_compra + $_POST['preco_compra'];
-    floatval($soma);
-    $Produtos->setPrecoVenda($soma);
-
-    $Produtos->setQtDade($_POST['qt_dade']) * $a;
-
-    $valorstoque = floatval($_POST['qt_dade'] * $soma);
-    
-
-    number_format($Produtos->setValorTotalStoque($valorstoque),"2",'.', ',');
+    $Produtos->setQtDade($_POST['qt_dade']);
+    $Produtos->setPrecoVenda("190.90");
+    $Produtos->setValorTotalStoque("120");
 
     $this->em->flush();
+
 
     
 }
