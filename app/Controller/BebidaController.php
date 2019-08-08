@@ -48,23 +48,24 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 {
     //Validar o nome da imagem se ja existe no banco de dado // validar o nome da pizza
     $produto =  $this->em->getRepository('App\Model\Produtos')->findAll();
-    
-        foreach ($produto as $value) {
-           echo   "ID=" . $value->getId()."<br>";
-           echo "Name=" .  $value->getName()."<br>";
-           echo  "Quantidade=" .$value->getQtDade()."<br>";
-           echo  "valorstoque=" .$value->getValorTotalStoque()."<br>";
-           echo  "PrecoVenda=" . $value->getPrecoVenda()."<br>";
-           echo  "PorcentagemVenda".$value->getPorcentagemVenda()."<br>";
-           echo  "PrecoCompra" . $value->getPrecoCompra()."<br>";
-           echo "---------------------------------". "</br>";
 
-    
 
+    foreach ($produto as  $value) 
+    {
+        if($value->getName() == $_POST['name'])
+        {
+            $this->flash->addMessageNow('msg', 'Este nome Ja Existe');
+            $messages = $this->flash->getMessages();
+
+    return $this->container->view->render(
+                            $response ,
+                            'admin/form_bebida.twig',
+                            Array( 
+                              'messages' => $messages));
+        }
     }
-      
-    
-    /*foreach ($produto as  $value) {
+
+    foreach ($produto as  $value) {
         if($value->getUrlImage() == $_FILES['url_image']['name'])
         {
             $this->flash->addMessageNow('msg', 'Escolha outro nome para imagem');
@@ -82,7 +83,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
         $move = move_uploaded_file($_FILES['url_image']['tmp_name'], $destination);
 
         }
-    }*/
+    }
     
 
     //Gravar no Banco de dados o produto
@@ -112,7 +113,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 
     $this->em->flush();
 
-
+    // Redirect para listar
     
 }
 
