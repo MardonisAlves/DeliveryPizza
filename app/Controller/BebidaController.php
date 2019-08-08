@@ -75,7 +75,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
                             $response ,
                             'admin/form_bebida.twig',
                             Array( 
-                              'messages' => $messages));
+                              'messages' => $messages , 'name' => $value->getUrlImage()));
         }else{
 
         $directory = $this->container->get('upload_directory');
