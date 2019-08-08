@@ -62,7 +62,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 
     }
       
-    /*
+    
     foreach ($produto as  $value) {
         if($value->getUrlImage() == $_FILES['url_image']['name'])
         {
@@ -81,10 +81,10 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
         $move = move_uploaded_file($_FILES['url_image']['tmp_name'], $destination);
 
         }
-    }*/
+    }
     
 
-    /*Gravar no Banco de dados o produto
+    //Gravar no Banco de dados o produto
    
     $Produtos = new Produtos();
     $this->em->persist($Produtos);
@@ -108,7 +108,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     $valorstoque = floatval($resVAlorVenda * $Quantidade);
     $Produtos->setValorTotalStoque($valorstoque);
 
-    //$this->em->flush();*/
+    $this->em->flush();
 
 
     
