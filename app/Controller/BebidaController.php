@@ -49,13 +49,13 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     // Validar o nome da imagem se ja existe no banco de dado // validar o nome da pizza
     $produto =  $this->em->getRepository('App\Model\Produtos')->findAll();
         foreach ($produto as $value) {
-           echo  $value->getId()."<br>";
-           echo  $value->getName()."<br>";
-           echo  $value->getQtDade()."<br>";
-           echo  $value->getValorTotalStoque()."<br>";
-           echo  $value->getPrecoVenda()."<br>";
-           echo  $value->getPorcentagemVenda()."<br>";
-           echo  $value->getPrecoCompra()."<br>";
+           echo   "ID=" . $value->getId()."<br>";
+           echo "Name=" .  $value->getName()."<br>";
+           echo  "Quantidade=" .$value->getQtDade()."<br>";
+           echo  "valorstoque=" .$value->getValorTotalStoque()."<br>";
+           echo  "PrecoVenda=" . $value->getPrecoVenda()."<br>";
+           echo  "PorcentagemVenda".$value->getPorcentagemVenda()."<br>";
+           echo  "PrecoCompra" . $value->getPrecoCompra()."<br>";
            echo "---------------------------------";
         }
 
@@ -104,12 +104,12 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     floatval($soma);
     $Produtos->setPrecoVenda($soma);
 
-    $Produtos->setQtDade($_POST['qt_dade']);
+    $Produtos->setQtDade($_POST['qt_dade']) * $a;
 
     $valorstoque = floatval($_POST['qt_dade'] * $soma);
     
 
-    number_format($Produtos->setValorTotalStoque("12.90"),"2",'.', ',');
+    number_format($Produtos->setValorTotalStoque($valorstoque),"2",'.', ',');
 
     $this->em->flush();
 
