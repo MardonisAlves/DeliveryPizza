@@ -111,14 +111,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 
     $this->em->flush();
 }else{
-    $this->flash->addMessage('msg', 'Campo obrigatorio');
-    $messages = $this->flash->getMessages();
-
-    return $this->container->view->render(
-                            $response ,
-                            'admin/form_bebida.twig',
-                            Array( 
-                              'messages' => $messages));  
+    echo "Campo Vazio"; 
 }
 
     
