@@ -84,7 +84,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     }*/
     
 
-    //Gravar no Banco de dados o produto
+    /*Gravar no Banco de dados o produto
    
     $Produtos = new Produtos();
     $this->em->persist($Produtos);
@@ -108,7 +108,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     $valorstoque = floatval($resVAlorVenda * $Quantidade);
     $Produtos->setValorTotalStoque($valorstoque);
 
-    //$this->em->flush();
+    //$this->em->flush();*/
 
 
     
