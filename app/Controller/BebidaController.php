@@ -106,10 +106,10 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 
     $Produtos->setQtDade($_POST['qt_dade']);
 
-    $valorstoque = $_POST['qt_dade'];
+    $valorstoque = floatval($_POST['qt_dade'] * $soma);
     
 
-    $Produtos->setValorTotalStoque($valorstoque);
+    number_format($Produtos->setValorTotalStoque("12.90"),"2",'.', ',');
 
     $this->em->flush();
 
