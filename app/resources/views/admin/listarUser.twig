@@ -1,0 +1,43 @@
+{% extends 'layoutAdmin.twig' %}
+
+{% block content %}
+
+
+
+<div class="container">
+  <div class="login-box-body">
+    <div class="login-box-body">
+    <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nome</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">TypeUser</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+    
+      
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <th scope="row">{{user.Id}}</th>
+      <td>{{user.fullName }}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.typeuser}}</td>
+      <td>
+        <a href="#" class="btn btn-warning btn-sm">Delete</a>
+        <a href="#" class="btn btn-success btn-sm">Update</a>
+        
+        
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  
+  </table>
+</div>
+ 
+
+{% endblock  %}

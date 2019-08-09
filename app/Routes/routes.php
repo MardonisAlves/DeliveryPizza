@@ -32,6 +32,7 @@
             $this->map(['POST','GET'],'/putContact', 'AdminController:putContact')->setName('putContact');
             $this->get('/DeleteContact' , 'AdminController:DeleteContact')->setName('DeleteContact');
             $this->get('/deleteuser' , 'AdminController:deleteuser')->setName('deleteuser');
+            $this->get('/listaruser' , 'AdminController:listarUser')->setName('listarUser');
             
             
             

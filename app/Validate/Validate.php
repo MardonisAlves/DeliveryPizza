@@ -9,7 +9,7 @@ use Doctrine\ORM\Tools\Setup;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-
+use App\Model\Users;
 abstract class Validate
 {
 
@@ -257,6 +257,12 @@ public function validateadduser($request , $response , $args)
           Array( 'messages' => $messages));
     }
     
+}
+// VALIDATE LISTARUSER
+public function validateListarUser($request, $response, $args)
+{
+  $users =  $this->em->getRepository('App\Model\Users')->findAll();
+  return $this->container->view->render($response ,'admin/listarUser.twig' , Array('users'=>$users));
 }
 
 // VALIDATE LOGOUT
