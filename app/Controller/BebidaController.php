@@ -75,7 +75,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
                             $response ,
                             'admin/form_bebida.twig',
                             Array( 
-                              'messages' => $messages , 'names' => $value->getName()));
+                              'messages' => $messages));
         }else{
 
         $directory = $this->container->get('upload_directory');
@@ -114,9 +114,16 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     $this->em->flush();
 
     // Redirect para listar
+
+    return $this->container->view->render($response ,'admin/listar_produto.twig',Array('produtos' => $produto));
     
 }
-
+// Form listar
+public function listar_produto(Request  $request, Response $response, $args)
+{
+    $produto =  $this->em->getRepository('App\Model\Produtos')->findAll();
+    return $this->container->view->render($response ,'admin/listar_produto.twig' , Array('produto'=>$produto));
+}
 //GetIdBebidas
 public function GetIdBebidas(Request  $request, Response $response, $args)
 {
