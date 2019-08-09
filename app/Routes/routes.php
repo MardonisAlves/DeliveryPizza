@@ -49,13 +49,14 @@
     $app->group('', function() {
         $this->get('/Teste' , 'TesteController:Teste')->setName('Teste');
         $this->get('/Teste_insert' , 'TesteController:Teste_insert')->setName('Teste_insert');
+        $this->get('/deleteuserid' , 'TesteController:deleteuser')->setName('deleteuser');
     });
 
     // BEBIDACONTROLLER
     $app->group('',function(){
     $this->get('/form_bebida' , 'BebidaController:form_bebida')->setName('form_bebida'); 
     $this->post('/insert_bebidas' , 'BebidaController:insert_bebidas')->setName('insert_bebidas'); 
-    $this->get('/listar_produto' , 'BebidaController:listar_produto')->setName('listar_produto'); 
+    $this->get('/listar_produto' , 'BebidaController:deleteUser')->setName('deleteUser'); 
     });
 
 

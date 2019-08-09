@@ -62,4 +62,13 @@ public function Teste_insert(Request  $request, Response $response, $args)
     $this->em->flush();
 }
 
+public function deleteUser(Request  $request, Response $response, $args)
+{
+    $user =  $this->em->find('App\Model\Users',$_GET['id']);
+
+        $this->em->remove($user);
+        $this->em->flush();
+ 
+}
+
 }

@@ -68,6 +68,7 @@ if($contact){
 
          $_SESSION['typeUser'] = $l->getTypeUser();
          $_SESSION['id'] = $l->getId();
+         $_SESSION['email'] = $l->getEmail();
        return $this->container->view->render(
                                     $response ,
                                     'admin/home.twig',
@@ -217,7 +218,7 @@ public function validatedelete($request  , $response , $args)
 
 public function validatenewuser($request, $response, $args)
 {
-  if(isset($_SESSION['typeUser']) == 'admin' AND $_SERVER['REQUEST_METHOD'] == 'GET')
+  if($_SESSION['typeUser'] == "admin")
         {
         return $this->container->view->render($response ,'admin/newuser.twig');
         
@@ -236,9 +237,27 @@ public function validatenewuser($request, $response, $args)
 
 public function validateadduser($request , $response , $args)
 {
-   if(isset($_SESSION['typeUser']) == 'admin')
+  //$user = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email'])); 
+
+
+  if(isset($_SESSION['typeUser'])){
+
+  if($_SESSION['typeUser'] == 'admin'){
+  if($_POST['senha'] == $_POST['repetir']){
+
+  if($_POST['email'] == $_SESSION['email'])
    {
-        $user = new Users();
+
+        $this->flash->addMessageNow('msg', 'Este Email ja esta cadastrado!');
+        $messages = $this->flash->getMessages();
+        return $this->container->view->render(
+          $response ,
+          'admin/newuser.twig',
+          Array( 'messages' => $messages));
+        
+    }else{
+
+      $user = new Users();
         $this->em->persist($user);
         $user->setFullName($_POST["name"]);
         $user->setEmail($_POST["email"]);
@@ -246,17 +265,19 @@ public function validateadduser($request , $response , $args)
         $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
         $this->em->flush();
 
-        return $this->container->view->render($response ,'admin/home.twig');
+        return $this->container->view-> render($response ,'admin/listarUser.twig');
 
-    }else{
-        $this->flash->addMessageNow('msg', 'Acesso negado!');
-        $messages = $this->flash->getMessages();
-        return $this->container->view->render(
-          $response ,
-          'index.twig',
-          Array( 'messages' => $messages));
+
     }
-    
+}else{
+  echo "A senha nao coferem";
+}   
+}else{
+  echo "Acesso Restriti";
+} 
+}else{
+  echo "Acesso Restrito";
+}  
 }
 // VALIDATE LISTARUSER
 public function validateListarUser($request, $response, $args)
