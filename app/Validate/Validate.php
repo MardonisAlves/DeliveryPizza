@@ -66,9 +66,9 @@ if($contact){
       {
         if(password_verify($_POST['senha'], $l->getSenha())){
 
-         $_SESSION['typeUser'] = $l->getTypeUser();
-         $_SESSION['id'] = $l->getId();
-         $_SESSION['email'] = $l->getEmail();
+         $_SESSION["typeUser"] = $l->getTypeUser();
+         $_SESSION["id"] = $l->getId();
+         $_SESSION["email"] = $l->getEmail();
        return $this->container->view->render(
                                     $response ,
                                     'admin/home.twig',
@@ -218,7 +218,7 @@ public function validatedelete($request  , $response , $args)
 
 public function validatenewuser($request, $response, $args)
 {
-  if($_SESSION['typeUser'] == "admin")
+  if(($_SESSION["typeUser"]) == "admin")
         {
         return $this->container->view->render($response ,'admin/newuser.twig');
         
@@ -237,12 +237,13 @@ public function validatenewuser($request, $response, $args)
 
 public function validateadduser($request , $response , $args)
 {
-  //$user = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email'])); 
+  $users = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email'])); 
 
 
   if(isset($_SESSION['typeUser'])){
 
   if($_SESSION['typeUser'] == 'admin'){
+
   if($_POST['senha'] == $_POST['repetir']){
 
   if($_POST['email'] == $_SESSION['email'])
@@ -264,19 +265,34 @@ public function validateadduser($request , $response , $args)
         $user->setTypeUser($_POST["tipoUser"]);
         $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
         $this->em->flush();
-
-        return $this->container->view-> render($response ,'admin/listarUser.twig');
+    return $this->container->view-> render($response ,'admin/listarUser.twig', Array( 'users' => $users));
 
 
     }
 }else{
-  echo "A senha nao coferem";
+   $this->flash->addMessageNow('msg', 'Verifique A senha!');
+        $messages = $this->flash->getMessages();
+        return $this->container->view->render(
+          $response ,
+          'admin/newuser.twig',
+          Array( 'messages' => $messages));
+        
 }   
 }else{
-  echo "Acesso Restriti";
+  $this->flash->addMessageNow('msg', 'Acesso Restrito!');
+        $messages = $this->flash->getMessages();
+        return $this->container->view->render(
+          $response ,
+          'admin/newuser.twig',
+          Array( 'messages' => $messages));
 } 
 }else{
-  echo "Acesso Restrito";
+  $this->flash->addMessageNow('msg', 'Acesso Restrito!');
+        $messages = $this->flash->getMessages();
+        return $this->container->view->render(
+          $response ,
+          'admin/newuser.twig',
+          Array( 'messages' => $messages));
 }  
 }
 // VALIDATE LISTARUSER
