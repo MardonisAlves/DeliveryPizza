@@ -273,7 +273,7 @@ public function validateadduser($request , $response , $args)
               'admin/newuser.twig',
               Array( '$users' => $users));*/
 
-          $url = $this->container->get('router')->pathFor('listarUser');
+          $url = $this->container->get('router')->pathFor('newuser');
          return $response->withStatus(200)->withHeader('Location', $url);
 
    
