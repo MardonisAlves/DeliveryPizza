@@ -268,10 +268,13 @@ public function validateadduser($request , $response , $args)
         $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
         $this->em->flush();
 
-    return $this->container->view->render(
+    /*return $this->container->view->render(
               $response ,
               'admin/newuser.twig',
-              Array( '$users' => $users));
+              Array( '$users' => $users));*/
+
+          $url = $this->container->get('router')->pathFor('listarUser');
+         return $response->withStatus(302)->withHeader('Location', $url);
 
    
 
