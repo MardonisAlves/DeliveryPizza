@@ -274,7 +274,7 @@ public function validateadduser($request , $response , $args)
               Array( '$users' => $users));*/
 
           $url = $this->container->get('router')->pathFor('listarUser');
-         return $response->withStatus(302)->withHeader('Location', $url);
+         return $response->withStatus(200)->withHeader('Location', $url);
 
    
 
