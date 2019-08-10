@@ -75,5 +75,11 @@ $container['BebidaController'] = function ($container){
     return new App\Controller\BebidaController($container , $container->get('em') ,$container->get('flash'));
 };
 
+// ClienteController
+
+$container['ClienteController'] = function ($container){
+    return new App\Controller\ClienteController($container , $container->get('em') ,$container->get('flash'));
+};
+
 
 

@@ -218,7 +218,7 @@ public function validatedelete($request  , $response , $args)
 
 public function validatenewuser($request, $response, $args)
 {
-  if(($_SESSION["typeUser"]) == "admin")
+  if($_SESSION["typeUser"] == "admin")
         {
         return $this->container->view->render($response ,'admin/newuser.twig');
         
@@ -241,6 +241,8 @@ public function validateadduser($request , $response , $args)
 
 
   if(isset($_SESSION['typeUser'])){
+
+
 
   if($_SESSION['typeUser'] == 'admin'){
 
@@ -265,7 +267,13 @@ public function validateadduser($request , $response , $args)
         $user->setTypeUser($_POST["tipoUser"]);
         $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
         $this->em->flush();
-    return $this->container->view-> render($response ,'admin/listarUser.twig', Array( 'users' => $users));
+
+    return $this->container->view->render(
+              $response ,
+              'admin/newuser.twig',
+              Array( '$users' => $users));
+
+   
 
 
     }
@@ -298,8 +306,15 @@ public function validateadduser($request , $response , $args)
 // VALIDATE LISTARUSER
 public function validateListarUser($request, $response, $args)
 {
+  if (($_SESSION["typeUser"]) ==  "admin") {
+    
   $users =  $this->em->getRepository('App\Model\Users')->findAll();
   return $this->container->view->render($response ,'admin/listarUser.twig' , Array('users'=>$users));
+
+}else{
+
+  return $response->withHeader('Location', $this->router->pathFor('/homecliente'));
+}
 }
 
 // VALIDATE LOGOUT

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Model\Contact;
+use App\Model\Users;
 use App\Validate\Validate;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -110,10 +111,12 @@ public function addUser($request , $response , $args)
    parent::validateadduser($request , $response , $args);
 
 }
-public function listarUser($request , $response , $args)
+public function listarUser(Request $request , Response $response , $args)
 {
 
-  parent::validateListarUser($request , $response , $args);
+  parent::validateListarUser( $request ,  $response , $args);
+
+ 
 
 }
 

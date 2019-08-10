@@ -6,7 +6,7 @@
     use Psr\Http\Message\ServerRequestInterface as Request;
     use Psr\Http\Message\ResponseInterface as Response;
 
-    // HOME ROUTE
+    // HOMECONTROLLER
     $app->group('',function(){
             $this->get('/', 'HomeController:index')->setName('index');
             $this->get('/servicos', 'HomeController:servicos')->setName('servicos');
@@ -57,6 +57,11 @@
     $this->get('/form_bebida' , 'BebidaController:form_bebida')->setName('form_bebida'); 
     $this->post('/insert_bebidas' , 'BebidaController:insert_bebidas')->setName('insert_bebidas'); 
     $this->get('/listar_produto' , 'BebidaController:deleteUser')->setName('deleteUser'); 
+    });
+
+    // CLIENTECONTROLLER
+    $app->group('',function(){
+        $this->get('/homecliente', 'ClienteController:homecliente')->setName('homecliente');
     });
 
 
