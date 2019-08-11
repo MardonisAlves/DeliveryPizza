@@ -35,7 +35,6 @@ class AdminController extends Validate
 public function home(Request $request, Response $response, $args)
 {
 
- //parent::validate($request,  $response, $args);
 
   switch ($_COOKIE['user']){
 
@@ -57,8 +56,7 @@ public function home(Request $request, Response $response, $args)
 // login
 public function login(Request $request, Response $response, $args)
 {
- //parent::validatelogin($request , $response ,$args);
-
+ 
   $contact = $this->em->getRepository(
         'App\Model\Users')->findBy(array('email' => $_POST['email']));
 
@@ -89,7 +87,7 @@ if($contact){
 
         $this->flash->addMessageNow('msg', 'Senha errada');
         $messages = $this->flash->getMessages();
-      return $this->container->view->render(
+        return $this->container->view->render(
                                     $response ,
                                     'admin/loginCliente.twig',
                                     Array( 'messages' => $messages));
@@ -124,7 +122,22 @@ if($contact){
 // logout
 public function logout(Request $request, Response $response, $args)
 {
- parent::validatelogout($request , $response , $args);
+ if(isset($_COOKIE['user'])){
+
+   
+
+    setcookie("user",$_COOKIE['user'],time()-1);
+    setcookie("email",$_COOKIE['email'],time()-1);
+
+
+
+    return $this->container->view->render($response ,'index.twig');
+
+  }else{
+
+      return $this->container->view->render($response , 'admin/loginCliente.twig');
+  }
+
   
  
 
@@ -133,19 +146,78 @@ public function logout(Request $request, Response $response, $args)
 // GET Contact By Id //
 public function GetcontactID($request, $response, $args)
 {
-   parent::Validateid($request , $response , $args);     
+    
+
+   if(isset($_SESSION['typeUser']) == 'admin'){
+  $contact =  $this->em->getRepository(
+          'App\Model\Contact')->findBy(Array(
+            'id' => $_GET['id']));
+
+        return $this->container->view->render(
+          $response ,
+          'admin/updatecontato.twig',
+          Array( 'contact' => $contact));
+
+        }else{
+            $this->flash->addMessageNow('msg', 'Acesso negado!');
+            $messages = $this->flash->getMessages();
+            return $this->container->view->render(
+              $response ,
+              'index.twig',
+              Array( 'messages' => $messages));
+        }  
 }
 
 // Update Contact //
 public function putContact($request, $response, $args)
 {
-   parent::validateupdatecontact($request, $response, $args);     
+   if(isset($_SESSION['typeUser']) == 'admin' AND $_SERVER['REQUEST_METHOD'] == 'POST'){
+        $contact =  $this->em->find('App\Model\Contact',$_POST['id']);
+        $contact->setEmail($_POST['email']);
+        $contact->setTelefone($_POST['telefone']);
+        $contact->setPublicationDate(new \DateTime());
+        $this->em->flush();
+// Retornando o nome da rota
+       return $this->container->view->render(
+          $response ,
+          'admin/home.twig',
+          Array( 'messages' => $messages));
+
+       }else{
+        $this->flash->addMessageNow('msg', 'Acesso negado!');
+        $messages = $this->flash->getMessages();
+        return $this->container->view->render(
+          $response ,
+          'index.twig',
+          Array( 'messages' => $messages));
+       }    
 }
 
 // Delete Contact //
 public function DeleteContact($request, $response, $args)
 {
-  parent::validatedelete($request, $response, $args);
+  if(isset($_SESSION['typeUser']) == 'admin' AND $_SERVER['REQUEST_METHOD'] == 'GET'){
+
+        $contact =  $this->em->find(
+          'App\Model\Contact',
+          $_GET['id']);
+
+        $this->em->remove($contact);
+        $this->em->flush();
+
+         // Retornando o nome da rota
+         $url = $this->container->get('router')->pathFor('home');
+         return $response->withStatus(302)->withHeader('Location', $url);
+
+        }else{
+
+             $this->flash->addMessageNow('msg', 'Acesso negado!');
+            $messages = $this->flash->getMessages();
+            return $this->container->view->render(
+              $response ,
+              'index.twig',
+              Array( 'messages' => $messages));
+        }
 }
 
 // DELETE USER
@@ -160,23 +232,79 @@ public function deleteuser(Request  $request, Response $response, $args)
 // NEW USER
 public function newuser($request ,$response , $args)
 {    
-   parent::validatenewuser($request ,$response , $args);        
+   switch ($_COOKIE['user']){
+
+  case 'admin':
+              return $this->container->view->render($response ,'admin/newuser.twig');
+    break;
+
+    case 'cliente':
+              return $this->container->view->render($response ,'homecliente/homecliente.twig');
+    break;
+  
+  default:
+              return $this->container->view->render($response ,'index.twig');
+    break;
+}       
 }
 
 // ADD USER
 public function addUser($request , $response , $args)
 {
   
-   parent::validateadduser($request , $response , $args);
+   switch ($_SESSION["typeUser"]){
+
+  case "admin":
+  
+                    $user = new Users();
+                    $this->em->persist($user);
+                    $user->setFullName($_POST["name"]);
+                    $user->setEmail($_POST["email"]);
+                    $user->setTypeUser($_POST["tipoUser"]);
+                    $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
+                    $this->em->flush();
+
+              return $this->container->view->render(
+                    $response ,
+                    'admin/newuser.twig');
+             
+    break;
+
+
+    case "cliente":
+              return $this->container->view->render($response ,'homecliente/homecliente.twig');
+    break;
+  
+  default:
+              return $this->container->view->render($response ,'index.twig');
+    break;
+}
 
 }
 public function listarUser( $request ,  $response , $args)
 {
 
-  parent::validateListarUser( $request ,  $response , $args);
+ switch ($_COOKIE['user']) {
+   case 'admin':
+     
+     $users =  $this->em->getRepository('App\Model\Users')->findAll();
+      return $this->container->view->render($response ,'admin/listarUser.twig' , Array("users"=>$users));
 
- 
+     break;
+    case 'cliente':
 
-}
+    $url = $this->container->get('router')->pathFor('homecliente');
+    return $response->withStatus(302)->withHeader('Location', $url);
+
+   
+   default:
+        $url = $this->container->get('router')->pathFor('login');
+        return $response->withStatus(302)->withHeader('Location', $url);
+     break;
+ }
+    }
+
+
+
 
 }
