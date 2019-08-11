@@ -68,11 +68,8 @@ if($contact){
 
          $_SESSION["email"] = $l->getEmail();
 
-       return $this->container->view->render(
-                                    $response ,
-                                    'admin/home.twig',
-                                    Array('contact' => $contact));
-
+       //return $this->container->view->render($response ,'admin/home.twig',Array('contact' => $contact));
+          return $response->withRedirect('/home'.$args['id']); 
 
       }else{
 
