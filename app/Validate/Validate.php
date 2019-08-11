@@ -29,7 +29,8 @@ public function validate(Request $request , Response $response , $flash)
 
   case 'admin':
               // select as tables para o dashdoards home
-         
+              $users = $this->em->getRepository(
+        'App\Model\Users')->findBy(array("id" => $_COOKIE["id"]));
               return $this->container->view->render($response ,'admin/home.twig' ,Array("users" =>$users));
     break;
 
@@ -65,6 +66,8 @@ if($contact){
          // cookies e sessions
          setcookie("email", $l->getEmail() );
          setcookie("user",  $l->getTypeUser() );
+         setcookie("id",$l->getId() );
+         
          $_SESSION["email"] = $l->getEmail();
 
        return $this->container->view->render(
