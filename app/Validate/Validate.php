@@ -26,7 +26,7 @@ public function validate(Request $request , Response $response , $flash)
 {
   
 
-  if(isset($_SESSION['typeUser']) == 'admin'){
+  if(isset($_SESSION['typeUser'])){
 
   $contact =  $this->em->getRepository('App\Model\Users')->findAll();
     
@@ -66,9 +66,11 @@ if($contact){
       {
         if(password_verify($_POST['senha'], $l->getSenha())){
 
-         $_SESSION["typeUser"] = $l->getTypeUser();
+         
          $_SESSION["id"] = $l->getId();
          $_SESSION["email"] = $l->getEmail();
+         $_SESSION["typeUser"] = $l->getTypeUser();
+
        return $this->container->view->render(
                                     $response ,
                                     'admin/home.twig',
@@ -220,32 +222,18 @@ public function validatedelete($request  , $response , $args)
 public function validatenewuser($request, $response, $args)
 {
   
+switch ($_SESSION["typeUser"]){
 
-  /*if($_SESSION['typeUser'] == 'admin')  
-  {
-    return $this->container->view->render($response ,'admin/newuser.twig');
-        
-  }else{
-    $this->flash->addMessageNow('msg', 'Acesso negado new user!' . $_SESSION['email']);
-    $messages = $this->flash->getMessages();
-    return $this->container->view->render($response , 'index.twig',Array( 'messages' => $messages));
-  }
-
-}*/
-
-
-switch ($_SESSION['admin']) {
-
-  case 'admin':
+  case "admin":
               return $this->container->view->render($response ,'admin/newuser.twig');
     break;
 
-    case 'cliente':
-              return $this->container->view->render($response ,'admin/homecliente.twig');
+    case "cliente":
+              return $this->container->view->render($response ,'homecliente/homecliente.twig');
     break;
   
   default:
-    echo "Acesso negado";
+              return $this->container->view->render($response ,'index.twig');
     break;
 }
 }
@@ -257,7 +245,7 @@ public function validateadduser($request , $response , $args)
  
 
 
-  if(isset($_SESSION['typeUser'])){
+  /*if(isset($_SESSION['typeUser'])){
 
 
 
@@ -330,7 +318,36 @@ public function validateadduser($request , $response , $args)
           $response ,
           'admin/newuser.twig',
           Array( 'messages' => $messages));
-}  
+} */
+
+
+switch ($_SESSION["typeUser"]){
+
+  case "admin":
+              $user = new Users();
+              $this->em->persist($user);
+              $user->setFullName($_POST["name"]);
+              $user->setEmail($_POST["email"]);
+              $user->setTypeUser($_POST["tipoUser"]);
+              $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
+              $this->em->flush();
+
+              return $this->container->view->render(
+                    $response ,
+                    'admin/newuser.twig',
+                    Array( '$users' => $users));
+    break;
+
+    case "cliente":
+              return $this->container->view->render($response ,'homecliente/homecliente.twig');
+    break;
+  
+  default:
+              return $this->container->view->render($response ,'index.twig');
+    break;
+}
+
+
 }
 // VALIDATE LISTARUSER
 public function validateListarUser($request, $response, $args)
