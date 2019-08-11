@@ -111,7 +111,7 @@ if($contact){
 
       return $this->container->view->render(
                                     $response ,
-                                    'admin/loginCliente.twig',
+                                    'CardCliente.twig',
                                     Array( 'messages' => $messages));
 }
 
