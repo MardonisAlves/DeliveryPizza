@@ -368,14 +368,14 @@ public function validateListarUser($request, $response, $args)
 // VALIDATE LOGOUT
 public function validatelogout($request, $response, $args)
 {
-  if(isset($_COOKIE['email'])){
+  if(isset($_COOKIE['user'])){
 
     setcookie("user",$_COOKIE['user'],time()-1);
      setcookie("email",$_COOKIE['email'],time()-1);
 
 
 
-    //return $this->container->view->render($response ,'index.twig');
+    return $this->container->view->render($response ,'index.twig');
 
   }else{
 
