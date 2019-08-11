@@ -26,7 +26,7 @@ public function validate(Request $request , Response $response , $flash)
 {
   
 
-  if($_SESSION['typeUser'] == "admin"){
+  if($_SESSION["typeUser"] == "admin"){
 
   $contact =  $this->em->getRepository('App\Model\Users')->findAll();
     
