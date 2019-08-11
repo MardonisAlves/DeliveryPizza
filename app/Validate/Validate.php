@@ -370,7 +370,8 @@ public function validatelogout($request, $response, $args)
 {
   if(isset($_COOKIE['user'])){
 
-    setcookie("user","admin",time()-1);
+    setcookie("user",$_COOKIE['user'],time()-1);
+
 
 
     //return $this->container->view->render($response ,'index.twig');
