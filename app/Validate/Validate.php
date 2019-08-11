@@ -24,31 +24,11 @@ abstract class Validate
 // VALIDATE HOME
 public function validate(Request $request , Response $response , $flash)
 {
-  
-
-  /*if("admin" == $_SESSION["typeUser"]){
-
-  $contact =  $this->em->getRepository('App\Model\Users')->findAll();
-    
-  return $this->container->view->render($response,
-                                        'admin/home.twig' ,
-                                        Array('contact' => $contact));
-
-}else{
-
-   $this->flash->addMessageNow('msg', 'Acesso Negado home');
-  $messages = $this->flash->getMessages();
-
-    return $this->container->view->render(
-                            $response ,
-                            'index.twig',
-                            Array( 
-                              'messages' => $messages));
-    }*/
 
     switch ($_COOKIE['user']){
 
   case 'admin':
+              // select as tables para o dashdoards home
               return $this->container->view->render($response ,'admin/home.twig');
     break;
 
@@ -84,7 +64,7 @@ if($contact){
          
          setcookie("email", $l->getEmail() );
          setcookie("user",  $l->getTypeUser() );
-         $_SESSION["email"] = $s->getEmail();
+         $_SESSION["email"] = $l->getEmail();
 
        return $this->container->view->render(
                                     $response ,
@@ -385,9 +365,7 @@ public function validatelogout($request, $response, $args)
 {
   if(isset($_COOKIE['user'])){
 
-   $name = session_name();
-
-   echo $name;
+   
 
     setcookie("user",$_COOKIE['user'],time()-1);
     setcookie("email",$_COOKIE['email'],time()-1);
