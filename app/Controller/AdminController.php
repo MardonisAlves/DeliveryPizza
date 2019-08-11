@@ -35,13 +35,88 @@ class AdminController extends Validate
 public function home(Request $request, Response $response, $args)
 {
 
- parent::validate($request,  $response, $args);
+ //parent::validate($request,  $response, $args);
+
+  switch ($_COOKIE['user']){
+
+  case 'admin':
+              // select as tables para o dashdoards home
+         return $this->container->view->render($response ,'admin/home.twig');
+    break;
+
+    case 'cliente':
+              return $this->container->view->render($response ,'homecliente/homecliente.twig');
+    break;
+  
+  default:
+              return $this->container->view->render($response ,'index.twig');
+    break;
+}
   
 }
 // login
 public function login(Request $request, Response $response, $args)
 {
- parent::validatelogin($request , $response ,$args);
+ //parent::validatelogin($request , $response ,$args);
+
+  $contact = $this->em->getRepository(
+        'App\Model\Users')->findBy(array('email' => $_POST['email']));
+
+if($contact){
+
+
+      foreach($contact as $l)
+      {
+       
+        if($l->getEmail() == $_POST['email'])
+      {
+        if(password_verify($_POST['senha'], $l->getSenha())){
+
+         // cookies e sessions
+         setcookie("email", $l->getEmail() );
+         setcookie("user",  $l->getTypeUser() );
+         setcookie("id",$l->getId() );
+
+         $_SESSION["email"] = $l->getEmail();
+
+       //return $this->container->view->render($response ,'admin/home.twig',Array('contact' => $contact));
+        $url = $this->container->get('router')->pathFor('home');
+        return $response->withStatus(302)->withHeader('Location', $url);
+
+        
+
+      }else{
+
+        $this->flash->addMessageNow('msg', 'Senha errada');
+        $messages = $this->flash->getMessages();
+      return $this->container->view->render(
+                                    $response ,
+                                    'admin/loginCliente.twig',
+                                    Array( 'messages' => $messages));
+      }
+
+      }else{
+
+        $this->flash->addMessageNow('msg', ' Email errado!');
+        $messages = $this->flash->getMessages();
+
+      return $this->container->view->render(
+                                    $response ,
+                                    'admin/loginCliente.twig',
+                                    Array( 'messages' => $messages));
+          }
+      }
+
+}else{
+
+        $this->flash->addMessageNow('msg', 'Você deve Criar user!');
+        $messages = $this->flash->getMessages();
+
+      return $this->container->view->render(
+                                    $response ,
+                                    'admin/loginCliente.twig',
+                                    Array( 'messages' => $messages));
+}
 
 
   
