@@ -111,7 +111,7 @@ public function addUser($request , $response , $args)
    parent::validateadduser($request , $response , $args);
 
 }
-public function listarUser(Request $request , Response $response , $args)
+public function listarUser( $request ,  $response , $args)
 {
 
   parent::validateListarUser( $request ,  $response , $args);
