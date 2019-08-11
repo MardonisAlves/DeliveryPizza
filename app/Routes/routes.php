@@ -15,7 +15,7 @@
             $this->map(['POST','GET'],'/createContact' , 'HomeController:createContact')->setName('createContact');
             $this->get('/CardCliente' ,'HomeController:CardCliente')->setName('CardCliente');
             $this->map(['POST','GET'] ,'/InserCliente' , 'HomeController:InserCliente')->setName('InserCliente');
-            $this->post('/newcontact','/HomeController:newcontact')->setName('newcontact');
+            $this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
             
     });
    
