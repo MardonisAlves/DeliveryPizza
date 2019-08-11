@@ -203,6 +203,7 @@ public function validatedelete($request  , $response , $args)
          // Retornando o nome da rota
          $url = $this->container->get('router')->pathFor('home');
          return $response->withStatus(302)->withHeader('Location', $url);
+
         }else{
 
              $this->flash->addMessageNow('msg', 'Acesso negado!');
@@ -218,7 +219,7 @@ public function validatedelete($request  , $response , $args)
 
 public function validatenewuser($request, $response, $args)
 {
-  if($_SESSION["typeUser"] == "admin")
+  if($_SESSION["typeUser"] == "admin")  
   {
     return $this->container->view->render($response ,'admin/newuser.twig');
         
@@ -234,7 +235,7 @@ public function validatenewuser($request, $response, $args)
 
 public function validateadduser($request , $response , $args)
 {
-  $users = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email'])); 
+ 
 
 
   if(isset($_SESSION['typeUser'])){
@@ -245,7 +246,16 @@ public function validateadduser($request , $response , $args)
 
   if($_POST['senha'] == $_POST['repetir']){
 
-  if($_POST['email'] == $_SESSION['email'])
+ $users = $this->em->getRepository(
+                                  'App\Model\Users'
+                                  )->findBy(
+                                    array(
+                                      'email' => $_POST['email'])); 
+  foreach ($users as $value) {
+   $value->getEmail();
+  }
+
+  if($_POST['email'] == $value->getEmail())
    {
 
         $this->flash->addMessageNow('msg', 'Este Email ja esta cadastrado!');
@@ -276,6 +286,7 @@ public function validateadduser($request , $response , $args)
 
 
     }
+
 }else{
    $this->flash->addMessageNow('msg', 'Verifique A senha!');
         $messages = $this->flash->getMessages();
