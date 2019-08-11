@@ -67,8 +67,8 @@ if($contact){
         if(password_verify($_POST['senha'], $l->getSenha())){
 
          
-         setcookie('email',$l->getEmail());
-         setcookie('user',$l->getypeUser());
+         setcookie("email", $l->getEmail() );
+         setcookie("user",  $l->getTypeUser() );
 
 
        return $this->container->view->render(
