@@ -28,7 +28,7 @@ class ClienteController
         $this->container=$container;
         $this->flash = $flash;
 
-        parent::__construct($container , $flash);
+        
 
 }
 // Acesso cliente
