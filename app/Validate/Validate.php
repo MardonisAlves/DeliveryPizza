@@ -61,7 +61,7 @@ if($contact){
       {
         if(password_verify($_POST['senha'], $l->getSenha())){
 
-         
+         // cookies e sessions
          setcookie("email", $l->getEmail() );
          setcookie("user",  $l->getTypeUser() );
          $_SESSION["email"] = $l->getEmail();

@@ -52,24 +52,6 @@ public function logout(Request $request, Response $response, $args)
  
 
 }
-// New Contact 
-public function hometeste($request, $response, $args)
-{
-  $contact = new Contact();
-  $this->em->persist($contact);
-  $contact->setName($_POST['name']);
-  $contact->setEmail($_POST['email']);
-  $contact->setTelefone($_POST['telefone']);
-  $contact->setText($_POST['message']);
-  $contact->setPublicationDate(new \DateTime());
-  $this->em->flush();
-
-  parent::sendemail($request , $response , $args);
-
-  return $this->container->view->render($response ,'contact.twig');
-
-
-}
 
 // GET Contact By Id //
 public function GetcontactID($request, $response, $args)

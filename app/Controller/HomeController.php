@@ -2,6 +2,7 @@
 namespace App\Controller; 
 
 use App\Model\Users;
+use App\Model\Contact;
 use App\Validate\Validate;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -122,6 +123,25 @@ $user = new Users();
                                           $response ,
                                           'admin/loginCliente.twig',
                                           Array( 'messages' => $messages));
+}
+
+// New Contact 
+public function newcontact($request, $response, $args)
+{
+  $contact = new Contact();
+  $this->em->persist($contact);
+  $contact->setName($_POST['name']);
+  $contact->setEmail($_POST['email']);
+  $contact->setTelefone($_POST['telefone']);
+  $contact->setText($_POST['message']);
+  $contact->setPublicationDate(new \DateTime());
+  $this->em->flush();
+
+  parent::sendemail($request , $response , $args);
+
+  return $this->container->view->render($response ,'contact.twig');
+
+
 }
 
 
