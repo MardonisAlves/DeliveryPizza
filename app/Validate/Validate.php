@@ -26,7 +26,7 @@ public function validate(Request $request , Response $response , $flash)
 {
   
 
-  if("admin" == $_SESSION["typeUser"]){
+  /*if("admin" == $_SESSION["typeUser"]){
 
   $contact =  $this->em->getRepository('App\Model\Users')->findAll();
     
@@ -44,7 +44,22 @@ public function validate(Request $request , Response $response , $flash)
                             'index.twig',
                             Array( 
                               'messages' => $messages));
-    }
+    }*/
+
+    switch ($_COOKIE['user']){
+
+  case 'admin':
+              return $this->container->view->render($response ,'admin/home.twig');
+    break;
+
+    case 'cliente':
+              return $this->container->view->render($response ,'homecliente/homecliente.twig');
+    break;
+  
+  default:
+              return $this->container->view->render($response ,'index.twig');
+    break;
+}
     
 }
 
