@@ -368,9 +368,10 @@ public function validateListarUser($request, $response, $args)
 // VALIDATE LOGOUT
 public function validatelogout($request, $response, $args)
 {
-  if(isset($_COOKIE['user'])){
+  if(isset($_COOKIE['email'])){
 
     setcookie("user",$_COOKIE['user'],time()-1);
+     setcookie("email",$_COOKIE['email'],time()-1);
 
 
 
