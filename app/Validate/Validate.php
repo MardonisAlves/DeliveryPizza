@@ -29,7 +29,9 @@ public function validate(Request $request , Response $response , $flash)
 
   case 'admin':
               // select as tables para o dashdoards home
-              return $this->container->view->render($response ,'admin/home.twig');
+        $users = $this->em->getRepository(
+        'App\Model\Contact')->findBy(array('user' => $_COOKIE['user']));
+              return $this->container->view->render($response ,'admin/home.twig' ,Array("users" =>$users));
     break;
 
     case 'cliente':
@@ -136,7 +138,9 @@ if(!$mail->Send()) // Envia o email
  }
 }
 // VALIDATE GET CONTACT ID
+
 public function Validateid($request  , $response , $args){
+
     if(isset($_SESSION['typeUser']) == 'admin'){
   $contact =  $this->em->getRepository(
           'App\Model\Contact')->findBy(Array(
