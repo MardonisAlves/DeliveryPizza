@@ -23,9 +23,7 @@ $container['flash'] = function () {
 };
 
 
-/*UPLOADS IMAGES Local
-$container = $app->getContainer();
-$container['upload_directory'] = 'public/img/uploads/';*/
+
 
 //UPLOADS IMAGES Hroku
 $container = $app->getContainer();

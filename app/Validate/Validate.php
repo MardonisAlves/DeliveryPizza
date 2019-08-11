@@ -219,17 +219,14 @@ public function validatedelete($request  , $response , $args)
 public function validatenewuser($request, $response, $args)
 {
   if($_SESSION["typeUser"] == "admin")
-        {
-        return $this->container->view->render($response ,'admin/newuser.twig');
+  {
+    return $this->container->view->render($response ,'admin/newuser.twig');
         
-        }else{
-            $this->flash->addMessageNow('msg', 'Acesso negado!');
-            $messages = $this->flash->getMessages();
-            return $this->container->view->render(
-              $response ,
-              'index.twig',
-              Array( 'messages' => $messages));
-        }
+  }else{
+    $this->flash->addMessageNow('msg', 'Acesso negado!');
+    $messages = $this->flash->getMessages();
+    return $this->container->view->render($response , 'index.twig',Array( 'messages' => $messages));
+  }
 
 }
 
@@ -268,13 +265,12 @@ public function validateadduser($request , $response , $args)
         $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
         $this->em->flush();
 
-    /*return $this->container->view->render(
+    return $this->container->view->render(
               $response ,
               'admin/newuser.twig',
-              Array( '$users' => $users));*/
+              Array( '$users' => $users));
 
-          $url = $this->container->get('router')->pathFor('newuser');
-         return $response->withStatus(200)->withHeader('Location', $url);
+        
 
    
 
@@ -316,7 +312,7 @@ public function validateListarUser($request, $response, $args)
 
 }else{
 
-  return $response->withHeader('Location', $this->router->pathFor('/homecliente'));
+   return $this->container->view->render($response ,'admin/home.twig' , Array('users'=>$users));
 }
 }
 
