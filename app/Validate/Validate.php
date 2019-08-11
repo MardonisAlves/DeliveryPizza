@@ -370,14 +370,12 @@ public function validatelogout($request, $response, $args)
 {
   if(isset($_SESSION["typeUser"])){
 
-    unset($_SESSION['typeUser']);
+var_dump($_SESSION["typeUSer"]);
 
-    session_unset();
+    session_destroy();
 
 
-    return $this->container->view->render(
-                                    $response ,
-                                    'index.twig');
+    //return $this->container->view->render($response ,'index.twig');
 
   }else{
       return $this->container->view->render(
