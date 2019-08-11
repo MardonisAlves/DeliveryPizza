@@ -324,23 +324,7 @@ public function validateadduser($request , $response , $args)
 switch ($_SESSION["typeUser"]){
 
   case "admin":
-  $users = $this->em->getRepository(
-                                  'App\Model\Users'
-                                  )->findBy(
-                                    array(
-                                      'email' => $_POST['email'])); 
-
-              foreach ($users as  $value) {
-
-                if($value->getEmail() == $_POST["email"])
-                {
-                    $this->flash->addMessageNow('msg', 'Este Email ja esta cadastrado!');
-                    $messages = $this->flash->getMessages();
-                    return $this->container->view->render(
-                                                          $response ,
-                                                          'admin/newuser.twig',
-                                                          Array( 'messages' => $messages));
-                }else{
+  
                     $user = new Users();
                     $this->em->persist($user);
                     $user->setFullName($_POST["name"]);
@@ -352,9 +336,7 @@ switch ($_SESSION["typeUser"]){
               return $this->container->view->render(
                     $response ,
                     'admin/newuser.twig');
-                }
-              }
-
+             
     break;
 
 
