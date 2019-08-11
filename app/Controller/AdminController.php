@@ -252,11 +252,13 @@ public function addUser($request , $response , $args)
 {
   
    $users =  $this->em->getRepository('App\Model\Users')->findAll();
-
+// validate email
    foreach ($users as  $value) {
+
      if($value->getEmail() == $_POST['email']){
 
-            $this->flash->addMessage('msg', 'Este E-mail ja esta em uso!');
+            $this->flash->addMessageNow('msg', 'Este E-mail ja esta em uso!');
+
             $messages = $this->flash->getMessages();
             return $this->container->view->render(
               $response ,
@@ -265,6 +267,20 @@ public function addUser($request , $response , $args)
 
      }
    }
+
+// validtae senha
+
+   if($_POST['email'] == $_POST['repetir']){
+
+            $this->flash->addMessageNow('msg', 'A senha deve ser Igual!');
+
+            $messages = $this->flash->getMessages();
+            return $this->container->view->render(
+              $response ,
+              'admin/newuser.twig',
+              Array( 'messages' => $messages));
+
+     }
 
 
 
