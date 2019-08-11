@@ -67,9 +67,9 @@ if($contact){
         if(password_verify($_POST['senha'], $l->getSenha())){
 
          
-         $_SESSION["id"] = $l->getId();
-         $_SESSION["email"] = $l->getEmail();
-         $_SESSION["typeUser"] = $l->getTypeUser();
+         setcookie('email',$l->getEmail());
+         setcookie('user',$l->getypeUser());
+
 
        return $this->container->view->render(
                                     $response ,
@@ -222,13 +222,13 @@ public function validatedelete($request  , $response , $args)
 public function validatenewuser($request, $response, $args)
 {
   
-switch ($_SESSION["typeUser"]){
+switch ($_COOKIE['user']){
 
-  case "admin":
+  case 'admin':
               return $this->container->view->render($response ,'admin/newuser.twig');
     break;
 
-    case "cliente":
+    case 'cliente':
               return $this->container->view->render($response ,'homecliente/homecliente.twig');
     break;
   
@@ -368,11 +368,9 @@ public function validateListarUser($request, $response, $args)
 // VALIDATE LOGOUT
 public function validatelogout($request, $response, $args)
 {
-  if(isset($_SESSION["typeUser"])){
+  if(isset($_COOKIE['user'])){
 
-var_dump($_SESSION["typeUSer"]);
-
-    session_destroy();
+    unset($_COOKIE['user']);
 
 
     //return $this->container->view->render($response ,'index.twig');
