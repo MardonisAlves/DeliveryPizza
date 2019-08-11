@@ -219,17 +219,20 @@ public function validatedelete($request  , $response , $args)
 
 public function validatenewuser($request, $response, $args)
 {
-  if(($_SESSION['typeUser']) == 'admin')  
+  
+
+  if($_SESSION['typeUser'] == 'admin')  
   {
     return $this->container->view->render($response ,'admin/newuser.twig');
         
   }else{
-    $this->flash->addMessageNow('msg', 'Acesso negado new user!');
+    $this->flash->addMessageNow('msg', 'Acesso negado new user!' . $_SESSION['email']);
     $messages = $this->flash->getMessages();
     return $this->container->view->render($response , 'index.twig',Array( 'messages' => $messages));
   }
 
 }
+
 
 // VALIDATE ADD USER
 
