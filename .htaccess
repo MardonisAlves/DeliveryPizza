@@ -10,3 +10,6 @@ RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule .? - [L]
 
 RewriteRule .? %{ENV:BASE}/index.php [L]
+
+php_value session.cookie_httponly 1
+php_value session.cookie_secure 1
