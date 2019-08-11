@@ -270,7 +270,7 @@ public function addUser($request , $response , $args)
 
 // validtae senha
 
-   if($_POST['email'] == $_POST['repetir']){
+   if($_POST['senha'] != $_POST['repetir']){
 
             $this->flash->addMessageNow('msg', 'A senha deve ser Igual!');
 
