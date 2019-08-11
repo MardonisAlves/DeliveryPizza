@@ -330,7 +330,9 @@ public function listarUser( $request ,  $response , $args)
      break;
     case 'cliente':
 
-    return $this->container->view->render($response ,'homecliente/homecliente.twig');
+    //return $this->container->view->render($response ,'homecliente/homecliente.twig');
+    $url = $this->container->get('router')->pathFor('homecliente');
+    return $response->withStatus(302)->withHeader('Location', $url);
 
    
    default:

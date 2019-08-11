@@ -33,8 +33,8 @@ class ClienteController
 }
 // Acesso cliente
 
-public function homecliente(Request $req , Response $res , $args)
+public function homecliente(Request $Request, Response $Response , $args)
 {
-    echo"<p>Home Cliente</p>";
+    return $this->container->view->render($response ,'homecliente/homecliente.twig');
 }
 }
