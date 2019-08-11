@@ -371,6 +371,7 @@ public function validatelogout($request, $response, $args)
   if(isset($_SESSION["typeUser"])){
     
     session_unset();
+    unset($_SESSION['typeUser']);
 
     return $this->container->view->render(
                                     $response ,
