@@ -330,7 +330,7 @@ public function listarUser( $request ,  $response , $args)
      break;
     case 'cliente':
 
-    return $this->container->view->render($response ,'admin/homecliente.twig');
+    return $this->container->view->render($response ,'homecliente/homecliente.twig');
 
    
    default:
