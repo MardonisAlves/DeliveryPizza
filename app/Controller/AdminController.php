@@ -226,6 +226,9 @@ public function deleteuser(Request  $request, Response $response, $args)
   $users =  $this->em->find('App\Model\Users',$_GET['id']);
         $this->em->remove($users);
         $this->em->flush();
+
+        $url = $this->container->get('router')->pathFor('listarUser');
+        return $response->withStatus(302)->withHeader('Location', $url);
 }
 
 // NEW USER
