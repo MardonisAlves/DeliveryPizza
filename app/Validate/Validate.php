@@ -84,7 +84,7 @@ if($contact){
          
          setcookie("email", $l->getEmail() );
          setcookie("user",  $l->getTypeUser() );
-
+         $_SESSION["email"] = $s->getEmail();
 
        return $this->container->view->render(
                                     $response ,
@@ -385,8 +385,12 @@ public function validatelogout($request, $response, $args)
 {
   if(isset($_COOKIE['user'])){
 
+   $name = session_name();
+
+   echo $name;
+
     setcookie("user",$_COOKIE['user'],time()-1);
-     setcookie("email",$_COOKIE['email'],time()-1);
+    setcookie("email",$_COOKIE['email'],time()-1);
 
 
 
