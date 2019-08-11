@@ -15,7 +15,7 @@
             $this->map(['POST','GET'],'/createContact' , 'HomeController:createContact')->setName('createContact');
             $this->get('/CardCliente' ,'HomeController:CardCliente')->setName('CardCliente');
             $this->map(['POST','GET'] ,'/InserCliente' , 'HomeController:InserCliente')->setName('InserCliente');
-            $this->post('/newcontact','/HomeController:newcontact')->setName('newcontact');;
+            $this->post('/newcontact','/HomeController:newcontact')->setName('newcontact');
             
     });
    
@@ -23,7 +23,7 @@
     // ADMIN-CONTROLLER
     // Request com method multiplo com get post
     $app->group('',function(){
-            //$this->post('/hometeste', 'AdminController:hometeste')->setName('teste');
+            
             $this->get('/logout', 'AdminController:logout')->setName('logout');
             $this->map(['POST','GET'],'/login', 'AdminController:login')->setName('login');
             $this->get('/newuser', 'AdminController:newuser')->setName('newuser');
