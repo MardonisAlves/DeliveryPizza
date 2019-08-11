@@ -255,7 +255,7 @@ public function validateadduser($request , $response , $args)
    $value->getEmail();
   }
 
-  if($_POST['email'] == $value->getEmail())
+  if($value->getEmail() == $_POST['email'])
    {
 
         $this->flash->addMessageNow('msg', 'Este Email ja esta cadastrado!');
