@@ -219,7 +219,7 @@ public function validatedelete($request  , $response , $args)
 
 public function validatenewuser($request, $response, $args)
 {
-  if(($_SESSION["typeUser"]) == "cliente")  
+  if(("admin" == $_SESSION["typeUser"]))  
   {
     return $this->container->view->render($response ,'admin/newuser.twig');
         
