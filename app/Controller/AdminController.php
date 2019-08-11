@@ -15,7 +15,7 @@ use phpDocumentor\Reflection\Types\Null_;
 use App\Model\UsersClientes;
 
 
-class AdminController extends Validate
+class AdminController 
 {
     protected $em;
     private $container;
@@ -28,8 +28,7 @@ class AdminController extends Validate
         $this->container=$container;
         $this->flash = $flash;
 
-        parent::__construct($container , $flash);
-
+        
 }
 // home
 public function home(Request $request, Response $response, $args)
