@@ -48,9 +48,9 @@ public function enviartoken(Request $request, Response $response, $args)
         $_SESSION['id'] = $sms->getId();
         
         $message =  " <p>Ola tudo bem! Seu acesso para atualizar a senha </p>
-                        <img src='http://localhost:8080/public/img/delivery.jpg' height ='200px' width='200'>
+                        <img src='https://deliverypizza.herokuapp.com/public/img/delivery.jpg' height ='200px' width='200'>
                         <br>
-                        <a href='http://localhost:8080/atu_senha?tk=$tk'>Click Aqui</a>
+                        <a href='https://deliverypizza.herokuapp.com/atu_senha?tk=$tk'>Click Aqui</a>
                     ";
         
         $mail = new PHPMailer();
