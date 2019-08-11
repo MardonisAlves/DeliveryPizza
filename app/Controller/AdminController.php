@@ -130,7 +130,7 @@ public function logout(Request $request, Response $response, $args)
 
 
 
-    $url = $this->container->get('router')->pathFor('/');
+    $url = $this->container->get('router')->pathFor('index');
     return $response->withStatus(302)->withHeader('Location', $url);
 
   }else{
