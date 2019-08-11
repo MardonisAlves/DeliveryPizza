@@ -251,7 +251,24 @@ public function newuser($request ,$response , $args)
 public function addUser($request , $response , $args)
 {
   
-   switch ($_SESSION["typeUser"]){
+   $users =  $this->em->getRepository('App\Model\Users')->findAll();
+
+   foreach ($users as  $value) {
+     if($value->getEmail() == $_POST['email']){
+
+            $this->flash->addMessage('msg', 'Este E-mail ja esta em uso!');
+            $messages = $this->flash->getMessages();
+            return $this->container->view->render(
+              $response ,
+              'admin/newuser.twig',
+              Array( 'messages' => $messages));
+
+     }
+   }
+
+
+
+   switch ($_COOKIE['user']){
 
   case "admin":
   
@@ -263,9 +280,9 @@ public function addUser($request , $response , $args)
                     $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
                     $this->em->flush();
 
-              return $this->container->view->render(
-                    $response ,
-                    'admin/newuser.twig');
+              $url = $this->container->get('router')->pathFor('home');
+              return $response->withStatus(302)->withHeader('Location', $url);
+
              
     break;
 

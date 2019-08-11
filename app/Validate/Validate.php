@@ -242,86 +242,9 @@ switch ($_COOKIE['user']){
 
 public function validateadduser($request , $response , $args)
 {
- 
 
 
-  /*if(isset($_SESSION['typeUser'])){
-
-
-
-  if($_SESSION['typeUser'] == 'admin'){
-
-  if($_POST['senha'] == $_POST['repetir']){
-
- $users = $this->em->getRepository(
-                                  'App\Model\Users'
-                                  )->findBy(
-                                    array(
-                                      'email' => $_POST['email'])); 
-  foreach ($users as $value) {
-   $value->getEmail();
-  }
-
-  if($value->getEmail() == $_POST['email'])
-   {
-
-        $this->flash->addMessageNow('msg', 'Este Email ja esta cadastrado!');
-        $messages = $this->flash->getMessages();
-        return $this->container->view->render(
-          $response ,
-          'admin/newuser.twig',
-          Array( 'messages' => $messages));
-        
-    }else{
-
-      $user = new Users();
-        $this->em->persist($user);
-        $user->setFullName($_POST["name"]);
-        $user->setEmail($_POST["email"]);
-        $user->setTypeUser($_POST["tipoUser"]);
-        $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
-        $this->em->flush();
-
-    return $this->container->view->render(
-              $response ,
-              'admin/newuser.twig',
-              Array( '$users' => $users));
-
-        
-
-   
-
-
-    }
-
-}else{
-   $this->flash->addMessageNow('msg', 'Verifique A senha!');
-        $messages = $this->flash->getMessages();
-        return $this->container->view->render(
-          $response ,
-          'admin/newuser.twig',
-          Array( 'messages' => $messages));
-        
-}   
-}else{
-  $this->flash->addMessageNow('msg', 'Acesso Restrito!');
-        $messages = $this->flash->getMessages();
-        return $this->container->view->render(
-          $response ,
-          'admin/newuser.twig',
-          Array( 'messages' => $messages));
-} 
-}else{
-  $this->flash->addMessageNow('msg', 'Acesso Restrito!');
-        $messages = $this->flash->getMessages();
-        return $this->container->view->render(
-          $response ,
-          'admin/newuser.twig',
-          Array( 'messages' => $messages));
-} */
-
-
-switch ($_SESSION["typeUser"]){
+ switch ($_COOKIE['user']){
 
   case "admin":
   
