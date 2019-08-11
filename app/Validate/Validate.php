@@ -369,9 +369,11 @@ public function validateListarUser($request, $response, $args)
 public function validatelogout($request, $response, $args)
 {
   if(isset($_SESSION["typeUser"])){
-    
-    session_unset();
+
     unset($_SESSION['typeUser']);
+
+    session_unset();
+
 
     return $this->container->view->render(
                                     $response ,
