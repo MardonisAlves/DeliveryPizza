@@ -29,9 +29,8 @@ public function validate(Request $request , Response $response , $flash)
 
   case 'admin':
               // select as tables para o dashdoards home
-          $users =  $this->em->getRepository('App\Model\Users')->findAll();
-          return $this->container->view->render($response ,'admin/listarUser.twig' , Array("users"=>$users));
-              //return $this->container->view->render($response ,'admin/home.twig' ,Array("users" =>$users));
+         
+              return $this->container->view->render($response ,'admin/home.twig' ,Array("users" =>$users));
     break;
 
     case 'cliente':
