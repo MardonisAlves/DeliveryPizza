@@ -43,7 +43,7 @@ public function login(Request $request, Response $response, $args)
 {
  parent::validatelogin($request , $response ,$args);
 
- return $response->withRedirect('/home', 200);
+
   
 }
 // logout
