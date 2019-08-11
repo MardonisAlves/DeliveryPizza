@@ -221,7 +221,7 @@ public function validatenewuser($request, $response, $args)
 {
   
 
-  if($_SESSION['typeUser'] == 'admin')  
+  /*if($_SESSION['typeUser'] == 'admin')  
   {
     return $this->container->view->render($response ,'admin/newuser.twig');
         
@@ -231,8 +231,24 @@ public function validatenewuser($request, $response, $args)
     return $this->container->view->render($response , 'index.twig',Array( 'messages' => $messages));
   }
 
-}
+}*/
 
+
+switch ($_SESSION['admin']) {
+
+  case 'admin':
+              return $this->container->view->render($response ,'admin/newuser.twig');
+    break;
+
+    case 'cliente':
+              return $this->container->view->render($response ,'admin/homecliente.twig');
+    break;
+  
+  default:
+    echo "Acesso negado";
+    break;
+}
+}
 
 // VALIDATE ADD USER
 
