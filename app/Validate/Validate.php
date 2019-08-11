@@ -69,7 +69,7 @@ if($contact){
          $_SESSION["email"] = $l->getEmail();
 
        //return $this->container->view->render($response ,'admin/home.twig',Array('contact' => $contact));
-          return $response->withRedirect('/home'.$args['id']); 
+        return $response->withStatus(302)->withHeader('Location', '/home');
 
       }else{
 
