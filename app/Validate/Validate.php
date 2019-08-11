@@ -357,7 +357,7 @@ public function validateListarUser($request, $response, $args)
   if (($_SESSION['typeUser']) ==  'admin') {
     
   $users =  $this->em->getRepository('App\Model\Users')->findAll();
-  return $this->container->view->render($response ,'admin/listarUser.twig' , Array('users'=>$users));
+  return $this->container->view->render($response ,'admin/listarUser.twig' , Array("users"=>$users));
 
 }else{
 
