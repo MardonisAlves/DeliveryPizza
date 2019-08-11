@@ -26,7 +26,7 @@ public function validate(Request $request , Response $response , $flash)
 {
   
 
-  if($_SESSION["typeUser"] == "admin"){
+  if("admin" == $_SESSION["typeUser"]){
 
   $contact =  $this->em->getRepository('App\Model\Users')->findAll();
     
@@ -378,9 +378,8 @@ var_dump($_SESSION["typeUSer"]);
     //return $this->container->view->render($response ,'index.twig');
 
   }else{
-      return $this->container->view->render(
-          $response ,
-          'admin/loginCliente.twig');
+
+      return $this->container->view->render($response , 'admin/loginCliente.twig');
   }
 
 }
