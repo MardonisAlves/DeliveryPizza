@@ -130,11 +130,13 @@ public function logout(Request $request, Response $response, $args)
 
 
 
-    return $this->container->view->render($response ,'index.twig');
+    $url = $this->container->get('router')->pathFor('/');
+    return $response->withStatus(302)->withHeader('Location', $url);
 
   }else{
 
-      return $this->container->view->render($response , 'admin/loginCliente.twig');
+      $url = $this->container->get('router')->pathFor('login');
+    return $response->withStatus(302)->withHeader('Location', $url);
   }
 
   
