@@ -58,7 +58,7 @@ public function Teste_insert(Request  $request, Response $response, $args)
     
     $UsersClientes->setReferencia("Dona Maria");
     $UsersClientes->setTelefone("989578192");
-    $UsersClientes->users_id("3");
+    $UsersClientes->setId("2");
     $this->em->flush();
 }
 
