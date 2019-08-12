@@ -42,7 +42,7 @@ public function Teste(Request  $request, Response $response, $args)
     
     
     foreach ($teste->getUsersclientes() as $u){
-       echo  $u->getfullName();
+       echo  $u->getId();
     }
 }
 
