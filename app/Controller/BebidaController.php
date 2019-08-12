@@ -114,7 +114,8 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 
     // Redirect para listar
 
-    return $this->container->view->render($response ,'admin/listar_produto.twig',Array('produtos' => $produto));
+    $url = $this->container->get('router')->pathFor('listar_produto');
+    return $response->withStatus(302)->withHeader('Location', $url);
     
 }
 // Form listar
