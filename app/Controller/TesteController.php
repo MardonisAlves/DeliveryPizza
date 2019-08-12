@@ -50,7 +50,7 @@ public function Teste_insert(Request  $request, Response $response, $args)
 {
     $UsersClientes = new UsersClientes();
     $this->em->persist($UsersClientes);
-    $UsersClientes->setId("2");
+    //$UsersClientes->setId("2");
     $UsersClientes->setCidade("Pacatuba");
     $UsersClientes->setRua("Fran Pereira da silva");
     $UsersClientes->setBairro("São Bento");
