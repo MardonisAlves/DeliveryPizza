@@ -38,8 +38,7 @@ class Produtos
     /** @var string @Column(type="text" , length=255 , nullable=true) **/
     protected $descricao;
     
-    /** @var string @Column(type="string" , length=100) **/
-    protected $url_image;
+    
 
     /** @var @Column(type="string" , length=100) **/
     protected $preco_compra;
@@ -118,30 +117,6 @@ class Produtos
     public function getDescricao()
     {
         return $this->descricao;
-    }
-
-    /**
-     * Set urlImage.
-     *
-     * @param string $urlImage
-     *
-     * @return Produtos
-     */
-    public function setUrlImage($urlImage)
-    {
-        $this->url_image = $urlImage;
-
-        return $this;
-    }
-
-    /**
-     * Get urlImage.
-     *
-     * @return string
-     */
-    public function getUrlImage()
-    {
-        return $this->url_image;
     }
 
     /**
