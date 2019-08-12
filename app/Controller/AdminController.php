@@ -225,10 +225,20 @@ public function DeleteContact($request, $response, $args)
 
 public function deleteuser(Request  $request, Response $response, $args)
 {
-  $users =  $this->em->find('App\Model\Users',$_GET['id']);
+
+  switch ($_COOKIE['user']) {
+    case 'admin':
+      $users =  $this->em->find('App\Model\Users',$_GET['id']);
         $this->em->remove($users);
         $this->em->flush();
-
+      break;
+    
+    default:
+       $url = $this->container->get('router')->pathFor('home');
+        return $response->withStatus(302)->withHeader('Location', $url);
+      break;
+  }
+  
         $url = $this->container->get('router')->pathFor('listarUser');
         return $response->withStatus(302)->withHeader('Location', $url);
 }
