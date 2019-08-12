@@ -76,7 +76,7 @@ protected $users_id;
     /** 
     * @param int $Id
     */
-    public function setId($id)
+    public function users_id($id)
     {
         $this->id=$id;
         return $this;
