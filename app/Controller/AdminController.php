@@ -226,22 +226,21 @@ public function DeleteContact($request, $response, $args)
 public function deleteuser(Request  $request, Response $response, $args)
 {
 
-  switch ($_COOKIE['user']) {
-    case 'admin':
-      $users =  $this->em->find('App\Model\Users',$_GET['id']);
-        $this->em->remove($users);
-        $this->em->flush();
+  if($_COOKIE['user'] == 'admin'){
+
+    $users =  $this->em->find('App\Model\Users',$_GET['id']);
+    $this->em->remove($users);
+    $this->em->flush();
 
         return $this->container->view->render($response ,'admin/newuser.twig');
-      break;
-    
-    default:
-       $url = $this->container->get('router')->pathFor('home');
-        return $response->withStatus(302)->withHeader('Location', $url);
-      break;
-  }
+     
+      
   
       
+}else{
+  $url = $this->container->get('router')->pathFor('login');
+  return $response->withStatus(302)->withHeader('Location', $url);
+}
 }
 
 // NEW USER
