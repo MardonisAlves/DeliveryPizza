@@ -35,7 +35,7 @@ class TesteController extends Validate
 
 public function Teste(Request  $request, Response $response, $args)
 {
-    $teste =  $this->em->find('App\Model\Users' , 1);
+    $teste =  $this->em->find('App\Model\Users' , 2);
     
     /*verifica se o array esta vazio*/
     var_export( $teste->getUsersclientes()->isEmpty());
