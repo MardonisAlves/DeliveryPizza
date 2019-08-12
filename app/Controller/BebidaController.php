@@ -93,7 +93,6 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     $this->em->persist($Produtos);
     $Produtos->setName($_POST['name']);
     $Produtos->setDateValidade(new \DateTime($_POST['date']));
-    $Produtos->setUrlImage($_FILES['url_image']['name']);
     $Produtos->setPorcentagemVenda($_POST['porcentagemVenda']);
     $Produtos->setPrecoCompra($_POST['preco_compra']);
     $Produtos->setDescricao($_POST['descricao']);
