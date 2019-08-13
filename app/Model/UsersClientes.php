@@ -30,6 +30,7 @@ protected $users;
 
 /** @var int
 * @Id
+*@GeneratedValue
 * @Column(type="integer" , name="userid")
 */
 protected $userid;
