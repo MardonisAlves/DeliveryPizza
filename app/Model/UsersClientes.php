@@ -245,4 +245,20 @@ protected $telefone;
     {
         return $this->users;
     }
+
+
+
+    /**
+     * Set user_id.
+     *
+     * @param int $user_id
+     *
+     * @return UsersClientes
+     */
+    public function setUser_id($user_id)
+    {
+        $this->user_id = $user_id;
+
+        return $this;
+    }
 }
