@@ -229,7 +229,7 @@ protected $telefone;
      *
      * @return UsersClientes
      */
-    public function setUsers(\Users $users = null)
+    public function setUsers(\Users $users )
     {
         $this->users = $users;
 
