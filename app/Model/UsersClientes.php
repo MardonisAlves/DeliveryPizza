@@ -22,7 +22,7 @@ class UsersClientes
     /** BIDIRECIONAL 
      * Many features have one product. This is the owning side.
      * @ManyToOne(targetEntity="Users", inversedBy="usersclientes")
-     * @JoinColumn(name="id", referencedColumnName="id")
+     * @JoinColumn(name="userid", referencedColumnName="id")
      */
 protected $users;
 
@@ -53,8 +53,10 @@ protected $referencia;
 /** @var int @Column(type="integer")**/
 protected $telefone;
 
-/** @var int @Column(type="integer")**/
-protected $users_id;
+/** @var int @Column(type="integer") **/
+protected $userid;
+
+
 
 
 
@@ -63,6 +65,8 @@ protected $users_id;
 // METHODOS SET e GET
 
  
+    
+
     /**
      * Get id.
      *
@@ -73,22 +77,12 @@ protected $users_id;
         return $this->id;
     }
 
-    /** 
-    * @param int $Id
-    */
-    public function users_id($id)
-    {
-        $this->id=$id;
-        return $this;
-    }
-
-    
     /**
      * Set cidade.
      *
      * @param string $cidade
      *
-     * @return Clientes
+     * @return UsersClientes
      */
     public function setCidade($cidade)
     {
@@ -252,26 +246,26 @@ protected $users_id;
     }
 
     /**
-     * Set usersId.
+     * Set userid.
      *
-     * @param int $usersId
+     * @param int $userid
      *
      * @return UsersClientes
      */
-    public function setUsersId($usersId)
+    public function setUserid($userid)
     {
-        $this->users_id = $usersId;
+        $this->userid = $userid;
 
         return $this;
     }
 
     /**
-     * Get usersId.
+     * Get userid.
      *
      * @return int
      */
-    public function getUsersId()
+    public function getUserid()
     {
-        return $this->users_id;
+        return $this->userid;
     }
 }

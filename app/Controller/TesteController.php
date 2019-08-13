@@ -50,16 +50,14 @@ public function Teste_insert(Request  $request, Response $response, $args)
 {
     $UsersClientes = new UsersClientes();
     $this->em->persist($UsersClientes);
-    //$UsersClientes->setId("2");
     $UsersClientes->setCidade("Pacatuba");
     $UsersClientes->setRua("Fran Pereira da silva");
     $UsersClientes->setBairro("São Bento");
     $UsersClientes->setNumero("53");
-    
-    
+
     $UsersClientes->setReferencia("Dona Maria");
     $UsersClientes->setTelefone("989578192");
-    $UsersClientes->users_id("2");
+    $UsersClientes->setUserid("2");
     $this->em->flush();
 }
 
