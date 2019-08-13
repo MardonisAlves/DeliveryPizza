@@ -49,9 +49,6 @@ public function Teste(Request  $request, Response $response, $args)
 public function Teste_insert(Request  $request, Response $response, $args)
 {
     $UsersClientes = new UsersClientes();
-    $id=1;
-    $idUser_reference = $this->em->getReference(\App\Model\Users::class,$id);
-
     $this->em->persist($UsersClientes);
     $UsersClientes->setCidade("Pacatuba");
     $UsersClientes->setRua("Fran Pereira da silva");
@@ -60,6 +57,9 @@ public function Teste_insert(Request  $request, Response $response, $args)
 
     $UsersClientes->setReferencia("Dona Maria");
     $UsersClientes->setTelefone("989578192");
+    $id=1;
+    $idUser_reference = $this->em->getReference(\App\Model\Users::class,$id);
+
     $this->em->flush();
 }
 
