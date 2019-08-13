@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+//namespace App\Model;
 
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Table;
@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping\OneToMany;
 * Blog User entity
 *
 * @Entity
-* @Table(indexes={*@Index(name="id",columns="id")})
+* @Table(indexes={*@Index(name="email",columns="email")})
 */
 class Users
 {
@@ -39,7 +39,7 @@ public function __construct()
 * @GeneratedValue
 * @Column(type="integer")
 */
-protected $id;
+public $id;
 
 /**
 * @var string

@@ -53,6 +53,9 @@ protected $referencia;
 /** @var int @Column(type="integer")**/
 protected $telefone;
 
+/** @var int @Column(type="integer" , name="user_id")**/
+protected $user_id;
+
 
 
 
@@ -248,4 +251,28 @@ protected $telefone;
 
 
     
+
+    /**
+     * Set userId.
+     *
+     * @param int $userId
+     *
+     * @return UsersClientes
+     */
+    public function setUserId($userId)
+    {
+        $this->user_id = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId.
+     *
+     * @return int
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
 }
