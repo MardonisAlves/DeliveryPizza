@@ -1,0 +1,70 @@
+<?php
+namespace App\Model;
+
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping\Index;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\JoinColumn;
+/**
+* Blog UsersClientes entity
+*
+* @Entity
+*/
+class UsersClientes
+{
+
+
+// ...
+    /** BIDIRECIONAL 
+     * Many features have one product. This is the owning side.
+     * @ManyToOne(targetEntity="Users", inversedBy="usersclientes")
+     * @JoinColumn(name="user_id", referencedColumnName="id")
+     */
+protected $users;
+
+
+
+/** @var int
+*@Id
+*@GeneratedValue
+* @Column(type="integer")
+*/
+protected $id;
+
+/** @var string @Column(type = "string") **/
+protected $cidade;
+
+/** @var string @Column(type="string")**/
+protected $rua;
+
+/** @var int @Column(type="integer")**/
+protected $numero;
+
+/** @var string @Column(type="string")**/
+protected $bairro;
+
+/** @var string @Column(type="string")**/
+protected $referencia;
+
+/** @var int @Column(type="integer")**/
+protected $telefone;
+
+
+
+
+ 
+
+
+
+
+// METHODOS SET e GET
+
+ 
+    
+
+   
+}

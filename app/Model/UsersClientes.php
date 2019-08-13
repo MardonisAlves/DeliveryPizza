@@ -22,18 +22,18 @@ class UsersClientes
     /** BIDIRECIONAL 
      * Many features have one product. This is the owning side.
      * @ManyToOne(targetEntity="Users", inversedBy="usersclientes")
-     * @JoinColumn(name="userid", referencedColumnName="id")
+     * @JoinColumn(name="user_id", referencedColumnName="id")
      */
 protected $users;
 
 
 
 /** @var int
-* @Id
+*@Id
 *@GeneratedValue
-* @Column(type="integer" , name="userid")
+* @Column(type="integer")
 */
-protected $userid;
+protected $id;
 
 /** @var string @Column(type = "string") **/
 protected $cidade;
@@ -65,6 +65,8 @@ protected $telefone;
 
  
     
+
+   
 
     /**
      * Get id.
@@ -242,29 +244,5 @@ protected $telefone;
     public function getUsers()
     {
         return $this->users;
-    }
-
-    /**
-     * Set userid.
-     *
-     * @param int $userid
-     *
-     * @return UsersClientes
-     */
-    public function setUserid($userid)
-    {
-        $this->userid = $userid;
-
-        return $this;
-    }
-
-    /**
-     * Get userid.
-     *
-     * @return int
-     */
-    public function getUserid()
-    {
-        return $this->userid;
     }
 }
