@@ -22,7 +22,7 @@ class UsersClientes
     /** BIDIRECIONAL 
      * Many features have one product. This is the owning side.
      * @ManyToOne(targetEntity="Users", inversedBy="usersclientes")
-     * @JoinColumn(name="user_id", referencedColumnName="id" ,nullable=false)
+     * @JoinColumn(name="user_id", referencedColumnName="id" ,nullable=true)
      */
 protected $users;
 
