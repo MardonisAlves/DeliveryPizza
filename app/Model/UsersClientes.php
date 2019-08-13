@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model;
 
 use Doctrine\ORM\Mapping\Entity;
@@ -22,7 +23,7 @@ class UsersClientes
     /** BIDIRECIONAL 
      * Many features have one product. This is the owning side.
      * @ManyToOne(targetEntity="Users", inversedBy="usersclientes")
-     * @JoinColumn(name="user_id", referencedColumnName="id" ,nullable=false)
+     * @JoinColumn(name="user_id", referencedColumnName="id")
      */
 protected $users;
 
@@ -53,8 +54,6 @@ protected $referencia;
 /** @var int @Column(type="integer")**/
 protected $telefone;
 
-/** @var int @Column(type="integer" , name="user_id")**/
-protected $user_id;
 
 
 
@@ -70,6 +69,8 @@ protected $user_id;
     
 
    
+
+    
 
     /**
      * Get id.
@@ -232,7 +233,7 @@ protected $user_id;
      *
      * @return UsersClientes
      */
-    public function setUsers(\Users $users )
+    public function setUsers(\Users $users = null)
     {
         $this->users = $users;
 
@@ -247,32 +248,5 @@ protected $user_id;
     public function getUsers()
     {
         return $this->users;
-    }
-
-
-    
-
-    /**
-     * Set userId.
-     *
-     * @param int $userId
-     *
-     * @return UsersClientes
-     */
-    public function setUserId($userId)
-    {
-        $this->user_id = $userId;
-
-        return $this;
-    }
-
-    /**
-     * Get userId.
-     *
-     * @return int
-     */
-    public function getUserId()
-    {
-        return $this->user_id;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 //namespace App\Model;
 
 use Doctrine\ORM\Mapping\Entity;
@@ -22,7 +23,7 @@ class UsersClientes
     /** BIDIRECIONAL 
      * Many features have one product. This is the owning side.
      * @ManyToOne(targetEntity="Users", inversedBy="usersclientes")
-     * @JoinColumn(name="user_id", referencedColumnName="id" ,nullable=false)
+     * @JoinColumn(name="user_id", referencedColumnName="id")
      */
 protected $users;
 
@@ -53,8 +54,6 @@ protected $referencia;
 /** @var int @Column(type="integer")**/
 protected $telefone;
 
-/** @var int @Column(type="integer" , name="user_id")**/
-protected $user_id;
 
 
 
@@ -70,185 +69,6 @@ protected $user_id;
     
 
    
-
-    /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set cidade.
-     *
-     * @param string $cidade
-     *
-     * @return UsersClientes
-     */
-    public function setCidade($cidade)
-    {
-        $this->cidade = $cidade;
-
-        return $this;
-    }
-
-    /**
-     * Get cidade.
-     *
-     * @return string
-     */
-    public function getCidade()
-    {
-        return $this->cidade;
-    }
-
-    /**
-     * Set rua.
-     *
-     * @param string $rua
-     *
-     * @return UsersClientes
-     */
-    public function setRua($rua)
-    {
-        $this->rua = $rua;
-
-        return $this;
-    }
-
-    /**
-     * Get rua.
-     *
-     * @return string
-     */
-    public function getRua()
-    {
-        return $this->rua;
-    }
-
-    /**
-     * Set numero.
-     *
-     * @param int $numero
-     *
-     * @return UsersClientes
-     */
-    public function setNumero($numero)
-    {
-        $this->numero = $numero;
-
-        return $this;
-    }
-
-    /**
-     * Get numero.
-     *
-     * @return int
-     */
-    public function getNumero()
-    {
-        return $this->numero;
-    }
-
-    /**
-     * Set bairro.
-     *
-     * @param string $bairro
-     *
-     * @return UsersClientes
-     */
-    public function setBairro($bairro)
-    {
-        $this->bairro = $bairro;
-
-        return $this;
-    }
-
-    /**
-     * Get bairro.
-     *
-     * @return string
-     */
-    public function getBairro()
-    {
-        return $this->bairro;
-    }
-
-    /**
-     * Set referencia.
-     *
-     * @param string $referencia
-     *
-     * @return UsersClientes
-     */
-    public function setReferencia($referencia)
-    {
-        $this->referencia = $referencia;
-
-        return $this;
-    }
-
-    /**
-     * Get referencia.
-     *
-     * @return string
-     */
-    public function getReferencia()
-    {
-        return $this->referencia;
-    }
-
-    /**
-     * Set telefone.
-     *
-     * @param int $telefone
-     *
-     * @return UsersClientes
-     */
-    public function setTelefone($telefone)
-    {
-        $this->telefone = $telefone;
-
-        return $this;
-    }
-
-    /**
-     * Get telefone.
-     *
-     * @return int
-     */
-    public function getTelefone()
-    {
-        return $this->telefone;
-    }
-
-    /**
-     * Set users.
-     *
-     * @param \Users|null $users
-     *
-     * @return UsersClientes
-     */
-    public function setUsers(\Users $users )
-    {
-        $this->users = $users;
-
-        return $this;
-    }
-
-    /**
-     * Get users.
-     *
-     * @return \Users|null
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
 
     
 }
