@@ -59,7 +59,7 @@ public function Teste_insert(Request  $request, Response $response, $args)
     $UsersClientes->setTelefone("989578192");
 
     $id=1;
-    $userId = $this->em->getReference('App\Model\Users',getId());
+    $userId = $this->em->getReference('App\Model\Users',$id);
     $UsersClientes->setUserId($userId);
 
     $this->em->flush();
