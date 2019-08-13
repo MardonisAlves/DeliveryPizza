@@ -12,6 +12,7 @@ use PHPUnit\Framework\Constraint\Count;
 use Doctrine\Common\Collections\ArrayCollection;
 use phpDocumentor\Reflection\Types\Null_;
 use App\Model\UsersClientes;
+use App\Model\Users;
 
 class TesteController extends Validate
 {
@@ -58,15 +59,19 @@ public function Teste_insert(Request  $request, Response $response, $args)
     $UsersClientes->setReferencia("Dona Maria");
     $UsersClientes->setTelefone("989578192");
 
-    $UsersClientes->setUsers(1);
-
-    $this->em->flush();
+    
 
 
 
-$user =  $this->em->find('App\Model\Users',$_COOKIE['id']);
-        $user->setUserId($_COOKIE['id']);
-        $user->flush();
+$user =  $this->em->find('App\Model\Users',1);
+        echo $user->getId();
+
+        $UsersClientes->setUserId($user->getId());
+
+        $this->em->flush();
+
+
+        
 }
 
 public function deleteUser(Request  $request, Response $response, $args)
