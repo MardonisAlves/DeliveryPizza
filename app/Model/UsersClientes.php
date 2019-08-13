@@ -30,10 +30,9 @@ protected $users;
 
 /** @var int
 * @Id
-* @GeneratedValue
-* @Column(type="integer")
+* @Column(type="integer" , name="userid")
 */
-protected $id;
+protected $userid;
 
 /** @var string @Column(type = "string") **/
 protected $cidade;
@@ -53,11 +52,10 @@ protected $referencia;
 /** @var int @Column(type="integer")**/
 protected $telefone;
 
-/** @var int @Column(type="integer") **/
-protected $userid;
 
 
 
+ 
 
 
 
