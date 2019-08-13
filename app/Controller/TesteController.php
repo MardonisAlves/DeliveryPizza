@@ -49,8 +49,8 @@ public function Teste(Request  $request, Response $response, $args)
 public function Teste_insert(Request  $request, Response $response, $args)
 {
     $UsersClientes = new UsersClientes();
-    $id="1";
-    $idUser_reference = $this->em->getReference(\App\Model\Users::class,$Id);
+    $id=1;
+    $idUser_reference = $this->em->getReference(\App\Model\Users::class,$id);
 
     $this->em->persist($UsersClientes);
     $UsersClientes->setCidade("Pacatuba");
