@@ -57,7 +57,7 @@ public function Teste_insert(Request  $request, Response $response, $args)
 
     $UsersClientes->setReferencia("Dona Maria");
     $UsersClientes->setTelefone("989578192");
-    $idUser_reference = $this->em->getReference('App\Model\Users',1);
+    $idUser_reference = $this->em->getReference('App\Model\Users',$id);
     $UsersClientes->setUsers($idUser_reference);
     $this->em->flush();
 }
