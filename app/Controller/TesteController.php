@@ -61,6 +61,12 @@ public function Teste_insert(Request  $request, Response $response, $args)
     $UsersClientes->setUserId(1);
 
     $this->em->flush();
+
+
+
+$user =  $this->em->find('App\Model\Contact',$_COOKIE['id']);
+        $user->setUserId($_COOKIE['id']);
+        $user->flush();
 }
 
 public function deleteUser(Request  $request, Response $response, $args)
