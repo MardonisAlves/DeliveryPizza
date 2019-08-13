@@ -247,6 +247,20 @@ protected $telefone;
     }
 
 
+    /**
+     * Set user_id.
+     *
+     * @param int $user_id
+     *
+     * @return UsersClientes
+     */
+    public function setUserId($user_id)
+    {
+        $this->user_id = $user_id;
+
+        return $this;
+    }
+
 
     
 }
