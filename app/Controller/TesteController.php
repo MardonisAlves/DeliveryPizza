@@ -58,13 +58,13 @@ public function Teste_insert(Request  $request, Response $response, $args)
     $UsersClientes->setReferencia("Dona Maria");
     $UsersClientes->setTelefone("989578192");
 
-    $UsersClientes->setUserId(1);
+    //$UsersClientes->setUserId(1);
 
     $this->em->flush();
 
 
 
-$user =  $this->em->find('App\Model\Contact',$_COOKIE['id']);
+$user =  $this->em->find('App\Model\Users',$_COOKIE['id']);
         $user->setUserId($_COOKIE['id']);
         $user->flush();
 }
