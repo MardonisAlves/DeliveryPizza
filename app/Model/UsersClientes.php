@@ -33,7 +33,7 @@ protected $users;
 *@GeneratedValue
 * @Column(type="integer")
 */
-protected $id;
+public $id;
 
 /** @var string @Column(type = "string") **/
 protected $cidade;
