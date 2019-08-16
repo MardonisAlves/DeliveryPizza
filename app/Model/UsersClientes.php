@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Index;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\CustomIdGenerator;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
@@ -19,22 +20,13 @@ class UsersClientes
 {
 
 
-// ...
-    /** BIDIRECIONAL 
-     * Many features have one product. This is the owning side.
-     * @ManyToOne(targetEntity="Users", inversedBy="usersclientes")
-     * @JoinColumn(name="user_id", referencedColumnName="id"  , nullable=false)
-     */
-protected $users;
+/** @Id @Column(type="integer") @GeneratedValue */
+    protected $id;
 
-
-
-/** @var int
-*@Id
-*@GeneratedValue
-* @Column(type="integer")
+/**
+* @ManyToOne(targetEntity="Users", inversedBy="usersclientes")
 */
-protected $id;
+protected $user;
 
 /** @var string @Column(type = "string") **/
 protected $cidade;
@@ -55,21 +47,7 @@ protected $referencia;
 protected $telefone;
 
 
-
-
-
- 
-
-
-
-
-// METHODOS SET e GET
-
- 
-    
-
-   
-
+// GEt SETS 
     
 
     /**
@@ -227,40 +205,26 @@ protected $telefone;
     }
 
     /**
-     * Set users.
+     * Set user.
      *
-     * @param \Users|null $users
+     * @param \Users|null $user
      *
      * @return UsersClientes
      */
-    public function setUsers(\Users $users = null)
+    public function setUser($user)
     {
-        $this->users = $users;
+        $this->user= $user;
 
         return $this;
     }
 
     /**
-     * Get users.
+     * Get user.
      *
      * @return \Users|null
      */
-    public function getUsers()
+    public function getUser()
     {
-        return $this->users;
-    }
-
-    /**
-     * Set user_id.
-     *
-     * @param int $user_id
-     *
-     * @return UsersClientes
-     */
-    public function setUserId($user_id)
-    {
-        $this->user_id = $user_id;
-
-        return $this;
+        return $this->user;
     }
 }

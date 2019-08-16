@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Index;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\CustomIdGenerator;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
@@ -19,22 +20,13 @@ class UsersClientes
 {
 
 
-// ...
-    /** BIDIRECIONAL 
-     * Many features have one product. This is the owning side.
-     * @ManyToOne(targetEntity="Users", inversedBy="usersclientes")
-     * @JoinColumn(name="user_id", referencedColumnName="id")
-     */
-protected $users;
+/** @Id @Column(type="integer") @GeneratedValue */
+    protected $id;
 
-
-
-/** @var int
-*@Id
-*@GeneratedValue
-* @Column(type="integer")
+/**
+* @ManyToOne(targetEntity="Users", inversedBy="usersclientes")
 */
-protected $id;
+protected $user;
 
 /** @var string @Column(type = "string") **/
 protected $cidade;
@@ -55,20 +47,6 @@ protected $referencia;
 protected $telefone;
 
 
-
-
-
- 
-
-
-
-
-// METHODOS SET e GET
-
- 
-    
-
-   
-
+// GEt SETS 
     
 }

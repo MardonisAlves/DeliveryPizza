@@ -49,21 +49,23 @@ public function Teste(Request  $request, Response $response, $args)
 
 public function Teste_insert(Request  $request, Response $response, $args)
 {
+     
+
+	
+    $User = $this->em->getRepository('App\Model\Users')->findOneBy(['id' => 1]);
+
     $UsersClientes = new UsersClientes();
-    $this->em->persist($UsersClientes);
     $UsersClientes->setCidade("Pacatuba");
     $UsersClientes->setRua("Fran Pereira da silva");
     $UsersClientes->setBairro("São Bento");
     $UsersClientes->setNumero("53");
-
     $UsersClientes->setReferencia("Dona Maria");
     $UsersClientes->setTelefone("989578192");
+    $UsersClientes->setUser($User);
 
-
-        $UsersClientes->setUserId($_COOKIE['id']);
-
-        $this->em->flush();
-
+    //$this->em->persist($User);
+    $this->em->persist($UsersClientes);
+    $this->em->flush();
 
         
 }

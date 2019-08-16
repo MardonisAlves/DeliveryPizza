@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'JsonException' => $vendorDir . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
     'PHPUnit\\DbUnit\\AbstractTester' => $vendorDir . '/phpunit/dbunit/src/AbstractTester.php',
     'PHPUnit\\DbUnit\\Constraint\\DataSetIsEqual' => $vendorDir . '/phpunit/dbunit/src/Constraint/DataSetIsEqual.php',
     'PHPUnit\\DbUnit\\Constraint\\TableIsEqual' => $vendorDir . '/phpunit/dbunit/src/Constraint/TableIsEqual.php',
@@ -312,6 +313,7 @@ return array(
     'PHP_Token_CLOSE_SQUARE' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_CLOSE_TAG' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_COALESCE' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
+    'PHP_Token_COALESCE_EQUAL' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_COLON' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_COMMA' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_COMMENT' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
@@ -357,6 +359,7 @@ return array(
     'PHP_Token_FILE' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_FINAL' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_FINALLY' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
+    'PHP_Token_FN' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_FOR' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_FOREACH' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_FUNCTION' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
@@ -447,6 +450,7 @@ return array(
     'PHP_Token_UNSET_CAST' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_USE' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_USE_FUNCTION' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
+    'PHP_Token_Util' => $vendorDir . '/phpunit/php-token-stream/src/Token/Util.php',
     'PHP_Token_VAR' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_VARIABLE' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_WHILE' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
