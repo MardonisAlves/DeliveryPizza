@@ -52,7 +52,7 @@ public function Teste_insert(Request  $request, Response $response, $args)
      
 
 	
-    $User = $this->em->getRepository('App\Model\Users')->findOneBy(['id' => 1]);
+    $User = $this->em->getRepository('App\Model\Users')->findOneBy(['id' => $_COOKIE['id']]);
 
     $UsersClientes = new UsersClientes();
     $UsersClientes->setCidade("Pacatuba");
@@ -63,7 +63,6 @@ public function Teste_insert(Request  $request, Response $response, $args)
     $UsersClientes->setTelefone("989578192");
     $UsersClientes->setUser($User);
 
-    //$this->em->persist($User);
     $this->em->persist($UsersClientes);
     $this->em->flush();
 
