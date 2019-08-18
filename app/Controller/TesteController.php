@@ -61,6 +61,7 @@ public function Teste_insert(Request  $request, Response $response, $args)
     $UsersClientes->setNumero("53");
     $UsersClientes->setReferencia("Dona Maria");
     $UsersClientes->setTelefone("989578192");
+    // se o valor não existe na table user ele pesistirar o prmeiro que encontar do id
     $UsersClientes->setUser($User);
 
     $this->em->persist($UsersClientes);

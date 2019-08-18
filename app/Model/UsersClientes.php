@@ -24,7 +24,7 @@ class UsersClientes
     protected $id;
 
 /**
-* @ManyToOne(targetEntity="Users", inversedBy="usersclientes")
+* @ManyToOne(targetEntity="Users", inversedBy="usersclientes" , cascade={"persist", "remove"})
 */
 protected $user;
 

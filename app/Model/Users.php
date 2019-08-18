@@ -60,7 +60,7 @@ protected $typeUser;
 
 
     /** BIDIRECIONAL USERS
-     * @OneToMany(targetEntity="UsersClientes", mappedBy="user")
+     * @OneToMany(targetEntity="UsersClientes", mappedBy="user" ,cascade={"persist", "remove"})
      */
 protected $usersclientes ;
 
