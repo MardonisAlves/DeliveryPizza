@@ -148,7 +148,7 @@ public function updatesenha(Request $request, Response $response, $args)
     // verifica se existe o token
     if($_COOKIE['tk'])
     {
-        $users = $this->em->find('App\Model\Users' ,$_SESSION['id']);
+        $users = $this->em->find('App\Model\Users' ,$_COOKIE['id']);
         $users->setSenha(password_hash($_POST["senha"] , PASSWORD_DEFAULT));
         $this->em->flush();
         // apagar a cookie tk
