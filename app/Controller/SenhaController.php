@@ -43,9 +43,10 @@ public function enviartoken(Request $request, Response $response, $args)
         {
             
         $tk = password_hash($sms->getEmail().$sms->getTypeUser().$sms->getFullName(),PASSWORD_DEFAULT);
-        // criar um session
-        $_SESSION['tk'] = $tk;
-        $_SESSION['id'] = $sms->getId();
+        // criar um cookie
+        setcookie("tk", $tk );
+         setcookie("id",$sms->getId());
+
         
         $message =  " <p>Ola tudo bem! Seu acesso para atualizar a senha </p>
                         <img src='https://deliverypizza.herokuapp.com/public/img/delivery.jpg' height ='200px' width='200'>
@@ -115,7 +116,7 @@ public function enviartoken(Request $request, Response $response, $args)
 // atu_senha
 public function atu_senha(Request $request, Response $response, $args)
 {
- if(isset($_GET['tk']) == $_SESSION['tk'])
+ if($_GET['tk'] == $_COOKIE['tk'])
  {
      $this->flash->addMessageNow('msg', 'Agora Digite a nova senha');
      $messages = $this->flash->getMessages();
@@ -145,13 +146,13 @@ public function updatesenha(Request $request, Response $response, $args)
     }
     
     // verifica se existe o token
-    if(isset($_SESSION['tk']))
+    if($_COOKIE['tk'])
     {
         $users = $this->em->find('App\Model\Users' ,$_SESSION['id']);
         $users->setSenha(password_hash($_POST["senha"] , PASSWORD_DEFAULT));
         $this->em->flush();
-        // apagar a session tk
-       unset($_SESSION['tk']);
+        // apagar a cookie tk
+       unset($_COOKIE['tk']);
        
        $this->flash->addMessageNow('msg', 'Sua senha Foi atualizada com sucesso!');
        $messages = $this->flash->getMessages();

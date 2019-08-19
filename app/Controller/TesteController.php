@@ -36,7 +36,7 @@ class TesteController extends Validate
 
 public function Teste(Request  $request, Response $response, $args)
 {
-    $teste =  $this->em->find('App\Model\Users' , 2);
+    $teste =  $this->em->getRepository('App\Model\Users')->findOneBy(['id' => $_COOKIE['id']]);
     
     /*verifica se o array esta vazio*/
     var_export( $teste->getUsersclientes()->isEmpty());
@@ -44,7 +44,12 @@ public function Teste(Request  $request, Response $response, $args)
     
     foreach ($teste->getUsersclientes() as $u){
        echo  $u->getId();
+      
     }
+
+     foreach ($teste as $value) {
+            echo $teste->getEmail();
+        } 
 }
 
 public function Teste_insert(Request  $request, Response $response, $args)
@@ -77,6 +82,27 @@ public function deleteUser(Request  $request, Response $response, $args)
         $this->em->remove($user);
         $this->em->flush();
  
+}
+
+
+public function updateuser(Request  $request, Response $response, $args)
+{
+
+$user =  $this->em->find('App\Model\Users',$_GET['id']);
+
+
+return $this->container
+            ->view
+            ->render
+            ($response ,
+                'admin/atu_user.twig' ,
+                Array('user' => $user ));
+
+            echo $user->getEmail();
+
+            
+
+          
 }
 
 }

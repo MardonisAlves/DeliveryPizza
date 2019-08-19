@@ -111,7 +111,7 @@ if($contact){
 
       return $this->container->view->render(
                                     $response ,
-                                    'CardCliente.twig',
+                                    'admin/loginCliente.twig',
                                     Array( 'messages' => $messages));
 }
 
@@ -350,6 +350,17 @@ public function listarUser( $request ,  $response , $args)
      break;
  }
     }
+
+public function usergetId()
+{
+  $user =  $this->em->getRepository(
+          'App\Model\Users')->findBy(Array(
+            'id' => $_GET['id']));
+
+          $dados = json_encode($user);
+
+          var_export($user);
+}
 
 
 
