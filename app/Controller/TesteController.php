@@ -19,13 +19,17 @@ class TesteController
     protected $em;
     private $container;
     private $flash;
+    private $session;
     
-    
-    public function __construct($container ,EntityManager $em ,$flash)
+    public function __construct($container ,EntityManager $em ,$flash ,  $session )
 {
         $this->em = $em;
         $this->container=$container;
         $this->flash = $flash;
+        $this->session = $session;
+
+
+       
 
         
 }
@@ -92,7 +96,7 @@ public function deleteUser(Request  $request, Response $response, $args)
 public function updateuser(Request  $request, Response $response, $args)
 {
 
-$user =  $this->em->find('App\Model\Users',$_GET['id']);
+$user =  $this->em->find('App\Model\Users', 1);
 
 
 return $this->container
@@ -102,11 +106,21 @@ return $this->container
                 'admin/atu_user.twig' ,
                 Array('user' => $user ));
 
-            echo $user->getEmail();
+            //echo $user->getEmail();
 
-            
 
-          
+        
+
+
+
+/*
+ $this->session->set('email', $user->getEmail());
+
+//echo  $my_value = $_SESSION['email'];
+
+$my_value = $this->session->get('email', 'default');
+echo $my_value;
+*/        
 }
 
 }

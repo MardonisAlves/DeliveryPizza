@@ -20,13 +20,14 @@ class AdminController
     protected $em;
     private $container;
     private $flash;
+    private $session;
     
-    
-    public function __construct($container ,EntityManager $em ,$flash)
+    public function __construct($container ,EntityManager $em ,$flash ,  $session)
 {
         $this->em = $em;
         $this->container=$container;
         $this->flash = $flash;
+        $this->session = $session;
 
         
 }
@@ -35,7 +36,7 @@ public function home(Request $request, Response $response, $args)
 {
 
 
-  switch ($_COOKIE['user']){
+  switch ($_SESSION['user']){
 
   case 'admin':
               // select as tables para o dashdoards home
@@ -70,11 +71,16 @@ if($contact){
         if(password_verify($_POST['senha'], $l->getSenha())){
 
          // cookies e sessions
+        $this->session->set('user', $l->getTypeUser());
+        $this->session->set('email', $l->getEmail());
+        $this->session->set('id', $l->getId());
+
+        /*
          setcookie("email", $l->getEmail() );
          setcookie("user",  $l->getTypeUser() );
          setcookie("id",$l->getId() );
-
-         $_SESSION["email"] = $l->getEmail();
+        */
+        
 
        //return $this->container->view->render($response ,'admin/home.twig',Array('contact' => $contact));
         $url = $this->container->get('router')->pathFor('home');
@@ -226,7 +232,7 @@ public function DeleteContact($request, $response, $args)
 public function deleteuser(Request  $request, Response $response, $args)
 {
 
-  switch ($_COOKIE['user']) {
+  switch ($_SESSION['user']) {
     case 'admin':
       $users =  $this->em->find('App\Model\Users',$_GET['id']);
         $this->em->remove($users);
@@ -332,7 +338,7 @@ public function addUser($request , $response , $args)
 public function listarUser( $request ,  $response , $args)
 {
 
- switch ($_COOKIE['user']) {
+ switch ($_SESSION['user']) {
    case 'admin':
      
      $users =  $this->em->getRepository('App\Model\Users')->findAll();

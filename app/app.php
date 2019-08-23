@@ -32,7 +32,20 @@ require __DIR__ . '/../app/Routes/routes.php';
 // Controller
 
 
+$app->add(new \Slim\Middleware\Session([
+  'name' => 'dummy_session',
+  'autorefresh' => true,
+  'lifetime' => '1 hour'
+]));
+
+// Run Slim
+$app->run();
+
+
+
 return $container;
+
+
 
 
 

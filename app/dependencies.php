@@ -1,7 +1,7 @@
 <?php
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
-
+use \SlimSession\Helper;
 $container = $app->getContainer();
 
 $container['view'] = function ($container) {
@@ -23,6 +23,11 @@ $container['flash'] = function () {
 };
 
 
+
+// Register globally to app
+$container['session'] = function () {
+  return new \SlimSession\Helper;
+};
 
 
 //UPLOADS IMAGES Hroku
@@ -54,7 +59,10 @@ return  \App\Validate\Validate($container  ,$container->get('flash'));
 
 // ADMINCONTROLLER
 $container['AdminController'] = function ($container){
-return new App\Controller\AdminController($container , $container->get('em') ,$container->get('flash'));
+return new App\Controller\AdminController($container , 
+                                            $container->get('em') ,
+                                            $container->get('flash'),
+                                             $container->get('session'));
 };
 
 // SenhaController
@@ -64,7 +72,10 @@ $container['SenhaController'] = function ($container){
 
 // TesteController
 $container['TesteController'] = function ($container){
-    return new App\Controller\TesteController($container , $container->get('em') ,$container->get('flash'));
+    return new App\Controller\TesteController($container , 
+                                                $container->get('em') ,
+                                                $container->get('flash'),
+                                                $container->get('session'));
 };
 
 
