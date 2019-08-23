@@ -153,6 +153,7 @@ public function updatesenha(Request $request, Response $response, $args)
         $this->em->flush();
         // apagar a cookie tk
        unset($_COOKIE['tk']);
+       unset($_COOKIE['id']);
        
        $this->flash->addMessageNow('msg', 'Sua senha Foi atualizada com sucesso!');
        $messages = $this->flash->getMessages();

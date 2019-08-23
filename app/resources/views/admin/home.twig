@@ -5,11 +5,21 @@
 
 {% for user in users %}
     
-      {{ user.typeuser}}
+ 
+ {{ user.typeuser}}
 
         
    
     {% endfor %}
+
+<div class="container">
+<div class="row">
+	<div class="col-sm-2">
+		<a href="/listaruser"><img src="public/img/user.png" class="img-fluid" alt="Responsive image"></a>
+	</div>
+	
+</div>
+</div>
 
 
 {% endblock %}

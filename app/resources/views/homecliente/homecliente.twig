@@ -1,1 +1,22 @@
+{% extends 'homecliente/layoutCliente.twig' %}
+
+{% block content %}
+
+
 <h2>Mardonis Cliente</h2>
+
+ {% for teste in testes %}
+      <div class="alert alert-info">
+      <li>{{ teste.getUsersclientes }}
+</li>
+  
+      </div>
+    {% endfor %}
+
+
+
+
+{% endblock %}
+
+    
+    

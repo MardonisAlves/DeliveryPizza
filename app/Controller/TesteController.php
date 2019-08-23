@@ -14,7 +14,7 @@ use phpDocumentor\Reflection\Types\Null_;
 use App\Model\UsersClientes;
 use App\Model\Users;
 
-class TesteController extends Validate
+class TesteController
 {
     protected $em;
     private $container;
@@ -27,8 +27,7 @@ class TesteController extends Validate
         $this->container=$container;
         $this->flash = $flash;
 
-        parent::__construct($container , $flash);
-
+        
 }
 
 /*=================================================================
@@ -36,20 +35,25 @@ class TesteController extends Validate
 
 public function Teste(Request  $request, Response $response, $args)
 {
-    $teste =  $this->em->getRepository('App\Model\Users')->findOneBy(['id' => $_COOKIE['id']]);
-    
+    $testes =  $this->em->find('App\Model\Users', 1);
+
+return $this->container->view->render($response ,'homecliente/homecliente.twig',
+    Array('testes"'=> $testes)); 
     /*verifica se o array esta vazio*/
-    var_export( $teste->getUsersclientes()->isEmpty());
+    //var_export( $teste->getUsersclientes()->isEmpty());
     
+    /*
+    foreach ($testes->getUsersclientes() as $u){
+       echo  $u->getTelefone() . "<br>";
+
     
-    foreach ($teste->getUsersclientes() as $u){
-       echo  $u->getId();
-      
     }
 
-     foreach ($teste as $value) {
-            echo $teste->getEmail();
-        } 
+     foreach ($testes as $value) {
+            //echo $teste->getEmail();
+        }
+
+*/ 
 }
 
 public function Teste_insert(Request  $request, Response $response, $args)
