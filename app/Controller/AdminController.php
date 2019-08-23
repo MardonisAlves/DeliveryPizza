@@ -124,31 +124,7 @@ if($contact){
 
   
 }
-// logout
-public function logout(Request $request, Response $response, $args)
-{
- if(isset($_COOKIE['user'])){
 
-   
-
-    setcookie("user",$_COOKIE['user'],time()-1);
-    setcookie("email",$_COOKIE['email'],time()-1);
-
-
-
-    $url = $this->container->get('router')->pathFor('index');
-    return $response->withStatus(302)->withHeader('Location', $url);
-
-  }else{
-
-      $url = $this->container->get('router')->pathFor('login');
-    return $response->withStatus(302)->withHeader('Location', $url);
-  }
-
-  
- 
-
-}
 
 // GET Contact By Id //
 public function GetcontactID($request, $response, $args)
@@ -357,15 +333,54 @@ public function listarUser( $request ,  $response , $args)
  }
     }
 
-public function usergetId()
+public function updateuser(Request  $request, Response $response, $args)
 {
-  $user =  $this->em->getRepository(
-          'App\Model\Users')->findBy(Array(
-            'id' => $_GET['id']));
 
-          $dados = json_encode($user);
+$user =  $this->em->find('App\Model\Users', $_GET['id']);
 
-          var_export($user);
+
+return $this->container
+            ->view
+            ->render
+            ($response ,
+                'admin/atu_user.twig' ,
+                Array('user' => $user ));    
+}
+
+
+// update userID
+public function updateuserId(Request $req , Response $res , $args){
+
+
+$user = $this->em->getRepository('App\Model\Users')->findOneBy(['id' => $_GET['id']]);
+
+        $user->setEmail($_POST['email']);
+        $user->setTypeUser($_POST['typeUser']);
+        $this->em->flush();
+
+    $url = $this->container->get('router')->pathFor('listarUser');
+    return $res->withStatus(302)->withHeader('Location', $url);
+}
+
+
+// logout
+public function logout(Request $request, Response $response, $args)
+{
+ if(isset($_COOKIE['user'])){
+    setcookie("user",$_COOKIE['user'],time()-1);
+    setcookie("email",$_COOKIE['email'],time()-1);
+    $url = $this->container->get('router')->pathFor('index');
+    return $response->withStatus(302)->withHeader('Location', $url);
+
+  }else{
+
+      $url = $this->container->get('router')->pathFor('login');
+    return $response->withStatus(302)->withHeader('Location', $url);
+  }
+
+  
+ 
+
 }
 
 

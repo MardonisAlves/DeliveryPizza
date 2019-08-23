@@ -7,33 +7,36 @@
     use Psr\Http\Message\ResponseInterface as Response;
 
     // HOMECONTROLLER
-    $app->group('',function(){
-            $this->get('/', 'HomeController:index')->setName('index');
-            $this->get('/servicos', 'HomeController:servicos')->setName('servicos');
-            $this->get('/about','HomeController:about')->setName('about');
-            $this->get('/contact', 'HomeController:contact')->setName('contact');
-            $this->map(['POST','GET'],'/createContact' , 'HomeController:createContact')->setName('createContact');
-            $this->get('/CardCliente' ,'HomeController:CardCliente')->setName('CardCliente');
-            $this->map(['POST','GET'] ,'/InserCliente' , 'HomeController:InserCliente')->setName('InserCliente');
-            $this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
+$app->group('',function(){
+
+$this->get('/', 'HomeController:index')->setName('index');
+$this->get('/servicos', 'HomeController:servicos')->setName('servicos');
+$this->get('/about','HomeController:about')->setName('about');
+$this->get('/contact', 'HomeController:contact')->setName('contact');
+$this->map(['POST','GET'],'/createContact' , 'HomeController:createContact')->setName('createContact');
+$this->get('/CardCliente' ,'HomeController:CardCliente')->setName('CardCliente');
+$this->map(['POST','GET'] ,'/InserCliente' , 'HomeController:InserCliente')->setName('InserCliente');
+$this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
             
-    });
+});
    
 
     // ADMIN-CONTROLLER
     // Request com method multiplo com get post
-    $app->group('',function(){
+$app->group('',function(){
             
-            $this->get('/logout', 'AdminController:logout')->setName('logout');
-            $this->map(['POST','GET'],'/login', 'AdminController:login')->setName('login');
-            $this->get('/newuser', 'AdminController:newuser')->setName('newuser');
-            $this->map(['POST','GET'],'/addUser', 'AdminController:addUser')->setName('addUser');
-            $this->get('/home', 'AdminController:home')->setName('home');
-            $this->get('/GetcontactID', 'AdminController:GetcontactID')->setName('GetcontactID');
-            $this->map(['POST','GET'],'/putContact', 'AdminController:putContact')->setName('putContact');
-            $this->get('/DeleteContact' , 'AdminController:DeleteContact')->setName('DeleteContact');
-            $this->get('/deleteuser' , 'AdminController:deleteuser')->setName('deleteuser');
-            $this->get('/listaruser' , 'AdminController:listarUser')->setName('listarUser');
+    $this->get('/logout', 'AdminController:logout')->setName('logout');
+    $this->map(['POST','GET'],'/login', 'AdminController:login')->setName('login');
+    $this->get('/newuser', 'AdminController:newuser')->setName('newuser');
+    $this->map(['POST','GET'],'/addUser', 'AdminController:addUser')->setName('addUser');
+    $this->get('/home', 'AdminController:home')->setName('home');
+    $this->get('/GetcontactID', 'AdminController:GetcontactID')->setName('GetcontactID');
+    $this->map(['POST','GET'],'/putContact', 'AdminController:putContact')->setName('putContact');
+    $this->get('/DeleteContact' , 'AdminController:DeleteContact')->setName('DeleteContact');
+    $this->get('/deleteuser' , 'AdminController:deleteuser')->setName('deleteuser');
+    $this->get('/listaruser' , 'AdminController:listarUser')->setName('listarUser');
+    $this->get('/updateuser', 'AdminController:updateuser')->setName('updateuser');
+    $this->post('/updateuserId' ,'AdminController:updateuserId')->setName('updateuserId');
             
             
             
@@ -51,7 +54,7 @@
         $this->get('/Teste' , 'TesteController:Teste')->setName('Teste');
         $this->get('/Teste_insert' , 'TesteController:Teste_insert')->setName('Teste_insert');
         $this->get('/deleteuserid' , 'TesteController:deleteuser')->setName('deleteuser');
-        $this->get('/updateuser', 'TesteController:updateuser')->setName('updateuser');
+        //$this->get('/updateuser', 'TesteController:updateuser')->setName('updateuser');
     });
 
     // BEBIDACONTROLLER

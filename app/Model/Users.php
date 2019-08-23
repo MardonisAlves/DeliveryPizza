@@ -59,8 +59,8 @@ protected $typeUser;
 // Array Collection
 
 
-    /** BIDIRECIONAL USERS
-     * @OneToMany(targetEntity="UsersClientes", mappedBy="user" ,cascade={"persist", "remove"})
+/** BIDIRECIONAL USERS
+* @OneToMany(targetEntity="UsersClientes", mappedBy="user" ,cascade={"persist", "remove" , "refresh"})
      */
 protected $usersclientes ;
 
