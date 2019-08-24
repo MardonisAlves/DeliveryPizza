@@ -73,6 +73,7 @@ if($contact){
          // cookies e sessions
         $this->session->set('user', $l->getTypeUser());
         $this->session->set('email', $l->getEmail());
+        $this->session->set('nome', $l->getfullName());
         $this->session->set('id', $l->getId());
 
         /*
