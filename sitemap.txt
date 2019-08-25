@@ -1,0 +1,4 @@
+https://deliverypizza.herokuapp.com/index.php
+https://deliverypizza.herokuapp.com/about.twig
+https://deliverypizza.herokuapp.com/servicos.twig
+https://deliverypizza.herokuapp.com/contact.twig
