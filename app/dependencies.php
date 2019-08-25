@@ -70,7 +70,10 @@ return new App\Controller\AdminController($container ,
 
 // SenhaController
 $container['SenhaController'] = function ($container){
-    return new App\Controller\SenhaController($container , $container->get('em') ,$container->get('flash'));
+    return new App\Controller\SenhaController($container , 
+                                                $container->get('em') ,
+                                                $container->get('flash'),
+                                                $container->get('session'));
 };
 
 // TesteController

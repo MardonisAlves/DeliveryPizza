@@ -11,17 +11,22 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
 
-class SenhaController extends Validate
+class SenhaController 
 {
       private $em;
       private $container;
       private $flash;
-public function __construct($container ,EntityManager $em ,$flash)
+      private $session;
+      
+public function __construct($container ,EntityManager $em ,$flash , $session )
 {
           $this->em = $em;
           $this->container=$container;
           $this->flash = $flash;
-           parent::__construct($container , $flash);
+          $this->session=$session;
+         
+
+           
 }
 
 // Recuperar senha
@@ -42,17 +47,25 @@ public function enviartoken(Request $request, Response $response, $args)
         foreach($email  as $sms)
         {
             
-        $tk = password_hash($sms->getEmail().$sms->getTypeUser().$sms->getFullName(),PASSWORD_DEFAULT);
-        // criar um cookie
-        setcookie("tk", $tk );
-         setcookie("id",$sms->getId());
-
         
-        $message =  " <p>Ola tudo bem! Seu acesso para atualizar a senha </p>
-                        <img src='https://deliverypizza.herokuapp.com/public/img/delivery.jpg' height ='200px' width='200'>
-                        <br>
-                        <a href='https://deliverypizza.herokuapp.com/atu_senha?tk=$tk'>Click Aqui</a>
-                    ";
+        $stringhas = "$#@.;0dq>=+/8*&&";
+        $tk = password_hash($stringhas,PASSWORD_DEFAULT);
+        // criar um cookie
+        //setcookie("tk", $tk );
+        //setcookie("id",$sms->getId());
+
+
+        // criar session 
+      $this->session->set('tk', $tk);
+      $this->session->set('id', $sms->getId());
+        
+$message = " 
+
+<p>Ola tudo bem! Seu acesso para atualizar a senha </p>
+  <img src='https://deliverypizza.herokuapp.com/public/img/delivery.jpg' height ='200px' width='200'>
+    <br>
+  <a href='https://deliverypizza.herokuapp.com/atu_senha?tk=$_SESSION[tk]'>Click Aqui</a>
+";
         
         $mail = new PHPMailer();
         $mail->IsSMTP(); // envia por SMTP
@@ -116,19 +129,24 @@ public function enviartoken(Request $request, Response $response, $args)
 // atu_senha
 public function atu_senha(Request $request, Response $response, $args)
 {
- if($_GET['tk'] == $_COOKIE['tk'])
- {
-     $this->flash->addMessageNow('msg', 'Agora Digite a nova senha');
-     $messages = $this->flash->getMessages();
-     return $this->container->view->render($response ,'admin/atu_senha.twig', Array('messages' => $messages));
-    
- }else{
-     
-     $this->flash->addMessageNow('msg', 'Acesso negado');
+  $stringhas = "$#@.;0dq>=+/8*&&";
+ if(password_verify($stringhas, $_GET['tk'])){
+
+$this->flash->addMessageNow('msg', 'Agora Digite a nova senha');
+$messages = $this->flash->getMessages();
+return $this->container->view->render($response ,'admin/atu_senha.twig', Array('messages' => $messages));
+
+}else{
+      $this->flash->addMessageNow('msg', 'Acesso negado');
      $messages = $this->flash->getMessages();
      return $this->container->view->render($response ,'admin/loginCliente.twig', Array('messages' => $messages));
+   
  }
 }
+
+
+ 
+
 
 public function updatesenha(Request $request, Response $response, $args)
 {
@@ -146,14 +164,14 @@ public function updatesenha(Request $request, Response $response, $args)
     }
     
     // verifica se existe o token
-    if($_COOKIE['tk'])
+    if($_SESSION['tk'])
     {
-        $users = $this->em->find('App\Model\Users' ,$_COOKIE['id']);
+        $users = $this->em->find('App\Model\Users' ,$_SESSION['id']);
         $users->setSenha(password_hash($_POST["senha"] , PASSWORD_DEFAULT));
         $this->em->flush();
         // apagar a cookie tk
-       unset($_COOKIE['tk']);
-       unset($_COOKIE['id']);
+       unset($_SESSION['tk']);
+       unset($_SESSION['id']);
        
        $this->flash->addMessageNow('msg', 'Sua senha Foi atualizada com sucesso!');
        $messages = $this->flash->getMessages();

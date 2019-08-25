@@ -230,7 +230,7 @@ public function deleteuser(Request  $request, Response $response, $args)
 // NEW USER
 public function newuser($request ,$response , $args)
 {    
-   switch ($_COOKIE['user']){
+   switch ($_SESSION['user']){
 
   case 'admin':
               return $this->container->view->render($response ,'admin/newuser.twig');
@@ -283,7 +283,7 @@ public function addUser($request , $response , $args)
 
 
 
-   switch ($_COOKIE['user']){
+   switch ($_SESSION['user']){
 
   case "admin":
   
@@ -337,39 +337,71 @@ public function listarUser( $request ,  $response , $args)
 public function updateuser(Request  $request, Response $response, $args)
 {
 
-$user =  $this->em->find('App\Model\Users', $_GET['id']);
+switch ($_SESSION['user']){
 
+  case 'admin':
 
-return $this->container
+    $user =  $this->em->find('App\Model\Users', $_GET['id']);
+    return $this->container
             ->view
             ->render
             ($response ,
                 'admin/atu_user.twig' ,
-                Array('user' => $user ));    
+                Array('user' => $user ));  
+    break;
+  
+  case 'cliente':
+
+        $url = $this->container->get('router')->pathFor('home');
+        return $response->withStatus(302)->withHeader('Location', $url);
+    break;
+
+    default:
+    $url = $this->container->get('router')->pathFor('index');
+        return $response->withStatus(302)->withHeader('Location', $url);
+}
+  
 }
 
 
 // update userID
 public function updateuserId(Request $req , Response $res , $args){
 
+switch ($_SESSION['user']) {
+  case 'admin':
+      $user = $this->em->getRepository('App\Model\Users')->findOneBy(['id' => $_GET['id']]);
 
-$user = $this->em->getRepository('App\Model\Users')->findOneBy(['id' => $_GET['id']]);
+      $user->setEmail($_POST['email']);
+      $user->setTypeUser($_POST['typeUser']);
+      $this->em->flush();
 
-        $user->setEmail($_POST['email']);
-        $user->setTypeUser($_POST['typeUser']);
-        $this->em->flush();
+      $url = $this->container->get('router')->pathFor('listarUser');
+      return $res->withStatus(302)->withHeader('Location', $url);
 
-    $url = $this->container->get('router')->pathFor('listarUser');
-    return $res->withStatus(302)->withHeader('Location', $url);
+  break;
+  
+  case 'cliente':
+      $url = $this->container->get('router')->pathFor('home');
+      return $res->withStatus(302)->withHeader('Location', $url);
+  break;
+
+  default:
+      $url = $this->container->get('router')->pathFor('index');
+      return $res->withStatus(302)->withHeader('Location', $url);
+
+
+}
+
 }
 
 
 // logout
 public function logout(Request $request, Response $response, $args)
 {
- if(isset($_COOKIE['user'])){
-    setcookie("user",$_COOKIE['user'],time()-1);
-    setcookie("email",$_COOKIE['email'],time()-1);
+ if(isset($_SESSION['user'])){
+
+    unset($_SESSION['user']);
+    unset($_SESSION['tk']);
     $url = $this->container->get('router')->pathFor('index');
     return $response->withStatus(302)->withHeader('Location', $url);
 
