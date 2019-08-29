@@ -39,25 +39,21 @@ class TesteController
 
 public function Teste(Request  $request, Response $response, $args)
 {
-    $testes =  $this->em->find('App\Model\Users', 1);
-
-return $this->container->view->render($response ,'homecliente/homecliente.twig',
-    Array('testes"'=> $testes)); 
-    /*verifica se o array esta vazio*/
-    //var_export( $teste->getUsersclientes()->isEmpty());
     
-    /*
-    foreach ($testes->getUsersclientes() as $u){
-       echo  $u->getTelefone() . "<br>";
+$users =  $this->em->getRepository('App\Model\Users')->findBy(['id' => 1]);
+$endere =  $this->em->getRepository('App\Model\UsersClientes')->findBy(['id' => 1]);
 
-    
-    }
+// converter Arraycollection para uma matriz php
+//$arrays = $users->getUsersclientes();
 
-     foreach ($testes as $value) {
-            //echo $teste->getEmail();
-        }
 
-*/ 
+
+return $this->container
+            ->view
+            ->render($response ,
+            'homecliente/homecliente.twig',
+            Array('users' => $users , 'endere' => $endere )); 
+
 }
 
 public function Teste_insert(Request  $request, Response $response, $args)
@@ -103,7 +99,7 @@ return $this->container
             ->view
             ->render
             ($response ,
-                'admin/atu_user.twig' ,
+                'admin/users/atu_user.twig' ,
                 Array('user' => $user ));
 
             //echo $user->getEmail();

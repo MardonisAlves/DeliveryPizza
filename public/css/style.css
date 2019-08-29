@@ -63,7 +63,7 @@ a:hover, a:focus{
 Navigation bar
 ************************************/
 .navbar-default .navbar-brand {
-    color: #5FCF80;
+    color: rgb(207, 139, 49);
 }
 .navbar-default {
     background-color: #ffffff;

@@ -5,14 +5,32 @@
 
 <h2>Mardonis Cliente</h2>
 
- {% for teste in testes %}
+ 	
+
+
+    {% for user in users %}
+
       <div class="alert alert-info">
-      <li>{{ teste.getUsersclientes }}
-</li>
+      
+       <li>{{ user.email }}</li>
   
       </div>
     {% endfor %}
 
+
+    {% for end in endere %}
+
+      <div class="alert alert-info">
+      
+       <li>{{ end.telefone }}</li>
+  
+      </div>
+    {% endfor %}
+
+
+   
+
+    
 
 
 

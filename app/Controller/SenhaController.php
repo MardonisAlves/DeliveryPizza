@@ -34,7 +34,7 @@ public  function  recu_form(Request $request, Response $response, $args)
 {
     return $this->container->view->render(
         $response ,
-        'admin/recu_form.twig');
+        'admin/login/recu_form.twig');
 }
 
 public function enviartoken(Request $request, Response $response, $args) 
@@ -101,7 +101,7 @@ $message = "
         
         $this->flash->addMessageNow('msg', 'Verifique o seu email para continuar');
         $messages = $this->flash->getMessages();
-        return $this->container->view->render($response ,'admin/recu_form.twig',Array('messages' => $messages));
+        return $this->container->view->render($response ,'admin/login/recu_form.twig',Array('messages' => $messages));
         
         }
     }else{
@@ -111,7 +111,7 @@ $message = "
         
         return $this->container->view->render(
             $response ,
-            'admin/recu_form.twig',
+            'admin/login/recu_form.twig',
             Array(
                 'messages' => $messages));
          }

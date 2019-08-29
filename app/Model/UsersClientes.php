@@ -34,7 +34,7 @@ protected $cidade;
 /** @var string @Column(type="string")**/
 protected $rua;
 
-/** @var int @Column(type="integer")**/
+/** @var string @Column(type="string")**/
 protected $numero;
 
 /** @var string @Column(type="string")**/
@@ -111,7 +111,7 @@ protected $telefone;
     /**
      * Set numero.
      *
-     * @param int $numero
+     * @param string $numero
      *
      * @return UsersClientes
      */
@@ -125,7 +125,7 @@ protected $telefone;
     /**
      * Get numero.
      *
-     * @return int
+     * @return string
      */
     public function getNumero()
     {

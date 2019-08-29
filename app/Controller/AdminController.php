@@ -5,13 +5,11 @@ namespace App\Controller;
 
 use App\Model\Contact;
 use App\Model\Users;
-use App\Validate\Validate;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use PHPUnit\Framework\Constraint\Count;
 use Doctrine\Common\Collections\ArrayCollection;
-use phpDocumentor\Reflection\Types\Null_;
 use App\Model\UsersClientes;
 
 
@@ -40,7 +38,10 @@ public function home(Request $request, Response $response, $args)
 
   case 'admin':
               // select as tables para o dashdoards home
-         return $this->container->view->render($response ,'admin/home.twig');
+        $users = $this->em->getRepository('App\Model\Users')->findAll();
+
+        return $this->container->view->render($response ,'admin/home.twig' , Array('users' => $users));
+
     break;
 
     case 'cliente':
@@ -95,7 +96,7 @@ if($contact){
         $messages = $this->flash->getMessages();
         return $this->container->view->render(
                                     $response ,
-                                    'admin/loginCliente.twig',
+                                    'admin/login/loginCliente.twig',
                                     Array( 'messages' => $messages));
       }
 
@@ -106,7 +107,7 @@ if($contact){
 
       return $this->container->view->render(
                                     $response ,
-                                    'admin/loginCliente.twig',
+                                    'admin/login/loginCliente.twig',
                                     Array( 'messages' => $messages));
           }
       }
@@ -118,7 +119,7 @@ if($contact){
 
       return $this->container->view->render(
                                     $response ,
-                                    'admin/loginCliente.twig',
+                                    'admin/login/loginCliente.twig',
                                     Array( 'messages' => $messages));
 }
 
@@ -139,7 +140,7 @@ public function GetcontactID($request, $response, $args)
 
         return $this->container->view->render(
           $response ,
-          'admin/updatecontato.twig',
+          'admin/contacts/updatecontato.twig',
           Array( 'contact' => $contact));
 
         }else{
@@ -214,8 +215,8 @@ public function deleteuser(Request  $request, Response $response, $args)
       $users =  $this->em->find('App\Model\Users',$_GET['id']);
         $this->em->remove($users);
         $this->em->flush();
-
-        return $this->container->view->render($response ,'admin/newuser.twig');
+        /* Analisar se vou redrecionar esta route pra listaruser*/
+        return $this->container->view->render($response ,'admin/users/newuser.twig');
       break;
     
     default:
@@ -233,7 +234,7 @@ public function newuser($request ,$response , $args)
    switch ($_SESSION['user']){
 
   case 'admin':
-              return $this->container->view->render($response ,'admin/newuser.twig');
+              return $this->container->view->render($response ,'admin/users/newuser.twig');
     break;
 
     case 'cliente':
@@ -249,7 +250,7 @@ public function newuser($request ,$response , $args)
 // ADD USER
 public function addUser($request , $response , $args)
 {
-  
+  // validar o acesso com session
    $users =  $this->em->getRepository('App\Model\Users')->findAll();
 // validate email
    foreach ($users as  $value) {
@@ -261,7 +262,7 @@ public function addUser($request , $response , $args)
             $messages = $this->flash->getMessages();
             return $this->container->view->render(
               $response ,
-              'admin/newuser.twig',
+              'admin/users/newuser.twig',
               Array( 'messages' => $messages));
 
      }
@@ -276,7 +277,7 @@ public function addUser($request , $response , $args)
             $messages = $this->flash->getMessages();
             return $this->container->view->render(
               $response ,
-              'admin/newuser.twig',
+              'admin/users/newuser.twig',
               Array( 'messages' => $messages));
 
      }
@@ -319,7 +320,10 @@ public function listarUser( $request ,  $response , $args)
    case 'admin':
      
      $users =  $this->em->getRepository('App\Model\Users')->findAll();
-      return $this->container->view->render($response ,'admin/listarUser.twig' , Array("users"=>$users));
+      return $this->container
+                  ->view->render($response ,
+                    'admin/users/listarUser.twig', 
+                    Array("users"=>$users));
 
      break;
     case 'cliente':
@@ -341,13 +345,15 @@ switch ($_SESSION['user']){
 
   case 'admin':
 
-    $user =  $this->em->find('App\Model\Users', $_GET['id']);
+    $user =  $this->em->getRepository('App\Model\Users')->findBy(['id' => $_GET['id']]);
+    $endere =  $this->em->getRepository('App\Model\UsersClientes')->findBy(['id' => $_GET['id']]);
+
     return $this->container
             ->view
             ->render
             ($response ,
-                'admin/atu_user.twig' ,
-                Array('user' => $user ));  
+                'admin/users/atu_user.twig' ,
+                Array('user' => $user , 'endere' => $endere));  
     break;
   
   case 'cliente':
@@ -369,10 +375,19 @@ public function updateuserId(Request $req , Response $res , $args){
 
 switch ($_SESSION['user']) {
   case 'admin':
-      $user = $this->em->getRepository('App\Model\Users')->findOneBy(['id' => $_GET['id']]);
+      $user = $this->em->find('App\Model\Users',['id' => $_GET['id']]);
 
       $user->setEmail($_POST['email']);
       $user->setTypeUser($_POST['typeUser']);
+      $this->em->flush();
+
+
+      $UsersClientes= $this->em->find('App\Model\UsersClientes',['id' => $_GET['id']]);
+
+      $UsersClientes->setRua($_POST['rua']);
+      $UsersClientes->setCidade($_POST['cidade']);
+      $UsersClientes->setNumero($_POST['numero']);
+      $UsersClientes->setBairro($_POST['bairro']);
       $this->em->flush();
 
       $url = $this->container->get('router')->pathFor('listarUser');
