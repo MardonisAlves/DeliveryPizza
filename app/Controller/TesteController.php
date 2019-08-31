@@ -129,7 +129,7 @@ public function EnderecoCliente(Request  $request, Response $response, $args){
 
     $User = $this->em
                  ->getRepository('App\Model\Users')
-                 ->findBy(array('id' => 1));
+                 ->findBy(array('id' => 2));
 
     /*valida se o user existe*/
 
