@@ -134,9 +134,9 @@ public function GetcontactID($request, $response, $args)
     
 
    if(isset($_SESSION['typeUser']) == 'admin'){
-  $contact =  $this->em->getRepository(
-          'App\Model\Contact')->findBy(Array(
-            'id' => $_GET['id']));
+     
+  $contact =  $this->em->getRepository('App\Model\Contact')
+                   ->findBy(Array('id' => $_GET['id']));
 
         return $this->container->view->render(
           $response ,
@@ -212,11 +212,14 @@ public function deleteuser(Request  $request, Response $response, $args)
 
   switch ($_SESSION['user']) {
     case 'admin':
+
       $users =  $this->em->find('App\Model\Users',$_GET['id']);
         $this->em->remove($users);
         $this->em->flush();
+
         /* Analisar se vou redrecionar esta route pra listaruser*/
         return $this->container->view->render($response ,'admin/users/newuser.twig');
+
       break;
     
     default:
@@ -252,17 +255,18 @@ public function addUser($request , $response , $args)
 {
   // validar o acesso com session
    $users =  $this->em->getRepository('App\Model\Users')->findAll();
+
 // validate email
-   foreach ($users as  $value) {
+foreach ($users as  $value) {
 
-     if($value->getEmail() == $_POST['email']){
+  if($value->getEmail() == $_POST['email']){
 
-            $this->flash->addMessageNow('msg', 'Este E-mail ja esta em uso!');
-
-            $messages = $this->flash->getMessages();
-            return $this->container->view->render(
-              $response ,
-              'admin/users/newuser.twig',
+  $this->flash->addMessageNow('msg', 'Este E-mail ja esta em uso!');
+  $messages = $this->flash->getMessages();
+  
+  return $this->container
+              ->view
+              ->render($response ,'admin/users/newuser.twig',
               Array( 'messages' => $messages));
 
      }
@@ -271,45 +275,42 @@ public function addUser($request , $response , $args)
 // validtae senha
 
    if($_POST['senha'] != $_POST['repetir']){
+    $this->flash->addMessageNow('msg', 'A senha deve ser Igual!');
+      $messages = $this->flash->getMessages();
 
-            $this->flash->addMessageNow('msg', 'A senha deve ser Igual!');
-
-            $messages = $this->flash->getMessages();
-            return $this->container->view->render(
-              $response ,
-              'admin/users/newuser.twig',
-              Array( 'messages' => $messages));
+      return $this->container
+                  ->view
+                  ->render($response ,'admin/users/newuser.twig',
+                  Array( 'messages' => $messages));
 
      }
 
 
 
-   switch ($_SESSION['user']){
+switch ($_SESSION['user']){
 
   case "admin":
-  
-                    $user = new Users();
-                    $this->em->persist($user);
-                    $user->setFullName($_POST["name"]);
-                    $user->setEmail($_POST["email"]);
-                    $user->setTypeUser($_POST["tipoUser"]);
-                    $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
-                    $this->em->flush();
+        $user = new Users();
+        $this->em->persist($user);
+        $user->setFullName($_POST["name"]);
+        $user->setEmail($_POST["email"]);
+        $user->setTypeUser($_POST["tipoUser"]);
+        $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
+        $this->em->flush();
 
-              $url = $this->container->get('router')->pathFor('home');
-              return $response->withStatus(302)->withHeader('Location', $url);
+        $url = $this->container->get('router')->pathFor('home');
+        return $response->withStatus(302)->withHeader('Location', $url);
 
              
-    break;
+  break;
 
-
-    case "cliente":
-              return $this->container->view->render($response ,'homecliente/homecliente.twig');
-    break;
+  case "cliente":
+         return $this->container->view->render($response ,'homecliente/homecliente.twig');
+  break;
   
   default:
               return $this->container->view->render($response ,'index.twig');
-    break;
+  break;
 }
 
 }
@@ -317,12 +318,13 @@ public function listarUser( $request ,  $response , $args)
 {
 
  switch ($_SESSION['user']) {
+
    case 'admin':
      
      $users =  $this->em->getRepository('App\Model\Users')->findAll();
       return $this->container
-                  ->view->render($response ,
-                    'admin/users/listarUser.twig', 
+                  ->view
+                  ->render($response ,'admin/users/listarUser.twig', 
                     Array("users"=>$users));
 
      break;
@@ -345,15 +347,18 @@ switch ($_SESSION['user']){
 
   case 'admin':
 
-    $user =  $this->em->getRepository('App\Model\Users')->findBy(['id' => $_GET['id']]);
-    $endere =  $this->em->getRepository('App\Model\UsersClientes')->findBy(['id' => $_GET['id']]);
+    $user =    $this->em
+                    ->getRepository('App\Model\Users')
+                    ->findBy(['id' => $_GET['id']]);
+    $endere =  $this->em
+                    ->getRepository('App\Model\UsersClientes')
+                    ->findBy(['id' => $_GET['id']]);
 
     return $this->container
-            ->view
-            ->render
-            ($response ,
-                'admin/users/atu_user.twig' ,
-                Array('user' => $user , 'endere' => $endere));  
+                ->view
+                ->render
+                ($response ,'admin/users/atu_user.twig' ,
+                  Array('user' => $user , 'endere' => $endere));  
     break;
   
   case 'cliente':
@@ -374,15 +379,19 @@ switch ($_SESSION['user']){
 public function updateuserId(Request $req , Response $res , $args){
 
 switch ($_SESSION['user']) {
+
   case 'admin':
-      $user = $this->em->find('App\Model\Users',['id' => $_GET['id']]);
+
+      $user =  $this->em
+                    ->find('App\Model\Users',['id' => $_GET['id']]);
 
       $user->setEmail($_POST['email']);
       $user->setTypeUser($_POST['typeUser']);
       $this->em->flush();
 
 
-      $UsersClientes= $this->em->find('App\Model\UsersClientes',['id' => $_GET['id']]);
+      $UsersClientes=  $this->em
+                            ->find('App\Model\UsersClientes',['id' => $_GET['id']]);
 
       $UsersClientes->setRua($_POST['rua']);
       $UsersClientes->setCidade($_POST['cidade']);
@@ -396,11 +405,14 @@ switch ($_SESSION['user']) {
   break;
   
   case 'cliente':
+
       $url = $this->container->get('router')->pathFor('home');
       return $res->withStatus(302)->withHeader('Location', $url);
+
   break;
 
   default:
+
       $url = $this->container->get('router')->pathFor('index');
       return $res->withStatus(302)->withHeader('Location', $url);
 
@@ -417,13 +429,14 @@ public function logout(Request $request, Response $response, $args)
 
     unset($_SESSION['user']);
     unset($_SESSION['tk']);
+
     $url = $this->container->get('router')->pathFor('index');
     return $response->withStatus(302)->withHeader('Location', $url);
 
   }else{
 
       $url = $this->container->get('router')->pathFor('login');
-    return $response->withStatus(302)->withHeader('Location', $url);
+      return $response->withStatus(302)->withHeader('Location', $url);
   }
 
   
