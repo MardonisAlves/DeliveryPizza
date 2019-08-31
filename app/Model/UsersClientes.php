@@ -14,7 +14,6 @@ use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
 /**
 * Blog UsersClientes entity
-*
 * @Entity
 */
 class UsersClientes

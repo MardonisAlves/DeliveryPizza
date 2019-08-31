@@ -40,7 +40,7 @@ class BebidaController extends Validate
 public function form_bebida(Request  $request, Response $response, $args)
 {
 
-    return $this->container->view->render($response, 'admin/form_bebida.twig');
+    return $this->container->view->render($response, 'admin/produtos/form_bebida.twig');
 
 }
 //InsertBebidas
@@ -122,7 +122,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 public function listar_produto(Request  $request, Response $response, $args)
 {
     $produto =  $this->em->getRepository('App\Model\Produtos')->findAll();
-    return $this->container->view->render($response ,'admin/produts/listar_produto.twig' , Array('produto'=>$produto));
+    return $this->container->view->render($response ,'admin/produtos/listar_produto.twig' , Array('produto'=>$produto));
 }
 //GetIdBebidas
 public function GetIdBebidas(Request  $request, Response $response, $args)

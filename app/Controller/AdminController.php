@@ -58,8 +58,11 @@ public function home(Request $request, Response $response, $args)
 public function login(Request $request, Response $response, $args)
 {
  
+  
   $contact = $this->em->getRepository(
         'App\Model\Users')->findBy(array('email' => $_POST['email']));
+
+        
 
 if($contact){
 
