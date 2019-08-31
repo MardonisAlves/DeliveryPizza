@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\OneToMany;
+use Doctrine\ORM\Mapping\OneToOne;
 /**
 * Blog User entity
 *
@@ -60,23 +61,31 @@ protected $typeUser;
 
 
 /** BIDIRECIONAL USERS
-* @OneToMany(targetEntity="UsersClientes", mappedBy="user" ,cascade={"persist", "remove" , "refresh"})
-     */
+*@OneToOne(targetEntity="UsersClientes", mappedBy="user" ,cascade={"persist", "remove" , "refresh"})
+*/
 protected $usersclientes ;
-
-public function __construct()
-{
-    $this->usersclientes= new ArrayCollection();
-}
-
 
 // METHODOS SET e GET
 
+   
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Set senha.
+     *
+     * @param string $senha
+     *
+     * @return Users
+     */
     public function setSenha($senha)
     {
         $this->senha = $senha;
@@ -84,12 +93,23 @@ public function __construct()
         return $this;
     }
 
+    /**
+     * Get senha.
+     *
+     * @return string
+     */
     public function getSenha()
     {
         return $this->senha;
     }
 
-  
+    /**
+     * Set email.
+     *
+     * @param string $email
+     *
+     * @return Users
+     */
     public function setEmail($email)
     {
         $this->email = $email;
@@ -97,13 +117,23 @@ public function __construct()
         return $this;
     }
 
-  
+    /**
+     * Get email.
+     *
+     * @return string
+     */
     public function getEmail()
     {
         return $this->email;
     }
 
- 
+    /**
+     * Set fullName.
+     *
+     * @param string $fullName
+     *
+     * @return Users
+     */
     public function setFullName($fullName)
     {
         $this->fullName = $fullName;
@@ -111,13 +141,23 @@ public function __construct()
         return $this;
     }
 
-  
+    /**
+     * Get fullName.
+     *
+     * @return string
+     */
     public function getFullName()
     {
         return $this->fullName;
     }
 
-    
+    /**
+     * Set typeUser.
+     *
+     * @param string $typeUser
+     *
+     * @return Users
+     */
     public function setTypeUser($typeUser)
     {
         $this->typeUser = $typeUser;
@@ -125,28 +165,35 @@ public function __construct()
         return $this;
     }
 
-    
+    /**
+     * Get typeUser.
+     *
+     * @return string
+     */
     public function getTypeUser()
     {
         return $this->typeUser;
     }
 
-   
-    public function addUserscliente(\UsersClientes $userscliente)
+    /**
+     * Set usersclientes.
+     *
+     * @param \UsersClientes|null $usersclientes
+     *
+     * @return Users
+     */
+    public function setUsersclientes(\UsersClientes $usersclientes = null)
     {
-        $this->usersclientes[] = $userscliente;
+        $this->usersclientes = $usersclientes;
 
         return $this;
     }
 
-
-
-    public function removeUserscliente(\UsersClientes $userscliente)
-    {
-        return $this->usersclientes->removeElement($userscliente);
-    }
-
-  
+    /**
+     * Get usersclientes.
+     *
+     * @return \UsersClientes|null
+     */
     public function getUsersclientes()
     {
         return $this->usersclientes;

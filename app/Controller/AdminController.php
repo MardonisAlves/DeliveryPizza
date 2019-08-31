@@ -39,7 +39,7 @@ public function home(Request $request, Response $response, $args)
   case 'admin':
               // select as tables para o dashdoards home
         $users = $this->em->getRepository('App\Model\Users')->findAll();
-
+        
         return $this->container->view->render($response ,'admin/home.twig' , Array('users' => $users));
 
     break;

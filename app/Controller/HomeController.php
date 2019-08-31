@@ -121,7 +121,7 @@ $user = new Users();
         $messages = $this->flash->getMessages();
         return $this->container->view->render(
                                           $response ,
-                                          'admin/loginCliente.twig',
+                                          'admin/users/loginCliente.twig',
                                           Array( 'messages' => $messages));
 }
 

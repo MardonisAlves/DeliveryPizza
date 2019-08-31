@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\CustomIdGenerator;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
 /**
 * Blog UsersClientes entity
@@ -24,8 +25,10 @@ class UsersClientes
     protected $id;
 
 /**
-* @ManyToOne(targetEntity="Users", inversedBy="usersclientes" , cascade={"persist", "remove"})
+*@OneToOne(targetEntity="Users", inversedBy="usersclientes" , cascade={"persist", "remove"})
+* @JoinColumn(name="id", referencedColumnName="id")
 */
+
 protected $user;
 
 /** @var string @Column(type = "string") **/
@@ -49,6 +52,8 @@ protected $telefone;
 
 // GEt SETS 
     
+
+   
 
     /**
      * Get id.
@@ -213,7 +218,7 @@ protected $telefone;
      */
     public function setUser($user)
     {
-        $this->user= $user;
+        $this->user = $user;
 
         return $this;
     }

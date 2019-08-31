@@ -54,6 +54,7 @@ $app->group('',function(){
         $this->get('/Teste' , 'TesteController:Teste')->setName('Teste');
         $this->get('/Teste_insert' , 'TesteController:Teste_insert')->setName('Teste_insert');
         $this->get('/deleteuserid' , 'TesteController:deleteuser')->setName('deleteuser');
+        $this->get('/EnderecoCliente' , 'TesteController:EnderecoCliente')->setName('EnderecoCliente');
         //$this->get('/updateuser', 'TesteController:updateuser')->setName('updateuser');
     });
 

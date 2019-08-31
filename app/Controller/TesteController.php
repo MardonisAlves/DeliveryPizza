@@ -61,13 +61,12 @@ public function Teste_insert(Request  $request, Response $response, $args)
      
 
 	
-    $User = $this->em->getRepository('App\Model\Users')->findOneBy(['id' => $_COOKIE['id']]);
-
+    $User = $this->em->getRepository('App\Model\Users')->findOneBy(['id' => 1]);
     $UsersClientes = new UsersClientes();
     $UsersClientes->setCidade("Pacatuba");
     $UsersClientes->setRua("Fran Pereira da silva");
     $UsersClientes->setBairro("São Bento");
-    $UsersClientes->setNumero("53");
+    $UsersClientes->setNumero("50");
     $UsersClientes->setReferencia("Dona Maria");
     $UsersClientes->setTelefone("989578192");
     // se o valor não existe na table user ele pesistirar o prmeiro que encontar do id
@@ -75,7 +74,7 @@ public function Teste_insert(Request  $request, Response $response, $args)
 
     $this->em->persist($UsersClientes);
     $this->em->flush();
-
+    
         
 }
 
@@ -119,4 +118,42 @@ echo $my_value;
 */        
 }
 
+
+
+public function EnderecoCliente(Request  $request, Response $response, $args){
+
+    /* Analisar se o user ja tem endereço
+    * se tiver atualizar
+    * se não insrir o endereço para o cliente
+    */
+
+    $User = $this->em
+                 ->getRepository('App\Model\Users')
+                 ->findBy(array('id' => 1));
+
+    /*valida se o user existe*/
+
+    if($User){
+
+    $Cliente = $this->em
+                    ->getRepository('App\Model\UsersClientes')
+                    ->findBy(array('id' => $User));
+
+    foreach ($Cliente as  $value) {
+    
+    if($value->getId() == 1){
+        /*** upate user endereço ***/
+        echo "cadastrado";
+    }else{
+        /*** insert o endereço**/
+        echo "não cadastrado";
+    }
+    }
+
+   
+}else{
+        echo "User não existe";
+    }
+
+}
 }
