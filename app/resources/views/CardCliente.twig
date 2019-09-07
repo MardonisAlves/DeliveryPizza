@@ -5,7 +5,13 @@
 <div class="container">
 
 <section id="contact" class="section-padding">
-      <div class="login-box-body">
+      
+      <div class="row">
+        <div class="header-section text-center">
+
+          
+          <hr class="bottom-line">
+       
 
         {% for message in messages %}
         <div class="alert alert-success">
@@ -13,8 +19,9 @@
         </div>
         {% endfor %}
        
-      </div>
+     </div>
         <p class="login-box-msg">Cadastro cliente</p>
+
         <form action="/InserCliente" method="POST" role="form" class="contactForm">
           <div class="col-md-12 col-sm-6 col-xs-12 right">
 
@@ -51,7 +58,7 @@
         </form>
 
       </div>
-    
+      </div>
   </section>
 
 
