@@ -34,23 +34,20 @@ public function home(Request $request, Response $response, $args)
 {
 
 
-  switch ($_SESSION['user']){
+  if($_SESSION['user'] == 'admin'){
 
-  case 'admin':
-              // select as tables para o dashdoards home
-        $users = $this->em->getRepository('App\Model\Users')->findAll();
-        
-        return $this->container->view->render($response ,'admin/home.twig' , Array('users' => $users));
-
-    break;
-
-    case 'cliente':
-              return $this->container->view->render($response ,'homecliente/homecliente.twig');
-    break;
+        // select as tables para o dashdoards home
+  $users = $this->em->getRepository('App\Model\Users')->findAll();
+  return $this->container->view->render($response ,'admin/home.twig' , Array('users' => $users));
   
-  default:
-              return $this->container->view->render($response ,'index.twig');
-    break;
+  }elseif($_SESSION['user'] == 'cliente'){
+  
+  return $this->container->view->render($response ,'homecliente/homecliente.twig');
+    
+  }else{
+ 
+   return $this->container->view->render($response ,'index.twig');
+  
 }
   
 }
@@ -136,7 +133,7 @@ public function GetcontactID($request, $response, $args)
 {
     
 
-   if(isset($_SESSION['typeUser']) == 'admin'){
+   if(isset($_SESSION['user']) == 'admin'){
      
   $contact =  $this->em->getRepository('App\Model\Contact')
                    ->findBy(Array('id' => $_GET['id']));
@@ -159,7 +156,7 @@ public function GetcontactID($request, $response, $args)
 // Update Contact //
 public function putContact($request, $response, $args)
 {
-   if(isset($_SESSION['typeUser']) == 'admin' AND $_SERVER['REQUEST_METHOD'] == 'POST'){
+   if(isset($_SESSION['user']) == 'admin' AND $_SERVER['REQUEST_METHOD'] == 'POST'){
         $contact =  $this->em->find('App\Model\Contact',$_POST['id']);
         $contact->setEmail($_POST['email']);
         $contact->setTelefone($_POST['telefone']);
@@ -184,7 +181,7 @@ public function putContact($request, $response, $args)
 // Delete Contact //
 public function DeleteContact($request, $response, $args)
 {
-  if(isset($_SESSION['typeUser']) == 'admin' AND $_SERVER['REQUEST_METHOD'] == 'GET'){
+  if(isset($_SESSION['user']) == 'admin' AND $_SERVER['REQUEST_METHOD'] == 'GET'){
 
         $contact =  $this->em->find(
           'App\Model\Contact',
@@ -237,28 +234,27 @@ public function deleteuser(Request  $request, Response $response, $args)
 // NEW USER
 public function newuser($request ,$response , $args)
 {    
-   switch ($_SESSION['user']){
+   if($_SESSION['user'] == 'admin'){
 
-  case 'admin':
-              return $this->container->view->render($response ,'admin/users/newuser.twig');
-    break;
+  return $this->container->view->render($response ,'admin/users/newuser.twig');
+   
+   }elseif($_SESSION['user'] == 'cliente'){
+     
+  return $this->container->view->render($response ,'homecliente/homecliente.twig');
 
-    case 'cliente':
-              return $this->container->view->render($response ,'homecliente/homecliente.twig');
-    break;
-  
-  default:
-              return $this->container->view->render($response ,'index.twig');
-    break;
+   }else{
+    
+  return $this->container->view->render($response ,'index.twig');
+   
 }       
 }
 
 // ADD USER
 public function addUser($request , $response , $args)
 {
-  // validar o acesso com session
-   $users =  $this->em->getRepository('App\Model\Users')->findAll();
-
+if($_SESSION['user'] == 'admin'){
+// validar o acesso com session
+$users =  $this->em->getRepository('App\Model\Users')->findAll();
 // validate email
 foreach ($users as  $value) {
 
@@ -274,6 +270,10 @@ foreach ($users as  $value) {
 
      }
    }
+ }else{
+  $url = $this->container->get('router')->pathFor('login');
+        return $response->withStatus(302)->withHeader('Location', $url);
+ }
 
 // validtae senha
 

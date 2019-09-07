@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use phpDocumentor\Reflection\Types\Null_;
 use App\Model\UsersClientes;
 use App\Model\Users;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 
 class TesteController
 {
@@ -154,6 +155,48 @@ public function EnderecoCliente(Request  $request, Response $response, $args){
 }else{
         echo "User não existe";
     }
+
+}
+// TEste Querybuild
+public function selctQueybuild(Request  $request, Response $response, $args){
+
+    // users
+    $query = $this->em->createQuery('SELECT u FROM App\Model\Users u WHERE u.id = 1');
+    $users = $query->getResult();
+    
+  foreach($users as $user){
+     echo $user->getId();
+  }
+
+// endereço
+$query2 = $this->em->createQuery('SELECT u FROM App\Model\UsersClientes 
+                                    u JOIN u.user a WHERE a.id = 1');
+$users2 = $query2->getResult();
+
+
+foreach($users2 as $user){
+
+    echo $user->getId()."<br>";
+    echo $user->getCidade()."<br>";
+    echo $user->getTelefone()."<br>";
+ }
+
+
+ $sql = "SELECT u.id as id_user , a.id AS id_cliente, a.telefone, a.cidade " . 
+       "FROM users u INNER JOIN usersclientes a ON u.id_user = a.id_cliente";
+
+$rsm = new ResultSetMappingBuilder($this->em);
+$rsm->addRootEntityFromClassMetadata('App\Model\Users', 'u');
+$rsm->addJoinedEntityFromClassMetadata('App\Model\UsersClientes', 'a', 'u', 'usersclientes', 
+array('id_cliente' => 'id_user'));
+
+
+foreach($rsm as $user){
+
+    echo $user->getId()."<br>";
+    echo $user->getCidade()."<br>";
+    echo $user->getTelefone()."<br>";
+ }
 
 }
 }
