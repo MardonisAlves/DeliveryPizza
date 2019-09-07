@@ -66,6 +66,7 @@ Navigation bar
     color: rgb(207, 139, 49);
 }
 .navbar-default {
+    border:0px;
     background-color: #ffffff;
 }
 .course-text{
