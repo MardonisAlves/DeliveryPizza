@@ -20,28 +20,27 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class Cardapio
 {
-    
+
     /** @var int
-     *  
-     * @Id int 
-     * @GeneratedValue 
-     * @Column(type="integer") 
-     * 
+     *
+     * @Id int
+     * @GeneratedValue
+     * @Column(type="integer")
+     *
      */
     protected $Id;
-    
+
     /** @var string @Column(type="string" , length=50) **/
     protected $name;
-   
+
 
     /** @var string @Column(type="string" , length=255) **/
     protected $descricao;
-    
+
 
     /** @var string @Column(type="string" , length=50) **/
     protected $tamanho;
 
-    
     /** @var string @Column(type="string" , length=100) **/
     protected $url_image;
 
@@ -49,8 +48,8 @@ class Cardapio
     protected $preco;
 
     /** @var @Column(type="date")**/
-    protected $date;  
-  
+    protected $date;
+
 
 
 

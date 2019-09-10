@@ -134,7 +134,7 @@ public function atu_senha(Request $request, Response $response, $args)
 
 $this->flash->addMessageNow('msg', 'Agora Digite a nova senha');
 $messages = $this->flash->getMessages();
-return $this->container->view->render($response ,'admin/atu_senha.twig', Array('messages' => $messages));
+return $this->container->view->render($response ,'admin/login/atu_senha.twig', Array('messages' => $messages));
 
 }else{
       $this->flash->addMessageNow('msg', 'Acesso negado');
