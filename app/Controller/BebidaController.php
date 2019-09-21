@@ -84,11 +84,11 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 
         }
     }*/
-    
+
 
     //Gravar no Banco de dados o produto
-   
-   
+
+
     $Produtos = new Produtos();
     $this->em->persist($Produtos);
     $Produtos->setName($_POST['name']);
@@ -97,7 +97,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     $Produtos->setPrecoCompra($_POST['preco_compra']);
     $Produtos->setDescricao($_POST['descricao']);
     $Produtos->setQtDade($_POST['qt_dade']);
-    
+
 
     $preco_compra = floatval($_POST['preco_compra']);
     $porcentagemVenda= floatval($_POST['porcentagemVenda']);
@@ -116,7 +116,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 
     $url = $this->container->get('router')->pathFor('listar_produto');
     return $response->withStatus(302)->withHeader('Location', $url);
-    
+
 }
 // Form listar
 public function listar_produto(Request  $request, Response $response, $args)
@@ -127,7 +127,7 @@ public function listar_produto(Request  $request, Response $response, $args)
 //GetIdBebidas
 public function GetIdBebidas(Request  $request, Response $response, $args)
 {
-    print "getIdBebida";
+    print "getIdBebida" . $_GET['id'];
 }
 
 //UpdateBebida

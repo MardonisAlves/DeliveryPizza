@@ -19,8 +19,8 @@
       <th scope="col">Action</th>
     </tr>
   </thead>
-    
-      
+
+
   <tbody>
     {% for produtos in produto %}
     <tr>
@@ -32,17 +32,16 @@
       <td>{{produtos.PorcentagemVenda}}</td>
       <td>{{produtos.ValorTotalStoque}}</td>
       <td>
-        <a href="#"><span><i class="fas fa-trash-alt"></i></span></a>
-        <a href="#"><span><i class="fas fa-edit"></i></span></a>
-        
-        
+        <a href="/bebida?id={{produtos.id}}"><span><i class="fas fa-trash-alt"></i></span></a>
+        <a href="/bebida?id={{produtos.id}}"><span><i class="fas fa-edit"></i></span></a>
+
+
       </td>
     </tr>
     {% endfor %}
   </tbody>
-  
   </table>
 
-    
+
 
 {% endblock  %}
