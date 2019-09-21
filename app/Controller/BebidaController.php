@@ -122,15 +122,22 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 public function listar_produto(Request  $request, Response $response, $args)
 {
     $produto =  $this->em->getRepository('App\Model\Produtos')->findAll();
-    return $this->container->view->render($response ,'admin/produtos/listar_produto.twig' , Array('produto'=>$produto));
+    return $this->container->view
+                            ->render($response ,'admin/produtos/listar_produto.twig' , 
+                                Array('produto'=>$produto));
 }
 //GetIdBebidas
 public function GetIdBebidas(Request  $request, Response $response, $args)
 {
-    print "get_IdBebida" . $_GET['id'];
     $produto = $this->em
-                    ->find('App\Model\Produtos' ,['id' => $_GET['id']]);
-var_dump($produtos);
+                    ->getRepository('App\Model\Produtos')->findBy(['Id' => $_GET['id']]);
+
+    return $this->container
+                ->view
+                ->render($response , 
+                    'admin/produtos/produto.twig' , 
+                    Array('produto' => $produto));
+
 }
 
 //UpdateBebida

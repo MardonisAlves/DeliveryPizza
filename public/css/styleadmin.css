@@ -7,6 +7,12 @@ body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
 }
+th{
+    font-size:12px;
+}
+td{
+    font-size: 11px;
+}
 
 p {
     font-family: 'Poppins', sans-serif;
