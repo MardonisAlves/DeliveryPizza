@@ -63,7 +63,7 @@ $app->group('',function(){
     $app->group('',function(){
     $this->get('/form_bebida' , 'BebidaController:form_bebida')->setName('form_bebida'); 
     $this->post('/insert_bebidas' , 'BebidaController:insert_bebidas')->setName('insert_bebidas'); 
-    $this->get('/' , 'BebidaController:listar_produto')->setName('listar_produto'); 
+    $this->get('/produtos' , 'BebidaController:listar_produto')->setName('listar_produto'); 
     $this->get('/bebida' , 'BebidaController:GetIdBebidas')->setName('GetIdBebidas');
     });
 
