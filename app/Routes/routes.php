@@ -17,14 +17,14 @@ $this->map(['POST','GET'],'/createContact' , 'HomeController:createContact')->se
 $this->get('/CardCliente' ,'HomeController:CardCliente')->setName('CardCliente');
 $this->map(['POST','GET'] ,'/InserCliente' , 'HomeController:InserCliente')->setName('InserCliente');
 $this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
-            
+
 });
-   
+
 
     // ADMIN-CONTROLLER
     // Request com method multiplo com get post
 $app->group('',function(){
-            
+
     $this->get('/logout', 'AdminController:logout')->setName('logout');
     $this->map(['POST','GET'],'/login', 'AdminController:login')->setName('login');
     $this->get('/newuser', 'AdminController:newuser')->setName('newuser');
@@ -37,9 +37,9 @@ $app->group('',function(){
     $this->get('/listaruser' , 'AdminController:listarUser')->setName('listarUser');
     $this->get('/updateuser', 'AdminController:updateuser')->setName('updateuser');
     $this->post('/updateuserId' ,'AdminController:updateuserId')->setName('updateuserId');
-            
-            
-            
+
+
+
 });
     // SENHACONTROLLER
     $app->group('',function(){
@@ -48,7 +48,7 @@ $app->group('',function(){
         $this->map(['GET','POST'],'/atu_senha', 'SenhaController:atu_senha')->setName('atu_senha');
         $this->map(['GET','POST'],'/updatesenha', 'SenhaController:updatesenha')->setName('updatesenha');
     });
-    
+
     // TESTECONTROLLER
     $app->group('', function() {
         $this->get('/Teste' , 'TesteController:Teste')->setName('Teste');
@@ -64,6 +64,7 @@ $app->group('',function(){
     $this->get('/form_bebida' , 'BebidaController:form_bebida')->setName('form_bebida'); 
     $this->post('/insert_bebidas' , 'BebidaController:insert_bebidas')->setName('insert_bebidas'); 
     $this->get('/listar_produto' , 'BebidaController:listar_produto')->setName('listar_produto'); 
+    $this->get('/Bebida' , 'BebidaController:GetIdBebidas')->setName('GetIdBebidas');
     });
 
     // CLIENTECONTROLLER
