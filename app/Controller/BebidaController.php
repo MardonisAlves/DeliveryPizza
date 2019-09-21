@@ -127,11 +127,11 @@ public function listar_produto(Request  $request, Response $response, $args)
 //GetIdBebidas
 public function GetIdBebidas(Request  $request, Response $response, $args)
 {
-    print "get_IdBebida" . $_GET['id'];
+    print "get_IdBebida" . $_GET['Id'];
     $produto = $this
                 ->em
                 ->getRepository('App\Model\Produtos')
-                ->findBy(['id' => $_GET['id']]);
+                ->findBy(['Id' => $_GET['Id']]);
 var_dump($produtos);
 }
 
