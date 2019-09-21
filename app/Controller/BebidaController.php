@@ -127,7 +127,9 @@ public function listar_produto(Request  $request, Response $response, $args)
 //GetIdBebidas
 public function GetIdBebidas(Request  $request, Response $response, $args)
 {
-    print "getIdBebida" . $_GET['id'];
+    print "get_IdBebida" . $_GET['id'];
+    $produto = $this->em->getRepository('App\Model\Produtos')->findBy(array('id' => $_GET['id']));
+var_dump($produtos);
 }
 
 //UpdateBebida
