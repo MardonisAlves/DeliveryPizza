@@ -16,12 +16,12 @@
      <link rel="stylesheet" href="public/css/font-awesome.min.css">
     <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
 
-    
-  
 
-    
-   
-    
+
+
+
+
+
 
 
 
@@ -30,31 +30,49 @@
 
         <div class="wrapper">
             {% include 'partials/updateUser.twig' %}
-        	
+            {% include 'partials/EditUser.twig' %}
+
             {% include 'partials/navsideBar.twig' %}
-           
+
             {% block content %}
 
-              
+
             {% endblock %}
 
-       
+
         </div>
         </div>
-      
+
     </body>
-    
+
     <script src="public/js/jquery.min.js"></script>
     <script src="public/js/bootstrap-4.1.min.js"></script>
     <script src="public/js/bootstrap.min.js"></script>
      <script src="public/js/fontawesome.js"></script>
-     
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
         });
+
+    $('#editmodal').on('show.bs.modal', function (event) {
+
+          var button = $(event.relatedTarget)
+          var iduser = button.data('iduser')
+          var name = button.data('name')
+          var qt = button.data('qt');
+          var valorCompra = button.data('compra')
+          var lucro = button.data('lucro')
+          var modal = $(this)
+
+          modal.find('#id').val(iduser)
+          modal.find('#qt').val(qt)
+          modal.find('#name').val(name)
+          modal.find('#compra').val(valorCompra)
+          modal.find('#lucro').val(lucro)
+});
     </script>
-    
+
 </html>

@@ -4,17 +4,14 @@
 
 
 
-<div class="container">
+<div class="container flex-wrap">
   <div class="login-box-body">
-    <table class="table table-responsive">
-  <thead class="thead-default">
+    <table class="table table-responsive-sm">
+  <thead class="thead-dark">
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Nome</th>
-      <th scope="col">Venda</th>
-      <th scope="col">Compra</th>
-      <th scope="col">Qt</th>
-      <th scope="col">%Porcen</th>
+      <th scope="col">Quant</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -25,12 +22,18 @@
     <tr>
       <th scope="row">{{produtos.Id}}</th>
       <td>{{produtos.name}}</td>
-      <td>{{produtos.PrecoVenda}}</td>
-      <td>{{produtos.PrecoCompra}}</td>
       <td>{{produtos.Qtdade}}</td>
-      <td>{{produtos.PorcentagemVenda}}</td>
       <td>
-        <a href="/bebida?id={{produtos.Id}}"><span><i class="icon ion-md-create text-info"></i></span></a>
+
+        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editmodal" data-iduser={{produtos.Id}}
+        data-name={{produtos.name}}
+        data-qt={{produtos.Qtdade}}
+        data-compra={{produtos.PrecoVenda}}
+        data-lucro={{produtos.PorcentagemVenda}}>
+        <span><i class="icon ion-md-create text-white"</button>
+
+          <button type="button" class="btn btn-danger btn-sm">
+        <span><i class="icon ion-md-trash text-white"</button>
 
 
 
