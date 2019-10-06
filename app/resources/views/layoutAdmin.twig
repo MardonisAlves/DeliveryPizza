@@ -77,18 +77,14 @@
  $('#editmodal').on('show.bs.modal', function (event) {
 
           var button = $(event.relatedTarget)
-          var iduser = button.data('iduser')
-          var name = button.data('name')
-          var qt = button.data('qt');
-          var valorCompra = button.data('compra')
-          var lucro = button.data('lucro')
+          var idu= button.data('id')
+          var name = button.data('fullname')
+          var email = button.data('email');
           var modal = $(this)
 
-          modal.find('#id').val(iduser)
-          modal.find('#qt').val(qt)
+          modal.find('#id').val(id)
+          modal.find('#email').val(email)
           modal.find('#name').val(name)
-          modal.find('#compra').val(valorCompra)
-          modal.find('#lucro').val(lucro)
 });
     </script>
 
