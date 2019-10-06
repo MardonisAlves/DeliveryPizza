@@ -14,15 +14,23 @@
             <p class="login-box-msg">Update User{{user.Id}}</p>
             <div class="form-group">
               <form name="" id="loginForm" action="/updateUser" method="post">
+
+              <div class="form-group has-feedback">
+                
+                  <!--id-->
+                  <input class="form-control" id="id" type="text" autocomplete="off" name="id"/>
+                  
+                </div>
+
                 <div class="form-group has-feedback">
                 
                   <!----- username -------------->
-                  <input class="form-control" placeholder="Username" id="email" type="text" autocomplete="off" name="email"/>
+                  <input class="form-control"  id="email" type="text" autocomplete="off" name="email"/>
                   
                 </div>
                 <div class="form-group has-feedback">
                   <!----- password -------------->
-                  <input class="form-control" placeholder="Name" id="typeuser" type="text" autocomplete="off" name="typeuser" />
+                  <input class="form-control" id="typeuser" type="text" autocomplete="off" name="typeuser" />
                   
                 </div>
                 <div class="row">
