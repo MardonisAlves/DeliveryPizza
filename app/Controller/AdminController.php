@@ -386,7 +386,7 @@ switch ($_SESSION['user']) {
   case 'admin':
 
       $user =  $this->em
-                    ->find('App\Model\Users',['id' => $_GET['id']]);
+                    ->find('App\Model\Users',['id' => $_POST['id']]);
 
       $user->setEmail($_POST['email']);
       $user->setTypeUser($_POST['typeUser']);
