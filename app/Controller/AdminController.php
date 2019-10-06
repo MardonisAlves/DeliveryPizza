@@ -418,7 +418,7 @@ public function updateendereco(Request $request, Response $response, $args)
 {
 
   $UsersClientes=  $this->em
-  ->find('App\Model\UsersClientes',['id' => $_GET['id']]);
+  ->find('App\Model\UsersClientes',['id' => $_POST['id']]);
 
 $UsersClientes->setRua($_POST['rua']);
 $UsersClientes->setCidade($_POST['cidade']);

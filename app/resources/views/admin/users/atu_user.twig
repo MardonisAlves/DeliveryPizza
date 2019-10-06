@@ -16,9 +16,12 @@
 
 
 
-<form method="post" action="/updateuserId?id={{getuser.Id}}" enctype="multipart/form-data">
+<form method="post" action="/updateendereco?id={{getuser.Id}}" enctype="multipart/form-data">
 
   {% for getendere in endere %}
+  <div class="form-group col-md-4">
+      <input type="text" class="form-control" id="name" value="{{getendere.id}}" name="id" required="obrigatorio">
+    </div>
     <div class="form-group col-md-4">
       <input type="text" class="form-control" id="name" value="{{getendere.rua}}" name="rua" required="obrigatorio">
     </div>
