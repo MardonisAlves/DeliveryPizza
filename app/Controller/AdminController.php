@@ -351,7 +351,8 @@ switch ($_SESSION['user']){
 
   case 'admin':
     $endere =  $this->em
-                    ->find('App\Model\UsersClientes', ['id' => 1]);
+                    ->getRepository('App\Model\UsersClientes')
+                    ->findBy(array('id' => $_GET['id']));
 
     return $this->container
                 ->view
