@@ -26,6 +26,16 @@
 
         <a href="/deleteuser?id={{user.Id}}"><span><i class="icon ion-md-trash text-danger"></i></i></span></a>
         <a href="/updateuser?id={{user.Id}}"><span><i class="icon ion-md-create text-info"></i></span></a>
+
+        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editmodal" data-iduser={{produtos.Id}}
+        data-name={{produtos.name}}
+        data-qt={{produtos.Qtdade}}
+        data-compra={{produtos.PrecoVenda}}
+        data-lucro={{produtos.PorcentagemVenda}}>
+        <span><i class="icon ion-md-create text-white"</button>
+
+          <button type="button" class="btn btn-danger btn-sm">
+        <span><i class="icon ion-md-trash text-white"</button>
         
         
       </td>
