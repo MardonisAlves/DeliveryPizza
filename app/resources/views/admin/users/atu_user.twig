@@ -15,24 +15,8 @@
 
 
 
-{% for getuser in user %}
+
 <form method="post" action="/updateuserId?id={{getuser.Id}}" enctype="multipart/form-data">
-  <div class="form-row">
-    
-    <div class="form-group col-md-8">
-      <input type="text" class="form-control" id="name" value="{{getuser.email}}" name="email" required="obrigatorio">
-    </div>
-    <div class="form-group col-md-3">
-     
-      <select  class="form-control" id="input2" name="typeUser" required="obrigatorio">
-        <option value="">Ecolha tipo user</option>
-        <option value="admin">admin</option>
-        <option value="cliente">cliente</option>
-      </select>
-    </div>
-  {% endfor %}
-
-
 
   {% for getendere in endere %}
     <div class="form-group col-md-4">
