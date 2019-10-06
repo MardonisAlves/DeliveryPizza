@@ -349,10 +349,6 @@ public function updateuser(Request  $request, Response $response, $args)
 switch ($_SESSION['user']){
 
   case 'admin':
-
-    $user =    $this->em
-                    ->getRepository('App\Model\Users')
-                    ->findBy(['id' => $_GET['id']]);
     $endere =  $this->em
                     ->getRepository('App\Model\UsersClientes')
                     ->findBy(['id' => $_GET['id']]);
@@ -361,7 +357,7 @@ switch ($_SESSION['user']){
                 ->view
                 ->render
                 ($response ,'admin/users/atu_user.twig' ,
-                  Array('user' => $user , 'endere' => $endere));  
+                  Array('endere' => $endere));  
     break;
   
   case 'cliente':
