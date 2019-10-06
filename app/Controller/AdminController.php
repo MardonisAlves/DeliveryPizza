@@ -351,7 +351,7 @@ switch ($_SESSION['user']){
 
   case 'admin':
     $endere =  $this->em
-                    ->find('App\Model\UsersClientes', ['id' => $_GET['id']]);
+                    ->find('App\Model\UsersClientes', ['id' => 1]);
 
     return $this->container
                 ->view
