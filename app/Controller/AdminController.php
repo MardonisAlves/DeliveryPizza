@@ -409,6 +409,41 @@ switch ($_SESSION['user']) {
 }
 
 }
+
+// get endereco by id 
+
+public function getEnderecoByid(Request $req , Response $res , $args){
+
+  switch ($_SESSION['user']) {
+
+    case 'admin':
+  
+        $user =  $this->em
+                      ->find('App\Model\Users',['id' => $_POST['id']]);
+  
+        $user->setEmail($_POST['email']);
+        $user->setTypeUser($_POST['typeUser']);
+        $this->em->flush();
+  
+        $url = $this->container->get('router')->pathFor('listarUser');
+        return $res->withStatus(302)->withHeader('Location', $url);
+  
+    break;
+    
+    case 'cliente':
+  
+        $url = $this->container->get('router')->pathFor('home');
+        return $res->withStatus(302)->withHeader('Location', $url);
+  
+    break;
+  
+    default:
+  
+        $url = $this->container->get('router')->pathFor('index');
+        return $res->withStatus(302)->withHeader('Location', $url);
+}
+
+}
 //update endereço
 public function updateendereco(Request $request, Response $response, $args)
 {
