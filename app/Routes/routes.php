@@ -35,7 +35,7 @@ $app->group('',function(){
     $this->get('/DeleteContact' , 'AdminController:DeleteContact')->setName('DeleteContact');
     $this->get('/deleteuser' , 'AdminController:deleteuser')->setName('deleteuser');
     $this->get('/listaruser' , 'AdminController:listarUser')->setName('listarUser');
-    $this->get('/updateuser', 'AdminController:updateuser')->setName('updateuser');
+    $this->get('/UpdateUserEndeId', 'AdminController:UpdateUserEndeId')->setName('UpdateUserEndeId');
     $this->post('/updateuserId' ,'AdminController:updateuserId')->setName('updateuserId');
     $this->map(['POST','GET'],'/updateendereco' , 'AdminController:updateendereco')->setName('updateendereco');
 

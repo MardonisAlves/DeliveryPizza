@@ -343,7 +343,7 @@ public function listarUser( $request ,  $response , $args)
  }
     }
 
-public function updateuser(Request  $request, Response $response, $args)
+public function UpdateUserEndeId(Request  $request, Response $response, $args)
 {
 var_dump($_GET['id']);
 
