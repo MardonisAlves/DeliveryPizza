@@ -19,21 +19,27 @@
 <form method="post" action="/updateendereco?id={{getuser.Id}}" enctype="multipart/form-data">
 
   {% for getendere in endere %}
-  <div class="form-group col-md-4">
+
+    <div class="form-group col-md-6">
       <input type="text" class="form-control" id="name" value="{{getendere.id}}" name="id" required="obrigatorio">
     </div>
-    <div class="form-group col-md-4">
+
+    <div class="form-group col-md-6">
       <input type="text" class="form-control" id="name" value="{{getendere.rua}}" name="rua" required="obrigatorio">
     </div>
-    <div class="form-group col-md-2">
+
+    <div class="form-group col-md-6">
      <input type="text" class="form-control" id="name" value={{getendere.numero}} name="numero" required="obrigatorio">
     </div>
-    <div class="form-group col-md-2">
+
+    <div class="form-group col-md-6">
      <input type="text" class="form-control" id="name" value="{{getendere.bairro}}" name="bairro" required="obrigatorio">
     </div>
-     <div class="form-group col-md-2">
+
+     <div class="form-group col-md-6">
      <input type="text" class="form-control" id="name" value="{{getendere.cidade}}" name="cidade" required="obrigatorio">
     </div>
+
   {% endfor %}
 
 </div>
