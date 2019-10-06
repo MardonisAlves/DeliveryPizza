@@ -392,16 +392,6 @@ switch ($_SESSION['user']) {
       $user->setTypeUser($_POST['typeUser']);
       $this->em->flush();
 
-
-      $UsersClientes=  $this->em
-                            ->find('App\Model\UsersClientes',['id' => $_GET['id']]);
-
-      $UsersClientes->setRua($_POST['rua']);
-      $UsersClientes->setCidade($_POST['cidade']);
-      $UsersClientes->setNumero($_POST['numero']);
-      $UsersClientes->setBairro($_POST['bairro']);
-      $this->em->flush();
-
       $url = $this->container->get('router')->pathFor('listarUser');
       return $res->withStatus(302)->withHeader('Location', $url);
 
@@ -422,6 +412,22 @@ switch ($_SESSION['user']) {
 
 }
 
+}
+//update endereço
+public function updateendereco(Request $request, Response $response, $args)
+{
+
+  $UsersClientes=  $this->em
+  ->find('App\Model\UsersClientes',['id' => $_GET['id']]);
+
+$UsersClientes->setRua($_POST['rua']);
+$UsersClientes->setCidade($_POST['cidade']);
+$UsersClientes->setNumero($_POST['numero']);
+$UsersClientes->setBairro($_POST['bairro']);
+$this->em->flush();
+
+$url = $this->container->get('router')->pathFor('listarUser');
+return $res->withStatus(302)->withHeader('Location', $url);
 }
 
 

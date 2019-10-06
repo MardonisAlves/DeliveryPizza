@@ -13,7 +13,7 @@
           <div class="login-box-body">
             <p class="login-box-msg">Update User{{user.Id}}</p>
             <div class="form-group">
-              <form name="" id="loginForm" action="/updateUser" method="post">
+              <form name="" id="loginForm" action="/updateuserId" method="post">
 
               <div class="form-group has-feedback">
                 
@@ -31,7 +31,7 @@
                 <div class="form-group has-feedback">
                   <!--typeUser-->
 
-                 <select class="form-control" name="typeuser">
+                 <select class="form-control" name="typeuser" requered="">
                   <option value="">TypeUser</option>
                   <option value="admin">Administrador</option>
                   <option value="cliente">Cliente</option>
