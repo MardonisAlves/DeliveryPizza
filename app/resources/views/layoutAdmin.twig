@@ -78,13 +78,13 @@
 
           var button = $(event.relatedTarget)
           var iduuser= button.data('iduser')
-          var fullname = button.data('nameuser')
+          var typeuser = button.data('typeuser')
           var email = button.data('emailuser');
           var modal = $(this)
 
           modal.find('#id').val(iduuser)
           modal.find('#email').val(email)
-          modal.find('#name').val(fullname)
+          modal.find('#typeuser').val(typeuser)
 });
     </script>
 
