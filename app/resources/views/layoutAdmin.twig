@@ -77,14 +77,14 @@
  $('#editmodal').on('show.bs.modal', function (event) {
 
           var button = $(event.relatedTarget)
-          var idu= button.data('id')
-          var name = button.data('fullname')
+          var iduuser= button.data('id')
+          var fullname = button.data('name')
           var email = button.data('email');
           var modal = $(this)
 
-          modal.find('#id').val(id)
+          modal.find('#id').val(iduuser)
           modal.find('#email').val(email)
-          modal.find('#name').val(name)
+          modal.find('#name').val(fullname)
 });
     </script>
 
