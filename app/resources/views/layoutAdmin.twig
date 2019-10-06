@@ -30,7 +30,7 @@
 
         <div class="wrapper">
             {% include 'partials/updateUser.twig' %}
-            {% include 'partials/EditUser.twig' %}
+            {% include 'partials/editendereco.twig' %}
 
             {% include 'partials/navsideBar.twig' %}
 
@@ -58,6 +58,23 @@
         });
 
     $('#editmodal').on('show.bs.modal', function (event) {
+
+          var button = $(event.relatedTarget)
+          var iduser = button.data('iduser')
+          var name = button.data('name')
+          var qt = button.data('qt');
+          var valorCompra = button.data('compra')
+          var lucro = button.data('lucro')
+          var modal = $(this)
+
+          modal.find('#id').val(iduser)
+          modal.find('#qt').val(qt)
+          modal.find('#name').val(name)
+          modal.find('#compra').val(valorCompra)
+          modal.find('#lucro').val(lucro)
+});
+
+ $('#editmodal').on('show.bs.modal', function (event) {
 
           var button = $(event.relatedTarget)
           var iduser = button.data('iduser')
