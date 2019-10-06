@@ -345,13 +345,13 @@ public function listarUser( $request ,  $response , $args)
 
 public function UpdateUserEndeId(Request  $request, Response $response, $args)
 {
-var_dump($_GET['id']);
+
 
 switch ($_SESSION['user']){
 
   case 'admin':
     $endere =  $this->em
-                    ->find('App\Model\UsersClientes', $_GET['id']);
+                    ->find('App\Model\Users', $_GET['id']);
 
     return $this->container
                 ->view
