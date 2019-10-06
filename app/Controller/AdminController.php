@@ -380,7 +380,7 @@ switch ($_SESSION['user']){
 
 // update userID
 public function updateuserId(Request $req , Response $res , $args){
-
+// seperar update users
 switch ($_SESSION['user']) {
 
   case 'admin':
