@@ -30,7 +30,7 @@
 
         <div class="wrapper">
             {% include 'partials/updateUser.twig' %}
-            {% include 'partials/editendereco.twig' %}
+            {% include 'partials/editproduto.twig' %}
 
             {% include 'partials/navsideBar.twig' %}
 
@@ -57,7 +57,7 @@
             });
         });
 
-    $('#editmodal').on('show.bs.modal', function (event) {
+    $('#editproduto').on('show.bs.modal', function (event) {
 
           var button = $(event.relatedTarget)
           var iduser = button.data('iduser')
