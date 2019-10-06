@@ -65,8 +65,9 @@
           var qt = button.data('qt');
           var valorCompra = button.data('compra')
           var lucro = button.data('lucro')
-          var modal = $(this)
 
+          var modal = $(this)
+    
           modal.find('#id').val(iduser)
           modal.find('#qt').val(qt)
           modal.find('#name').val(name)
@@ -82,8 +83,16 @@
           var email = button.data('emailuser');
           var modal = $(this)
 
+
+              /*getElementByID*/
+            function table(){
+           
+                    document.getElementByID("idtb").rows[0].innerHTML;
+        }
+
+
           modal.find('#id').val(iduuser)
-          modal.find('#email').val(email)
+          modal.find('#email').val(table())
           modal.find('#typeuser').val(typeuser)
 });
     </script>
