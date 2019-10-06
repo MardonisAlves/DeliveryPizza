@@ -37,7 +37,7 @@ $app->group('',function(){
     $this->get('/listaruser' , 'AdminController:listarUser')->setName('listarUser');
     $this->get('/updateuser', 'AdminController:updateuser')->setName('updateuser');
     $this->post('/updateuserId' ,'AdminController:updateuserId')->setName('updateuserId');
-    $this->post('/updateendereco' , 'AdminController:updateendereco')->setName('updateendereco');
+    $this->map(['POST','GET'],'/updateendereco' , 'AdminController:updateendereco')->setName('updateendereco');
 
 
 
