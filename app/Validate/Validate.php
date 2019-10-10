@@ -116,8 +116,8 @@ public function sendemail($request, $response, $args)
  $mail->CharSet = 'UTF-8';
  $mail->SMTPDebug = 2;
  $mail->True;
- $mail->Host = "pop3.bol.com.br"; // Servidor SMTP
- $mail->Port = 993;
+ $mail->Host = "smtps.bol.com.br"; // Servidor SMTP
+ $mail->Port = 587;
  $mail->SMTPSecure = 'ssl';
  $mail->SMTPAuth = true; // Caso o servidor SMTP precise de autenticação
  $mail->Username = "donyfic@bol.com.br"; // SMTP username
