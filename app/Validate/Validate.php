@@ -126,7 +126,7 @@ public function sendemail($request, $response, $args)
  $mail->From = $_POST['email']; // From
  $mail->FromName = $_POST['name'] ; // Nome de quem envia o email
 
- $mail->AddAddress("donyfic@bol.com.br", "Mardonis"); // Email e nome de quem receberá //Responder
+ $mail->AddAddress("mardonisgp@gmail.com", "Mardonis"); // Email e nome de quem receberá //Responder
  $mail->WordWrap = 50; // Definir quebra de linha
  $mail->IsHTML = true ; // Enviar como HTML
  $mail->Subject = $_POST['subject'] ; // Assunto
