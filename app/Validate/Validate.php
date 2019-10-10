@@ -119,7 +119,7 @@ public function sendemail($request, $response, $args)
  $mail->Host = " smtps.bol.com.br"; // Servidor SMTP
  $mail->Port = 587;
  $mail->SMTPSecure = 'ssl';
- $mail->SMTPAuth = false; // Caso o servidor SMTP precise de autenticação
+ $mail->SMTPAuth = true; // Caso o servidor SMTP precise de autenticação
  $mail->Username = "donyfic@bol.com.br"; // SMTP username
  $mail->Password = "jk8yup02@"; // SMTP password
 
