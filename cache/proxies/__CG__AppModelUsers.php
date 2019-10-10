@@ -64,10 +64,10 @@ class Users extends \App\Model\Users implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'usersclientes', 'id', 'senha', 'email', 'fullName', 'typeUser'];
+            return ['__isInitialized__', 'id', 'senha', 'email', 'fullName', 'typeUser', 'usersclientes'];
         }
 
-        return ['__isInitialized__', 'usersclientes', 'id', 'senha', 'email', 'fullName', 'typeUser'];
+        return ['__isInitialized__', 'id', 'senha', 'email', 'fullName', 'typeUser', 'usersclientes'];
     }
 
     /**
@@ -191,28 +191,6 @@ class Users extends \App\Model\Users implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setEmail($email)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEmail', [$email]);
-
-        return parent::setEmail($email);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getEmail()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEmail', []);
-
-        return parent::getEmail();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function setSenha($senha)
     {
 
@@ -230,6 +208,28 @@ class Users extends \App\Model\Users implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSenha', []);
 
         return parent::getSenha();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setEmail($email)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEmail', [$email]);
+
+        return parent::setEmail($email);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEmail()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEmail', []);
+
+        return parent::getEmail();
     }
 
     /**
@@ -274,6 +274,17 @@ class Users extends \App\Model\Users implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTypeUser', []);
 
         return parent::getTypeUser();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUsersclientes($usersclientes)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUsersclientes', [$usersclientes]);
+
+        return parent::setUsersclientes($usersclientes);
     }
 
     /**

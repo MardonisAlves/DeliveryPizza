@@ -182,7 +182,7 @@ protected $usersclientes ;
      *
      * @return Users
      */
-    public function setUsersclientes(\UsersClientes $usersclientes = null)
+    public function setUsersclientes($usersclientes)
     {
         $this->usersclientes = $usersclientes;
 
