@@ -116,12 +116,12 @@ public function sendemail($request, $response, $args)
  $mail->CharSet = 'UTF-8';
  $mail->SMTPDebug = 2;
  $mail->True;
- $mail->Host = "smtp.gmail.com"; // Servidor SMTP
- $mail->Port = 465;
+ $mail->Host = " smtps.bol.com.br"; // Servidor SMTP
+ $mail->Port = 587;
  $mail->SMTPSecure = 'ssl';
  $mail->SMTPAuth = true; // Caso o servidor SMTP precise de autenticação
- $mail->Username = "mardonisgp@gmail.com"; // SMTP username
- $mail->Password = "#qwe123qwe@"; // SMTP password
+ $mail->Username = "donyfic@bol.com.br"; // SMTP username
+ $mail->Password = "jk8yup02@"; // SMTP password
 
  $mail->From = $_POST['email']; // From
  $mail->FromName = $_POST['name'] ; // Nome de quem envia o email
