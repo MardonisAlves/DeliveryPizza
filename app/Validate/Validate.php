@@ -117,7 +117,7 @@ public function sendemail($request, $response, $args)
  $mail->SMTPDebug = 0;
  $mail->True;
  $mail->Host = "smtp.gmail.com"; // Servidor SMTP
- $mail->Port = 587;
+ $mail->Port = 465;
  $mail->SMTPSecure = 'ssl';
  $mail->SMTPAuth = true; // Caso o servidor SMTP precise de autenticação
  $mail->Username = "mardonisgp@gmail.com"; // SMTP username
