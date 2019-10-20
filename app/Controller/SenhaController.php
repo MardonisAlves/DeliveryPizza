@@ -70,7 +70,7 @@ $message = "
         $mail = new PHPMailer();
         $mail->IsSMTP(); // envia por SMTP
         $mail->CharSet = 'UTF-8';
-        $mail->SMTPDebug = 2;
+        $mail->SMTPDebug = 0;
         $mail->True;
         $mail->Host = "smtp.gmail.com"; // Servidor SMTP
         $mail->Port = 465;
