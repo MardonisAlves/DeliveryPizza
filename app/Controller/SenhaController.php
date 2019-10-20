@@ -179,9 +179,9 @@ public function updatesenha(Request $request, Response $response, $args)
        
     }else {
         
-        $this->flash->addMessageNow('msg', 'Digite seu email!');
+        $this->flash->addMessageNow('msg', 'Seu token esta invalido!');
         $messages = $this->flash->getMessages();
-        return $this->container->view->render($response ,'admin/login/recu_senha.twig', Array('messages' => $messages));
+        return $this->container->view->render($response ,'admin/login/loginCliente.twig', Array('messages' => $messages));
     }
 }
 
