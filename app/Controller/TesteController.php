@@ -62,10 +62,10 @@ public function Teste_insert(Request  $request, Response $response, $args)
      
 
 	
-    $User = $this->em->getRepository('App\Model\Users')->findOneBy(['id' => 1]);
+    $User = $this->em->getRepository('App\Model\Users')->findOneBy(['id' => 7]);
     $UsersClientes = new UsersClientes();
     $UsersClientes->setCidade("Pacatuba");
-    $UsersClientes->setRua("Fran Pereira da silva");
+    $UsersClientes->setRua("Floiano peixoto");
     $UsersClientes->setBairro("São Bento");
     $UsersClientes->setNumero("50");
     $UsersClientes->setReferencia("Dona Maria");

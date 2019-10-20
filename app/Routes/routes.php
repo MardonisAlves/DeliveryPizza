@@ -60,12 +60,12 @@ $app->group('',function(){
         //$this->get('/updateuser', 'TesteController:updateuser')->setName('updateuser');
     });
 
-    // BEBIDACONTROLLER
+    // PRODUTOCONTROLLER
     $app->group('',function(){
-    $this->get('/formbebida' , 'BebidaController:form_bebida')->setName('form_bebida'); 
-    $this->post('/insertbebidas' , 'BebidaController:insert_bebidas')->setName('insert_bebidas'); 
-    $this->get('/produtos' , 'BebidaController:listar_produto')->setName('listar_produto'); 
-    $this->get('/bebida' , 'BebidaController:GetIdBebidas')->setName('GetIdBebidas');
+    $this->get('/formbebida' , 'ProdutoController:form_bebida')->setName('form_bebida'); 
+    $this->post('/insertbebidas' , 'ProdutoController:insert_bebidas')->setName('insert_bebidas'); 
+    $this->get('/produtos' , 'ProdutoController:listar_produto')->setName('produtos'); 
+    $this->post('/produtoid' , 'ProdutoController:updateProduto')->setName('updateProduto');
     });
 
     // CLIENTECONTROLLER

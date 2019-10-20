@@ -18,7 +18,7 @@ use Slim\Http\UploadedFile;
 
 
 
-class BebidaController extends Validate
+class ProdutoController extends Validate
 {
     protected $em;
     private $container;
@@ -127,23 +127,22 @@ public function listar_produto(Request  $request, Response $response, $args)
                                 Array('produto'=>$produto));
 }
 //GetIdBebidas
-public function GetIdBebidas(Request  $request, Response $response, $args)
+public function updateProduto(Request  $request, Response $response, $args)
 {
     $produto = $this->em
-                    ->getRepository('App\Model\Produtos')->findBy(['Id' => $_GET['id']]);
+                    ->find('App\Model\Produtos' ,['Id' => $_POST['id']]);
 
-    return $this->container
-                ->view
-                ->render($response , 
-                    'admin/produtos/produto.twig' , 
-                    Array('produto' => $produto));
+    // Agora vamos update produtos
 
-}
+     $produto->setPrecoVenda($_POST['valorVenda']);
+     $produto->setQtDade($_POST['qt']);
+     $produto->setPorcentagemVenda($_POST['lucro']);
+     $this->em->flush();
+  
+     return $response
+     ->withHeader('Location', '/produtos')
+     ->withStatus(302);
 
-//UpdateBebida
-public function UpdateBebida(Request  $request, Response $response, $args)
-{
-    print "UpdateBebida";
 }
 
 }

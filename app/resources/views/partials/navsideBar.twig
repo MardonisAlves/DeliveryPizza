@@ -1,7 +1,7 @@
 <nav id="sidebar">
             <div class="sidebar-header">
-                <h3 class="text-center text-dark">
-                <i class="icon ion-md-person text-dark"></i>{{ session.user }}
+                <h3 class="text-center text-white">
+                {{ session.nome }}
                 </h3>
 
                 <strong>DP</strong>
@@ -10,7 +10,7 @@
             <ul class="list-unstyled components">
                 <li class="active">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="icon ion-md-home"></i>
+                        <i class="fa fa-home"></i>
                         Home
                     </a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -28,7 +28,7 @@
                 <li>
 
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-plus"></i>
+                        <i class="fa fa-plus"></i>
                         Create
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
@@ -47,7 +47,7 @@
                 <li>
 
                     <a href="#pageupdate" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-plus"></i>
+                        <i class="fa fa-edit"></i>
                         Update
                     </a>
                     <ul class="collapse list-unstyled" id="pageupdate">
@@ -64,7 +64,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fas fa-paper-plane"></i>
+                        <i class="fa fa-telegram"></i>
                         Contact
                     </a>
                 </li>
@@ -78,16 +78,16 @@
          <nav class="navbar navbar-expand-lg navbar-default navbarhome shadow p-3 mb-5 bg-white rounded">
                 <div class="container-fluid">
 
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <button type="button" id="sidebarCollapse" class="btn btn-secondary">
                         <i class="icon ion-md-menu"></i>
-                        <span>	</span>
+                       
                     </button>
                     
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="/home"><i class="icon ion-md-home"></i></a>
+                                <a class="nav-link" href="/home"><i class="fa fa-home"></i>Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Page</a>
@@ -96,7 +96,7 @@
                                 <a class="nav-link" href="#">Page</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/logout"><i class="icon ion-md-exit"></i></a>
+                                <a class="nav-link" href="/logout"><i class="fa fa-unlock-alt"></i>Exit</a>
                             </li>
                         </ul>
                     </div>

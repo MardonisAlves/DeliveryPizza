@@ -7,6 +7,11 @@
 <div class="container">
   <div class="login-box-body">
     <div class="login-box-body">
+
+     <a href="/newuser" class="btn btn-dark btn-sm text-white">
+        New user<span><i class="fa fa-plus"></i></span>
+      </a>
+
     <table class="table" id ="idtb">
   <thead class="thead btn-light">
     <tr>
@@ -25,23 +30,16 @@
       <td>
 
         <a href="/deleteuser?id={{user.id}}" class="btn btn-danger btn-sm">
-        <span><i class="icon ion-md-trash"></i></span></a>
+        <span><i class="fa fa-trash"></i></span></a>
 
         <button   type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#updateUser"
         data-iduser={{user.id}}
         data-typeuser={{user.typeUser}}
-        data-emailuser={{user.email}}><span><i class="icon ion-md-lock"></i></span>
+        data-emailuser={{user.email}}><span><i class="fa fa-lock"></i></span>
         </button>
 
          <a href="/UpdateUserEndeId?id={{user.id}}" class="btn btn-warning btn-sm">
-        <span><i class="icon ion-md-create"></i></span></a>
-
-        <a href="/newuser" class="btn btn-info btn-sm">
-        <span><i class="icon ion-md-add"></i></span></a>
-
-  
-        
-        
+        <span><i class="fa fa-edit"></i></span></a> 
       </td>
     </tr>
     {% endfor %}

@@ -114,19 +114,19 @@ public function sendemail($request, $response, $args)
  $mail = new PHPMailer();
  $mail->IsSMTP(); // envia por SMTP
  $mail->CharSet = 'UTF-8';
- $mail->SMTPDebug = 0;
+ $mail->SMTPDebug = 2;
  $mail->True;
- $mail->Host = "smtp.gmail.com"; // Servidor SMTP
- $mail->Port = 465;
- $mail->SMTPSecure = 'ssl';
+ $mail->Host = "smtp.live.com"; // Servidor SMTP
+ $mail->Port = 587;
+ $mail->SMTPSecure = 'tls';
  $mail->SMTPAuth = true; // Caso o servidor SMTP precise de autenticação
- $mail->Username = "mardonisgp@gmail.com"; // SMTP username
- $mail->Password = "#qwe123qwe@"; // SMTP password
+ $mail->Username = "mardonisalves@hotmail.com"; // SMTP username
+ $mail->Password = "jk8yup02@"; // SMTP password
 
  $mail->From = $_POST['email']; // From
  $mail->FromName = $_POST['name'] ; // Nome de quem envia o email
 
- $mail->AddAddress("donyfic@bol.com.br", "Mardonis"); // Email e nome de quem receberá //Responder
+ $mail->AddAddress("mardonisalves@hotmail.com", "Mardonis"); // Email e nome de quem receberá //Responder
  $mail->WordWrap = 50; // Definir quebra de linha
  $mail->IsHTML = true ; // Enviar como HTML
  $mail->Subject = $_POST['subject'] ; // Assunto

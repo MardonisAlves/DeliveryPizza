@@ -345,7 +345,7 @@ public function listarUser( $request ,  $response , $args)
 
 public function UpdateUserEndeId(Request  $request, Response $response, $args)
 {
- $_GET["id"] = 1;
+
 
 switch ($_SESSION['user']){
 
@@ -458,8 +458,9 @@ $UsersClientes->setNumero($_POST['numero']);
 $UsersClientes->setBairro($_POST['bairro']);
 $this->em->flush();
 
-$url = $this->container->get('router')->pathFor('listarUser');
-return $res->withStatus(302)->withHeader('Location', $url);
+  return $response
+  ->withHeader('Location', '/listaruser')
+  ->withStatus(302);
 }
 
 

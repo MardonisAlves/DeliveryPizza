@@ -96,11 +96,11 @@ span {
 #sidebar ul li a {
     text-align: left;
 }
-
+/*ul li active*/
 #sidebar.active ul li a {
     padding: 20px 10px;
-    text-align: center;
-    font-size: 0.5em;
+    text-align: right;
+    font-size: 0.8em;
 }
 
 #sidebar.active ul li a i {
@@ -170,9 +170,9 @@ a[data-toggle="collapse"] {
     right: 20px;
     transform: translateY(-50%);
 }
-
+/*ul li a submenur*/
 ul ul a {
-    font-size: 0.5em !important;
+    font-size: 0.8em !important;
     padding-left: 30px !important;
     background: #6d7fcc;
 }

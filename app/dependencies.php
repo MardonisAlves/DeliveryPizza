@@ -87,8 +87,8 @@ $container['TesteController'] = function ($container){
 
 
 // BebidaController
-$container['BebidaController'] = function ($container){
-    return new App\Controller\BebidaController($container , $container->get('em') ,$container->get('flash'));
+$container['ProdutoController'] = function ($container){
+    return new App\Controller\ProdutoController($container , $container->get('em') ,$container->get('flash'));
 };
 
 // ClienteController
