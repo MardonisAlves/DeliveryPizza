@@ -159,7 +159,7 @@ public function updatesenha(Request $request, Response $response, $args)
         $messages = $this->flash->getMessages();
         return $this->container->view->render(
             $response ,
-            'admin/atu_senha.twig',
+            'admin/login/atu_senha.twig',
             Array( 'messages' => $messages));
     }
     
