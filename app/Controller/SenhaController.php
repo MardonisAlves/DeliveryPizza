@@ -139,7 +139,7 @@ return $this->container->view->render($response ,'admin/login/atu_senha.twig', A
 }else{
       $this->flash->addMessageNow('msg', 'Acesso negado');
      $messages = $this->flash->getMessages();
-     return $this->container->view->render($response ,'admin/loginCliente.twig', Array('messages' => $messages));
+     return $this->container->view->render($response ,'admin/login/loginCliente.twig', Array('messages' => $messages));
    
  }
 }
@@ -175,13 +175,13 @@ public function updatesenha(Request $request, Response $response, $args)
        
        $this->flash->addMessageNow('msg', 'Sua senha Foi atualizada com sucesso!');
        $messages = $this->flash->getMessages();
-       return $this->container->view->render($response ,'admin/loginCliente.twig', Array('messages' => $messages));
+       return $this->container->view->render($response ,'admin/login/loginCliente.twig', Array('messages' => $messages));
        
     }else {
         
         $this->flash->addMessageNow('msg', 'Digite seu email!');
         $messages = $this->flash->getMessages();
-        return $this->container->view->render($response ,'admin/recu_senha.twig', Array('messages' => $messages));
+        return $this->container->view->render($response ,'admin/login/recu_senha.twig', Array('messages' => $messages));
     }
 }
 
