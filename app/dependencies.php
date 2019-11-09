@@ -86,7 +86,7 @@ $container['TesteController'] = function ($container){
 };
 
 
-// BebidaController
+// ProdutoController
 $container['ProdutoController'] = function ($container){
     return new App\Controller\ProdutoController($container , $container->get('em') ,$container->get('flash'));
 };
@@ -96,6 +96,16 @@ $container['ProdutoController'] = function ($container){
 $container['ClienteController'] = function ($container){
     return new App\Controller\ClienteController($container , $container->get('em') ,$container->get('flash'));
 };
+
+// CardapioController
+$container['CardapioController'] = function ($container) {
+
+    return new \App\Controller\CardapioController($container  , 
+                                                $container->get('em') , 
+                                                $container->get('flash'),
+                                                $container->get('session'));
+
+    };
 
 
 

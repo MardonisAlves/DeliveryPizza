@@ -22,22 +22,35 @@ $this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
 
 
     // ADMIN-CONTROLLER
-    // Request com method multiplo com get post
-$app->group('',function(){
-
-    $this->get('/logout', 'AdminController:logout')->setName('logout');
-    $this->map(['POST','GET'],'/login', 'AdminController:login')->setName('login');
-    $this->get('/newuser', 'AdminController:newuser')->setName('newuser');
-    $this->map(['POST','GET'],'/addUser', 'AdminController:addUser')->setName('addUser');
+    // Request com method multiplo com get post com map
+    $app->group('',function(){
+        // home
     $this->get('/home', 'AdminController:home')->setName('home');
+        // logout
+    $this->get('/logout', 'AdminController:logout')->setName('logout');
+        // login
+    $this->map(['POST','GET'],'/login', 'AdminController:login')->setName('login'); 
+        // newuser
+    $this->get('/newuser', 'AdminController:newuser')->setName('newuser'); 
+        // addUser metodo insert
+    $this->map(['POST','GET'],'/addUser', 'AdminController:addUser')->setName('addUser');
+        // contact by id
     $this->get('/GetcontactID', 'AdminController:GetcontactID')->setName('GetcontactID');
+        // update contact
     $this->map(['POST','GET'],'/putContact', 'AdminController:putContact')->setName('putContact');
+        // delete contact
     $this->get('/DeleteContact' , 'AdminController:DeleteContact')->setName('DeleteContact');
+        // delete user
     $this->get('/deleteuser' , 'AdminController:deleteuser')->setName('deleteuser');
+        // listar user
     $this->get('/listaruser' , 'AdminController:listarUser')->setName('listarUser');
+        // get form  enedereco by id
     $this->get('/UpdateUserEndeId', 'AdminController:UpdateUserEndeId')->setName('UpdateUserEndeId');
-    $this->post('/updateuserId' ,'AdminController:updateuserId')->setName('updateuserId');
+        // update endereco user
     $this->map(['POST','GET'],'/updateendereco' , 'AdminController:updateendereco')->setName('updateendereco');
+        // update user
+    $this->post('/updateuserId' ,'AdminController:updateuserId')->setName('updateuserId');
+    
 
 
 
@@ -73,5 +86,14 @@ $app->group('',function(){
         $this->get('/homecliente', 'ClienteController:homecliente')->setName('homecliente');
     });
 
+    // CARDAPIOCONTROLLER
+    $app->group('',function(){
+            // listar cardapio
+        $this->get('/listar', 'CardapioController:listarcardapio')->setName('listar');
+            // insert cardapio
+        $this->get('/insert', 'CardapioController:inserircardapio')->setName('insert');
+
+
+    });
 
 
