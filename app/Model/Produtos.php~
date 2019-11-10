@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+//namespace App\Model;
 
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Table;
@@ -67,8 +67,8 @@ class Produtos
      * Many Users have Many Groups.
      * @ManyToMany(targetEntity="Cardapio")
      * @JoinTable(name="produtos_cardapio",
-     *      joinColumns={@JoinColumn(name="produto_id", referencedColumnName="Id")},
-     *      inverseJoinColumns={@JoinColumn(name="cardapio_id", referencedColumnName="Id")}
+     *      joinColumns={@JoinColumn(name="produto_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="cardapio_id", referencedColumnName="id")}
      *      )
      */
 
@@ -279,41 +279,5 @@ class Produtos
     public function getDateValidade()
     {
         return $this->date_validade;
-    }
-
-    /**
-     * Add cardapiosproduto.
-     *
-     * @param \Cardapio $cardapiosproduto
-     *
-     * @return Produtos
-     */
-    public function addCardapiosproduto(\Cardapio $cardapiosproduto)
-    {
-        $this->cardapiosprodutos[] = $cardapiosproduto;
-
-        return $this;
-    }
-
-    /**
-     * Remove cardapiosproduto.
-     *
-     * @param \Cardapio $cardapiosproduto
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeCardapiosproduto(\Cardapio $cardapiosproduto)
-    {
-        return $this->cardapiosprodutos->removeElement($cardapiosproduto);
-    }
-
-    /**
-     * Get cardapiosprodutos.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCardapiosprodutos()
-    {
-        return $this->cardapiosprodutos;
     }
 }

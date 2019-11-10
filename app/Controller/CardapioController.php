@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use App\Model\UsersClientes;
 
 
+
 class CardapioController 
 {
     protected $em;
@@ -32,22 +33,35 @@ class CardapioController
 // inserir 
 public function inserircardapio(Request $request, Response $response, $args)
 {
-    echo "Listar Produtos para montar o cardapio e depois insrir  no banco de dados";
+    
+   
+    $produtos= $this->em->getRepository("App\Model\Produtos")->findAll();
+    // insert cardapio
+    // depois render para view
+
+    return $this->container->view->render($response ,
+                                         'admin/cardapio/cardapio.twig',
+                                          Array('produtos' => $produtos));
 }
 // listar
 public function listarcardapio(Request $request, Response $response, $args)
 {
-    echo "Listar Cardapio e renderizar para view cliente";
+    // array com lista de cardapio
+    
+    //var_dump($cardapio);
+    return $this->container->view->render($response , 
+                                        'cardapio.twig' ,  
+                                        Array('cardapios' =>  $cardapios));
 }
 // atualizar
 public function alualizarcardapio(Request $request, Response $response, $args)
 {
-    
+    echo "Atualizar Cardapio e renderizar para view admin";
 }
 
 // excluir
 public function excluircardapio(Request $request, Response $response, $args)
 {
-
+    echo "Excluir Cardapio e renderizar para view admin";
 }
 }

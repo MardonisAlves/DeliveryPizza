@@ -13,8 +13,8 @@
       </div>
     {% endfor %}
 
-    {{name}}
-    <p>Listar Cardapio</p>
+   
+
     <form method="post" action="/insertbebidas" enctype="multipart/form-data">
   <div class="form-row">
     <div class="form-group col-md-8">
@@ -37,27 +37,21 @@
 
   <div class="form-row">
     <div class="form-group col-md-4">
-      <input type="text" class="form-control" id="input" name="preco_compra" placeholder="preço compra" required="obrigatorio">
+      <input type="text" class="form-control" id="input" name="valor" placeholder="valor" required="obrigatorio">
     </div>
 
     <div class="form-group col-md-4">
      
-      <select  class="form-control" id="input2" name="porcentagemVenda" required="obrigatorio">
-        <option value="">Ecolha A %....</option>
-        <option value="5">5%</option>
-        <option value="10">10%</option>
-        <option value="15">15%</option>
-        <option value="20">20%</option>
-        <option value="25">25%</option>
-        <option value="35">35%</option>
-        <option value="40">40%</option>
-        <option value="45">45%</option>
-        <option value="50">50%</option>
+      <select  class="form-control" id="input2" name="idproduto" required="obrigatorio">
+          {% for  produto in produtos %}
+            <option value="">select o produto</option>
+            <option value="{{ produto.id }}">{{ produto.name }}</option>
+          {% endfor %}
       </select>
     </div> 
 
   <div class="form-group col-md-4">
-    <input type="text" class="form-control" id="qt_dade" name="qt_dade" placeholder="quantidade" required="obrigatorio">
+    <input type="file" name="imgcardapio" required="obrigatorio">
   </div>
 
     <div class="form-group col-md-12">
