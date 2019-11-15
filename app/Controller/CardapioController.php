@@ -11,8 +11,10 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use PHPUnit\Framework\Constraint\Count;
 use Doctrine\Common\Collections\ArrayCollection;
 use App\Model\UsersClientes;
-
-
+use App\Model\Cardapio;
+use App\Model\Produtos;
+use DateTime;
+use SebastianBergmann\Exporter\Exporter;
 
 class CardapioController 
 {
@@ -30,28 +32,62 @@ class CardapioController
 
         
 }
+// index cardapio get form
+public  function index(Request $request, Response $response, $args)
+{
+    $produtos= $this->em->getRepository("App\Model\Produtos")->findAll();
+    return $this->container->view->render($response ,
+                                                'admin/cardapio/cardapio.twig',
+                                                 Array('produtos' => $produtos));
+}
 // inserir 
 public function inserircardapio(Request $request, Response $response, $args)
 {
+
+   // getProdutos by id
+    $produtos= $this->em->find("App\Model\Produtos", $_POST['idproduto']);
     
-   
-    $produtos= $this->em->getRepository("App\Model\Produtos")->findAll();
+
     // insert cardapio
+    $cardapio =  new Cardapio();
+    $cardapio->setName("Calabresa");
+    $cardapio->setDate(new DateTime(now));
+    $cardapio->setDescricao("Muito boa");
+    // rever o campo type
+    $cardapio->setPreco(9.9); 
+    $cardapio->setTamanho("M");
+    $cardapio->setUrlImage("url_imagem");
+
+    $this->em->persist($cardapio);
+    $this->em->flush();
+
+    // persisitir as chaves na table produtos_cardapio
+
+
     // depois render para view
 
-    return $this->container->view->render($response ,
-                                         'admin/cardapio/cardapio.twig',
-                                          Array('produtos' => $produtos));
+    
+
+   
+
+   
 }
-// listar
+// listar\
 public function listarcardapio(Request $request, Response $response, $args)
 {
     // array com lista de cardapio
     
     //var_dump($cardapio);
+    /*
     return $this->container->view->render($response , 
                                         'cardapio.twig' ,  
-                                        Array('cardapios' =>  $cardapios));
+                                        Array('cardapios' =>  $cardapios))
+
+    */
+    $produtos= $this->em->find("App\Model\Produtos", 1);
+   var_export($produtos);  
+
+
 }
 // atualizar
 public function alualizarcardapio(Request $request, Response $response, $args)

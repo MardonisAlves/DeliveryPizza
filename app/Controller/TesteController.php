@@ -14,17 +14,18 @@ use phpDocumentor\Reflection\Types\Null_;
 use App\Model\UsersClientes;
 use App\Model\Users;
 use Doctrine\ORM\Query\ResultSetMappingBuilder;
-
+use SebastianBergmann\Exporter\Exporter;
+use PDO;
 class TesteController
 {
-    protected $em;
+    protected $db;
     private $container;
     private $flash;
     private $session;
     
-    public function __construct($container ,EntityManager $em ,$flash ,  $session )
+    public function __construct($container , $db ,$flash ,  $session )
 {
-        $this->em = $em;
+        $this->db = $db;
         $this->container=$container;
         $this->flash = $flash;
         $this->session = $session;
@@ -40,7 +41,18 @@ class TesteController
 
 public function Teste(Request  $request, Response $response, $args)
 {
+    $usuarios = $this->db->query("SELECT * FROM Users" ,PDO::FETCH_ASSOC);
+    while($user = $usuarios->fetch()){
+        print($user['id']);
+        print($user['email']);
+        
+       
+    }
+   
+
     
+
+/*
 $users =  $this->em->getRepository('App\Model\Users')->findBy(['id' => 1]);
 $endere =  $this->em->getRepository('App\Model\UsersClientes')->findBy(['id' => 1]);
 
@@ -54,14 +66,34 @@ return $this->container
             ->render($response ,
             'homecliente/homecliente.twig',
             Array('users' => $users , 'endere' => $endere )); 
+*/
 
 }
 
-public function Teste_insert(Request  $request, Response $response, $args)
+public function  Teste_insert(Request  $request, Response $response, $args)
 {
      
 
-	
+    // user
+
+    $senha = (password_hash("jk8yup02@",PASSWORD_DEFAULT));
+    $id=0;
+    $nome = "Mardonis Alves B";
+    $email = "mardonisgp@gmail.com";
+    $tipo = "admin";
+
+    $sql = "INSERT INTO Users(id,email, nome , senha , tipouser) VALUES(:id ,:email, :nome, :senha , :tipouser)";
+
+    $stmt = $this->db->prepare( $sql );
+    $stmt->bindParam( ':id', $id);
+    $stmt->bindParam( ':email', $email);
+    $stmt->bindParam( ':nome', $nome );
+    $stmt->bindParam( ':senha', $senha );
+    $stmt->bindParam( ':tipouser', $tipo );
+
+    $result = $stmt->execute();
+
+	/*
     $User = $this->em->getRepository('App\Model\Users')->findOneBy(['id' => 7]);
     $UsersClientes = new UsersClientes();
     $UsersClientes->setCidade("Pacatuba");
@@ -75,7 +107,7 @@ public function Teste_insert(Request  $request, Response $response, $args)
 
     $this->em->persist($UsersClientes);
     $this->em->flush();
-    
+    */
         
 }
 

@@ -64,19 +64,17 @@ class Produtos
     protected $date_validade;  
 
      /**
-     * Many Users have Many Groups.
-     * @ManyToMany(targetEntity="Cardapio")
-     * @JoinTable(name="produtos_cardapio",
-     *      joinColumns={@JoinColumn(name="produto_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="cardapio_id", referencedColumnName="id")}
-     *      )
+     * Many Produtos have Many cardapios.
+     * @ManyToMany(targetEntity="Cardapio", mappedBy="produtos")
      */
 
-     private $cardapiosprodutos;
+     
+
+     private $cardapio;
 
      public function __construct(){
 
-         $this->cardapiosprodutos = new \Doctrine\Common\Collections\ArrayCollection();
+         $this->cardapio = new \Doctrine\Common\Collections\ArrayCollection();
      }
 
     /**
@@ -279,5 +277,43 @@ class Produtos
     public function getDateValidade()
     {
         return $this->date_validade;
+    }
+
+    
+
+    /**
+     * Add cardapio.
+     *
+     * @param \Cardapio $cardapio
+     *
+     * @return Produtos
+     */
+    public function addCardapio(\Cardapio $cardapio)
+    {
+        $this->cardapio[] = $cardapio;
+
+        return $this;
+    }
+
+    /**
+     * Remove cardapio.
+     *
+     * @param \Cardapio $cardapio
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeCardapio(\Cardapio $cardapio)
+    {
+        return $this->cardapio->removeElement($cardapio);
+    }
+
+    /**
+     * Get cardapio.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCardapio()
+    {
+        return $this->cardapio;
     }
 }

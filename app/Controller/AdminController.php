@@ -15,14 +15,14 @@ use App\Model\UsersClientes;
 
 class AdminController 
 {
-    protected $em;
+    protected $db;
     private $container;
     private $flash;
     private $session;
     
-    public function __construct($container ,EntityManager $em ,$flash ,  $session)
+    public function __construct($container , $db ,$flash ,  $session)
 {
-        $this->em = $em;
+        $this->db = $db;
         $this->container=$container;
         $this->flash = $flash;
         $this->session = $session;
@@ -37,7 +37,7 @@ public function home(Request $request, Response $response, $args)
   if($_SESSION['user'] == 'admin'){
 
         // select as tables para o dashdoards home
-  $users = $this->em->getRepository('App\Model\Users')->findAll();
+
   return $this->container->view->render($response ,'admin/home.twig' , Array('users' => $users));
   
   }elseif($_SESSION['user'] == 'cliente'){
@@ -54,28 +54,28 @@ public function home(Request $request, Response $response, $args)
 // login
 public function login(Request $request, Response $response, $args)
 {
- 
-  
-  $contact = $this->em->getRepository(
-        'App\Model\Users')->findBy(array('email' => $_POST['email']));
 
-        
+
+$contact = $this->db->query("SELECT * FROM Users");
+       
+
+
 
 if($contact){
 
 
-      foreach($contact as $l)
+      while($user = $contact->fetch())
       {
        
-        if($l->getEmail() == $_POST['email'])
+        if($user['email'] == $_POST['email'])
       {
-        if(password_verify($_POST['senha'], $l->getSenha())){
+        if(password_verify($_POST['senha'], $user['senha'])){
 
          // cookies e sessions
-        $this->session->set('user', $l->getTypeUser());
-        $this->session->set('email', $l->getEmail());
-        $this->session->set('nome', $l->getfullName());
-        $this->session->set('id', $l->getId());
+        $this->session->set('user', $user['tipouser']);
+        $this->session->set('email', $user['email']);
+        $this->session->set('nome', $user['nome']);
+        $this->session->set('id', $user['id']);
 
         /*
          setcookie("email", $l->getEmail() );
@@ -254,11 +254,11 @@ public function addUser($request , $response , $args)
 {
 if($_SESSION['user'] == 'admin'){
 // validar o acesso com session
-$users =  $this->em->getRepository('App\Model\Users')->findAll();
+$users =  $this->db->query("SELECT * FROM Users");
 // validate email
-foreach ($users as  $value) {
+while ($user = $users->fetch()) {
 
-  if($value->getEmail() == $_POST['email']){
+  if($user['email'] == $_POST['email']){
 
   $this->flash->addMessageNow('msg', 'Este E-mail ja esta em uso!');
   $messages = $this->flash->getMessages();
@@ -293,13 +293,20 @@ foreach ($users as  $value) {
 switch ($_SESSION['user']){
 
   case "admin":
-        $user = new Users();
-        $this->em->persist($user);
-        $user->setFullName($_POST["name"]);
-        $user->setEmail($_POST["email"]);
-        $user->setTypeUser($_POST["tipoUser"]);
-        $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
-        $this->em->flush();
+    $senha = (password_hash($_POST["senha"],PASSWORD_DEFAULT));
+    $id=0;
+    $sql = "INSERT INTO Users(id,email, nome , senha , tipouser) VALUES(:id ,:email, :nome, :senha , :tipouser)";
+
+    $stmt = $this->db->prepare( $sql );
+    $stmt->bindParam( ':id', $id);
+    $stmt->bindParam( ':email', $_POST['email']);
+    $stmt->bindParam( ':nome', $_POST['name'] );
+    $stmt->bindParam( ':senha', $senha );
+    $stmt->bindParam( ':tipouser', $_POST['tipoUser'] );
+
+    $result = $stmt->execute();
+
+
 
         $url = $this->container->get('router')->pathFor('home');
         return $response->withStatus(302)->withHeader('Location', $url);
@@ -319,20 +326,17 @@ switch ($_SESSION['user']){
 }
 public function listarUser( $request ,  $response , $args)
 {
-
  switch ($_SESSION['user']) {
-
    case 'admin':
-     
-     $users =  $this->em->getRepository('App\Model\Users')->findAll();
-      return $this->container
-                  ->view
-                  ->render($response ,'admin/users/listarUser.twig', 
-                    Array("users"=>$users));
+     $users =  $this->db->query("SELECT * FROM Users");
+                    return $this->container
+                                ->view
+                                ->render($response ,'admin/users/listarUser.twig', 
+                                ["users"=>$users]);
 
      break;
-    case 'cliente':
 
+    case 'cliente':
     return $this->container->view->render($response ,'homecliente/homecliente.twig');
 
    
@@ -350,9 +354,7 @@ public function UpdateUserEndeId(Request  $request, Response $response, $args)
 switch ($_SESSION['user']){
 
   case 'admin':
-    $endere =  $this->em
-                    ->getRepository('App\Model\UsersClientes')
-                    ->findBy(Array('id' => $_GET['id']));
+    $endere =  $this->db->query("SELECT * from Endereco where user_id = $_GET[id]");
 
     return $this->container
                 ->view
@@ -449,14 +451,23 @@ public function getEnderecoByid(Request $req , Response $res , $args){
 public function updateendereco(Request $request, Response $response, $args)
 {
 
-  $UsersClientes=  $this->em
-                        ->find('App\Model\UsersClientes',['id' => $_POST['id']]);
+  $endereco=  "UPDATE Endereco set 
+                              rua=:rua ,
+                              bairro=:bairro,
+                              cidade=:cidade,
+                              numero=:numero,
+                              telefone=:telefone,
+                              referencia=:referencia where user_id =:id";
 
-$UsersClientes->setRua($_POST['rua']);
-$UsersClientes->setCidade($_POST['cidade']);
-$UsersClientes->setNumero($_POST['numero']);
-$UsersClientes->setBairro($_POST['bairro']);
-$this->em->flush();
+  $stmt = $this->db->prepare($endereco);
+  $stmt->bindParam("id" , $_POST['id']);
+  $stmt->bindParam("rua" , $_POST['rua']);
+  $stmt->bindParam("bairro" , $_POST['bairro']);
+  $stmt->bindParam("cidade" , $_POST['cidade']);
+  $stmt->bindParam("numero" , $_POST['numero']);
+  $stmt->bindParam("telefone" , $_POST['telefone']);
+  $stmt->bindParam("referencia" , $_POST['referencia']);
+  $stmt->execute();
 
   return $response
   ->withHeader('Location', '/listaruser')

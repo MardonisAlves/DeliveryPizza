@@ -51,6 +51,16 @@ $container['em'] = function ($c) {
     return \Doctrine\ORM\EntityManager::create($settings['doctrine']['connection'], $config);
 };
 
+// PDO
+$container['pdo'] = function ($c) {
+    $settings = $c->get('settings')['db'];
+    $pdo = new PDO("mysql:host=" . $settings['host'] . ";dbname=" . $settings['dbname'],
+        $settings['user'], $settings['pass']);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    return $pdo;
+};
+
 // HOME CONTROLER
 $container['HomeController'] = function ($container) {
 return new \App\Controller\HomeController($container  , $container->get('em') , $container->get('flash'));
@@ -64,7 +74,7 @@ return  \App\Validate\Validate($container  ,$container->get('flash'));
 // ADMINCONTROLLER
 $container['AdminController'] = function ($container){
 return new App\Controller\AdminController($container , 
-                                            $container->get('em') ,
+                                            $container['pdo'] ,
                                             $container->get('flash'),
                                              $container->get('session'));
 };
@@ -80,7 +90,7 @@ $container['SenhaController'] = function ($container){
 // TesteController
 $container['TesteController'] = function ($container){
     return new App\Controller\TesteController($container , 
-                                                $container->get('em') ,
+                                                $container['pdo'],
                                                 $container->get('flash'),
                                                 $container->get('session'));
 };

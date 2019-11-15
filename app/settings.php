@@ -2,7 +2,10 @@
 
 
 
+
     return [
+
+        
 
             'settings' => [
 
@@ -30,7 +33,13 @@
                         'user'     => 'ouqgizhbemfzbl',
                         'password' => 'da2135d9e9e80620c92bc66136e9677b3b2b08be0a7b18f264c80ea425352f2e',
                     ]
-                ]
+                    ],
+                    "db" => [
+                        "host" => "localhost",
+                        "dbname" => "deliverypizza",
+                        "user" => "root",
+                        "pass" => "Jk8yup02@"
+                    ],
 
             ]
     ];

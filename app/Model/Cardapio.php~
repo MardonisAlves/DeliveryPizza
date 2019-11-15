@@ -10,7 +10,8 @@ use Doctrine\ORM\Mapping\date;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\Common\Collections\ArrayCollection;
-
+use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\JoinTable;
 /**
  * Cardapio Entities
  *
@@ -51,7 +52,18 @@ class Cardapio
     protected $date;
 
 
+    /**
+     * Many Cardapio have Many Produtos.
+     * @ManyToMany(targetEntity="Produtos", inversedBy="cardapio")
+     * @JoinTable(name="produto_cardapio")
+     */
 
+     private $produtos;
+
+     public function __construct()
+     {
+         $this->produtos = new \Doctrine\Common\Collections\ArrayCollection();
+     }
 
     /**
      * Get id.
@@ -205,5 +217,43 @@ class Cardapio
     public function getDate()
     {
         return $this->date;
+    }
+
+   
+
+    /**
+     * Add produto.
+     *
+     * @param \Produtos $produto
+     *
+     * @return Cardapio
+     */
+    public function addProduto(\Produtos $produto)
+    {
+        $this->produtos[] = $produto;
+
+        return $this;
+    }
+
+    /**
+     * Remove produto.
+     *
+     * @param \Produtos $produto
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeProduto(\Produtos $produto)
+    {
+        return $this->produtos->removeElement($produto);
+    }
+
+    /**
+     * Get produtos.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProdutos()
+    {
+        return $this->produtos;
     }
 }

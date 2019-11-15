@@ -114,7 +114,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 
     // Redirect para listar
 
-    $url = $this->container->get('router')->pathFor('listar_produto');
+    $url = $this->container->get('router')->pathFor('produtos');
     return $response->withStatus(302)->withHeader('Location', $url);
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+//namespace App\Model;
 
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Table;
@@ -64,19 +64,17 @@ class Produtos
     protected $date_validade;  
 
      /**
-     * Many Users have Many Groups.
-     * @ManyToMany(targetEntity="Cardapio")
-     * @JoinTable(name="produtos_cardapio",
-     *      joinColumns={@JoinColumn(name="produto_id", referencedColumnName="Id")},
-     *      inverseJoinColumns={@JoinColumn(name="cardapio_id", referencedColumnName="Id")}
-     *      )
+     * Many Produtos have Many cardapios.
+     * @ManyToMany(targetEntity="Cardapio", mappedBy="produtos")
      */
 
-     private $cardapiosprodutos;
+     
+
+     private $cardapio;
 
      public function __construct(){
 
-         $this->cardapiosprodutos = new \Doctrine\Common\Collections\ArrayCollection();
+         $this->cardapio = new \Doctrine\Common\Collections\ArrayCollection();
      }
 
     /**
@@ -281,39 +279,41 @@ class Produtos
         return $this->date_validade;
     }
 
+    
+
     /**
-     * Add cardapiosproduto.
+     * Add cardapio.
      *
-     * @param \Cardapio $cardapiosproduto
+     * @param \Cardapio $cardapio
      *
      * @return Produtos
      */
-    public function addCardapiosproduto(\Cardapio $cardapiosproduto)
+    public function addCardapio(\Cardapio $cardapio)
     {
-        $this->cardapiosprodutos[] = $cardapiosproduto;
+        $this->cardapio[] = $cardapio;
 
         return $this;
     }
 
     /**
-     * Remove cardapiosproduto.
+     * Remove cardapio.
      *
-     * @param \Cardapio $cardapiosproduto
+     * @param \Cardapio $cardapio
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeCardapiosproduto(\Cardapio $cardapiosproduto)
+    public function removeCardapio(\Cardapio $cardapio)
     {
-        return $this->cardapiosprodutos->removeElement($cardapiosproduto);
+        return $this->cardapio->removeElement($cardapio);
     }
 
     /**
-     * Get cardapiosprodutos.
+     * Get cardapio.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCardapiosprodutos()
+    public function getCardapio()
     {
-        return $this->cardapiosprodutos;
+        return $this->cardapio;
     }
 }
