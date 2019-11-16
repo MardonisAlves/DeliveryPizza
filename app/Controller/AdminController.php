@@ -36,9 +36,9 @@ public function home(Request $request, Response $response, $args)
 
   if($_SESSION['user'] == 'admin'){
 
-        // select as tables para o dashdoards home
-
-  return $this->container->view->render($response ,'admin/home.twig' , Array('users' => $users));
+// select as tables para o dashdoards home
+  $users = "SELECT * FROM Users";
+  return $this->container->view->render($response ,'admin/home.twig' , ['users' => $users]);
   
   }elseif($_SESSION['user'] == 'cliente'){
   
@@ -54,12 +54,7 @@ public function home(Request $request, Response $response, $args)
 // login
 public function login(Request $request, Response $response, $args)
 {
-
-
 $contact = $this->db->query("SELECT * FROM Users");
-       
-
-
 
 if($contact){
 
@@ -71,20 +66,12 @@ if($contact){
       {
         if(password_verify($_POST['senha'], $user['senha'])){
 
-         // cookies e sessions
+         //  sessions
         $this->session->set('user', $user['tipouser']);
         $this->session->set('email', $user['email']);
         $this->session->set('nome', $user['nome']);
         $this->session->set('id', $user['id']);
 
-        /*
-         setcookie("email", $l->getEmail() );
-         setcookie("user",  $l->getTypeUser() );
-         setcookie("id",$l->getId() );
-        */
-        
-
-       //return $this->container->view->render($response ,'admin/home.twig',Array('contact' => $contact));
         $url = $this->container->get('router')->pathFor('home');
         return $response->withStatus(302)->withHeader('Location', $url);
 
@@ -213,9 +200,11 @@ public function deleteuser(Request  $request, Response $response, $args)
   switch ($_SESSION['user']) {
     case 'admin':
 
-      $users =  $this->em->find('App\Model\Users',$_GET['id']);
-        $this->em->remove($users);
-        $this->em->flush();
+      $users =  "DELETE from Users where id=:id";
+      $stmt= $this->db->prepare($users);
+      $stmt->bindParam("id" , $_GET['id']);
+      $stmt->execute();
+        
 
         /* Analisar se vou redrecionar esta route pra listaruser*/
         return $this->container->view->render($response ,'admin/users/newuser.twig');
@@ -256,19 +245,20 @@ if($_SESSION['user'] == 'admin'){
 // validar o acesso com session
 $users =  $this->db->query("SELECT * FROM Users");
 // validate email
-while ($user = $users->fetch()) {
+while ($user = $users->fetch()) 
+{
 
-  if($user['email'] == $_POST['email']){
+    if($user['email'] == $_POST['email']){
 
-  $this->flash->addMessageNow('msg', 'Este E-mail ja esta em uso!');
-  $messages = $this->flash->getMessages();
-  
-  return $this->container
-              ->view
-              ->render($response ,'admin/users/newuser.twig',
-              Array( 'messages' => $messages));
+    $this->flash->addMessageNow('msg', 'Este E-mail ja esta em uso!');
+    $messages = $this->flash->getMessages();
+    
+    return $this->container
+                ->view
+                ->render($response ,'admin/users/newuser.twig',
+                Array( 'messages' => $messages));
 
-     }
+      }
    }
  }else{
   $url = $this->container->get('router')->pathFor('login');
@@ -349,8 +339,6 @@ public function listarUser( $request ,  $response , $args)
 
 public function UpdateUserEndeId(Request  $request, Response $response, $args)
 {
-
-
 switch ($_SESSION['user']){
 
   case 'admin':
@@ -384,12 +372,13 @@ switch ($_SESSION['user']) {
 
   case 'admin':
 
-      $user =  $this->em
-                    ->find('App\Model\Users',['id' => $_POST['id']]);
 
-      $user->setEmail($_POST['email']);
-      $user->setTypeUser($_POST['typeUser']);
-      $this->em->flush();
+      $user =  "UPDATE Users set email=:email ,tipouser=:tipouser where id=:id";
+      $stmt = $this->db->prepare($user);
+      $stmt->bindParam("id" , $_POST['id']);
+      $stmt->bindParam("email" , $_POST['email']);
+      $stmt->bindParam("tipouser" , $_POST['tipouser']);
+      $stmt->execute();
 
       $url = $this->container->get('router')->pathFor('listarUser');
       return $res->withStatus(302)->withHeader('Location', $url);

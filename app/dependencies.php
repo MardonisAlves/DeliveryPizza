@@ -98,7 +98,10 @@ $container['TesteController'] = function ($container){
 
 // ProdutoController
 $container['ProdutoController'] = function ($container){
-    return new App\Controller\ProdutoController($container , $container->get('em') ,$container->get('flash'));
+    return new App\Controller\ProdutoController($container , 
+                                                $container['pdo'] ,
+                                                $container->get('flash'),
+                                                $container->get('session'));
 };
 
 // ClienteController
