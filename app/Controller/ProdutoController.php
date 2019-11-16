@@ -4,15 +4,9 @@ namespace App\Controller;
 
 
 
-use App\Validate\Validate;
 use App\Model\Produtos;
-use DateTime;
-use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use PHPUnit\Framework\Constraint\Count;
-use Doctrine\Common\Collections\ArrayCollection;
-use phpDocumentor\Reflection\Types\Null_;
 use \Psr\Http\Message\StreamInterface;
 use Slim\Http\UploadedFile;
 
@@ -123,7 +117,7 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
     $stmt->bindParam("date_validade" , $_POST['date']);
     $stmt->execute();
     
-                                                */
+                                               
     // Redirect para listar
 
     $url = $this->container->get('router')->pathFor('produtos');
