@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 
-class HomeController extends Validate
+class HomeController 
 {
       private $em;
       private $container;
@@ -19,9 +19,8 @@ public function __construct($container ,EntityManager $em ,$flash)
           $this->em = $em;
           $this->container=$container;
           $this->flash = $flash;
-           parent::__construct($container , $flash);
+          
 }
-
 public function index(Request $request, Response $response, $args) 
 {
 // Return os cardapio pizzza

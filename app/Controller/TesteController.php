@@ -30,32 +30,25 @@ public function Teste(Request  $request, Response $response, $args)
 
     $Users = new Users();
     $Users->setConnection($this->db);
-    $Users->selctUsers();
+    $Users->setSession($this->session);
+    $Users->setContainer($this->container);
+    $Users->selctUsers($response);
+
 
 }
 
 public function  Teste_insert(Request  $request, Response $response, $args)
 {
-     
+     $Users = new Users();
+     $Users->setConnection($this->db);
+     $Users->setContainer($this->container);
+     $Users->setId(0);
+     $Users->setEmail("anacarolina@gmail.com");
+     $Users->setNome("Ana");
+     $Users->setSenha("123");
+     $Users->setTipouser("cliente");
+     $Users->insert($response);
 
-    // user
-
-    $senha = (password_hash("jk8yup02@",PASSWORD_DEFAULT));
-    $id=0;
-    $nome = "Mardonis Alves B";
-    $email = "mardonisgp@gmail.com";
-    $tipo = "admin";
-
-    $sql = "INSERT INTO Users(id,email, nome , senha , tipouser) VALUES(:id ,:email, :nome, :senha , :tipouser)";
-
-    $stmt = $this->db->prepare( $sql );
-    $stmt->bindParam( ':id', $id);
-    $stmt->bindParam( ':email', $email);
-    $stmt->bindParam( ':nome', $nome );
-    $stmt->bindParam( ':senha', $senha );
-    $stmt->bindParam( ':tipouser', $tipo );
-
-    $result = $stmt->execute();
         
-    }
+}
 }
