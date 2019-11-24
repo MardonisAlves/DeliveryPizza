@@ -76,9 +76,10 @@ $this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
     // PRODUTOCONTROLLER
     $app->group('',function(){
     $this->get('/formbebida' , 'ProdutoController:form_bebida')->setName('form_bebida'); 
-    $this->post('/insertbebidas' , 'ProdutoController:insert_bebidas')->setName('insert_bebidas'); 
+    $this->post('/insertbebidas' , 'ProdutoController:insertBebidas')->setName('insertBebidas'); 
     $this->get('/produtos' , 'ProdutoController:listar_produto')->setName('produtos'); 
-    $this->post('/produtoid' , 'ProdutoController:updateProduto')->setName('updateProduto');
+    $this->post('/produtoid' , 'ProdutoController:updateProdutos')->setName('updateProdutos');
+    $this->get('/deletarProduto' , 'ProdutoController:deletaProduto')->setName('deletaProduto');
     });
 
     // CLIENTECONTROLLER

@@ -35,11 +35,11 @@ class ProdutoController
 public function form_bebida(Request  $request, Response $response, $args)
 {
 
-    return $this->container->view->render($response, 'admin/produtos/form_bebida.twig');
+    return $this->container->view->render($response, 'admin/produtos/produtos.twig');
 
 }
 //InsertBebidas
-public function insert_bebidas(Request  $request, Response $response,  array $args)
+public function insertBebidas(Request  $request, Response $response,  array $args)
 {
     //Validar o nome da imagem se ja existe no banco de dado // validar o nome da pizza
     $produto = $this->db->query("SELECT * FROM Produtos");
@@ -82,40 +82,18 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 
 
     //Gravar no Banco de dados o produto
-    $id=0;
-    $newproduto = "INSERT INTO Produtos(id , nome, descricao ,
-                                            preco_compra, porcentagem_venda,
-                                            preco_venda, valor_total_stoque,
-                                            qt_dade, date_validade)
-                                            VALUES(
-                                                :id , :nome, 
-                                                :descricao ,
-                                                :preco_compra,
-                                                :porcentagem_venda,
-                                                :preco_venda,
-                                                :valor_total_stoque,
-                                                :qt_dade,
-                                                :date_validade)";
-    $stmt = $this->db->prepare($newproduto);
-    $stmt->bindParam("id" , $id);
-    $stmt->bindParam("nome" , $_POST['nome']);
-    $stmt->bindParam("descricao" , $_POST['descricao']);
-    $stmt->bindParam("preco_compra" , $_POST['preco_compra']);
-    $stmt->bindParam("porcentagem_venda" , $_POST['porcentagemVenda']);
-
-    $preco_compra = floatval($_POST['preco_compra']);
-    $porcentagemVenda= floatval($_POST['porcentagemVenda']);
-    $Quantidade = floatval($_POST['qt_dade']);
-    $resVAlorVenda = $preco_compra / 100 * ($porcentagemVenda) + ($preco_compra);
-
-    $stmt->bindParam("preco_venda" , $resVAlorVenda);
-
-    $valorstoque = floatval($resVAlorVenda * $Quantidade);
-
-    $stmt->bindParam("valor_total_stoque" , $valorstoque);
-    $stmt->bindParam("qt_dade" , $_POST['qt_dade']);
-    $stmt->bindParam("date_validade" , $_POST['date']);
-    $stmt->execute();
+    $produtos = new Produtos();
+    $produtos->setConnection($this->db);
+    $produtos->setContainer($this->container);
+    $produtos->setSession($this->session);
+    $produtos->setId(0);
+    $produtos->setNome($_POST['nome']);
+    $produtos->setQtdade($_POST['qt_dade']);
+    $produtos->setDatavalidade($_POST['date']);
+    $produtos->setPrecocompra($_POST['precocompra']);
+    $produtos->setPorcentagemvenda($_POST['porcentagemVenda']);
+    $produtos->setDesccricao($_POST['descricao']);
+    $produtos->insertProdutos();
     
                                                
     // Redirect para listar
@@ -127,31 +105,44 @@ public function insert_bebidas(Request  $request, Response $response,  array $ar
 // Form listar
 public function listar_produto(Request  $request, Response $response, $args)
 {
-    $produto =  $this->db->query("SELECT * FROM Produtos");
+    $pro = new Produtos();
+    $pro->setConnection($this->db);
+    $pro->setContainer($this->container);
+    $pro->setSession($this->session);
+    $pro->listarProdutos();
+
     return $this->container->view
-                            ->render($response ,'admin/produtos/listar_produto.twig' , 
-                                ['produto'=>$produto]);
+    ->render($response ,'admin/produtos/listar_produto.twig' , 
+        ['produto'=>$pro->listarProdutos()]);
+
 }
 //GetIdBebidas
-public function updateProduto(Request  $request, Response $response, $args)
+public function updateProdutos(Request  $request, Response $response, $args)
 {
-      // Agora vamos update produtos
-      // calcular o valor de estoque
-      // calcular preço de venda
-    $produto = "UPDATE Produtos set qt_dade=:qt_dade,
-                                    porcentagem_venda=:porcentagem_venda ,
-                                    preco_compra=:preco_compra where id=:id";
-    $stmt = $this->db->prepare($produto);
-    $stmt->bindParam("id" , $_POST['id']);
-    $stmt->bindParam("qt_dade" , $_POST['qt']);
-    $stmt->bindParam("preco_compra" , $_POST['preco_compra']);
-    $stmt->bindParam("porcentagem_venda" , $_POST['porcentagem_venda']);
-    $stmt->execute();
+    $Stoque = new Produtos();
+    $Stoque->setConnection($this->db);
+    $Stoque->setContainer($this->container);
+    $Stoque->setSession($this->session);
+    $Stoque->setId($_POST['id']);
+    $Stoque->setQtdade($_POST['qt']);
+    $Stoque->setPorcentagemvenda($_POST['porcentagemvenda']);
+    $Stoque->setPrecocompra($_POST['precocompra']);
+    $Stoque->updateProduto();
+
+
+    $url = $this->container->get('router')->pathFor('produtos');
+    return $response->withStatus(302)->withHeader('Location', $url);
     
-     return $response
-     ->withHeader('Location', '/produtos')
-     ->withStatus(302);
+}
+public function deletaProduto(Request  $request, Response $response, $args){
+    $produto = new Produtos();
+    $produto->setConnection($this->db);
+    $produto->setId($_GET['id']);
+    $produto->deleteProduto();
+
+    $url = $this->container->get('router')->pathFor('produtos');
+    return $response->withStatus(302)->withHeader('Location', $url);
 
 }
-
+    
 }

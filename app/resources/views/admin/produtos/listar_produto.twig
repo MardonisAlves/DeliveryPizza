@@ -27,15 +27,17 @@
        <td>{{produtos.valor_total_stoque}}</td>
       <td>
 
-        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editproduto" data-iduser={{produtos.id}}
+        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editproduto" 
+
+        data-iduser={{produtos.id}}
         data-name={{produtos.nome}}
         data-qt={{produtos.qt_dade}}
-        data-compra={{produtos.preco_venda}}
+        data-compra={{produtos.preco_compra}}
         data-lucro={{produtos.porcentagem_venda}}>
         <span><i class="icon ion-md-create text-white"></i></span></button>
 
-        <button type="button" class="btn btn-danger btn-sm">
-        <span><i class="icon ion-md-trash text-white"></i></span></button>
+        <a href="/deletarProduto?id={{produtos.id}}" class="btn btn-warning btn-sm">
+        <span><i class="fa fa-trash"></i></span></a> 
 
 
 
