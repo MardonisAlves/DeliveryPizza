@@ -46,6 +46,8 @@ $this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
     $this->get('/listaruser' , 'AdminController:listarUser')->setName('listarUser');
         // get form  enedereco by id
     $this->get('/UpdateUserEndeId', 'AdminController:UpdateUserEndeId')->setName('UpdateUserEndeId');
+        // new endereco
+    $this->get('/newendereco', 'AdminController:newendereco')->setName('Newendereco');
         // update endereco user
     $this->map(['POST','GET'],'/updateendereco' , 'AdminController:updateendereco')->setName('updateendereco');
         // update user
@@ -94,7 +96,7 @@ $this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
             // listar cardapio
         $this->get('/listar', 'CardapioController:listarcardapio')->setName('listar');
             // insert cardapio
-        $this->post('/insert', 'CardapioController:inserircardapio')->setName('insert');
+        $this->get('/insert', 'CardapioController:inserircardapio')->setName('insert');
             // atualizar cardapio
         $this->get('/atualizar', 'CardapioController:alualizarcardapio')->setName('atualizar');
             // excluir cardapio

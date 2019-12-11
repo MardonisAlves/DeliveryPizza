@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\Users;
+use App\Model\Endereco;
 use PHPUnit\Framework\Constraint\IsEmpty;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -438,8 +439,41 @@ public function getEnderecoByid(Request $req , Response $res , $args){
         $url = $this->container->get('router')->pathFor('index');
         return $res->withStatus(302)->withHeader('Location', $url);
 }
+}
+// new Endereco
+
+public function newendereco(Request $req , Response $res , $args)
+{
+    
+
+    $newendereco = new Endereco();
+    $newendereco->setConnection($this->db);
+    $newendereco->setContainer($this->container);
+    $newendereco->setSession($this->session);
+    // verificar endereco
+
+    $newendereco->setId(0);
+    $newendereco->setId_user(3);
+    $newendereco->setRua("Manoel lima");
+    $newendereco->setBairro("São jose");
+    $newendereco->setCep("61801-740");
+    $newendereco->setCidade("Maracanau");
+    $newendereco->setReferencia("não tem");
+    $newendereco->setNumero(8877);
+    $newendereco->setTelefone(989578193);
+
+    
+    $newendereco->Novoendereco();
+
+    return $res
+  ->withHeader('Location', '/listaruser')
+  ->withStatus(302);
+
+
 
 }
+
+
 //update endereço
 public function updateendereco(Request $request, Response $response, $args)
 {

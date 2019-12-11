@@ -2,30 +2,22 @@
 
 namespace App\Controller;
 
-
-use App\Model\Contact;
-use App\Model\Users;
-use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use PHPUnit\Framework\Constraint\Count;
-use Doctrine\Common\Collections\ArrayCollection;
-use App\Model\UsersClientes;
 use App\Model\Cardapio;
-use App\Model\Produtos;
 use DateTime;
-use SebastianBergmann\Exporter\Exporter;
+use Illuminate\Support\Facades\Date;
 
 class CardapioController 
 {
-    protected $em;
+    protected $db;
     private $container;
     private $flash;
     private $session;
     
-    public function __construct($container ,EntityManager $em ,$flash ,  $session)
+    public function __construct($container , $db ,$flash ,  $session)
 {
-        $this->em = $em;
+        $this->db = $db;
         $this->container=$container;
         $this->flash = $flash;
         $this->session = $session;
@@ -35,6 +27,8 @@ class CardapioController
 // index cardapio get form
 public  function index(Request $request, Response $response, $args)
 {
+
+    // verificar quais informações colocar na view index.
     $produtos= $this->em->getRepository("App\Model\Produtos")->findAll();
     return $this->container->view->render($response ,
                                                 'admin/cardapio/cardapio.twig',
@@ -44,27 +38,27 @@ public  function index(Request $request, Response $response, $args)
 public function inserircardapio(Request $request, Response $response, $args)
 {
 
-   // getProdutos by id
-    $produtos= $this->em->find("App\Model\Produtos", $_POST['idproduto']);
     
 
     // insert cardapio
     $cardapio =  new Cardapio();
-    $cardapio->setName("Calabresa");
-    $cardapio->setDate(new DateTime(now));
-    $cardapio->setDescricao("Muito boa");
-    // rever o campo type
-    $cardapio->setPreco(9.9); 
+    $cardapio->setConnection($this->db);
+    $cardapio->setContainer($this->container);
+    $cardapio->setSession($this->session);
+    $cardapio->setId(0);
+    $cardapio->setNomesabor("Calabresa");
     $cardapio->setTamanho("M");
-    $cardapio->setUrlImage("url_imagem");
+    $cardapio->setValor("16.90");
+    $cardapio->setDatapedido("11/12/2019");
+    $cardapio->setQtdade(1);
+    $cardapio->setDescricao("Calabresa , oregano , tomate , molgo  branco , queijo");
+    $cardapio->setUrlimg("urlimg");
+    $cardapio->insert();
 
-    $this->em->persist($cardapio);
-    $this->em->flush();
+    // fazer upload da img do cardapio
+   
 
-    // persisitir as chaves na table produtos_cardapio
-
-
-    // depois render para view
+        // depois render para view
 
     
 
@@ -75,15 +69,7 @@ public function inserircardapio(Request $request, Response $response, $args)
 // listar\
 public function listarcardapio(Request $request, Response $response, $args)
 {
-    // array com lista de cardapio
     
-    //var_dump($cardapio);
-    /*
-    return $this->container->view->render($response , 
-                                        'cardapio.twig' ,  
-                                        Array('cardapios' =>  $cardapios))
-
-    */
     $produtos= $this->em->find("App\Model\Produtos", 1);
    var_export($produtos);  
 

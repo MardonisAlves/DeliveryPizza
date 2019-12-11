@@ -114,7 +114,7 @@ $container['ClienteController'] = function ($container){
 $container['CardapioController'] = function ($container) {
 
     return new \App\Controller\CardapioController($container  , 
-                                                $container->get('em') , 
+                                                $container->get('pdo') , 
                                                 $container->get('flash'),
                                                 $container->get('session'));
 
