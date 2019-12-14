@@ -60,26 +60,7 @@ public function insertBebidas(Request  $request, Response $response,  array $arg
         }
     }
 
-    /*foreach ($produto as  $value) {
-        if($value->getUrlImage() == $_FILES['url_image']['name'])
-        {
-            $this->flash->addMessageNow('msg', 'Escolha outro nome para imagem');
-            $messages = $this->flash->getMessages();
-
-    return $this->container->view->render(
-                            $response ,
-                            'admin/form_bebida.twig',
-                            Array( 
-                              'messages' => $messages));
-        }else{
-
-        $directory = $this->container->get('upload_directory');
-        $destination  = $directory . $_FILES['url_image']['name'];
-        $move = move_uploaded_file($_FILES['url_image']['tmp_name'], $destination);
-
-        }
-    }*/
-
+   
 
     //Gravar no Banco de dados o produto
     $produtos = new Produtos();

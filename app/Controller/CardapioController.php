@@ -27,12 +27,7 @@ class CardapioController
 // index cardapio get form
 public  function index(Request $request, Response $response, $args)
 {
-
-    // verificar quais informações colocar na view index.
-    $produtos= $this->em->getRepository("App\Model\Produtos")->findAll();
-    return $this->container->view->render($response ,
-                                                'admin/cardapio/cardapio.twig',
-                                                 Array('produtos' => $produtos));
+    return $this->container->view->render($response ,'admin/cardapio/cardapio.twig');
 }
 // inserir 
 public function inserircardapio(Request $request, Response $response, $args)
@@ -46,18 +41,19 @@ public function inserircardapio(Request $request, Response $response, $args)
     $cardapio->setContainer($this->container);
     $cardapio->setSession($this->session);
     $cardapio->setId(0);
-    $cardapio->setNomesabor("Calabresa");
-    $cardapio->setTamanho("M");
-    $cardapio->setValor("16.90");
-    $cardapio->setDatapedido("11/12/2019");
-    $cardapio->setQtdade(1);
-    $cardapio->setDescricao("Calabresa , oregano , tomate , molgo  branco , queijo");
-    $cardapio->setUrlimg("urlimg");
+    $cardapio->setNomesabor($_POST['nomesabor']);
+    $cardapio->setTamanho($_POST['tamanho']);
+    $cardapio->setValor($_POST['valor']);
+    $cardapio->setDescricao($_POST['descricao']);
+    
+
+ // fazer upload da img do cardapio criar um method para issso
+        $directory = $this->container->get('upload_directory');
+        $destination  = $directory . $_FILES['urlimg']['name'];
+        $move = move_uploaded_file($_FILES['urlimg']['tmp_name'], $destination);
+
+    $cardapio->setUrlimg($destination);
     $cardapio->insert();
-
-    // fazer upload da img do cardapio
-   
-
         // depois render para view
 
     

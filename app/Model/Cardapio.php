@@ -14,24 +14,18 @@ class Cardapio extends CardapioAbstract
    */
     public function insert(){
 
-    $sql = "INSERT INTO Cardapio(id,nomesabor, tamanho, 
-                                valor , datapedido , qtdade ,
-                                descricao , urlimg) 
-    VALUES(:id ,:nomesabor, :tamanho, :valor , :datapedido
-    ,:qtdade , :descricao , :urlimg)";
+    $sql = "INSERT INTO Cardapio(id,nomesabor, tamanho,  valor  ,descricao , urlimg) 
+    VALUES(:id ,:nomesabor, :tamanho, :valor , :descricao , :urlimg)";
 
     $stmt = $this->getConnection()  ->prepare( $sql );
     $stmt->bindParam( ':id', $this->getId());
     $stmt->bindParam( ':nomesabor', $this->getNomesabor());
     $stmt->bindParam( ':tamanho', $this->getTamanho() );
     $stmt->bindParam( ':valor', $this->getValor());
-    $stmt->bindParam( ':datapedido', $this->getDatapedido());
-    $stmt->bindParam( ':qtdade', $this->getQtdade());
     $stmt->bindParam( ':descricao', $this->getDescricao());
     $stmt->bindParam( ':urlimg', $this->getUrlimg());
-    
 
-    $result = $stmt->execute();
+    $stmt->execute();
 
     }
 

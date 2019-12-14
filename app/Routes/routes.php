@@ -96,7 +96,7 @@ $this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
             // listar cardapio
         $this->get('/listar', 'CardapioController:listarcardapio')->setName('listar');
             // insert cardapio
-        $this->get('/insert', 'CardapioController:inserircardapio')->setName('insert');
+        $this->post('/insert', 'CardapioController:inserircardapio')->setName('insert');
             // atualizar cardapio
         $this->get('/atualizar', 'CardapioController:alualizarcardapio')->setName('atualizar');
             // excluir cardapio

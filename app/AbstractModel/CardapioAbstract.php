@@ -9,8 +9,6 @@ abstract class CardapioAbstract extends BaseAbstract
    private $nomesabor;
    private $tamanho;
    private $valor; 
-   private $datapedido;
-   private $qtdade;
    private $descricao;
    private $urlimg;
 
@@ -77,33 +75,6 @@ abstract class CardapioAbstract extends BaseAbstract
       return $this;
    }
 
- 
-   public function getDatapedido()
-   {
-      return $this->datapedido;
-   }
-
-  
-   public function setDatapedido($datapedido)
-   {
-      $this->datapedido = $datapedido;
-
-      return $this;
-   }
-
-  
-   public function getQtdade()
-   {
-      return $this->qtdade;
-   }
-
-  
-   public function setQtdade($qtdade)
-   {
-      $this->qtdade = $qtdade;
-
-      return $this;
-   }
 
    
    public function getDescricao()
