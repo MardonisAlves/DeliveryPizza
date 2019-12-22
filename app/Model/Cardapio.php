@@ -29,35 +29,33 @@ class Cardapio extends CardapioAbstract
 
     }
 
-    /* @abstract get Users*/
-    public function selctUsers()
+    /* @abstract get cardapio*/
+    public function selctAll($response)
     {
-        
-        $users = $this->getConnection()->query("SELECT * FROM Users" ,PDO::FETCH_ASSOC);
-        
-        return $this->getContainer()->view->render($response ,'admin/users/listarUser.twig', ["users"=>$users]);
-       
+       $card  = $this->getConnection()->query("SELECT * FROM Cardapio" ,PDO::FETCH_ASSOC);
+
+      return $card;
+      
     }
 
     /* @abstract update users*/
-    public function updateusers($response){
+    public function updatePizza(){
 
 
-        $user =  "UPDATE Users set email=:email ,tipouser=:tipouser where id=:id";
-        $stmt = $this->getConnection()->prepare($user);
+        $card =  "UPDATE Cardapio set valor=:valor  where id=:id";
+        $stmt = $this->getConnection()->prepare($card);
 
         $stmt->bindParam("id" , $this->getId());
-        $stmt->bindParam("email" , $this->getEmail());
-        $stmt->bindParam("tipouser" , $this->getTipouser());
+        $stmt->bindParam("valor" , $this->getValor());
         $stmt->execute();
 
     }
 
     /* @abstract delete user*/ 
-    public function deleteuser($response){
+    public function excluircardapio(){
 
-        $users =  "DELETE from Users where id=:id";
-        $stmt= $this->getConnection()->prepare($users);
+        $card =  "DELETE from Cardapio where id=:id";
+        $stmt= $this->getConnection()->prepare($card);
         $stmt->bindParam("id" , $this->getId());
         $stmt->execute();
           

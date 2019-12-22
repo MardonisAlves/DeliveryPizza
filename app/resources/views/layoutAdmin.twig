@@ -32,6 +32,8 @@
             {% include 'partials/updateUser.twig' %}
             {% include 'partials/editproduto.twig' %}
 
+            {% include 'partials/editarcardapio.twig'%}
+            
             {% include 'partials/navsideBar.twig' %}
 
             {% block content %}
@@ -87,6 +89,26 @@
           modal.find('#id').val(iduuser)
           modal.find('#email').val(email)
           modal.find('#typeuser').val(typeuser)
+});
+
+$('#editarcardapio').on('show.bs.modal', function (event) {
+
+          var button = $(event.relatedTarget)
+          var idcard= button.data('cardid')
+          var valorcard = button.data('cardvalor')
+          var descricaocard = button.data('carddescricao');
+          
+        for(i = 0; i < descricaocard.length ; i++){
+            console.log(descricaocard[i]);
+        }
+          
+          var modal = $(this)      
+
+
+          modal.find('#idcard').val(idcard)
+          modal.find('#valor').val(valorcard)
+          modal.find('#descricao').val(descricaocard)
+         
 });
     </script>
 

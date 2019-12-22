@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Model\Users;
 use App\Model\Endereco;
-use PHPUnit\Framework\Constraint\IsEmpty;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -49,6 +48,7 @@ public function home(Request $request, Response $response, $args)
 // login
 public function login(Request $request, Response $response, $args)
 {
+  // refazer a logiva de login
   $email = $_POST['email'];
 $contact = $this->db->query("SELECT * FROM Users where email='$email'");
 
@@ -106,7 +106,9 @@ if($contact){
                                     Array( 'messages' => $messages));
 }
 
-
+return $this->container
+->view
+->render($response ,'admin/login/loginCliente.twig');
   
 }
 
@@ -515,8 +517,9 @@ public function logout(Request $request, Response $response, $args)
 
   }else{
 
-      $url = $this->container->get('router')->pathFor('login');
-      return $response->withStatus(302)->withHeader('Location', $url);
+    return $this->container
+    ->view
+    ->render($response ,'admin/login/loginCliente.twig');
   }
 
   

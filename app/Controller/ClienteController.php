@@ -11,7 +11,6 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use PHPUnit\Framework\Constraint\Count;
 use Doctrine\Common\Collections\ArrayCollection;
-use phpDocumentor\Reflection\Types\Null;
 use \Psr\Http\Message\StreamInterface;
 use Slim\Http\UploadedFile;
 
@@ -33,7 +32,7 @@ class ClienteController
 }
 // Acesso cliente
 
-public function homecliente(Request $Request, Response $Response , $args)
+public function homecliente(Request $Request, Response $response , $args)
 {
     return $this->container->view->render($response ,'homecliente/homecliente.twig');
 }

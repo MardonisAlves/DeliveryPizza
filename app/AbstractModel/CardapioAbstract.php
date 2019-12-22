@@ -15,9 +15,10 @@ abstract class CardapioAbstract extends BaseAbstract
     /***
      * Methods abstratos
      */
-    //abstract public function index();
-    
-
+    abstract public function insert();
+    abstract public function selctAll($response);
+    abstract public function  updatePizza();
+    abstract public function excluircardapio();
 
     /**
      * Getters e Setters

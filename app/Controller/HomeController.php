@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Model\Users;
 use App\Model\Contact;
+use App\Model\Cardapio;
 use App\Validate\Validate;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -11,28 +12,28 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class HomeController 
 {
-      private $em;
+      private $db;
       private $container;
       private $flash;
-public function __construct($container ,EntityManager $em ,$flash)
+public function __construct($container , $db  , $flash ,$session)
 {
-          $this->em = $em;
+          $this->db = $db;
           $this->container=$container;
           $this->flash = $flash;
+          $this->session = $session;
+
           
 }
 public function index(Request $request, Response $response, $args) 
 {
-// Return os cardapio pizzza
-  // Criar as Session
-  return $this->container->view->render(
-    $response ,
-    'index.twig');
-  
+  // listar os cardapio
+  $card = new Cardapio();
+  $card->setConnection($this->db);
+  $card->setContainer($this->container);
+  $card->setSession($this->session);
 
-  // teste validate 
-  //$v = new Validate();
-  //$v->validate($request ,  $response , $args);
+  return $this->container->view->render($response, 'index.twig' , ['allcardapio' => $card->selctAll($response)]);
+
 
 }
 

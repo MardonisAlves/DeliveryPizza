@@ -63,12 +63,12 @@ $container['pdo'] = function ($c) {
 
 // HOME CONTROLER
 $container['HomeController'] = function ($container) {
-return new \App\Controller\HomeController($container  , $container->get('em') , $container->get('flash'));
+return new \App\Controller\HomeController($container  , 
+                                            $container['pdo'],
+                                            $container->get('flash') , 
+                                            $container->get('session'));
 };
- // ValidateHomeController
-$container['Validate'] = function ($container) {
-return  \App\Validate\Validate($container  ,$container->get('flash'));
-};
+ 
 
 
 // ADMINCONTROLLER
@@ -82,7 +82,7 @@ return new App\Controller\AdminController($container ,
 // SenhaController
 $container['SenhaController'] = function ($container){
     return new App\Controller\SenhaController($container , 
-                                                $container->get('em') ,
+                                                $container->get('pdo') ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
 };
@@ -107,14 +107,16 @@ $container['ProdutoController'] = function ($container){
 // ClienteController
 
 $container['ClienteController'] = function ($container){
-    return new App\Controller\ClienteController($container , $container->get('em') ,$container->get('flash'));
+    return new App\Controller\ClienteController($container ,
+                                                $container['pdo'],
+                                                 $container->get('flash') ,
+                                                 $container->get('session'));
 };
 
 // CardapioController
 $container['CardapioController'] = function ($container) {
-
     return new \App\Controller\CardapioController($container  , 
-                                                $container->get('pdo') , 
+                                                $container['pdo'] , 
                                                 $container->get('flash'),
                                                 $container->get('session'));
 

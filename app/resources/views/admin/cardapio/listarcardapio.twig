@@ -1,0 +1,50 @@
+{% extends 'layoutAdmin.twig' %}
+
+{% block content %}
+
+
+
+<div class="container flex-wrap">
+  <div class="login-box-body">
+    <table class="table table-responsive-md">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Tamanho</th>
+      <th scope="col">Valor</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    {% for card in card %}
+    <tr>
+      <th scope="row">{{card.id}}</th>
+      <td>{{card.nomesabor}}</td>
+      <td>{{card.tamanho}}</td>
+       <td>{{card.valor}}</td>
+
+      <td>
+
+        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" 
+        data-target="#editarcardapio" 
+
+        data-cardid={{card.id}}
+        data-cardvalor={{card.valor}}
+        data-carddescricao = {{card.descricao}}
+        <span><i class="icon ion-md-create text-white"></i></span></button>
+
+        <a href="/excluir?id={{card.id}}" class="btn btn-warning btn-sm">
+        <span><i class="fa fa-trash"></i></span></a>
+        
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+
+
+
+{% endblock  %}
