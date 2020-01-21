@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller; 
+namespace App\Controller;
 
 use App\Model\Users;
 use App\Model\Contact;
@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 
-class HomeController 
+class HomeController
 {
       private $db;
       private $container;
@@ -22,17 +22,19 @@ public function __construct($container , $db  , $flash ,$session)
           $this->flash = $flash;
           $this->session = $session;
 
-          
+
 }
-public function index(Request $request, Response $response, $args) 
+public function index(Request $request, Response $response, $args)
 {
   // listar os cardapio
   $card = new Cardapio();
   $card->setConnection($this->db);
   $card->setContainer($this->container);
   $card->setSession($this->session);
+  $allcardapio = $card->selctAll($response);
 
-  return $this->container->view->render($response, 'index.twig' , ['allcardapio' => $card->selctAll($response)]);
+
+  return $this->container->view->render($response, 'index.twig' , ['allcardapio' => $allcardapio]);
 
 
 }
@@ -43,11 +45,11 @@ public function servicos(Request $request, Response $response, $args)
 {
   return $this->container->view->render(
     $response ,
-    'servicos.twig'); 
+    'servicos.twig');
 }
 
 
-public function about( $request,  $response) 
+public function about( $request,  $response)
 {
   return $this->container->view->render(
     $response ,
@@ -56,7 +58,7 @@ public function about( $request,  $response)
 
 
 
-public function contact( $request,  $response) 
+public function contact( $request,  $response)
 {
   return $this->container->view->render(
     $response ,
@@ -72,8 +74,8 @@ public function CardCliente($request,  $response)
 
 public function InserCliente(Request $request, Response $response, $args)
 {
-  
-// verificar a senha do post de é igual 
+
+// verificar a senha do post de é igual
 
 // verificar os canpos vazios
 if($_POST['senha'] != $_POST['repetsenha'])
@@ -89,14 +91,19 @@ if($_POST['senha'] != $_POST['repetsenha'])
 
 
 // verificar se o email ja existe
-$cliente = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email']));
+$Users = new Users();
+$Users->setConnection($this->db);
+$Users->setContainer($this->container);
+$Users->setEmail($_POST['email']);
+$cliente = $Users->getuserByemail();
 // insert cliente ja esta em funcionamento
+if(isset($cliente)){
 foreach($cliente as $l)
 {
-       
+
   if($l->getEmail() == $_POST['email'])
   {
-        
+
   $this->flash->addMessageNow('msg', 'E-mail js esta cadstrado');
   $messages = $this->flash->getMessages();
   return $this->container->view->render(
@@ -107,25 +114,30 @@ foreach($cliente as $l)
 
   }
 }
+}else {
+  $Users = new Users();
+  $Users->setConnection($this->db);
+  $Users->setContainer($this->container);
+  $Users->setId(0);
+  $Users->setEmail($_POST['email']);
+  $Users->setNome($_POST['nome']);
+  $Users->setSenha($_POST['senha']);
+  $Users->setTipouser($_POST['typeUser']);
+  $Users->insert($response);
 
-$user = new Users();
-        $this->em->persist($user);
-        $user->setFullName($_POST["name"]);
-        $user->setEmail($_POST["email"]);
-        $user->setTypeUser($_POST["typeUser"]);
-        $user->setSenha(password_hash($_POST["senha"],PASSWORD_DEFAULT));
-        $this->em->flush();
-
-// redirect para o login do user view
-        $this->flash->addMessageNow('msg', 'Cadatrado com Sucesso');
-        $messages = $this->flash->getMessages();
-        return $this->container->view->render(
-                                          $response ,
-                                          'admin/login/loginCliente.twig',
-                                          Array( 'messages' => $messages));
+  // redirect para o login do user view
+          $this->flash->addMessageNow('msg', 'Cadatrado com Sucesso');
+          $messages = $this->flash->getMessages();
+          return $this->container->view->render(
+                                            $response ,
+                                            'admin/login/loginCliente.twig',
+                                            Array( 'messages' => $messages));
 }
 
-// New Contact 
+
+}
+
+// New Contact
 public function newcontact($request, $response, $args)
 {
   $contact = new Contact();
@@ -146,5 +158,3 @@ public function newcontact($request, $response, $args)
 
 
 }
-
-   

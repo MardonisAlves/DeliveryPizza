@@ -6,8 +6,8 @@ use PDO;
 
 class Users extends UserAbstract
 {
-  
-   /*  
+
+   /*
     @abstract  insert
    */
     public function insert($response){
@@ -28,11 +28,11 @@ class Users extends UserAbstract
     /* @abstract get Users*/
     public function selctUsers($response)
     {
-        
+
         $users = $this->getConnection()->query("SELECT * FROM Users" ,PDO::FETCH_ASSOC);
-        
+
         return $this->getContainer()->view->render($response ,'admin/users/listarUser.twig', ["users"=>$users]);
-       
+
     }
 
     /* @abstract update users*/
@@ -49,14 +49,22 @@ class Users extends UserAbstract
 
     }
 
-    /* @abstract delete user*/ 
+    /* @abstract delete user*/
     public function deleteuser($response){
 
         $users =  "DELETE from Users where id=:id";
         $stmt= $this->getConnection()->prepare($users);
         $stmt->bindParam("id" , $this->getId());
         $stmt->execute();
-          
+
+    }
+
+    public function getuserByemail(){
+      $user = $this->getConnection()->query("SELECT * FROM Users where email=:email" ,PDO::FETCH_ASSOC);
+      $user->bindParam("email" , $this->getEmail());
+
+      return $user;
+
     }
 
     }

@@ -64,6 +64,10 @@ span {
 .img-thumbnail{
     
     border: 0px;
+    height: 180px;
+}
+#img-thumbnail{
+    height: 180px;
 }
 /* ---------------------------------------------------
     SIDEBAR STYLE

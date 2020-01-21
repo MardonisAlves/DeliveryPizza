@@ -5,7 +5,7 @@
 
     return [
 
-        
+
 
             'settings' => [
 
@@ -38,7 +38,7 @@
                         "host" => "localhost",
                         "dbname" => "deliverypizza",
                         "user" => "root",
-                        "pass" => "Jk8yup02@"
+                        "pass" => "jk8yup02@"
                     ],
 
             ]

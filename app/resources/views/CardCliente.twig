@@ -5,20 +5,20 @@
 <div class="container">
 
 <section id="contact" class="section-padding">
-      
+
       <div class="row">
         <div class="header-section text-center">
 
-          
+
           <hr class="bottom-line">
-       
+
 
         {% for message in messages %}
         <div class="alert alert-success">
         <li>{{ message[0] }}</li>
         </div>
         {% endfor %}
-       
+
      </div>
         <p class="login-box-msg">Cadastro cliente</p>
 
@@ -29,7 +29,7 @@
               <div class="col-sm-12">
               <input type="email" class="form-control" name="email" id="email" placeholder="Seu Email" data-rule="email" data-msg="Please enter a valid email" required="obrigatorio"/>
 
-               <input type="text" class="form-control" name="name" id="name" placeholder="name"  required="obrigatorio"/>
+               <input type="text" class="form-control" name="nome" id="name" placeholder="name"  required="obrigatorio"/>
 
               <input type="hidden" class="form-control" name="typeUser" value="cliente" required="obrigatorio"/>
               </div>
