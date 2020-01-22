@@ -1,5 +1,5 @@
-# Slim-php-Agenda-restFull
-<h3>Slim Microframework e suas dependencias</h3>
+#DeliveryPizza
+<h3>Slim Microframework</h3>
 <p>
     Neste pequeno projeto utilizaremos o Slim Framework php para o nosso back-end
     e no front-end bootstrap e a nossa view com o twig mantido pela sinfony. Lembrando que
@@ -8,10 +8,9 @@
 </p>
 <ul>
     <li>Slim framework</li>
-    <li>Doctrine ORM</li>
     <li>slim/twig-view</li>
     <li> slim/flash </li>
-   
+
 </ul>
 
 <div>
@@ -21,13 +20,6 @@ Para instalar o slim:<br>
 composer require slim/slim "^3.0"
 </p>
 
-<p>
-<a href="https://www.doctrine-project.org/projects/doctrine-orm/en/current/tutorials/getting-started.html">Dotrine ORM</a>
-
-Para instalar o Doctrine ORM:<br>
-composer require doctrine/orm:^2 
-
-
 </p>
 
 
@@ -36,7 +28,7 @@ composer require doctrine/orm:^2
 Para instalar o slim/twig-view
 <br>
 
-composer require Slim/twig-view 
+composer require Slim/twig-view
 
 </p>
 
@@ -50,17 +42,7 @@ composer require slim/flash
 </p>
 
 <div>
-
-<h3>Primeiros Passos para Configurar o Slim</h3>
-
+<h3>Modulos em andamento</h3>
+<img src="public/img/pastasistemaimg/home.png">
 <div>
-
-
-
-
-
-
 </div># DeliveryPizza
-# DeliveryPizza
-# DeliveryPizza
-# DeliveryPizza

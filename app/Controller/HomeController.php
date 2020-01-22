@@ -141,7 +141,7 @@ foreach($cliente as $l)
 public function newcontact($request, $response, $args)
 {
   $contact = new Contact();
-//  $this->em->persist($contact);
+  $this->em->persist($contact);
   $contact->setName($_POST['name']);
   $contact->setEmail($_POST['email']);
   $contact->setTelefone($_POST['telefone']);
