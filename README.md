@@ -51,5 +51,7 @@ composer require slim/flash
 <img src="public/img/pastasistemaimg/admin.png">
 <h1>Pagina add user</h1>
 <img src="public/img/pastasistemaimg/user.png">
+<h1>update User</h1>
+<img src="public/img/pastasistemaimg/udateuser.png">
 <div>
 </div># DeliveryPizza

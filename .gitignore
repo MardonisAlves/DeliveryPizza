@@ -1,4 +1,4 @@
 /vendor
-/.phpintel
-/.project
-/.settings
+/phpintel
+/project
+/settings
