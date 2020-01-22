@@ -42,10 +42,14 @@ composer require slim/flash
 </p>
 
 <div>
-<h3>Modulos em andamento</h3>
+
 <h1>Pagina Home</h1>
 <img src="public/img/pastasistemaimg/home.png">
 <h1>pagina contato</h1>
 <img src="public/img/pastasistemaimg/contato.png">
+<h1>Pagina admin</h1>
+<img src="public/img/pastasistemaimg/admin.png">
+<h1>Pagina add user</h1>
+<img src="public/img/pastasistemaimg/user.png">
 <div>
 </div># DeliveryPizza
