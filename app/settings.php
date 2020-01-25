@@ -38,7 +38,7 @@
                         "host" => "localhost",
                         "dbname" => "deliverypizza",
                         "user" => "root",
-                        "pass" => "jk8yup02@"
+                        "pass" => ""
                     ],
 
             ]
