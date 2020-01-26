@@ -23,17 +23,17 @@
     <tr>
       <th scope="row">{{produtos.id}}</th>
       <td>{{produtos.nome}}</td>
-      <td>{{produtos.qt_dade}}</td>
-       <td>{{produtos.valor_total_stoque}}</td>
+      <td>{{produtos.qtdade}}</td>
+       <td>{{produtos.valortotalstoque}}</td>
       <td>
 
         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editproduto" 
 
         data-iduser={{produtos.id}}
         data-name={{produtos.nome}}
-        data-qt={{produtos.qt_dade}}
-        data-compra={{produtos.preco_compra}}
-        data-lucro={{produtos.porcentagem_venda}}>
+        data-qt={{produtos.qtdade}}
+        data-compra={{produtos.precocompra}}
+        data-lucro={{produtos.porcentagemvenda}}>
         <span><i class="icon ion-md-create text-white"></i></span></button>
 
         <a href="/deletarProduto?id={{produtos.id}}" class="btn btn-warning btn-sm">

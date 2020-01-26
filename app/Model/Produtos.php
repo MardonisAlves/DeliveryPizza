@@ -30,6 +30,29 @@ private $datavalidade;
 
         return $valor;
     }
+    /*valor total stoque*/
+    public function getvalorStoque(){
+
+        $idProduto = $this->getConnection()->query("SELECT * FROM Produtos");
+
+        
+        while($pro = $idProduto->fetch())
+        {
+            $valor = floatVal( $this->getPrecocompra()) * ($this->getQtdade());
+        }
+        
+            return $valor ;
+        
+        
+    }
+    /*
+    *  callcular preço venda
+    */
+    public function CalcularPrecovenda(){
+
+            $valor = floatVal( $this->getPrecocompra()) / 100 * ($this->getPorcentagemvenda());
+            return $valor;
+    }
     public function listarProdutos()
     {
         $produto =  $this->getConnection()->query("SELECT * FROM Produtos");
@@ -37,34 +60,35 @@ private $datavalidade;
 
     }
 
+
     public function insertProdutos(){
 
        
     $newproduto = "INSERT INTO Produtos(id , nome, descricao ,
-                                            preco_compra, porcentagem_venda,
-                                            preco_venda, valor_total_stoque,
-                                            qt_dade, date_validade)
+                                            precocompra, porcentagemvenda,
+                                            precovenda, valortotalstoque,
+                                            qtdade, datavalidade)
                                             VALUES(
                                                 :id , :nome, 
                                                 :descricao ,
-                                                :preco_compra,
-                                                :porcentagem_venda,
-                                                :preco_venda,
-                                                :valor_total_stoque,
-                                                :qt_dade,
-                                                :date_validade)";
+                                                :precocompra,
+                                                :porcentagemvenda,
+                                                :precovenda,
+                                                :valortotalstoque,
+                                                :qtdade,
+                                                :datavalidade)";
     $stmt = $this->getConnection()->prepare($newproduto);
     $stmt->bindParam("id" , $this->getId());
     $stmt->bindParam("nome" , $this->getNome());
     $stmt->bindParam("descricao" , $this->getDesccricao());
-    $stmt->bindParam("preco_compra" ,$this->getPrecocompra());
-    $stmt->bindParam("porcentagem_venda" , $this->getPorcentagemvenda());
+    $stmt->bindParam("precocompra" ,$this->getPrecocompra());
+    $stmt->bindParam("porcentagemvenda" , $this->getPorcentagemvenda());
                                             
-    $stmt->bindParam("preco_venda" , $this->CalcularPrecovenda());
+    $stmt->bindParam("precovenda" , $this->CalcularPrecovenda());
 
-    $stmt->bindParam("valor_total_stoque" , $this->valorStoque());
-    $stmt->bindParam("qt_dade" , $this->getQtdade());
-    $stmt->bindParam("date_validade" , $this->getDatavalidade());
+    $stmt->bindParam("valortotalstoque" , $this->getvalorStoque());
+    $stmt->bindParam("qtdade" , $this->getQtdade());
+    $stmt->bindParam("datavalidade" , $this->getDatavalidade());
     $stmt->execute();
         
 
@@ -74,15 +98,15 @@ private $datavalidade;
     
        
             
-        $produto = "UPDATE Produtos set qt_dade=:qt_dade,
-        porcentagem_venda=:porcentagem_venda ,preco_compra=:preco_compra  , valor_total_stoque=:valor_total_stoque where id=:id";
+        $produto = "UPDATE Produtos set qtdade=:qtdade,
+        porcentagemvenda=:porcentagemvenda ,precocompra=:precocompra  , valortotalstoque=:valortotalstoque where id=:id";
         $stmt = $this->getConnection()->prepare($produto);
         $stmt->bindParam("id" , $this->getId());
-        $stmt->bindParam("qt_dade" , $this->getQtdade());
-        $stmt->bindParam("preco_compra" , $this->getPrecocompra());
-        $stmt->bindParam("porcentagem_venda" , $this->getPorcentagemvenda());
+        $stmt->bindParam("qtdade" , $this->getQtdade());
+        $stmt->bindParam("precocompra" , $this->getPrecocompra());
+        $stmt->bindParam("porcentagemvenda" , $this->getPorcentagemvenda());
         // atualizar total_valor_stoque
-        $stmt->bindParam("valor_total_stoque" ,  $this->valorStoque());
+        $stmt->bindParam("valortotalstoque" ,  $this->valorStoque());
         $stmt->execute();
         
         
