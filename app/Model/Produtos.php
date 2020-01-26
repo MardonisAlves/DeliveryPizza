@@ -2,7 +2,7 @@
 
 namespace App\Model;
 use App\AbstractModel\Baseabstract;
-use App\interfaces\interfacesProdutos;
+use App\interfaces\interfaceProdutos;
 use PDO;
 
 class Produtos  extends BaseAbstract implements interfaceProdutos{
