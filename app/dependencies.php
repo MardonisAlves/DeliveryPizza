@@ -121,6 +121,14 @@ $container['CardapioController'] = function ($container) {
                                                 $container->get('session'));
 
     };
+// CarroController
+    $container['CarroController'] = function ($container) {
+    return new \App\Controller\CarroController($container  , 
+                                                $container['pdo'] , 
+                                                $container->get('flash'),
+                                                $container->get('session'));
+
+    };
 
 
 

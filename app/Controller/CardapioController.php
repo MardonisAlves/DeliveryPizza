@@ -31,7 +31,7 @@ public  function index(Request $request, Response $response, $args)
 public function inserircardapio( $request,  $response, $args)
 {
 
-    
+    // verificar se o cardapio ja exiti
 
     // insert cardapio
     $cardapio =  new Cardapio();

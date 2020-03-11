@@ -104,4 +104,11 @@ $this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
 
     });
 
+    // CarroController
+     $app->group('',function(){
+
+        $this->map(['GET','POST'] ,'/initsession', 'CarroController:initsession')->setName('initsession');
+
+    });
+
 

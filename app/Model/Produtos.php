@@ -106,7 +106,7 @@ private $datavalidade;
         $stmt->bindParam("precocompra" , $this->getPrecocompra());
         $stmt->bindParam("porcentagemvenda" , $this->getPorcentagemvenda());
         // atualizar total_valor_stoque
-        $stmt->bindParam("valortotalstoque" ,  $this->valorStoque());
+        $stmt->bindParam("valortotalstoque" ,  $this->getvalorStoque());
         $stmt->execute();
         
         

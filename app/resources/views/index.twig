@@ -17,13 +17,13 @@
        <h3 class="text-center">Cardapio</h3>
      <div class="row top">
      {% for allcardapios in allcardapio %}
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <div class="card">
                 <div class="card-body">
                 <h5 class="card-title">{{allcardapios.nomesabor}}  {{allcardapios.valor}}R$</h5>
-                    <img src="{{allcardapios.urlimg}}" class="img-thumbnail" id="img-thumbnail">
+                    <img src="{{allcardapios.urlimg}}" class="img-thumbnail">
                     <p class="card-text">{{allcardapios.descricao}}</p>
-                    <a href="#" class="btn btn-primary">Mais detalhes {{session.login}}</a>
+                    <a href="initsession?id={{allcardapios.id}}" class="btn btn-primary">Pedir</a>
                 </div>
             </div>
         </div>

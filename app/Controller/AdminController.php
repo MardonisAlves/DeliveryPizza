@@ -28,19 +28,19 @@ public function home(Request $request, Response $response, $args)
 {
 
 
-  if($_SESSION['user'] == 'admin'){
+  if(isset($_SESSION['user']) == 'admin'){
 
 // select as tables para o dashdoards home
   //$users = "SELECT * FROM Users";
   return $this->container->view->render($response ,'admin/home.twig' , ['users' => $users]);
   
-  }elseif($_SESSION['user'] == 'cliente'){
+  }elseif(isset($_SESSION['user']) == 'cliente'){
   
   return $this->container->view->render($response ,'homecliente/homecliente.twig');
     
   }else{
  
-   return $this->container->view->render($response ,'index.twig');
+   return $this->container->view->render($response ,'CardCliente.twig');
   
 }
   
