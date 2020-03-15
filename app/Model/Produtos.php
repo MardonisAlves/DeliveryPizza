@@ -45,6 +45,8 @@ private $datavalidade;
         
         
     }
+
+    
     /*
     *  callcular preço venda
     */

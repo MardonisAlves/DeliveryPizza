@@ -4,17 +4,19 @@ namespace App\Controller;
 use App\Model\Users;
 use App\Model\Contact;
 use App\Model\Cardapio;
+use App\Model\Produtos;
 use App\Validate\Validate;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-
+use PDO;
 
 class CarroController
 {
       private $db;
       private $container;
       private $flash;
+      private $session;
 public function __construct($container , $db  , $flash ,$session)
 {
           $this->db = $db;
@@ -26,13 +28,45 @@ public function __construct($container , $db  , $flash ,$session)
 }
 public function initsession(Request $request, Response $response, $args)
 {
-//--1 aqui iniciamos as session com o id do produto
-   $this->session->set('produto_id', $_GET['id']);
 
-//--2 verificar se ja esta cadastrato , se não cadastrar primeiro
- $url = $this->container->get('router')->pathFor('home');
-return $response->withStatus(302)->withHeader('Location', $url);
-//--3 Depois redirecionar para a pagina cliente
+/*
+* 1 PRIMEIRO CRIAMOS A SESSION INIT DO PRODUTO
+*/
+  
+   
+    $produtos = new Cardapio();
+    $produtos->setConnection($this->db);
+    $produtos->setContainer($this->container);
+    $produtos->setSession($this->session);
+    $listaIdcadapio =  $produtos->selectByid( $_GET['id']);
+
+   while ($value = $listaIdcadapio->fetch()) 
+   {
+
+    $this->session->set('idcarro', $value['id']);
+
+    echo $_SESSION['id'] . "<br>";
+      var_dump($value);
+  
+    }
+
+    
+
+
+
+    
+
+
+/*
+*  2 VERIFICAR SE JA ESTA CADASTRADO , SE NÃO REDIRECIONAR PARA CADASTRO COM (ROUTER)
+*  
+*/
+  $url = $this->container->get('router')->pathFor('home');
+  return $response->withStatus(302)->withHeader('Location', $url);
+
+/*
+* 3  PROPRIO METODO HOME DO ADMINCONTROLLER IRA DIRECIONAR O CLIENTE PARA O PAINEL HOMECLIENTE
+*/
 
 }
 

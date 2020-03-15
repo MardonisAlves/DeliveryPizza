@@ -30,6 +30,7 @@ public  function index(Request $request, Response $response, $args)
 // inserir 
 public function inserircardapio( $request,  $response, $args)
 {
+     if(($_SESSION['user']) == 'admin'){
 
     // verificar se o cardapio ja exiti
 
@@ -63,10 +64,11 @@ public function inserircardapio( $request,  $response, $args)
 
    
 }
+}
 // listar\
 public function listarcardapio( $request,  $response, $args)
 {
-   
+    if(($_SESSION['user']) == 'admin'){
                 $cardapio = new Cardapio();
                 $cardapio->setConnection($this->db);
                 $cardapio->setContainer($this->container);
@@ -77,10 +79,11 @@ public function listarcardapio( $request,  $response, $args)
                 
              
 }
+}
 // atualizar
 public function updatePizza(Request $request, Response $response, $args)
 {
-   
+    if(($_SESSION['user']) == 'admin'){
     $Card = new Cardapio();
     $Card->setConnection($this->db);
     $Card->setId($_POST['id']);
@@ -91,10 +94,12 @@ public function updatePizza(Request $request, Response $response, $args)
     return $response->withStatus(302)->withHeader('Location' ,$url);
 
 }
+}
 
 // excluir
 public function excluircardapio(Request $request, Response $response, $args)
 {
+     if(($_SESSION['user']) == 'admin'){
     //echo "Excluir Cardapio e renderizar para view admin";
     $card = new Cardapio();
     $card->setConnection($this->db);
@@ -104,5 +109,6 @@ public function excluircardapio(Request $request, Response $response, $args)
     $url = $this->container->get('router')->pathFor('listar');
     return $response->withStatus(302)->withHeader('Location' ,$url);
 
+}
 }
 }

@@ -27,22 +27,24 @@ class AdminController
 public function home(Request $request, Response $response, $args)
 {
 
-
-  if(isset($_SESSION['user']) == 'admin'){
-
-// select as tables para o dashdoards home
-  //$users = "SELECT * FROM Users";
-  return $this->container->view->render($response ,'admin/home.twig' , ['users' => $users]);
-  
-  }elseif(isset($_SESSION['user']) == 'cliente'){
-  
-  return $this->container->view->render($response ,'homecliente/homecliente.twig');
+if(isset($_SESSION['user'])){
+  switch (($_SESSION['user'])) {
+    case 'admin':
+          return $this->container->view->render($response ,'admin/home.twig' , ['users' => $users]);
+      break;
+    case 'cliente':
+          return $this->container->view->render($response ,'homecliente/homecliente.twig');
+      break;
     
-  }else{
- 
-   return $this->container->view->render($response ,'CardCliente.twig');
-  
+    default:
+          return $this->container->view->render($response ,'CardCliente.twig');
+      break;
+  }
 }
+
+   return $this->container->view->render($response ,'CardCliente.twig');
+
+
   
 }
 // login
@@ -50,7 +52,7 @@ public function login(Request $request, Response $response, $args)
 {
   // refazer a logiva de login
   $email = $_POST['email'];
-$contact = $this->db->query("SELECT * FROM Users where email='$email'");
+  $contact = $this->db->query("SELECT * FROM Users where email='$email'");
 
 if($contact){
 

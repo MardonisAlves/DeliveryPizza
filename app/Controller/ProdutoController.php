@@ -8,6 +8,7 @@ use App\Model\Produtos;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\StreamInterface;
+use Psr\Http\Message\UriInterface;
 use Slim\Http\UploadedFile;
 
 
@@ -34,13 +35,21 @@ class ProdutoController
 
 public function form_bebida(Request  $request, Response $response, $args)
 {
+     if(($_SESSION['user']) == 'admin'){
 
     return $this->container->view->render($response, 'admin/produtos/produtos.twig');
+    
+    }
+
+   
+
+    return $this->container->view->render($response ,'homecliente/homecliente.twig');
 
 }
 //InsertBebidas
 public function insertBebidas(Request  $request, Response $response,  array $args)
 {
+    if(($_SESSION['user']) == 'admin'){
     //Validar o nome da imagem se ja existe no banco de dado // validar o nome da pizza
     $produto = $this->db->query("SELECT * FROM Produtos");
 
@@ -83,9 +92,14 @@ public function insertBebidas(Request  $request, Response $response,  array $arg
     return $response->withStatus(302)->withHeader('Location', $url);
 
 }
+
+$url = $this->container->get('router')->pathFor('home');
+    return $response->withStatus(302)->withHeader('Location', $url);
+}
 // Form listar
 public function listar_produto(Request  $request, Response $response, $args)
 {
+    if(($_SESSION['user']) == 'admin'){
     $pro = new Produtos();
     $pro->setConnection($this->db);
     $pro->setContainer($this->container);
@@ -97,9 +111,16 @@ public function listar_produto(Request  $request, Response $response, $args)
         ['produto'=>$pro->listarProdutos()]);
 
 }
+
+
+
+    $url = $this->container->get('router')->pathFor('home');
+    return $response->withStatus(302)->withHeader('Location', $url);
+}
 //GetIdBebidas
 public function updateProdutos(Request  $request, Response $response, $args)
 {
+    if(($_SESSION['user']) == 'admin'){
     $Stoque = new Produtos();
     $Stoque->setConnection($this->db);
     $Stoque->setContainer($this->container);
@@ -115,7 +136,13 @@ public function updateProdutos(Request  $request, Response $response, $args)
     return $response->withStatus(302)->withHeader('Location', $url);
     
 }
-public function deletaProduto(Request  $request, Response $response, $args){
+
+$url = $this->container->get('router')->pathFor('home');
+    return $response->withStatus(302)->withHeader('Location', $url);
+}
+public function deletaProduto(Request  $request, Response $response, $args)
+{
+    if(($_SESSION['user']) == 'admin'){
     $produto = new Produtos();
     $produto->setConnection($this->db);
     $produto->setId($_GET['id']);
@@ -124,6 +151,9 @@ public function deletaProduto(Request  $request, Response $response, $args){
     $url = $this->container->get('router')->pathFor('produtos');
     return $response->withStatus(302)->withHeader('Location', $url);
 
+}
+$url = $this->container->get('router')->pathFor('home');
+    return $response->withStatus(302)->withHeader('Location', $url);
 }
     
 }

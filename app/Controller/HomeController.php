@@ -15,6 +15,7 @@ class HomeController
       private $db;
       private $container;
       private $flash;
+      private $session;
 public function __construct($container , $db  , $flash ,$session)
 {
           $this->db = $db;
