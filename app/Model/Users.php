@@ -128,12 +128,21 @@ class Users extends BaseAbstract implements interfaceUser
 
     }
 
-    public function getuserByemail(){
-      $user = $this->getConnection()->query("SELECT * FROM Users where email=:email" ,PDO::FETCH_ASSOC);
-      $user->bindParam("email" , $this->getEmail());
+    public function getuserByemail($email){
+      $user = $this->getConnection()->query("SELECT * FROM Users where email='$email'" ,PDO::FETCH_ASSOC);
+     
 
       return $user;
 
+    }
+
+    public function updatsenha($senha)
+    {
+      $user =  "UPDATE Users set senha=:senha , where id=:$_SESSION[id]";
+        $stmt = $this->getConnection()->prepare($user);
+
+        $stmt->bindParam("id" , $_SESSION['id']);
+        $stmt->bindParam("senha" , $senha);
     }
 
     }

@@ -1,25 +1,8 @@
 {% extends 'homecliente/layoutCliente.twig' %}
 
 {% block content %}
-
-    {% for user in users %}
-
-      <div class="alert alert-info">
-      
-       <li>{{ user.email }}</li>
-  
-      </div>
-    {% endfor %}
-
-
-    {% for end in endere %}
-
-      <div class="alert alert-info">
-      
-       <li>{{ end.telefone }}</li>
-  
-      </div>
-    {% endfor %}
+<h2>lista de cardapio</h2>
+    
 
 
 {% endblock %}

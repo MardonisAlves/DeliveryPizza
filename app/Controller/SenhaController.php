@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Model\Users;
 use App\Validate\Validate;
-use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -13,14 +12,14 @@ use PHPMailer\PHPMailer\SMTP;
 
 class SenhaController 
 {
-      private $em;
+      private $db;
       private $container;
       private $flash;
       private $session;
       
-public function __construct($container ,EntityManager $em ,$flash , $session )
+public function __construct($container , $db ,$flash , $session )
 {
-          $this->em = $em;
+          $this->db = $db;
           $this->container=$container;
           $this->flash = $flash;
           $this->session=$session;
@@ -40,7 +39,12 @@ public  function  recu_form(Request $request, Response $response, $args)
 public function enviartoken(Request $request, Response $response, $args) 
 {   
     // selecionar o user by email
-    $email = $this->em->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email']));
+  $Users = new Users();
+  $Users->setContainer($this->container);
+  $Users->setSession($this->session);
+  $Users->setConnection($this->db);
+$email =   $Users->getuserByemail($_POST['email']);
+
     
     if($email)
     {
@@ -50,28 +54,20 @@ public function enviartoken(Request $request, Response $response, $args)
         
         $stringhas = "$#@.;0dq>=+/8*&&";
         $tk = password_hash($stringhas,PASSWORD_DEFAULT);
-        // criar um cookie
-        //setcookie("tk", $tk );
-        //setcookie("id",$sms->getId());
+
 
 
         // criar session 
       $this->session->set('tk', $tk);
-      $this->session->set('id', $sms->getId());
+      $this->session->set('id', $sms['id']);
         
-$message = " 
-
-<p>Ola tudo bem! Seu acesso para atualizar a senha </p>
-  <img src='https://deliverypizza.herokuapp.com/public/img/delivery.jpg' height ='200px' width='200'>
-    <br>
-  <a href='https://deliverypizza.herokuapp.com/atu_senha?tk=$_SESSION[tk]'>Click Aqui</a>
-";
+$message = "<a href='http://localhost:8080/atu_senha?tk=$_SESSION[tk]'>Click Aqui</a>";
         
         $mail = new PHPMailer();
         $mail->IsSMTP(); // envia por SMTP
         $mail->CharSet = 'UTF-8';
         $mail->SMTPDebug = 0;
-        $mail->True;
+        //$mail->True;
         $mail->Host = "smtp.gmail.com"; // Servidor SMTP
         $mail->Port = 465;
         $mail->SMTPSecure = 'ssl';
@@ -82,7 +78,7 @@ $message = "
         $mail->From = "mardonisgp@gmail.com"; // From
         $mail->FromName = "Mardonis Alves B" ; // Nome de quem envia o email
         
-        $mail->AddAddress($_POST['email'], $sms->getFullName()); // Email e nome de quem receberá //Responder
+        $mail->AddAddress($_POST['email'], $sms['nome']); // Email e nome de quem receberá //Responder
         $mail->WordWrap = 50; // Definir quebra de linha
         
        
@@ -164,11 +160,18 @@ public function updatesenha(Request $request, Response $response, $args)
     }
     
     // verifica se existe o token
-    if($_SESSION['tk'])
+    if(isset($_SESSION['tk']))
     {
-        $users = $this->em->find('App\Model\Users' ,$_SESSION['id']);
-        $users->setSenha(password_hash($_POST["senha"] , PASSWORD_DEFAULT));
-        $this->em->flush();
+        $Users = new Users();
+        $Users->setContainer($this->container);
+        $Users->setSession($this->session);
+        $Users->setConnection($this->db);
+        $email =  password_hash($_POST['email'], PASSWORD_DEFAULT);
+        $Users->updatsenha($email);
+
+        
+        //$users->setSenha(password_hash($_POST["senha"] , PASSWORD_DEFAULT));
+       
         // apagar a cookie tk
        unset($_SESSION['tk']);
        unset($_SESSION['id']);

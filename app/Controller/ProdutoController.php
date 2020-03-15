@@ -43,7 +43,8 @@ public function form_bebida(Request  $request, Response $response, $args)
 
    
 
-    return $this->container->view->render($response ,'homecliente/homecliente.twig');
+    $url = $this->container->get('router')->pathFor('home');
+    return $response->withStatus(302)->withHeader('Location', $url);
 
 }
 //InsertBebidas

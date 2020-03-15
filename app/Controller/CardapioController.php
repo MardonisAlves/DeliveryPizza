@@ -79,6 +79,10 @@ public function listarcardapio( $request,  $response, $args)
                 
              
 }
+
+    $url = $this->container->get('router')->pathFor('home');
+    return $response->withStatus(302)->withHeader('Location' ,$url);
+
 }
 // atualizar
 public function updatePizza(Request $request, Response $response, $args)
