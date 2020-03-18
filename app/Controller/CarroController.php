@@ -44,7 +44,7 @@ public function initsession(Request $request, Response $response, $args)
    {
 
     $this->session->set('idcarro', $value['id']);
-
+    $this->session->set('nomesabor' , $value['nomesabor']);
     echo $_SESSION['id'] . "<br>";
       var_dump($value);
   

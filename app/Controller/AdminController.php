@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\Users;
 use App\Model\Endereco;
+use App\Model\Cardapio;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -29,11 +30,23 @@ public function home(Request $request, Response $response, $args)
 
 if(isset($_SESSION['user'])){
   switch (($_SESSION['user'])) {
+
     case 'admin':
           return $this->container->view->render($response ,'admin/home.twig' , ['users' => $users]);
       break;
+
     case 'cliente':
-          return $this->container->view->render($response ,'homecliente/homecliente.twig');
+          // SELECT CARDAPIO WHERE ID = SESSION-ID
+          $Cardapio = new Cardapio();
+          $Cardapio->setConnection($this->db);
+          $Cardapio->setContainer($this->container);
+          $Cardapio->setSession($this->session);
+          $listaIdcadapio =  $Cardapio->selectByid($_SESSION['idcarro']);
+
+          return $this->container->view
+                                  ->render($response ,
+                                  'homecliente/homecliente.twig' ,
+                                    ['cardapio' => $listaIdcadapio] ,$_SESSION['nomesabor']);
       break;
     
     default:

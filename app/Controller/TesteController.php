@@ -6,6 +6,7 @@ namespace App\Controller;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Model\Users;
+use App\Model\Cardapio;
 
 class TesteController
 {
@@ -50,5 +51,20 @@ public function  Teste_insert(Request  $request, Response $response, $args)
      $Users->insert($response);
 
         
+}
+
+public function Ajaxteste(Request  $request, Response $response, $args)
+{
+    $Cardapio = new Cardapio();
+    $Cardapio->setConnection($this->db);
+    $Cardapio->setContainer($this->container);
+     $listaIdcadapio =  $Cardapio->selectByid( $_GET['q']);
+
+    foreach ($listaIdcadapio as $key => $value) {
+       echo  $value['id'];
+       echo $value['nomesabor'];
+    }
+
+
 }
 }
