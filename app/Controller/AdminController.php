@@ -41,12 +41,12 @@ if(isset($_SESSION['user'])){
           $Cardapio->setConnection($this->db);
           $Cardapio->setContainer($this->container);
           $Cardapio->setSession($this->session);
-          $listaIdcadapio =  $Cardapio->selectByid($_SESSION['idcarro']);
+          $lista =  $Cardapio->selctAll();
 
           return $this->container->view
                                   ->render($response ,
                                   'homecliente/homecliente.twig' ,
-                                    ['cardapio' => $listaIdcadapio] ,$_SESSION['nomesabor']);
+                                    ['lista' => $lista]);
       break;
     
     default:

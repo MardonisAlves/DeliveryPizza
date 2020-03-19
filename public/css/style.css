@@ -133,6 +133,7 @@ Banner
 	background: url('../img/ptcala.jpg') no-repeat center top;
     background-size: cover;
 	min-height: 480px;
+    margin-top: -58px;
     
     position: relative;
 }

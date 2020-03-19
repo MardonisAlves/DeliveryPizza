@@ -2,30 +2,25 @@
 
 namespace App\Controller;
 
-
-
-use App\Validate\Validate;
 use App\Model\Produtos;
-use Doctrine\ORM\EntityManager;
+use App\Model\Cardapio;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use PHPUnit\Framework\Constraint\Count;
-use Doctrine\Common\Collections\ArrayCollection;
 use \Psr\Http\Message\StreamInterface;
-use Slim\Http\UploadedFile;
+
 
 class ClienteController
 {
-    protected $em;
+    protected $db;
     private $container;
     private $flash;
-    
-    
-    public function __construct($container ,EntityManager $em ,$flash)
+    private $session;
+    public function __construct($container ,$db  ,$flash , $session)
 {
-        $this->em = $em;
+        $this->db = $db;
         $this->container=$container;
         $this->flash = $flash;
+        $this->session = $session;
 
         
 
@@ -34,6 +29,11 @@ class ClienteController
 
 public function homecliente(Request $Request, Response $response , $args)
 {
-    return $this->container->view->render($response ,'homecliente/homecliente.twig');
+	$Cardapio = new Cardapio();
+    $Cardapio->setConnection($this->db);
+    $Cardapio->setContainer($this->container);
+    $Cardapio->setSession($this->session);
+   	$lista =  $Cardapio->selctAll();
+    return $this->container->view->render($response ,'homecliente/homecliente.twig' , ['lista' => $lista]);
 }
 }

@@ -37,9 +37,9 @@ class Cardapio extends BaseAbstract implements interfaceCardapio
     }
 
     /* @ getall cardapio*/
-    public function selctAll($response)
+    public function selctAll()
     {
-       $card  = $this->getConnection()->query("SELECT * FROM Cardapio" ,PDO::FETCH_ASSOC);
+       $card  = $this->getConnection()->query("SELECT * FROM Cardapio");
 
       return $card;
       

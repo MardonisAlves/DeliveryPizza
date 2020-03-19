@@ -1,0 +1,10 @@
+card-img{
+	width: 400px;
+	height: 350px;
+}
+
+.red{
+	background: url('../img/ptcala.jpg') no-repeat center top;
+    background-size: cover;
+}
+

@@ -12,24 +12,29 @@
     </div>
     {% endfor %}
 
-<section id="feature" class="section-padding">
+
     <div class="container">
        <h3 class="text-center">Cardapio</h3>
-     <div class="row top">
+      <div class="row">
      {% for allcardapios in allcardapio %}
-        <div class="col-sm-3">
-            <div class="card">
-                <div class="card-body">
-                <h5 class="card-title">{{allcardapios.nomesabor}}  {{allcardapios.valor}}R$</h5>
-                    <img src="{{allcardapios.urlimg}}" class="img-thumbnail">
-                    <p class="card-text">{{allcardapios.descricao}}</p>
-                    <a href="initsession?id={{allcardapios.id}}" class="btn btn-primary">Pedir</a>
-                </div>
-            </div>
+         
+            <div class="col s4">
+              <div class="card">
+                <div class="card-image">
+                <img src="{{allcardapios.urlimg}}" class="card-img">
+                <span class="card-title">Card Title</span>
+                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+              </div>
+                <div class="card-content">
+                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+              </div>
         </div>
-      {% endfor %}
       </div>
-    </div>
-  </section>
+   
+      {% endfor %}
+
+</div>
+</div>
+  
 {% include 'partials/footer.twig' %}
 {% endblock %}

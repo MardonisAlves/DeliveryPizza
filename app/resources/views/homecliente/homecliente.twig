@@ -2,12 +2,30 @@
 
 {% block content %}
 <h2>lista de cardapio</h2>
+
+{% for item in lista %}
+	
+	
+		
+          
+   
+   <div class="row top">
+        <div class="col-sm-3 ">
+          <div class="card">
+            <div class="card-body">
+              <img src="{{item.urlimg}}" class="img-thumbnail">
+              <h5 class="card-title">{{item.nomesabor}}</h5>
+              <p class="card-text">{{item.descricao}}</p>
+              <a href="#" class="btn btn-primary">Mais detalhes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+
    
 
-<form>
-First name: <input type="text" onkeyup="showHint(this.value)">
-</form>
-<p>Suggestions: <span id="txtHint"></span></p>
+{% endfor %}
 
 {% endblock %}
 
