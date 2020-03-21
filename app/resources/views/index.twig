@@ -18,15 +18,15 @@
       <div class="row">
      {% for allcardapios in allcardapio %}
          
-            <div class="col s4">
+            <div class="col col-sm-3 responsive-img" >
               <div class="card">
                 <div class="card-image">
                 <img src="{{allcardapios.urlimg}}" class="card-img">
-                <span class="card-title">Card Title</span>
+                <span class="card-title">{{allcardapios.nomesabor}} {{allcardapios.valor}}</span>
                 <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
               </div>
                 <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                <p>{{allcardapios.descricao}}</p>
               </div>
         </div>
       </div>

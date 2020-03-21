@@ -1,10 +1,15 @@
+.carousel-item h2{
+	font-family: Arial;
+	color: yellow;
+}
 card-img{
 	width: 400px;
 	height: 350px;
 }
 
-.red{
+.img1{
+	
 	background: url('../img/ptcala.jpg') no-repeat center top;
     background-size: cover;
-}
-
+    filter: invert(0.4);
+  }

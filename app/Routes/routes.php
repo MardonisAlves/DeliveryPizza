@@ -74,6 +74,7 @@ $this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
         $this->get('/EnderecoCliente' , 'TesteController:EnderecoCliente')->setName('EnderecoCliente');
         $this->get('/selctQueybuild' , 'TesteController:selctQueybuild')->setName('selctQueybuild');
         $this->get('/Ajaxteste' , 'TesteController:Ajaxteste')->setName('Ajaxteste');
+        
         //$this->get('/updateuser', 'TesteController:updateuser')->setName('updateuser');
     });
 
