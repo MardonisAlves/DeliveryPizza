@@ -1,32 +1,24 @@
 {% extends 'homecliente/layoutCliente.twig' %}
 
 {% block content %}
-<h2>lista de cardapio</h2>
-
+<div class="container">
+  <h3 class="text-center">Cardapio</h3>
+<div class="row">
 {% for item in lista %}
-	
-	
-		
-          
-   
-   <div class="row top">
-        <div class="col-sm-3 ">
-          <div class="card">
-            <div class="card-body">
-              <img src="{{item.urlimg}}" class="img-thumbnail">
-              <h5 class="card-title">{{item.nomesabor}}</h5>
-              <p class="card-text">{{item.descricao}}</p>
-              <a href="#" class="btn btn-primary">Mais detalhes</a>
-            </div>
-          </div>
+<div class="col s6 m4" >
+              <div class="card">
+                <div class="card-image">
+                <img src="{{item.urlimg}}" class="card-img img1">
+                <span class="card-title">{{item.nomesabor}} {{item.valor}}</span>
+                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+              </div>
+                <div class="card-content">
+                <p>{{item.descricao}}</p>
+              </div>
         </div>
       </div>
-  
-
-   
-
 {% endfor %}
-
+</div>
 {% endblock %}
 
 

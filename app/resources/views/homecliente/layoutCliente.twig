@@ -9,12 +9,13 @@
 
         {# Google fonts:Open Sans #}
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-    <link href="public/css/bootstrap-4.1.min.css" type="text/css" rel="stylesheet"/>
-    <link href="public/css/font-awesome.min.css" type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" href="public/css/styleadmin.css">
-    <link rel="stylesheet" href="public/css/font-awesome.min.css">
-    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
     
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="public/css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="public/css/front-style-materialize.css">
+    
+    <script src="public/js/jquery.min.js"></script>
+    <script src="public/js/materialize.js"></script>
 
     </head>
     <body>
@@ -22,7 +23,7 @@
         <div class="wrapper">
             {% include 'partials/updateUser.twig' %}
         	
-            {% include 'partials/navsideBarCliente.twig' %}
+            {% include 'partials/navclient.twig' %}
            
             {% block content %}
 
@@ -35,17 +36,9 @@
       
     </body>
     
-    <script src="public/js/jquery.min.js"></script>
-    <script src="public/js/bootstrap-4.1.min.js"></script>
-   
-    <script src="public/js/bootstrap.min.js"></script>
-    <script src="public/js/fontawesome.js"></script>
-     
     
 
-   
-    
-    <script type="text/javascript">
+    <script>
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
@@ -54,7 +47,15 @@
 
     </script>
 
-    <script type="text/javascript">
+
+<script>
+$(document).ready(function(){
+  $('.sidenav').sidenav();
+});
+</script>
+
+
+    <script>
 
      function showHint(str) {
     if (str == "") {
@@ -78,5 +79,7 @@
     }
 }
     </script>
+
+   
     
 </html>
