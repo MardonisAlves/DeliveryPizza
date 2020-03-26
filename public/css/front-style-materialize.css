@@ -11,7 +11,14 @@ card-img{
 	
 	background: url('../img/ptcala.jpg') no-repeat center top;
     background-size: cover;
-    filter: invert(0.3);
+    
+  }
+
+  .img2{
+  
+  background: url('../img/img2.jpg') no-repeat center top;
+    background-size: cover;
+    
   }
 
   .logo{

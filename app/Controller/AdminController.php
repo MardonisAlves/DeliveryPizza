@@ -32,7 +32,7 @@ if(isset($_SESSION['user'])){
   switch (($_SESSION['user'])) {
 
     case 'admin':
-          return $this->container->view->render($response ,'admin/home.twig' , ['users' => $users]);
+          return $this->container->view->render($response ,'admin/home.twig');
       break;
 
     case 'cliente':

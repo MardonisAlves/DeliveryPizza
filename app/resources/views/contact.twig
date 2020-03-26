@@ -4,57 +4,48 @@
 
 
 
-<section id="contact" class="section-padding">
-    <div class="container fluid">
-      <div class="row">
-        <div class="header-section text-center">
 
-          <h2>Contact Us</h2>
-          <p>Entre em contato para fazer um orçamento e tirar as suas duvidas,
-          <br>Maiores informações no telefone:989578193 ou email: mardonisgp@gmail.com</p>
-          <hr class="bottom-line">
+<div class="container">
+  <div class="row">
+    <form class="col s12" action="/newcontact" method="post">
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Placeholder" id="first_name" type="text" class="validate" name="name">
+          <label for="first_name">Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Email" id="disabled" type="email" class="validate" name="email">
+          <label for="disabled">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="text" type="text" class="validate" name="telefone">
+          <label for="text">Telefone</label>
         </div>
 
-        <div id="sendmessage">Your message has been sent. Thank you!</div>
-        <div id="errormessage"></div>
-        
-        <form action="/newcontact" method="post" role="form" class="contactForm">
-          <div class="col-md-6 col-sm-6 col-xs-12 left">
-            <div class="form-group">
-              <input type="text" name="name" class="form-control form" id="name" placeholder="Seu Nome" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-              <div class="validation"></div>
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Seu Email" data-rule="email" data-msg="Please enter a valid email" />
-              <div class="validation"></div>
-            </div>
-
-            <div class="form-group">
-              <input type="telefone" class="form-control" name="telefone" id="telefone" placeholder="Seu Telefone" data-rule="email" data-msg="Please enter a valid email" />
-              <div class="validation"></div>
-            </div>
-
-            <div class="form-group">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-              <div class="validation"></div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-sm-6 col-xs-12 right">
-            <div class="form-group">
-              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-              <div class="validation"></div>
-            </div>
-          </div>
-
-          <div class="col-xs-12">
-            <!-- Button -->
-            <button type="submit" id="submit" name="submit" class="form contact-form-button light-form-button oswald light">SEND EMAIL</button>
-          </div>
-        </form>
-
+         <div class="input-field col s6">
+          <input id="text" type="text" class="validate" name="subject">
+          <label for="text">Assunto</label>
+        </div>
       </div>
-    </div>
-  </section>
+      <div class="row">
+        <div class="input-field col s12">
+        <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Messagem</label>
+        </div>
+      </div>
+      <div class="row">
+       <div class="input-field col s12">
+       <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+      </button>
+       </div>
+      </div>
+    </form>
+  </div>
+</div>
 
 {% endblock %}
