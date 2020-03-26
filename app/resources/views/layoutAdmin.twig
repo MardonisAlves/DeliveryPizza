@@ -12,11 +12,15 @@
     <link rel="stylesheet" type="text/css" href="public/css/front-style-materialize.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-     <script src="public/js/jquery.min.js"></script>
+    <script src="public/js/jquery.min.js"></script>
     <!--<script src="public/js/bootstrap-4.1.min.js"></script>-->
     <script src="public/js/bootstrap.min.js"></script>
     <!--<script src="public/js/fontawesome.js"></script>-->
     <script src="public/js/materialize.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="public/js/piecharts.js"></script>
+    <script src="public/js/barcharts.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     </head>
     <body>
 
@@ -29,10 +33,9 @@
             {% include 'partials/navAdmin.twig' %}
 
             {% block content %}
-
-
+               
             {% endblock %}
-
+        
 
         </div>
        
@@ -48,9 +51,17 @@
             });
         });
 
+         /* select new user*/
+        $('select').formSelect();
+
+        /*dropdown*/
         $(".dropdown-trigger").dropdown();
 
-         $('.sidenav').sidenav();
+        /*navAdmin*/
+        $('.sidenav').sidenav();
+
+       
+       
 
     $('#editproduto').on('show.bs.modal', function (event) {
 

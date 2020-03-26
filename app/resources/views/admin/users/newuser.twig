@@ -2,8 +2,10 @@
 
 {% block content %}
 
+<div class="container">
 <div class="row">
-    <div class="col-md-12">
+
+    <div class="col s12">
 
         {% for message in messages %}
       <div class="alert alert-info">
@@ -30,11 +32,15 @@
                 <input type="text" name="repetir" id="telefone"  class="form-control" required>
             </div>
             <div class="form-group col-md-12">
-            <select name="tipouser" class="form-control">
-                <option value="">User ..........</option>
+
+            <div class="input-field col s12">
+            <select>
+                <option value="" disabled selected>User ..........</option>
                 <option value="admin">Adminitrador</option>
                 <option value="cliente">User</option>
             </select>
+            <label>Materialize Select</label>
+  </div>
             </div>
         </div>
             <button type="submit" class="btn btn-primary">Add User</button>
@@ -42,6 +48,6 @@
 
     </div>
 </div>
-
+</div>
 
 {% endblock %}

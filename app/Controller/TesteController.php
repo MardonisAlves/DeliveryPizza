@@ -8,6 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Intervention\Image\ImageManager;
 use App\Model\Users;
 use App\Model\Cardapio;
+use App\Model\Produtos;
 
 class TesteController
 {
@@ -59,17 +60,34 @@ public function Ajaxteste(Request  $request, Response $response, $args)
     $Cardapio = new Cardapio();
     $Cardapio->setConnection($this->db);
     $Cardapio->setContainer($this->container);
-     $listaIdcadapio =  $Cardapio->selectByid( $_GET['q']);
+    $listaIdcadapio =  $Cardapio->selectByid( $_GET['q']);
 
     foreach ($listaIdcadapio as $key => $value) {
        echo  $value['id'];
        echo $value['nomesabor'];
-    }
+}
 
 
 }
 
+public function listprodutos(Request  $request, Response $response, $args){
 
+        $Produtos = new Produtos();
+        $Produtos->setConnection($this->db);
+        $Produtos->setContainer($this->container);
+        $viewpro = $Produtos->listarProdutos();
 
+       /**foreach ($viewpro as $key => $value) {
+       echo  $value['id'];
+       }
+       **/
+        $jason = json_encode($viewpro);
+
+        return $this->container
+                    ->view->render($response,
+                    'admin/home.twig' ,
+                    ['viewpro' => $jason]);
+
+}
 
 }
