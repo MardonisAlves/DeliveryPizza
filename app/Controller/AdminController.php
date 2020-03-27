@@ -296,7 +296,7 @@ while ($user = $users->fetch())
 switch ($_SESSION['user']){
 
   case "admin":
-
+    
      $Users = new Users();
      $Users->setConnection($this->db);
      $Users->setContainer($this->container);
@@ -307,7 +307,9 @@ switch ($_SESSION['user']){
      $Users->setTipouser($_POST['tipouser']);
      $Users->insert($response);
 
+    
 
+     
 
      $url = $this->container->get('router')->pathFor('home');
     return $response->withStatus(302)->withHeader('Location', $url);
@@ -325,6 +327,23 @@ switch ($_SESSION['user']){
 }
 
 }
+
+
+public function getUserform( $request ,  $response , $args)
+{
+  // validate permission
+  
+  $Users = new Users();
+  $Users->setConnection($this->db);
+  $Users->setContainer($this->container);
+  $Users->getuserBYId($_GET['id']);
+
+  return $this->container
+              ->view
+              ->render($response ,'admin/users/UserUpdate.twig' ,['user' => $Users->getuserBYId($_GET['id']) ]);
+
+}
+
 public function listarUser( $request ,  $response , $args)
 {
  switch ($_SESSION['user']) {
@@ -346,7 +365,9 @@ public function listarUser( $request ,  $response , $args)
       return $this->container->view->render($response ,'admin/login/loginCliente.twig');
      break;
  }
-    }
+}
+
+
 
 public function UpdateUserEndeId(Request  $request, Response $response, $args)
 {

@@ -3,49 +3,56 @@
 {% block content %}
 
 
-
 <div class="container">
+<div class="row">
+  <div class="col s12 m12 5">
   <div class="login-box-body">
     <div class="login-box-body">
 
-     <a href="/newuser" class="btn btn-dark btn-sm text-white">
-        New user<span><i class="fa fa-plus"></i></span>
+     
+
+       <a href="/newuser" class="waves-effect waves-light">User
+        <span class="material-icons left">add_box</span>
       </a>
 
-    <table class="table" id ="idtb">
+<table class="table" id ="idtb">
   <thead class="thead btn-light">
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Nome</th>
       <th scope="col">Action</th>
     </tr>
-  </thead>
+</thead>
     
       
-  <tbody>
+<tbody>
     {% for user in users %}
     <tr>
       <th scope="row">{{user.id}}</th>
       <td>{{user.nome }}</td>
       <td>
 
-        <a href="/deleteuser?id={{user.id}}" class="btn btn-danger btn-sm">
-        <span><i class="fa fa-trash"></i></span></a>
+      <a href="/deleteuser?id={{user.id}}" class="waves-effect waves-light">Excluir
+        <span class="material-icons left">restore_from_trash</span>
+      </a>
 
-        <button   type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#updateUser"
-        data-iduser={{user.id}}
-        data-typeuser={{user.tipouser}}
-        data-emailuser={{user.email}}><span><i class="fa fa-lock"></i></span>
-        </button>
+      
+      <a href="/update?id={{user.id}}" class="waves-effect waves-light">User
+        <span class="material-icons left">supervised_user_circle</span>
+      </a>
 
-         <a href="/UpdateUserEndeId?id={{user.id}}" class="btn btn-warning btn-sm">
-        <span><i class="fa fa-edit"></i></span></a> 
+         <a href="/UpdateUserEndeId?id={{user.id}}" class="waves-effect waves-light">
+          <span class="material-icons">search</span>
+        </a> 
+
       </td>
     </tr>
     {% endfor %}
   </tbody>
   
   </table>
+</div>
+</div>
 </div>
  
 

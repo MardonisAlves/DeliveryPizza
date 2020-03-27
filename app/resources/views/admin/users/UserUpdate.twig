@@ -1,0 +1,45 @@
+{% extends 'layoutAdmin.twig' %}
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <form class="col s12" action="/updateuserId" method="post">
+      {% for item in user %}
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Id" id="Id" type="text" class="validate" name="id" value="{{item.id}}">
+          <label for="first_name">Id</label>
+        </div>
+      </div>
+      <div class="row">
+      <div class="input-field col s12">
+      <input placeholder="Email" id="disabled" type="email" class="validate" name="email" value="{{item.email}}">
+          <label for="disabled">Email</label>
+      </div>
+      </div>
+
+       {% endfor %}
+
+      <div class="row">
+        <div class="input-field col s12">
+        <select class="form-control" name="tipouser" requered="obrigatorio">
+          <option value="">TypeUser</option>
+          <option value="admin">Administrador</option>
+          <option value="cliente">Cliente</option>
+        </select>
+          <label for="textarea1">Messagem</label>
+        </div>
+      </div>
+      <div class="row">
+       <div class="input-field col s12">
+         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
+       </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock  %}

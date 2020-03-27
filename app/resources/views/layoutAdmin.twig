@@ -25,7 +25,6 @@
     <body>
 
         <div class="wrapper">
-            {% include 'partials/updateUser.twig' %}
             {% include 'partials/editproduto.twig' %}
 
             {% include 'partials/editarcardapio.twig'%}
@@ -60,8 +59,8 @@
         /*navAdmin*/
         $('.sidenav').sidenav();
 
-       
-       
+
+
 
     $('#editproduto').on('show.bs.modal', function (event) {
 
@@ -79,20 +78,6 @@
           modal.find('#name').val(name)
           modal.find('#compra').val(valorCompra)
           modal.find('#lucro').val(lucro)
-});
-
- $('#updateUser').on('show.bs.modal', function (event) {
-
-          var button = $(event.relatedTarget)
-          var iduuser= button.data('iduser')
-          var typeuser = button.data('typeuser')
-          var email = button.data('emailuser');
-          var modal = $(this)      
-
-
-          modal.find('#id').val(iduuser)
-          modal.find('#email').val(email)
-          modal.find('#typeuser').val(typeuser)
 });
 
 $('#editarcardapio').on('show.bs.modal', function (event) {

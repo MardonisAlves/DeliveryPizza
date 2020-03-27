@@ -81,7 +81,7 @@ class Users extends BaseAbstract implements interfaceUser
    */
     public function insert($response){
 
-    $sql = "INSERT INTO Users(id,email, nome , senha , tipouser) VALUES(:id ,:email, :nome, :senha , :tipouser)";
+  $sql = "INSERT INTO Users(id,email, nome , senha , tipouser) VALUES(:id ,:email, :nome, :senha , :tipouser)";
 
     $stmt = $this->getConnection()  ->prepare( $sql );
     $stmt->bindParam( ':id', $this->getId());
@@ -129,20 +129,24 @@ class Users extends BaseAbstract implements interfaceUser
     }
 
     public function getuserByemail($email){
-      $user = $this->getConnection()->query("SELECT * FROM Users where email='$email'" ,PDO::FETCH_ASSOC);
-     
 
+      $user = $this->getConnection()->query("SELECT * FROM Users where email='$email'" ,PDO::FETCH_ASSOC);
       return $user;
 
+    }
+
+    public function getuserBYId($id){
+
+      $user = $this->getConnection()->query("SELECT * FROM Users where id='$id'" ,PDO::FETCH_ASSOC);
+      return $user;
     }
 
     public function updatsenha($senha)
     {
       $user =  "UPDATE Users set senha=:senha , where id=:$_SESSION[id]";
-        $stmt = $this->getConnection()->prepare($user);
-
-        $stmt->bindParam("id" , $_SESSION['id']);
-        $stmt->bindParam("senha" , $senha);
+      $stmt = $this->getConnection()->prepare($user);
+      $stmt->bindParam("id" , $_SESSION['id']);
+      $stmt->bindParam("senha" , $senha);
     }
 
     }

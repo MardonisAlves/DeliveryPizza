@@ -1,55 +1,48 @@
 
 {% extends 'layoutAdmin.twig' %}
-
 {% block content %}
-
-
-	<div class="row">
-		<div class="col s12 m4 l3">
-			<h2>Notificações</h2>
-
+<div class="row">
+	<div class="col s12 m4 l3">
+		<h2>Notificações</h2>
 			{% for item in viewpro %}
 					{{ item.id }}
-				{% endfor %}
-		</div>
+			{% endfor %}
+	</div>
 	
 <div class="col s12 m3 3">
-			
-			<div class="card" id="user">
-                <div class="card-image" id="user">
-               <a href="/listaruser"><img src="public/img/users/avatar.jpg" class="card-img"></a>
+	<div class="card" id="user">
+        <div class="card-image" id="user">
+        	<a href="/listaruser"><img src="public/img/users/avatar.jpg" class="card-img"></a>
                 <span class="card-title"><h5>Usuarios</h5></span>
-              </div>
-                <div class="card-content">
+        </div>
+        <div class="card-content">
                 
-              </div>
-              </div>
+        </div>
+    </div>
 
 </div>
 <div class="col s12 m3 3">
-			
-			<div class="card" id="user">
-                <div class="card-image" id="user">
-                <a href="/listar"><img src="public/img/users/pizza.png" class="card-img"></a>
+	<div class="card" id="user">
+        <div class="card-image" id="user">
+            <a href="/listar"><img src="public/img/users/pizza.png" class="card-img"></a>
                 <span class="card-title"><h5>Cardapios</h5></span>
-              </div>
-                <div class="card-content">
+        </div>
+        <div class="card-content">
                 
-              </div>
-              </div>
+        </div>
+    </div>
 
 </div>
 <div class="col s12 m3 3">
-			
-			<div class="card" id="user">
-                <div class="card-image" id="user">
-                <a href="/produtos"><img src="public/img/produtos/produto.png" class="card-img"></a>
+	<div class="card" id="user">
+        <div class="card-image" id="user">
+            <a href="/produtos"><img src="public/img/produtos/produto.png" class="card-img"></a>
                 <span class="card-title"><h5>Produtos</h5></span>
-              </div>
-                <div class="card-content">
+        </div>
+        <div class="card-content">
                 
-              </div>
-              </div>
+        </div>
+    </div>
 
 </div>
 </div>

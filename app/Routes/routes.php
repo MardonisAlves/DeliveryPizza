@@ -50,7 +50,10 @@ $this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
     $this->get('/newendereco', 'AdminController:newendereco')->setName('Newendereco');
         // update endereco user
     $this->map(['POST','GET'],'/updateendereco' , 'AdminController:updateendereco')->setName('updateendereco');
-        // update user
+        
+    //get form udate User
+     $this->get('/update' ,'AdminController:getUserform')->setName('update');
+    // update user
     $this->post('/updateuserId' ,'AdminController:updateuserId')->setName('updateuserId');
     
 
