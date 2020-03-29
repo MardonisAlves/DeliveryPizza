@@ -40,7 +40,6 @@ class Cardapio extends BaseAbstract implements interfaceCardapio
     public function selctAll()
     {
        $card  = $this->getConnection()->query("SELECT * FROM Cardapio");
-
       return $card;
       
     }
@@ -49,8 +48,6 @@ class Cardapio extends BaseAbstract implements interfaceCardapio
     public function selectByid($id){
     
        $card  = $this->getConnection()->query("SELECT * FROM Cardapio where id=$id");
-
-
         return $card;
       
       
@@ -58,8 +55,6 @@ class Cardapio extends BaseAbstract implements interfaceCardapio
 
     /* @ update cardapio*/
     public function updatePizza(){
-
-
         $card =  "UPDATE Cardapio set valor=:valor  where id=:id";
         $stmt = $this->getConnection()->prepare($card);
 

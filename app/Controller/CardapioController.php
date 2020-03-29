@@ -162,6 +162,32 @@ public function listarcardapio( $request,  $response, $args)
     return $response->withStatus(302)->withHeader('Location' ,$url);
 
 }
+
+
+// listar by id
+public function listarByid($request,  $response, $args)
+{
+    if(($_SESSION['user']) == 'admin'){
+                $cardapio = new Cardapio();
+                $cardapio->setConnection($this->db);
+                $cardapio->setContainer($this->container);
+                $cardapio->selectByid($_GET['id']);
+                
+                return $this->container
+                            ->view
+                            ->render($response ,
+                                "admin/cardapio/EditCardapio.twig" ,
+                            ['cardapio' => $cardapio->selectByid($_GET['id'])]);
+
+    }
+
+     $url = $this->container->get('router')->pathFor('home');
+    return $response->withStatus(302)->withHeader('Location' ,$url);
+}
+
+
+
+
 // atualizar
 public function updatePizza(Request $request, Response $response, $args)
 {

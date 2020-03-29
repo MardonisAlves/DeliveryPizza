@@ -1,0 +1,34 @@
+{% extends 'layoutAdmin.twig' %}
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <form class="col s12" action="/atualizar" method="post">
+      {% for item in cardapio %}
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Id" id="Id" type="text" class="validate" name="id" value="{{item.id}}">
+          <label for="first_name">Id</label>
+        </div>
+      </div>
+      <div class="row">
+      <div class="input-field col s12">
+      <input placeholder="valor" id="disabled" type="text" class="validate" name="valor" value="{{item.valor}}">
+          <label for="disabled">Valor</label>
+      </div>
+      </div>
+
+       {% endfor %}
+      <div class="row">
+       <div class="input-field col s12">
+         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
+       </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock  %}

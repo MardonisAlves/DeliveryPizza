@@ -108,8 +108,9 @@ public function listar_produto(Request  $request, Response $response, $args)
     $pro->listarProdutos();
 
     return $this->container->view
-    ->render($response ,'admin/produtos/listar_produto.twig' , 
-        ['produto'=>$pro->listarProdutos()]);
+                ->render($response 
+                ,'admin/produtos/listar_produto.twig' , 
+                ['produto'=>$pro->listarProdutos()]);
 
 }
 
@@ -117,6 +118,22 @@ public function listar_produto(Request  $request, Response $response, $args)
 
     $url = $this->container->get('router')->pathFor('home');
     return $response->withStatus(302)->withHeader('Location', $url);
+}
+
+// list produtos by id
+public function updateptodutobyId(Request  $request, Response $response, $arg)
+{
+
+    $Stoque = new Produtos();
+    $Stoque->setConnection($this->db);
+    $Stoque->setContainer($this->container);
+    $Stoque->setSession($this->session);
+
+    return $this->container
+                ->view->render($response 
+                ,'admin/produtos/EditProduto.twig' , 
+                ['produto'=>$Stoque->ProdutosById($_GET['id'])]);
+
 }
 //GetIdBebidas
 public function updateProdutos(Request  $request, Response $response, $args)

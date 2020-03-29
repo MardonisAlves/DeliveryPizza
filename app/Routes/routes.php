@@ -86,6 +86,7 @@ $this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
     $this->get('/formbebida' , 'ProdutoController:form_bebida')->setName('form_bebida'); 
     $this->post('/insertbebidas' , 'ProdutoController:insertBebidas')->setName('insertBebidas'); 
     $this->get('/produtos' , 'ProdutoController:listar_produto')->setName('produtos'); 
+    $this->get('/listidproduto' , 'ProdutoController:updateptodutobyId')->setName("updateptodutobyId");
     $this->post('/produtoid' , 'ProdutoController:updateProdutos')->setName('updateProdutos');
     $this->get('/deletarProduto' , 'ProdutoController:deletaProduto')->setName('deletaProduto');
     });
@@ -101,6 +102,8 @@ $this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
         $this->get('/index', 'CardapioController:index')->setName('index');
             // listar cardapio
         $this->get('/listar', 'CardapioController:listarcardapio')->setName('listar');
+            // listar by id
+         $this->get('/listarid', 'CardapioController:listarByid')->setName('listarid');
             // insert cardapio
         $this->post('/insert', 'CardapioController:inserircardapio')->setName('insert');
             // atualizar cardapio

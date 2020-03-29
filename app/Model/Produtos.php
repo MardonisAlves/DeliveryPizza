@@ -17,19 +17,7 @@ private $valortotalstoque;
 private $qtdade;
 private $datavalidade;
 
-    /* Produtos By Id*/
-    public function ProdutosById($id){
-
-        $idProduto = $this->getConnection()->query("SELECT * FROM Produtos where id=$id");
-
-        
-        while($pro = $idProduto->fetch())
-        {
-            $valor = floatVal( $pro['preco_compra']) * ($this->getQtdade());
-        }
-
-        return $valor;
-    }
+    
     /*valor total stoque*/
     public function getvalorStoque(){
 
@@ -60,6 +48,14 @@ private $datavalidade;
         $produto =  $this->getConnection()->query("SELECT * FROM Produtos");
         return $produto;
 
+    }
+
+    /* Produtos By Id*/
+    public function ProdutosById($id){
+
+        $idProduto = $this->getConnection()->query("SELECT * FROM Produtos where id=$id");
+
+        return $idProduto;
     }
 
 

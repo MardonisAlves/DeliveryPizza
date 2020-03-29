@@ -1,0 +1,48 @@
+{% extends 'layoutAdmin.twig' %}
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <form class="col s12" action="/produtoid" method="post">
+      {% for item in produto %}
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Id" id="Id" type="text" class="validate" name="id" value="{{item.id}}">
+          <label for="first_name">Id</label>
+        </div>
+      </div>
+      <div class="row">
+      <div class="input-field col s12">
+      <input placeholder="Quantidade" id="disabled" type="text" class="validate" name="qt" value="{{item.qtdade}}">
+          <label for="disabled">Quantidade</label>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="input-field col s12">
+      <input placeholder="Quantidade" id="disabled" type="text" class="validate" name="precocompra" value="{{item.precocompra}}">
+          <label for="disabled">Preço de Compra</label>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="input-field col s12">
+      <input placeholder="Porcentagem" id="disabled" type="text" class="validate" name="porcentagemvenda" value="{{item.porcentagemvenda}}">
+          <label for="disabled">% Porcentagem</label>
+      </div>
+      </div>
+
+       {% endfor %}
+      <div class="row">
+       <div class="input-field col s12">
+         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
+       </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock  %}
