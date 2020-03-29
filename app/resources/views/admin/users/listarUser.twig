@@ -5,17 +5,14 @@
 
 <div class="container">
 <div class="row">
-  <div class="col s12 m12 5">
-  <div class="login-box-body">
-    <div class="login-box-body">
-
-     
+  <div class="col s12 m12 5" style="margin-top:50px;">
 
        <a href="/newuser" class="waves-effect waves-light">User
-        <span class="material-icons left">add_box</span>
+
+         <i class="material-icons left">add_box</i>
       </a>
 
-<table class="table" id ="idtb">
+<table class="striped">
   <thead class="thead btn-light">
     <tr>
       <th scope="col">Id</th>
@@ -32,18 +29,22 @@
       <td>{{user.nome }}</td>
       <td>
 
-      <a href="/deleteuser?id={{user.id}}" class="waves-effect waves-light">Excluir
-        <span class="material-icons left">restore_from_trash</span>
-      </a>
+     
 
       
-      <a href="/update?id={{user.id}}" class="waves-effect waves-light">User
-        <span class="material-icons left">supervised_user_circle</span>
+      <a href="/update?id={{user.id}}" class="waves-effect waves-light green-text darken-1">User
+        <i class="material-icons green-text darken-1 left">face</i>
       </a>
 
-         <a href="/UpdateUserEndeId?id={{user.id}}" class="waves-effect waves-light">
-          <span class="material-icons">search</span>
+         <a href="/UpdateUserEndeId?id={{user.id}}" class="waves-effect waves-light blue-text darken-1">Endereço
+           <i class="material-icons blue-text darken-1 left">search</i>
+        
         </a> 
+
+         <a href="/deleteuser?id={{user.id}}" class="waves-effect waves-light orange-text darken-1 left">Excluir
+         <i class="material-icons orange-text darken-1 left">restore_from_trash</i>
+        
+      </a>
 
       </td>
     </tr>
@@ -51,12 +52,5 @@
   </tbody>
   
   </table>
-
-
-  
 </div>
-</div>
-</div>
- 
-
 {% endblock  %}

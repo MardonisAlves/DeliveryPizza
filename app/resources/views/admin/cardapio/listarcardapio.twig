@@ -4,10 +4,10 @@
 
 
 
-<div class="container flex-wrap">
-  <div class="login-box-body">
-    <table class="table table-responsive-md">
-  <thead class="thead-dark">
+<div class="container">
+
+    <table class="striped" style="margin-top:50px;">
+  <thead>
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Nome</th>
@@ -27,18 +27,20 @@
        <td>{{card.valor}}</td>
 
       <td>
-        <a href="/listarid?id={{card.id}}" class="waves-effect waves-light">Edit
-        <span class="material-icons left">edit_attributes</span>
+        <a href="/listarid?id={{card.id}}" class="waves-effect waves-light green-text darken-4">Edit
+          <i class="material-icons left">edit_attributes</i>
+        
       </a>
 
-        <a href="/excluir?id={{card.id}}" class="waves-effect waves-light">Excluir
-        <span class="material-icons left">restore_from_trash</span>
+        <a href="/excluir?id={{card.id}}" class="waves-effect waves-light  orange-text darken-4">Excluir
+          <i class="material-icons orange-text darken-4 left">restore_from_trash</i>
         </a>
       </td>
     </tr>
     {% endfor %}
   </tbody>
   </table>
+</div>
 
 
 

@@ -64,7 +64,7 @@ public function insertBebidas(Request  $request, Response $response,  array $arg
 
     return $this->container->view->render(
                             $response ,
-                            'admin/produtos/form_bebida.twig',
+                            'admin/produtos/produtos.twig',
                             Array( 
                               'messages' => $messages));
         }

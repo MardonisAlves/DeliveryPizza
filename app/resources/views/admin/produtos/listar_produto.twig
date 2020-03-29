@@ -4,9 +4,9 @@
 
 
 
-<div class="container flex-wrap">
-  <div class="login-box-body">
-    <table class="table table-responsive-md">
+<div class="container">
+  
+    <table class="striped" style="margin-top:50px;">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Id</th>
@@ -27,20 +27,14 @@
        <td>{{produtos.valortotalstoque}}</td>
       <td>
 
-        <!--<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editproduto" 
+        <a href="/listidproduto?id={{produtos.id}}" class="waves-effect waves-light green-text darken-1">Editar
+        <i class="material-icons green-text darken-1 left">edit_attributes</i>
+        </a>
 
-        data-iduser={{produtos.id}}
-        data-name={{produtos.nome}}
-        data-qt={{produtos.qtdade}}
-        data-compra={{produtos.precocompra}}
-        data-lucro={{produtos.porcentagemvenda}}>
-        <span><i class="icon ion-md-create text-white"></i></span></button>-->
-
-        <a href="/listidproduto?id={{produtos.id}}" class="waves-effect waves-light">Editar
-        <span class="material-icons left">edit_attributes</span>
-
-        <a href="/deletarProduto?id={{produtos.id}}" class="waves-effect waves-light">Excluir
-         <span class="material-icons left">restore_from_trash</span>
+        <a href="/deletarProduto?id={{produtos.id}}" class="waves-effect waves-light orange-text darken-1">Excluir
+           <i class="material-icons orange-text darken-1 left">restore_from_trash</i>
+        </a>
+         
 
 
       </td>

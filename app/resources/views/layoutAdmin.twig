@@ -37,7 +37,7 @@
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
-        });
+       
 
          /* select new user*/
         $('select').formSelect();
@@ -47,47 +47,7 @@
 
         /*navAdmin*/
         $('.sidenav').sidenav();
-
-
-
-
-    $('#editproduto').on('show.bs.modal', function (event) {
-
-          var button = $(event.relatedTarget)
-          var iduser = button.data('iduser')
-          var name = button.data('name')
-          var qt = button.data('qt');
-          var valorCompra = button.data('compra')
-          var lucro = button.data('lucro')
-
-          var modal = $(this)
-    
-          modal.find('#id').val(iduser)
-          modal.find('#qt').val(qt)
-          modal.find('#name').val(name)
-          modal.find('#compra').val(valorCompra)
-          modal.find('#lucro').val(lucro)
-});
-
-$('#editarcardapio').on('show.bs.modal', function (event) {
-
-          var button = $(event.relatedTarget)
-          var idcard= button.data('cardid')
-          var valorcard = button.data('cardvalor')
-          var descricaocard = button.data('carddescricao');
-          
-        for(i = 0; i < descricaocard.length ; i++){
-            console.log(descricaocard[i]);
-        }
-          
-          var modal = $(this)      
-
-
-          modal.find('#idcard').val(idcard)
-          modal.find('#valor').val(valorcard)
-          modal.find('#descricao').val(descricaocard)
-         
-});
+ });
     </script>
 
 </html>
