@@ -9,6 +9,7 @@ use Intervention\Image\ImageManager;
 use App\Model\Users;
 use App\Model\Cardapio;
 use App\Model\Produtos;
+use Pusher\Pusher;
 
 class TesteController
 {
@@ -87,6 +88,26 @@ public function listprodutos(Request  $request, Response $response, $args){
                     ->view->render($response,
                     'admin/home.twig' ,
                     ['viewpro' => $jason]);
+
+}
+
+public function socketio(Request  $request, Response $response, $args){
+
+    echo "socketio";
+
+    $options = array(
+    'cluster' => 'mt1',
+    'useTLS' => true
+  );
+  $pusher = new Pusher(
+    '31c79ef0bedc8601377b',
+    '052380beaa5108c68647',
+    '972105',
+    $options
+  );
+ 
+  $data['message'] =  $_SESSION['nome'] .  "Acabou de Finalizar Um Pedido";
+  $pusher->trigger('my-channel', 'my-event', $data);
 
 }
 

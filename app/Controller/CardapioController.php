@@ -78,21 +78,21 @@ $file = $_FILES['urlimg']['tmp_name'];
             case IMAGETYPE_PNG:
                 $imageResourceId = imagecreatefrompng($file); 
                 $targetLayer = imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
-                imagepng($targetLayer,$folderPath. $fileNewName. "_thump.". $ext);
+                imagepng($targetLayer,$folderPath);
                 break;
 
 
             case IMAGETYPE_GIF:
                 $imageResourceId = imagecreatefromgif($file); 
                 $targetLayer = imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
-                imagegif($targetLayer,$folderPath. $fileNewName. "_thump.". $ext);
+                imagegif($targetLayer,$folderPath);
                 break;
 
 
             case IMAGETYPE_JPEG:
                 $imageResourceId = imagecreatefromjpeg($file); 
                 $targetLayer = $this->imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
-                imagejpeg($targetLayer,$folderPath. $fileNewName. "_thump.". $ext);
+                imagejpeg($targetLayer,$folderPath);
                 break;
 
 
@@ -115,7 +115,7 @@ $file = $_FILES['urlimg']['tmp_name'];
     $cardapio->setTamanho($_POST['tamanho']);
     $cardapio->setValor($_POST['valor']);
     $cardapio->setDescricao($_POST['descricao']);
-    $cardapio->setUrlimg($folderPath. $fileNewName. "_thump.". $ext);
+    $cardapio->setUrlimg($_FILES['urlimg']['name']);
     $cardapio->insert();
 
 
@@ -207,16 +207,27 @@ public function updatePizza(Request $request, Response $response, $args)
 // excluir
 public function excluircardapio(Request $request, Response $response, $args)
 {
-     if(($_SESSION['user']) == 'admin'){
+    
+    if(($_SESSION['user']) == 'admin'){
+
     //echo "Excluir Cardapio e renderizar para view admin";
-    $card = new Cardapio();
+   
+   $card = new Cardapio();
     $card->setConnection($this->db);
-    $card->setId($_GET['id']);
+    $card->setUrlimg($_GET['urlimg']);
     $card->excluircardapio();
+    
+    // deletar img
+    $directory = $this->container->get('upload_directory');
+    unlink($directory . $_GET['urlimg']);
+    
+     
+
 
     $url = $this->container->get('router')->pathFor('listar');
     return $response->withStatus(302)->withHeader('Location' ,$url);
-
+    
+   
 }
 }
 }

@@ -14,17 +14,24 @@
 
 
     <div class="container">
-       <h3 class="text-center">Cardapio</h3>
+       <h3 class="text-center grey-text darken-1">Cardapio</h3>
       <div class="row">
      {% for allcardapios in allcardapio %}
-         
-            <div class="col s6 m3" >
+        
+
+        <div class="col s6 m3" >
               <div class="card">
+               
                 <div class="card-image">
-                <img src="{{allcardapios.urlimg}}" class="card-img">
-                <span class="card-title">{{allcardapios.nomesabor}} {{allcardapios.valor}}</span>
-                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-              </div>
+                  <img src="public/img/uploads/cardapio/{{allcardapios.urlimg}}" class="card-img">
+                  <span class="card-title  white-text darken-1">
+                    {{allcardapios.nomesabor}} {{allcardapios.valor}}
+                  </span>
+                  <a class="btn-floating halfway-fab waves-effect waves-light red">
+                    <i class="material-icons">add</i>
+                  </a>
+                </div>
+
                 <div class="card-content">
                 <p>{{allcardapios.descricao}}</p>
               </div>

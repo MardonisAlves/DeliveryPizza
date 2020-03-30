@@ -67,10 +67,12 @@ class Cardapio extends BaseAbstract implements interfaceCardapio
     /* @ delete cardapio*/ 
     public function excluircardapio(){
 
-        $card =  "DELETE from Cardapio where id=:id";
+        $card =  "DELETE from Cardapio where urlimg=:urlimg";
         $stmt= $this->getConnection()->prepare($card);
-        $stmt->bindParam("id" , $this->getId());
+        $stmt->bindParam("urlimg" , $this->getUrlimg());
         $stmt->execute();
+
+       
           
     }
 

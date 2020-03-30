@@ -78,6 +78,7 @@ $this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
         $this->get('/selctQueybuild' , 'TesteController:selctQueybuild')->setName('selctQueybuild');
         $this->get('/Ajaxteste' , 'TesteController:Ajaxteste')->setName('Ajaxteste');
         $this->get('/listprodutos' , 'TesteController:listprodutos')->setName('listprodutos');
+        $this->get('/socketio' , 'TesteController:socketio')->setName('socketio');
         //$this->get('/updateuser', 'TesteController:updateuser')->setName('updateuser');
     });
 
