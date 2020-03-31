@@ -19,11 +19,11 @@
      {% for allcardapios in allcardapio %}
         
 
-        <div class="col s6 m3" >
+        <div class="col s6 m4" >
               <div class="card">
                
                 <div class="card-image">
-                  <img src="public/img/uploads/cardapio/{{allcardapios.urlimg}}" class="card-img">
+                  <img src="{{allcardapios.urlimg}}" class="card-img">
                   <span class="card-title  white-text darken-1">
                     {{allcardapios.nomesabor}} {{allcardapios.valor}}
                   </span>
@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="card-content">
-                <p>{{allcardapios.descricao}}</p>
+                <p style="font-size:12px;">{{allcardapios.descricao}}</p>
               </div>
         </div>
       </div>

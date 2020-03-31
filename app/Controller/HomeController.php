@@ -149,8 +149,7 @@ public function newcontact($request, $response, $args)
   $contact->setText($_POST['message']);
   $contact->setPublicationDate(new \DateTime());
   $this->em->flush();
-
-  parent::sendemail($request , $response , $args);
+  
 
   return $this->container->view->render($response ,'contact.twig');
 

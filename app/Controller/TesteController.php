@@ -97,7 +97,7 @@ public function socketio(Request  $request, Response $response, $args){
 
     $options = array(
     'cluster' => 'mt1',
-    'useTLS' => true
+    'useTLS' => false
   );
   $pusher = new Pusher(
     '31c79ef0bedc8601377b',

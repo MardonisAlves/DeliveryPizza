@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Model;
-use App\AbstractModel\Baseabstract;
+use App\AbstractModel\BaseAbstract;
 use App\interfaces\interfaceProdutos;
 use PDO;
 

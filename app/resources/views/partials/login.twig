@@ -1,36 +1,29 @@
 
 
-    <div id="modal1" class="modal modal-fixed-footer">
+    <div id="modal1" class="modal">
     <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-      <form class="col s12" action="/login" method="post">
-       <div class="row">
-        <div class="input-field col s12">
+      <h6><i class="material-icons right">vpn_key</i> Sejam bem vindos</h6>
+      
+      <form class="col s8" action="/login" method="post">
+        <div class="input-field col s8">
           <input id="email" type="email" class="validate" name="email">
           <label for="email">Email</label>
         </div>
-      </div>
-     
-      <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s8">
           <input id="password" type="password" class="validate" name="senha">
           <label for="password">Password</label>
         </div>
-      </div>
+        <div class="input-field col s8">
 
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="enviar" type="submit"  name="Login">
-          
+        <button class="btn waves-effect waves-light btn-small" type="submit" name="action">login</button>
+        <button class="btn waves-effect waves-light btn-small" type="reset" name="action">clear</button>
+        <a href="/recu_form" class="btn waves-effect waves-light btn-small" type="reset" name="action">reset password</a>
+
         </div>
-      </div>
-     
-     
     </form>
     </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
+    
   </div>
+
+
     
