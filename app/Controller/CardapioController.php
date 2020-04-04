@@ -33,34 +33,6 @@ public function inserircardapio( $request,  $response, $args)
 {
      if(($_SESSION['user']) == 'admin'){
 
-    // verificar se o cardapio ja exiti
-
-    // insert cardapio
-    /*
-    $cardapio =  new Cardapio();
-    $cardapio->setConnection($this->db);
-    $cardapio->setContainer($this->container);
-    $cardapio->setSession($this->session);
-    $cardapio->setId(0);
-    $cardapio->setNomesabor($_POST['nomesabor']);
-    $cardapio->setTamanho($_POST['tamanho']);
-    $cardapio->setValor($_POST['valor']);
-    $cardapio->setDescricao($_POST['descricao']);
-    
-
- // fazer upload da img do cardapio criar um method para issso
-        $directory = $this->container->get('upload_directory');
-        $destination  = $directory . $_FILES['urlimg']['name'];
-        $move = move_uploaded_file($_FILES['urlimg']['tmp_name'], $destination);
-
-    $cardapio->setUrlimg($destination);
-    $cardapio->insert();
-
-        // depois render para view
-    $url = $this->container->get('router')->pathFor('listar');
-    return $response->withStatus(302)->withHeader('Location' ,$url);
-*/
-
     
     
 $file = $_FILES['urlimg']['tmp_name']; 
@@ -102,15 +74,13 @@ $file = $_FILES['urlimg']['tmp_name'];
                 break;
         }
 
-           // move_uploaded_file($file,  $fileNewName. "." .$ext );
+          
             move_uploaded_file($fileNewName. "_thump.". $ext);
             echo "Image Resize Successfully.";
 
        
     $cardapio =  new Cardapio();
     $cardapio->setConnection($this->db);
-    $cardapio->setContainer($this->container);
-    $cardapio->setSession($this->session);
     $cardapio->setId(0);
     $cardapio->setNomesabor($_POST['nomesabor']);
     $cardapio->setTamanho($_POST['tamanho']);

@@ -3,42 +3,37 @@
 
 {% block content %}
     
-   {% include 'partials/banner.twig'%}
-
-   
-   {% for message in messages %}
+{% include 'partials/banner.twig'%}
+  {% for message in messages %}
     <div class="alert alert-danger">
-    <li>{{ message[0] }}</li>
+      <li>{{ message[0] }}</li>
     </div>
-    {% endfor %}
+  {% endfor %}
 
+<div class="container">
+  <h3 class="text-center grey-text darken-1">Cardapio</h3>
+  <div class="row">
+{% for allcardapios in allcardapio %}
 
-    <div class="container">
-       <h3 class="text-center grey-text darken-1">Cardapio</h3>
-      <div class="row">
-     {% for allcardapios in allcardapio %}
-        
+<div class="col s6 m4" >
+  <div class="card">
+    <div class="card-image">
+      <img src="{{allcardapios.urlimg}}" class="card-img">
+      <span class="card-title  white-text darken-1">
+        {{allcardapios.nomesabor}} {{allcardapios.valor}}
+      </span>
+      <a href="/initsession?id={{allcardapios.id}}" class="btn-floating halfway-fab waves-effect waves-light red">
+          <i class="material-icons">add</i>
+      </a>
+    </div>
 
-        <div class="col s6 m4" >
-              <div class="card">
-               
-                <div class="card-image">
-                  <img src="{{allcardapios.urlimg}}" class="card-img">
-                  <span class="card-title  white-text darken-1">
-                    {{allcardapios.nomesabor}} {{allcardapios.valor}}
-                  </span>
-                  <a href="/home" class="btn-floating halfway-fab waves-effect waves-light red">
-                    <i class="material-icons">add</i>
-                  </a>
-                </div>
+<div class="card-content">
+  <p style="font-size:12px;">{{allcardapios.descricao}}</p>
+</div>
+</div>
+</div>
 
-                <div class="card-content">
-                <p style="font-size:12px;">{{allcardapios.descricao}}</p>
-              </div>
-        </div>
-      </div>
-   
-      {% endfor %}
+{% endfor %}
 
 </div>
 </div>

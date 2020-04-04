@@ -15,13 +15,12 @@ class HomeController
       private $db;
       private $container;
       private $flash;
-      private $session;
-public function __construct($container , $db  , $flash ,$session)
+public function __construct($container , $db  , $flash)
 {
           $this->db = $db;
           $this->container=$container;
           $this->flash = $flash;
-          $this->session = $session;
+      
 
 
 }
@@ -31,7 +30,6 @@ public function index(Request $request, Response $response, $args)
   $card = new Cardapio();
   $card->setConnection($this->db);
   $card->setContainer($this->container);
-  $card->setSession($this->session);
   $allcardapio = $card->selctAll($response);
 
 
@@ -82,12 +80,11 @@ public function InserCliente(Request $request, Response $response, $args)
 if($_POST['senha'] != $_POST['repetsenha'])
 {
 
-        $this->flash->addMessageNow('msg', 'As senha não conferem');
-        $messages = $this->flash->getMessages();
-      return $this->container->view->render(
-                                    $response ,
-                                    '/CardCliente.twig',
-                                    Array( 'messages' => $messages));
+$this->flash->addMessageNow('msg', 'As senha não conferem');
+$messages = $this->flash->getMessages();
+return $this->container
+            ->view->render(
+            $response ,'/CardCliente.twig',['messages' => $messages]);
 }
 
 
@@ -96,13 +93,15 @@ $Users = new Users();
 $Users->setConnection($this->db);
 $Users->setContainer($this->container);
 $Users->setEmail($_POST['email']);
-$cliente = $Users->getuserByemail();
+$cliente = $Users->getuserByemail($_POST['email']);
 // insert cliente ja esta em funcionamento
-if(isset($cliente)){
+
+
+
 foreach($cliente as $l)
 {
 
-  if($l->getEmail() == $_POST['email'])
+  if($l['email'] == $_POST['email'])
   {
 
   $this->flash->addMessageNow('msg', 'E-mail js esta cadstrado');
@@ -115,7 +114,8 @@ foreach($cliente as $l)
 
   }
 }
-}else {
+
+
   $Users = new Users();
   $Users->setConnection($this->db);
   $Users->setContainer($this->container);
@@ -127,13 +127,18 @@ foreach($cliente as $l)
   $Users->insert($response);
 
   // redirect para o login do user view
-          $this->flash->addMessageNow('msg', 'Cadatrado com Sucesso');
+         /* $this->flash->addMessageNow('msg', 'Cadatrado com Sucesso');
           $messages = $this->flash->getMessages();
           return $this->container->view->render(
                                             $response ,
                                             'admin/login/loginCliente.twig',
                                             Array( 'messages' => $messages));
-}
+                                            */
+
+
+          $url = $this->container->get('router')->pathFor('login');
+        return $response->withStatus(302)->withHeader('Location', $url);
+
 
 
 }

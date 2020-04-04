@@ -131,6 +131,13 @@ class Users extends BaseAbstract implements interfaceUser
     public function getuserByemail($email){
 
       $user = $this->getConnection()->query("SELECT * FROM Users where email='$email'" ,PDO::FETCH_ASSOC);
+      
+
+      /*foreach ($user as $key => $value) {
+        echo  $value['id'];
+      }
+      */
+
       return $user;
 
     }

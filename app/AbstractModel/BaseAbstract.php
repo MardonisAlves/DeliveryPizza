@@ -1,7 +1,7 @@
 <?php
 
 namespace App\AbstractModel;
-
+use PDO;
 abstract class BaseAbstract{
 
     private $Connection;

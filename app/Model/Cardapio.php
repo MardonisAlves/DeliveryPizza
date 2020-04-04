@@ -47,7 +47,7 @@ class Cardapio extends BaseAbstract implements interfaceCardapio
     /*@ select by id cardapio*/
     public function selectByid($id){
     
-       $card  = $this->getConnection()->query("SELECT * FROM Cardapio where id=$id");
+       $card  = $this->getConnection()->query("SELECT * FROM Cardapio where id='$id'");
         return $card;
       
       

@@ -32,8 +32,6 @@ public function initsession(Request $request, Response $response, $args)
 /*
 * 1 PRIMEIRO CRIAMOS A SESSION INIT DO PRODUTO
 */
-  
-   
     $produtos = new Cardapio();
     $produtos->setConnection($this->db);
     $produtos->setContainer($this->container);
@@ -42,21 +40,14 @@ public function initsession(Request $request, Response $response, $args)
 
    while ($value = $listaIdcadapio->fetch()) 
    {
-
+     
     $this->session->set('idcarro', $value['id']);
     $this->session->set('nomesabor' , $value['nomesabor']);
-    echo $_SESSION['id'] . "<br>";
-      var_dump($value);
+    echo $_SESSION['idcarro'] . "<br>";
+     // var_dump($value);
+  
   
     }
-
-    
-
-
-
-    
-
-
 /*
 *  2 VERIFICAR SE JA ESTA CADASTRADO , SE NÃO REDIRECIONAR PARA CADASTRO COM (ROUTER)
 *  

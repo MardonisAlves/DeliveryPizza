@@ -65,8 +65,7 @@ $container['pdo'] = function ($c) {
 $container['HomeController'] = function ($container) {
 return new \App\Controller\HomeController($container  , 
                                             $container['pdo'],
-                                            $container->get('flash') , 
-                                            $container->get('session'));
+                                            $container->get('flash'));
 };
  
 
@@ -76,7 +75,7 @@ $container['AdminController'] = function ($container){
 return new App\Controller\AdminController($container , 
                                             $container['pdo'] ,
                                             $container->get('flash'),
-                                             $container->get('session'));
+                                            $container['session']);
 };
 
 // SenhaController
@@ -91,8 +90,7 @@ $container['SenhaController'] = function ($container){
 $container['TesteController'] = function ($container){
     return new App\Controller\TesteController($container , 
                                                 $container['pdo'],
-                                                $container->get('flash'),
-                                                $container->get('session'));
+                                                $container->get('flash'));
 };
 
 

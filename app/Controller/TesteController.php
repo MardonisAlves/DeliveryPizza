@@ -16,14 +16,12 @@ class TesteController
     protected $db;
     private $container;
     private $flash;
-    private $session;
     
-    public function __construct($container , $db ,$flash ,  $session )
+    public function __construct($container , $db ,$flash )
 {
         $this->db = $db;
         $this->container=$container;
-        $this->flash = $flash;
-        $this->session = $session;     
+        $this->flash = $flash;     
 }
 
 /*=================================================================
@@ -78,10 +76,11 @@ public function listprodutos(Request  $request, Response $response, $args){
         $Produtos->setContainer($this->container);
         $viewpro = $Produtos->listarProdutos();
 
-       /**foreach ($viewpro as $key => $value) {
+       foreach ($viewpro as $key => $value) {
        echo  $value['id'];
+        $_SESSION['idtest'] = $value['id'];
        }
-       **/
+       
         $jason = json_encode($viewpro);
 
         return $this->container

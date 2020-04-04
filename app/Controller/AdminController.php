@@ -8,15 +8,13 @@ use App\Model\Cardapio;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class AdminController 
-{
+class AdminController {
     protected $db;
     private $container;
     private $flash;
     private $session;
     
-    public function __construct($container , $db ,$flash ,  $session)
-{
+    public function __construct($container , $db ,$flash ,  $session){
         $this->db = $db;
         $this->container=$container;
         $this->flash = $flash;
@@ -25,9 +23,7 @@ class AdminController
         
 }
 // home
-public function home(Request $request, Response $response, $args)
-{
-
+public function home(Request $request, Response $response, $args){
 if(isset($_SESSION['user'])){
   switch (($_SESSION['user'])) {
 
@@ -55,82 +51,71 @@ if(isset($_SESSION['user'])){
   }
 }
 
-   return $this->container->view->render($response ,'CardCliente.twig');
+  // return $this->container->view->render($response ,'index');
 
-
+  $url = $this->container->get('router')->pathFor('login');
+  return $response->withStatus(302)->withHeader('Location', $url);
   
 }
 // login
-public function login(Request $request, Response $response, $args)
+public function login(Request $request, Response $response, $args){
+
+if(isset($_POST['submit'])){
+
+  $user = new Users();
+  $user->setConnection($this->db);
+  $email =  $user->getuserByemail($_POST['email']);
+
+
+while($user = $email->fetch())
 {
-  // refazer a logiva de login
-  $email = $_POST['email'];
-  $contact = $this->db->query("SELECT * FROM Users where email='$email'");
-
-if($contact){
-
-
-      while($user = $contact->fetch())
-      {
        
-        if($_POST['email'] == $user['email'])
-      {
-        if(password_verify($_POST['senha'], $user['senha'])){
-
-         //  sessions
-        $this->session->set('user', $user['tipouser']);
-        $this->session->set('email', $user['email']);
-        $this->session->set('nome', $user['nome']);
-        $this->session->set('id', $user['id']);
-
-        $url = $this->container->get('router')->pathFor('home');
-        return $response->withStatus(302)->withHeader('Location', $url);
-
-        
-
-      }else{
-
-        $this->flash->addMessageNow('msg', 'Senha errada');
-        $messages = $this->flash->getMessages();
-        return $this->container->view->render(
-                                    $response ,
-                                    'admin/login/loginCliente.twig',
-                                    Array( 'messages' => $messages));
-      }
-
-      }else{
-
-        $this->flash->addMessageNow('msg', 'Usuario nao encontrado!');
-        $messages = $this->flash->getMessages();
-
-      return $this->container->view->render(
-                                    $response ,
-                                    'admin/login/loginCliente.twig',
-                                    Array( 'messages' => $messages));
-          }
-      }
+if( $user['email'] === $_POST['email'] ){
+  if(password_verify($_POST['senha'], $user['senha'])){
+    //  sessions
+    $this->session->set('user', $user['tipouser']);
+    $this->session->set('email', $user['email']);
+    $this->session->set('nome', $user['nome']);
+    $this->session->set('id', $user['id']);
+    $url = $this->container->get('router')->pathFor('home');
+    return $response->withStatus(302)->withHeader('Location', $url);
 
 }else{
-
-        $this->flash->addMessageNow('msg', 'Você deve Criar user!');
-        $messages = $this->flash->getMessages();
-
-      return $this->container->view->render(
+    $this->flash->addMessageNow('msg', 'Senha errada');
+    $messages = $this->flash->getMessages();
+    return $this->container->view->render(
                                     $response ,
                                     'admin/login/loginCliente.twig',
                                     Array( 'messages' => $messages));
 }
 
-return $this->container
-->view
-->render($response ,'admin/login/loginCliente.twig');
+}else{
+    $this->flash->addMessageNow('msg', 'Usuario nao encontrado!');
+    $messages = $this->flash->getMessages();
+    return $this->container->view->render($response ,
+                                    'admin/login/loginCliente.twig',
+                                    Array( 'messages' => $messages));
+  }
+}
+
+}else{
+
+    $this->flash->addMessageNow('msg', 'Você deve Criar user!');
+    $messages = $this->flash->getMessages();
+    return $this->container->view->render($response ,
+                                    'admin/login/loginCliente.twig',
+                                    Array( 'messages' => 'Você não esta autenticado'));
+
+}
+
+
+return $this->container->view->render($response ,'CardCliente.twig');
   
 }
 
 
 // GET Contact By Id //
-public function GetcontactID($request, $response, $args)
-{
+public function GetcontactID($request, $response, $args){
     
 
    if(isset($_SESSION['user']) == 'admin'){
@@ -179,8 +164,7 @@ public function putContact($request, $response, $args)
 }
 
 // Delete Contact //
-public function DeleteContact($request, $response, $args)
-{
+public function DeleteContact($request, $response, $args){
   if(isset($_SESSION['user']) == 'admin' AND $_SERVER['REQUEST_METHOD'] == 'GET'){
 
         $contact =  $this->em->find(
@@ -234,8 +218,7 @@ public function deleteuser(Request  $request, Response $response, $args)
 }
 
 // NEW USER
-public function newuser($request ,$response , $args)
-{    
+public function newuser($request ,$response , $args){    
    if($_SESSION['user'] == 'admin'){
 
   return $this->container->view->render($response ,'admin/users/newuser.twig');
@@ -252,8 +235,7 @@ public function newuser($request ,$response , $args)
 }
 
 // ADD USER
-public function addUser($request , $response , $args)
-{
+public function addUser($request , $response , $args){
 if($_SESSION['user'] == 'admin'){
 // validar o acesso com session
 $users =  $this->db->query("SELECT * FROM Users");
@@ -346,6 +328,7 @@ public function getUserform( $request ,  $response , $args)
 
 public function listarUser( $request ,  $response , $args)
 {
+  if(isset($_SESSION['user'])){
  switch ($_SESSION['user']) {
    case 'admin':
             
@@ -365,9 +348,13 @@ public function listarUser( $request ,  $response , $args)
       return $this->container->view->render($response ,'admin/login/loginCliente.twig');
      break;
  }
+}else{
+        $url = $this->container->get('router')->pathFor('login');
+        return $response->withStatus(302)->withHeader('Location', $url);
 }
 
 
+}
 
 public function UpdateUserEndeId(Request  $request, Response $response, $args)
 {
@@ -440,13 +427,11 @@ switch ($_SESSION['user']) {
       $url = $this->container->get('router')->pathFor('index');
       return $res->withStatus(302)->withHeader('Location', $url);
 
-
 }
 
 }
 
 // get endereco by id 
-
 public function getEnderecoByid(Request $req , Response $res , $args){
 
   switch ($_SESSION['user']) {
@@ -506,9 +491,6 @@ public function newendereco(Request $req , Response $res , $args)
     return $res
   ->withHeader('Location', '/listaruser')
   ->withStatus(302);
-
-
-
 }
 
 

@@ -5,41 +5,50 @@
 
 
 <div class="container">
-    <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
-            <div class="form-group">
-              <form name="" id="loginForm" action="/login" method="post">
-
-                <div class="form-group has-feedback">
-                  <!----- username -------------->
-                  <input class="form-control" placeholder="E-mail" id="loginid" type="email" autocomplete="off" name="email" value=""/>
-                </div>
-
-                <div class="form-group has-feedback">
-                  <!----- password -------------->
-                  <input class="form-control" placeholder="Password" id="loginpsw" type="password" autocomplete="off" name="senha"/>
-
-                </div>
+    <div class="row">
+         <div class="col m12 s3 12">
+          <p class=" center-align"><img src="public/img/cadeado1.png" class="responsive-img"></p>
+         </div>
+              <form name="" action="/login" method="post">
                 <div class="row">
-                <div class="col-sm-12">
-                <input type="submit" class="btn btn-green" value="Login">
+                 <div class="col m12 s12 12">
+                  <input  placeholder="E-mail"  type="email"  name="email" value=""/>
+                  <label>Email</label>
+                </div>
+              </div>
+
+                <div class="row">
+                  <div class="col m12 s12 12">
+                  <input  placeholder="Password" type="password"  name="senha"/>
+                  <label>Password</label>
+                </div>
+              </div>
+
+                <div class="row">
+                <div class="col m12 s12 12">
+                <button type="submit" class="btn waves-effect waves-light" value=""/>login
+                  <i class="material-icons right">fingerprint</i>
+                </button>
+
                 <a href="/CardCliente">
-                  <button type="button" class="btn btn-warning"><i class="icon ion-md-contacts"></i></button>
+                  <button type="reset" class="btn waves-effect waves-light">clear
+                    <i class="material-icons right">clear</i> 
+                    </button>
                 </a>
 
                 <a href="/recu_form">
-                  <button type="button" class="btn btn-danger"><i class="icon ion-ios-key" size="large"></i></button>
+                  <button type="button" class="btn waves-effect waves-light">senha
+                    <i class="material-icons right">vpn_lock</i>
+                      
+                    </button>
                 </a>
                 </div>
-                </div>
-
-                </div>
+              </div>
               </form>
-            </div>
           </div>
 
      
     </div>
-  </div>
+
 
 {% endblock  %}

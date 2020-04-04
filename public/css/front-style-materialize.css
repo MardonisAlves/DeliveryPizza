@@ -15,13 +15,20 @@
 	background-size: cover; 
 	filter: sepia();
 }
-.card-img{
-	
-	
-	
+.card-img{	
 }
 
 /*
 	MENU
 */
 
+
+
+/*
+	LOGIN
+*/
+
+
+.login{
+	align-content: center;
+}
