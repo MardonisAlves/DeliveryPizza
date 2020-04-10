@@ -53,7 +53,7 @@ $container['em'] = function ($c) {
 
 // PDO
 $container['pdo'] = function ($c) {
-    $settings = $c->get('settings')['db'];
+    $settings = $c->get('settings')['connection'];
     $pdo = new PDO("mysql:host=" . $settings['host'] . ";dbname=" . $settings['dbname'],
         $settings['user'], $settings['pass']);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
