@@ -54,7 +54,7 @@ $container['em'] = function ($c) {
 // PDO
 $container['pdo'] = function ($c) {
     $settings = $c->get('settings')['connection'];
-    $pdo = new PDO("pgsql:host=" . $settings['host'] . ";dbname=" . $settings['dbname'],
+    $pdo = new PDO("mysql:host=" . $settings['host'] . ";dbname=" . $settings['dbname'],
         $settings['user'], $settings['pass']);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
