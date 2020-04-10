@@ -1,7 +1,7 @@
 <?php
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
-
+use PDO;
 use \SlimSession\Helper;
 $container = $app->getContainer();
 
@@ -55,7 +55,7 @@ $container['em'] = function ($c) {
 $container['pdo'] = function ($c) {
     $settings = $c->get('settings')['connection'];
     $pdo = new PDO("mysql:host=" . $settings['host'] . ";dbname=" . $settings['dbname'],
-        $settings['user'], $settings['pass']);
+    $settings['user'], $settings['pass']);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $pdo;
