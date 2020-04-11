@@ -3,32 +3,36 @@
 	BANNER
 */
 .img1{
-	background-image: url('/public/img/ptcala.jpg');
+	background-image: url('/public/img/pizza01.jpg');
 	background-repeat: no-repeat;
 	background-size: cover; 
-	filter: saturate();
+	
 }
 
 .img2{
-	background-image: url('/public/img/img2.jpg');
+	background-image: url('/public/img/pizza02.jpg');
 	background-repeat: no-repeat;
 	background-size: cover; 
-	filter: sepia();
+	
 }
-.card-img{	
+.img3{
+	background-image: url('/public/img/pizza03.jpeg');
+	background-repeat: no-repeat;
+	background-size: cover; 
+	
+}
+
+.img4{
+	background-image: url('/public/img/pizza04.png');
+	background-repeat: no-repeat;
+	background-size: cover; 
+	
 }
 
 /*
-	MENU
+		ADMIN
 */
 
-
-
-/*
-	LOGIN
-*/
-
-
-.login{
-	align-content: center;
+.container-admin{
+	margin-top: 50px;
 }

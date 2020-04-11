@@ -18,10 +18,10 @@ require __DIR__ . '/../vendor/autoload.php';
 
 // Application settings
 
-$container =  new Container (require __DIR__ . '/../app/settings.php');
+$settings =  new Container (require __DIR__ . '/../app/settings.php');
 
 // New Slim app instance
-$app = new Slim\App($container);
+$app = new Slim\App($settings);
 
 // Add our dependencies to the container
 require __DIR__ . '/../app/dependencies.php';

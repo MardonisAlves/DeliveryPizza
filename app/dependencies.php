@@ -1,7 +1,7 @@
 <?php
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
-use PDO;
+
 use \SlimSession\Helper;
 $container = $app->getContainer();
 
@@ -51,11 +51,23 @@ $container['em'] = function ($c) {
     return \Doctrine\ORM\EntityManager::create($settings['doctrine']['connection'], $config);
 };
 
-// PDO
-$container['pdo'] = function ($c) {
-    $settings = $c->get('settings')['connection'];
+// PDO MYSQL
+
+
+$container['mysql'] = function ($c) {
+    $settings = $c->get('settings')['mysql'];
     $pdo = new PDO("mysql:host=" . $settings['host'] . ";dbname=" . $settings['dbname'],
     $settings['user'], $settings['pass']);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    return $pdo;
+};
+
+//PDO PGSQL
+$container['pgsql'] = function ($c) {
+    $db = $c['settings']['postsql'];
+    $pdo = new PDO('pgsql:host=' . $db['host'] . ';dbname=' . $db['dbname'],
+        $db['user'], $db['password']);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $pdo;
@@ -64,7 +76,7 @@ $container['pdo'] = function ($c) {
 // HOME CONTROLER
 $container['HomeController'] = function ($container) {
 return new \App\Controller\HomeController($container  , 
-                                            $container['pdo'],
+                                            $container['mysql'],
                                             $container->get('flash'));
 };
  
@@ -73,7 +85,7 @@ return new \App\Controller\HomeController($container  ,
 // ADMINCONTROLLER
 $container['AdminController'] = function ($container){
 return new App\Controller\AdminController($container , 
-                                            $container['pdo'] ,
+                                            $container['mysql'] ,
                                             $container->get('flash'),
                                             $container['session']);
 };
@@ -81,7 +93,7 @@ return new App\Controller\AdminController($container ,
 // SenhaController
 $container['SenhaController'] = function ($container){
     return new App\Controller\SenhaController($container , 
-                                                $container->get('pdo') ,
+                                                $container->get('mysql') ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
 };
@@ -89,7 +101,7 @@ $container['SenhaController'] = function ($container){
 // TesteController
 $container['TesteController'] = function ($container){
     return new App\Controller\TesteController($container , 
-                                                $container['pdo'],
+                                                $container['mysql'],
                                                 $container->get('flash'));
 };
 
@@ -97,7 +109,7 @@ $container['TesteController'] = function ($container){
 // ProdutoController
 $container['ProdutoController'] = function ($container){
     return new App\Controller\ProdutoController($container , 
-                                                $container['pdo'] ,
+                                                $container['mysql'] ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
 };
@@ -106,7 +118,7 @@ $container['ProdutoController'] = function ($container){
 
 $container['ClienteController'] = function ($container){
     return new App\Controller\ClienteController($container ,
-                                                $container['pdo'],
+                                                $container['mysql'],
                                                  $container->get('flash') ,
                                                  $container->get('session'));
 };
@@ -114,7 +126,7 @@ $container['ClienteController'] = function ($container){
 // CardapioController
 $container['CardapioController'] = function ($container) {
     return new \App\Controller\CardapioController($container  , 
-                                                $container['pdo'] , 
+                                                $container['mysql'] , 
                                                 $container->get('flash'),
                                                 $container->get('session'));
 
@@ -122,7 +134,7 @@ $container['CardapioController'] = function ($container) {
 // CarroController
     $container['CarroController'] = function ($container) {
     return new \App\Controller\CarroController($container  , 
-                                                $container['pdo'] , 
+                                                $container['mysql'] , 
                                                 $container->get('flash'),
                                                 $container->get('session'));
 
