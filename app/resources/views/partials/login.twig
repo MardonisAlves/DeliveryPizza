@@ -2,7 +2,7 @@
 
     <div id="modal1" class="modal">
     <div class="modal-content">
-      <h6><i class="material-icons right">vpn_key</i> Sejam bem vindos</h6>
+      <h6>Sejam bem vindos</h6>
       
       <form class="col s8" action="/login" method="post">
         <div class="input-field col s8">
@@ -15,10 +15,18 @@
         </div>
         <div class="input-field col s8">
 
-        <button class="btn waves-effect waves-light btn-small" type="submit" name="submit">login</button>
-        <button class="btn waves-effect waves-light btn-small" type="reset" name="action">clear</button>
-        <a href="/recu_form" class="btn waves-effect waves-light btn-small" type="reset" name="action">reset password</a>
+        <button class="icon-login btn waves-effect waves-light btn-small" type="submit" name="submit">
+          <i class="material-icons">fingerprint</i>
+        </button>
+        <button class="icon-clear btn waves-effect waves-light btn-small" type="reset" name="action">
+         <i class="material-icons">clear</i>
+        </button>
+        <a href="/recu_form" class="icon-reset btn waves-effect waves-light btn-small" type="reset" name="action">reset</a>
 
+        </div>
+
+        <div class="input-field col s8">
+          <a href="#" class="icon-new-user">Cadastrar</a> 
         </div>
     </form>
     </div>

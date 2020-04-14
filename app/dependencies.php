@@ -57,16 +57,16 @@ $container['em'] = function ($c) {
 $container['mysql'] = function ($c) {
     $settings = $c->get('settings')['mysql'];
     $pdo = new PDO("mysql:host=" . $settings['host'] . ";dbname=" . $settings['dbname'],
-    $settings['user'], $settings['pass']);
+    $settings['user'], $settings['password']);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $pdo;
 };
 
-//PDO PGSQL
-$container['pgsql'] = function ($c) {
-    $db = $c['settings']['postsql'];
-    $pdo = new PDO('pgsql:host=' . $db['host'] . ';dbname=' . $db['dbname'],
+//PDO LOCAL
+$container['local'] = function ($c) {
+    $db = $c['settings']['local'];
+    $pdo = new PDO('mysql:host=' . $db['host'] . ';dbname=' . $db['dbname'],
         $db['user'], $db['password']);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
