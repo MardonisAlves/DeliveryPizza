@@ -53,6 +53,19 @@ class Cardapio extends BaseAbstract implements interfaceCardapio
       
     }
 
+      /*get caizone by codigo*/
+
+    public function caizone(){
+        $caizone  = $this->getConnection()->query("SELECT codigo FROM Cardapio");
+        
+        /*foreach ($caizone as $key => $value) {
+            echo $value['codigo'];
+        }
+        */
+        return $caizone; 
+    }
+    
+
     /* @ update cardapio*/
     public function updatePizza(){
         $card =  "UPDATE Cardapio set valor=:valor  where id=:id";
