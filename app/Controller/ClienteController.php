@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Model\Produtos;
-use App\Model\Cardapio;
+use App\Model\Pizza;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\StreamInterface;
@@ -29,11 +29,11 @@ class ClienteController
 
 public function homecliente(Request $Request, Response $response , $args)
 {
-	$Cardapio = new Cardapio();
-    $Cardapio->setConnection($this->db);
-    $Cardapio->setContainer($this->container);
-    $Cardapio->setSession($this->session);
-   	$lista =  $Cardapio->selctAll();
+	$pizza = new Pizza();
+    $pizza->setConnection($this->db);
+    $pizza->setContainer($this->container);
+    $pizza->setSession($this->session);
+   	$lista =  $pizza->selctAll();
     return $this->container->view->render($response ,'homecliente/homecliente.twig' , ['lista' => $lista]);
 }
 }

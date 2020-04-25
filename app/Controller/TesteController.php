@@ -2,24 +2,26 @@
 
 namespace App\Controller;
 
-
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Intervention\Image\ImageManager;
 use App\Model\Users;
-use App\Model\Cardapio;
+use App\Model\ModelUsers;
+use App\Model\Pizza;
 use App\Model\Produtos;
 use Pusher\Pusher;
-
+use PDO;
 class TesteController
 {
-    protected $db;
+    protected $em;
     private $container;
     private $flash;
     
-    public function __construct($container , $db ,$flash )
+    public function __construct($container ,EntityManager $em ,$flash )
 {
-        $this->db = $db;
+        $this->em = $em;
         $this->container=$container;
         $this->flash = $flash;     
 }
@@ -56,10 +58,10 @@ public function  Teste_insert(Request  $request, Response $response, $args)
 
 public function Ajaxteste(Request  $request, Response $response, $args)
 {
-    $Cardapio = new Cardapio();
-    $Cardapio->setConnection($this->db);
-    $Cardapio->setContainer($this->container);
-    $listaIdcadapio =  $Cardapio->selectByid( $_GET['q']);
+    $pizza = new Pizza();
+    $pizza->setConnection($this->db);
+    $pizza->setContainer($this->container);
+    $listaIdcadapio =  $pizza->selectByid( $_GET['q']);
 
     foreach ($listaIdcadapio as $key => $value) {
        echo  $value['id'];
@@ -110,4 +112,15 @@ public function socketio(Request  $request, Response $response, $args){
 
 }
 
+public function list(Request  $request, Response $response, $args){
+
+$productRepository = $this->em->getRepository("App/Model/ModelUsers");
+$users = $productRepository->findAll();
+
+foreach ($users as $user) {
+    echo sprintf("-%s\n", $product->getNome());
+}
+  
+
+}
 }

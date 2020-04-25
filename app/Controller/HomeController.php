@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Model\Users;
 use App\Model\Contact;
-use App\Model\Cardapio;
+use App\Model\Pizza;
 use App\Validate\Validate;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -27,13 +27,14 @@ public function __construct($container , $db  , $flash)
 public function index(Request $request, Response $response, $args)
 {
   // listar os cardapio
-  $card = new Cardapio();
-  $card->setConnection($this->db);
-  $card->setContainer($this->container);
-  $allcardapio = $card->selctAll($response);
+  $pizza = new Pizza();
+  $pizza->setConnection($this->db);
+  $pizza->setContainer($this->container);
+  $allcardapio = $pizza->selctAll($response);
 
-
-  return $this->container->view->render($response, 'index.twig' , ['allcardapio' => $allcardapio]);
+  return $this->container
+              ->view->render($response, 'index.twig' ,
+                array('allcardapio' => $allcardapio  ));
 
 
 }
@@ -144,20 +145,58 @@ foreach($cliente as $l)
 }
 
 // New Contact
-public function newcontact($request, $response, $args)
+public function newcontact($request , $response , $args)
 {
   $contact = new Contact();
-  $this->em->persist($contact);
-  $contact->setName($_POST['name']);
+  $contact->setConnection($this->db);
+  $contact->setContainer($this->container);
+  $contact->setId(0);
+  $contact->setNome($_POST['nome']);
   $contact->setEmail($_POST['email']);
   $contact->setTelefone($_POST['telefone']);
-  $contact->setText($_POST['message']);
-  $contact->setPublicationDate(new \DateTime());
-  $this->em->flush();
-  
+  $contact->setMessage($_POST['message']);
 
-  return $this->container->view->render($response ,'contact.twig');
+  $contact->newcontact($response);
 
+  $this->flash->addMessageNow('msg', 'Em breve entraremos em contato!');
+  $messages = $this->flash->getMessages();
+
+  return $this->container->view->render($response ,'contact.twig' , ['messages' => $messages]);
+
+
+}
+
+public function caizone($request , $response , $args)
+{
+  /*este methodo ira recuprar o codigo do caizone via ajax*/
+  $pizza = new Pizza();
+  $pizza->setConnection($this->db);
+  $pizza->setContainer($this->container);
+  $codigo = htmlspecialchars($_GET["q"]);
+  $categoria = $pizza->caizone($codigo);
+
+   foreach ($categoria as $key => $value) {
+
+echo "
+<div class='col s6 m4 l2'>
+<div class='card'>
+  <div class='card-image'>
+    <img src=$value[urlimg] class='card-img'>
+    <span class='card-title  white-text darken-4'>
+     $value[nomesabor]
+     <p class=' black-text darken-4'>$value[descricao]</p>
+    </span>
+    <a href='/initsession?id=$value[id]' class='btn-floating halfway-fab waves-effect waves-light red'>
+          <i class='material-icons'>add</i>
+      </a>
+    </div>
+
+<div class='card-content'>
+M $value[valorM]  G $value[valorG]
+</div>
+</div>
+</div>";
+ }
 
 }
 

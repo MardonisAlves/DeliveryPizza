@@ -8,6 +8,7 @@ use Slim\Container;
 
 
 
+
 /**
  *  Slim Application setting
  *  and bootstrapping
@@ -18,10 +19,36 @@ require __DIR__ . '/../vendor/autoload.php';
 
 // Application settings
 
-$settings =  new Container (require __DIR__ . '/../app/settings.php');
+$container =  new Container (require __DIR__ . '/../app/settings.php');
+
+// Doctrine orm
+$container[EntityManager::class] = function (Container $container): EntityManager {
+  $config = Setup::createAnnotationMetadataConfiguration(
+      $container['settings']['doctrine']['metadata_dirs'],
+      $container['settings']['doctrine']['dev_mode']
+  );
+
+  $config->setMetadataDriverImpl(
+      new AnnotationDriver(
+          new AnnotationReader,
+          $container['settings']['doctrine']['metadata_dirs']
+      )
+  );
+
+  $config->setMetadataCacheImpl(
+      new FilesystemCache(
+          $container['settings']['doctrine']['cache_dir']
+      )
+  );
+
+  return EntityManager::create(
+      $container['settings']['doctrine']['connection'],
+      $config
+  );
+};
 
 // New Slim app instance
-$app = new Slim\App($settings);
+$app = new Slim\App($container);
 
 // Add our dependencies to the container
 require __DIR__ . '/../app/dependencies.php';

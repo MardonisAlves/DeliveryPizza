@@ -7,10 +7,12 @@ interface interfaceCardapio{
    public function setId($id);
    public function getNomesabor();
    public function setNomesabor($nomesabor);
-   public function getTamanho();
-   public function setTamanho($tamanho);
-   public function getValor();
-   public function setValor($valor);
+   public function getCategoria();
+   public function setCategoria($categoria);
+   public function getValorM();
+   public function setValorM($valorM);
+   public function getValorG();
+   public function setValorG($valorG);
    public function getDescricao();
    public function setDescricao($descricao);
    public function getUrlimg();

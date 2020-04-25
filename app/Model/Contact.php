@@ -3,7 +3,7 @@
 namespace App\Model;
 use App\AbstractModel\BaseAbstract;
 use App\interfaces\interfaceUser;
-use App\Users;
+use App\Model\Users;
 use PDO;
 
 class Contact extends Users
@@ -108,7 +108,7 @@ public function getMessage(){
     public function newcontact($response){
 
   $sql = "INSERT INTO Contact(id,nome, email , telefone , message) 
-                      VALUES(:id ,:name, :email, :telefone , :message)";
+                      VALUES(:id ,:nome, :email, :telefone , :message)";
 
     $stmt = $this->getConnection()->prepare( $sql );
     $stmt->bindParam( ':id', $this->getId());

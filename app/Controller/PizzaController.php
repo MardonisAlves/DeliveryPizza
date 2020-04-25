@@ -4,10 +4,10 @@ namespace App\Controller;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use App\Model\Cardapio;
+use App\Model\Pizza;
 use App\Helper\HelperSize;
 
-class CardapioController 
+class PizzaController 
 {
     protected $db;
     private $container;
@@ -69,30 +69,39 @@ $file = $_FILES['urlimg']['tmp_name'];
 
 
             default:
-                echo "Invalid Image type.";
+            	$this->flash->addMessageNow('msg', 'Por favor escolhar uma imagem PNG ,GIF ou JPEG');
+  				$messages = $this->flash->getMessages();
+            	return $this->container
+            				->view->render($response ,
+            				'admin/cardapio/cardapio.twig' , ['messages' => $messages]);
+              
                 exit;
                 break;
         }
 
-          
-            move_uploaded_file($fileNewName. "_thump.". $ext);
-            echo "Image Resize Successfully.";
+    if(isset($_POST['submit'])){    
+    move_uploaded_file($fileNewName. "_thump.". $ext);
+    }        
 
        
-    $cardapio =  new Cardapio();
-    $cardapio->setConnection($this->db);
-    $cardapio->setId(0);
-    $cardapio->setNomesabor($_POST['nomesabor']);
-    $cardapio->setTamanho($_POST['tamanho']);
-    $cardapio->setValor($_POST['valor']);
-    $cardapio->setDescricao($_POST['descricao']);
-    $cardapio->setUrlimg($folderPath . $fileNewName. "_thump.". $ext);
-    $cardapio->insert();
+    $pizza =  new Pizza();
+    $pizza->setConnection($this->db);
+    $pizza->setId(0);
+    $pizza->setNomesabor($_POST['nomesabor']);
+    $pizza->setCategoria($_POST['categoria']);
+    $pizza->setValorM($_POST['valorM']);
+    $pizza->setValorG($_POST['valorG']);
+    $pizza->setDescricao($_POST['descricao']);
+    $cardapizzapio->setUrlimg($folderPath . $fileNewName. "_thump.". $ext);
+    $pizza->insert();
 
        
 
-     $url = $this->container->get('router')->pathFor('listar');
-    return $response->withStatus(302)->withHeader('Location' ,$url);
+   $this->flash->addMessageNow('msg', 'Pizza cadastrado com sucesso!');
+  				$messages = $this->flash->getMessages();
+            	return $this->container
+            				->view->render($response ,
+            				'admin/cardapio/cardapio.twig' , ['messages' => $messages]);
 }
 
 
@@ -103,8 +112,8 @@ $file = $_FILES['urlimg']['tmp_name'];
 public function imageResize($imageResourceId,$width,$height) {
 
 
-    $targetWidth =250;
-    $targetHeight =250;
+    $targetWidth =450;
+    $targetHeight =450;
 
 
     $targetLayer=imagecreatetruecolor($targetWidth,$targetHeight);
@@ -119,13 +128,14 @@ public function imageResize($imageResourceId,$width,$height) {
 public function listarcardapio( $request,  $response, $args)
 {
     if(($_SESSION['user']) == 'admin'){
-                $cardapio = new Cardapio();
-                $cardapio->setConnection($this->db);
-                $cardapio->setContainer($this->container);
-                $cardapio->selctAll($response);
+                $pizza = new Pizza();
+                $pizza->setConnection($this->db);
+                $pizza->setContainer($this->container);
+                $pizza->selctAll($response);
                 
-                return $this->container->view->render($response ,"admin/cardapio/listarcardapio.twig" ,
-                                                                ['card' => $cardapio->selctAll($response)]);
+                return $this->container->view->render($response ,
+                "admin/cardapio/listarcardapio.twig" ,
+                 ['card' => $pizza->selctAll($response)]);
                 
              
 }
@@ -140,16 +150,16 @@ public function listarcardapio( $request,  $response, $args)
 public function listarByid($request,  $response, $args)
 {
     if(($_SESSION['user']) == 'admin'){
-                $cardapio = new Cardapio();
-                $cardapio->setConnection($this->db);
-                $cardapio->setContainer($this->container);
-                $cardapio->selectByid($_GET['id']);
+                $pizza = new Pizza();
+                $pizza->setConnection($this->db);
+                $pizza->setContainer($this->container);
+                $pizza->selectByid($_GET['id']);
                 
                 return $this->container
                             ->view
                             ->render($response ,
-                                "admin/cardapio/EditCardapio.twig" ,
-                            ['cardapio' => $cardapio->selectByid($_GET['id'])]);
+                                "admin/cardapio/pizza.twig" ,
+                            ['cardapio' => $pizza->selectByid($_GET['id'])]);
 
     }
 
@@ -161,14 +171,14 @@ public function listarByid($request,  $response, $args)
 
 
 // atualizar
-public function updatePizza(Request $request, Response $response, $args)
+public function updatepizzaPizza(Request $request, Response $response, $args)
 {
     if(($_SESSION['user']) == 'admin'){
-    $Card = new Cardapio();
-    $Card->setConnection($this->db);
-    $Card->setId($_POST['id']);
-    $Card->setValor($_POST['valor']);
-    $Card->updatePizza();
+    $pizza = new Pizza();
+    $pizza->setConnection($this->db);
+    $pizza->setId($_POST['id']);
+    $pizza->setValor($_POST['valor']);
+    $pizza->updatePizza();
 
     $url = $this->container->get('router')->pathFor('listar');
     return $response->withStatus(302)->withHeader('Location' ,$url);
@@ -177,17 +187,18 @@ public function updatePizza(Request $request, Response $response, $args)
 }
 
 // excluir
-public function excluircardapio(Request $request, Response $response, $args)
+public function excluirpizza(Request $request, Response $response, $args)
 {
     
     if(($_SESSION['user']) == 'admin'){
 
-    //echo "Excluir Cardapio e renderizar para view admin";
+    //echo "Excluir Pizza e renderizar para view admin";
    
-   $card = new Cardapio();
-    $card->setConnection($this->db);
-    $card->setUrlimg($_GET['urlimg']);
-    $card->excluircardapio();
+    $pizza = new Pizza();
+    $pizza->setConnection($this->db);
+    $pizza->setUrlimg($_GET['urlimg']);
+    $pizza->excluirpizza();
+
     
     // deletar img
     $directory = $this->container->get('upload_directory');

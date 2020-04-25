@@ -11,7 +11,6 @@
         "slim/slim": "^3.0",
         "slim/twig-view": "^2.1",
         "twbs/bootstrap": "4.2.1",
-        "doctrine/orm": "2.6.3",
         "illuminate/database": "~5.1",
         "monolog/monolog": "^1.17",
         "components/jquery": "^3.3",

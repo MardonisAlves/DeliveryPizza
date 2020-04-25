@@ -35,8 +35,19 @@
     fullWidth: true
   });
 
-/*
-		GET CARDAPIO BY CODIGO
+  /* GET CAIZONE BY CODIGO*/
+ /*$(document).ready(function(){
+    $("codigo").change(function(){
+    	
+    	  event.preventDefault();
+
+    	var formValues = $(this).serialize();
+        $.get("/caizone",formValues , function(data){
+            // Display the returned data in browser
+            $("#result").html(data);
+        });
+    });
+});
 */
 function showCodigo(str) {
   var xhttp;    

@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Model\Users;
 use App\Model\Endereco;
-use App\Model\Cardapio;
+use App\Model\Pizza;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -33,11 +33,11 @@ if(isset($_SESSION['user'])){
 
     case 'cliente':
           // SELECT CARDAPIO WHERE ID = SESSION-ID
-          $Cardapio = new Cardapio();
-          $Cardapio->setConnection($this->db);
-          $Cardapio->setContainer($this->container);
-          $Cardapio->setSession($this->session);
-          $lista =  $Cardapio->selctAll();
+          $Pizza = new Pizza();
+          $Pizza->setConnection($this->db);
+          $Pizza->setContainer($this->container);
+          $Pizza->setSession($this->session);
+          $lista =  $Pizza->selctAll();
 
           return $this->container->view
                                   ->render($response ,

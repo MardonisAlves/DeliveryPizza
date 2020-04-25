@@ -10,33 +10,121 @@
     </div>
   {% endfor %}
 
-<div class="container">
-  <h3>Cardapio</h3>
+<div class="row">
+
+<div class=""><br><br><br>
+        <h3>Tudo Com Mais Sabor</h3>
+        <br>
+    <div class="col s12 m4">
+        <div class="card-panel">
+          <div class="row valign-wrapper">
+            <div class="col s12 m12 l12">
+              <img src="public/img/img.1.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+            </div>
+            
+          </div>
+        </div>
+         <div class="col">
+         <h6>title</h6>
+              <span class="black-text">
+                This is a square image. Add the "circle" class to it to make it appear circular.
+              </span>
+          </div>
+      </div>
+
+      <div class="col s12 m4">
+        <div class="card-panel">
+          <div class="row valign-wrapper">
+            <div class="col s12 m12 l12">
+              <img src="public/img/img.2.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+            </div>
+          </div>
+        </div>
+         <div class="col">
+          <h6>title</h6>
+              <span class="black-text">
+                This is a square image. Add the "circle" class to it to make it appear circular.
+              </span>
+          </div>
+      </div>
+
+
+<div class="col s12 m4">
+        <div class="card-panel">
+          <div class="row valign-wrapper">
+            <div class="col s12 m12 l12">
+         <img src="public/img/img.3.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+            </div>
+           
+          </div>
+        </div>
+         <div class="col">
+          <h6>title</h6>
+              <span class="black-text">
+                This is a square image. Add the "circle" class to it to make it appear circular.
+              </span>
+          </div>
+      </div>
+</div>
+</div>
+
+<div class="row">
+ <div class="col s6 m4 l4"></div>
+<br><br><br>
+
+<form action=""> 
   <div class="row">
+  <div class="col s4 m4 l4"></div>
+    <div class="col s6 m4 l4">
+    <select name="codigo" onchange="showCodigo(this.value)">
+    <option value="" disabled selected>Selecione Cardapio</option>
+    <option value="pizzas">Pizza</option>
+    <option value="calzone">Calzone</option>
+    <option value="lasanha">Lasanha</option>
+    <option value="refrigerenates">Refrigerenates</option>
+    
+    </select>
+  </div>
+</div>
+</form>
+<div class="col s6 m4 l4"></div>
+</div>
+</div>
+
+
+<div class="row">
+<div id="txtHint">
+<div class="">
+     
+    <br>
+    <br>
+    <br>
 {% for allcardapios in allcardapio %}
-
-<div class="col s6 m3" >
-  <div class="card">
-    <div class="card-image">
-      <img src="{{allcardapios.urlimg}}" class="card-img">
-      <span class="card-title  white-text darken-1">
-        {{allcardapios.nomesabor}} {{allcardapios.valor}}
-      </span>
-      <a href="/initsession?id={{allcardapios.id}}" class="btn-floating halfway-fab waves-effect waves-light red">
+<div class="col s12 m6 l4">
+<div class="card">
+    <div class="col s4 m4 card-image waves-effect waves-block waves-light ">
+      <img class="activator" src="{{allcardapios.urlimg}}">
+        <a class="btn-floating halfway-fab waves-effect waves-light red btn-small">
           <i class="material-icons">add</i>
-      </a>
+        </a>
     </div>
+        
+<div class="col s8 m8  card-content">
+  <span class="card-title">{{allcardapios.nomesabor}}</span>
+    <p>M.....................................R$ {{allcardapios.valorM}}</p>
+    <p>G......................................R$ {{allcardapios.valorG}}</p>
+    <p>{{allcardapios.descricao}}</p>
+</div>
 
-<div class="card-content">
-  <p>{{allcardapios.descricao}}</p>
-</div>
-</div>
-</div>
+            
 
+</div>
+</div>
 {% endfor %}
+</div>
+</div>
+</div>
+</div>
 
-</div>
-</div>
-  
 {% include 'partials/footer.twig' %}
 {% endblock %}

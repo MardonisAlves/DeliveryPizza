@@ -2,7 +2,7 @@
 
 namespace App\Model;
 use App\AbstractModel\BaseAbstract;
-use App\interfaceEndereco;
+use App\Interfaces\interfaceEndereco;
 use PDO;
 
 class Endereco extends BaseAbstract implements interfaceEndereco
@@ -18,14 +18,7 @@ class Endereco extends BaseAbstract implements interfaceEndereco
   private $numero;
   private $telefone;
 
-   /*
-    @abstract Novoendereco
-   */
-   /**
-    * Undocumented function  Getters e Setters
-    *
-    * @return void
-    */
+   
    public function getId()
    {
        return $this->id;

@@ -13,49 +13,30 @@
         <title>Delivery Pitzza</title>
 
 
-  <script src="public/js/jquery.min.js"></script>
-  <script src="public/js/materialize.js"></script>
+  
 
   <link rel="stylesheet" type="text/css" href="public/css/front-style-materialize.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--<link rel="stylesheet" type="text/css" href="public/css/materialize.css">-->
   <link rel="stylesheet" type="text/css" href="public/site/materialize.css">
-    
 
-<script>
-$(document).ready(function(){
-  $('.sidenav').sidenav();
-});
 
- $(document).ready(function(){
-    $('.modal').modal();
-  });
-
-  $('.carousel.carousel-slider').carousel({
-    fullWidth: true
-  });
-
-$(document).ready(function(){
- $('.carousel.carousel-slider').carousel({
-    fullWidth: true,
-    indicators: true
-  });
-});
-</script>
 
     </head>
     <body>
             {% include 'partials/login.twig' %}
-            <div class="container">
+           
             {% include 'partials/nav.twig' %}
 
 
             {% block content %} 
 
             {% endblock %}
+        
 
 
-          </div>
-
+<script src="public/js/jquery.min.js"></script>
+<script src="public/js/materialize.js"></script>
+<script src="public/js/ajax.js"></script>
     </body>
 </html>

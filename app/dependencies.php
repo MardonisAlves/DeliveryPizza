@@ -42,10 +42,12 @@ $container['upload_directory'] =  'public/img/uploads/cardapio/';
 $container['em'] = function ($c) {
     $settings = $c->get('settings');
     $config = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(
-        $settings['doctrine']['meta']['entity_path'],
-        $settings['doctrine']['meta']['auto_generate_proxies'],
-        $settings['doctrine']['meta']['proxy_dir'],
-        $settings['doctrine']['meta']['cache'],
+        $settings['doctrine']['metadata_dirs'],
+       // $settings['doctrine']['meta']['auto_generate_proxies'],
+      
+       // $settings['doctrine']['meta']['proxy_dir'],
+     
+        $settings['doctrine']['cache_dir'],
         false
     );
     return \Doctrine\ORM\EntityManager::create($settings['doctrine']['connection'], $config);
@@ -76,7 +78,7 @@ $container['local'] = function ($c) {
 // HOME CONTROLER
 $container['HomeController'] = function ($container) {
 return new \App\Controller\HomeController($container  , 
-                                            $container['mysql'],
+                                            $container['local'],
                                             $container->get('flash'));
 };
  
@@ -85,7 +87,7 @@ return new \App\Controller\HomeController($container  ,
 // ADMINCONTROLLER
 $container['AdminController'] = function ($container){
 return new App\Controller\AdminController($container , 
-                                            $container['mysql'] ,
+                                            $container['local'] ,
                                             $container->get('flash'),
                                             $container['session']);
 };
@@ -93,7 +95,7 @@ return new App\Controller\AdminController($container ,
 // SenhaController
 $container['SenhaController'] = function ($container){
     return new App\Controller\SenhaController($container , 
-                                                $container->get('mysql') ,
+                                                $container->get('local') ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
 };
@@ -101,7 +103,7 @@ $container['SenhaController'] = function ($container){
 // TesteController
 $container['TesteController'] = function ($container){
     return new App\Controller\TesteController($container , 
-                                                $container['mysql'],
+                                                $container['em'],
                                                 $container->get('flash'));
 };
 
@@ -109,7 +111,7 @@ $container['TesteController'] = function ($container){
 // ProdutoController
 $container['ProdutoController'] = function ($container){
     return new App\Controller\ProdutoController($container , 
-                                                $container['mysql'] ,
+                                                $container['local'] ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
 };
@@ -118,15 +120,15 @@ $container['ProdutoController'] = function ($container){
 
 $container['ClienteController'] = function ($container){
     return new App\Controller\ClienteController($container ,
-                                                $container['mysql'],
+                                                $container['local'],
                                                  $container->get('flash') ,
                                                  $container->get('session'));
 };
 
-// CardapioController
-$container['CardapioController'] = function ($container) {
-    return new \App\Controller\CardapioController($container  , 
-                                                $container['mysql'] , 
+// PizzaController
+$container['PizzaController'] = function ($container) {
+    return new \App\Controller\PizzaController($container  , 
+                                                $container['local'] , 
                                                 $container->get('flash'),
                                                 $container->get('session'));
 
@@ -134,7 +136,7 @@ $container['CardapioController'] = function ($container) {
 // CarroController
     $container['CarroController'] = function ($container) {
     return new \App\Controller\CarroController($container  , 
-                                                $container['mysql'] , 
+                                                $container['local'] , 
                                                 $container->get('flash'),
                                                 $container->get('session'));
 

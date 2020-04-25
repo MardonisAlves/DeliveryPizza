@@ -17,6 +17,7 @@ $this->map(['POST','GET'],'/createContact' , 'HomeController:createContact')->se
 $this->get('/CardCliente' ,'HomeController:CardCliente')->setName('CardCliente');
 $this->map(['POST','GET'] ,'/InserCliente' , 'HomeController:InserCliente')->setName('InserCliente');
 $this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
+$this->get('/caizone','HomeController:caizone')->setName('caizone');
 
 });
 
@@ -79,6 +80,7 @@ $this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
         $this->get('/Ajaxteste' , 'TesteController:Ajaxteste')->setName('Ajaxteste');
         $this->get('/listprodutos' , 'TesteController:listprodutos')->setName('listprodutos');
         $this->get('/socketio' , 'TesteController:socketio')->setName('socketio');
+        $this->get('/list' , 'TesteController:list')->setName('list');
         //$this->get('/updateuser', 'TesteController:updateuser')->setName('updateuser');
     });
 
@@ -97,20 +99,20 @@ $this->post('/newcontact','HomeController:newcontact')->setName('newcontact');
         $this->get('/homecliente', 'ClienteController:homecliente')->setName('homecliente');
     });
 
-    // CARDAPIOCONTROLLER
+    // PIZZACONTROLLER
     $app->group('',function(){
 
-        $this->get('/index', 'CardapioController:index')->setName('index');
+        $this->get('/index', 'PizzaController:index')->setName('index');
             // listar cardapio
-        $this->get('/listar', 'CardapioController:listarcardapio')->setName('listar');
+        $this->get('/listar', 'PizzaController:listarcardapio')->setName('listar');
             // listar by id
-         $this->get('/listarid', 'CardapioController:listarByid')->setName('listarid');
+         $this->get('/listarid', 'PizzaController:listarByid')->setName('listarid');
             // insert cardapio
-        $this->post('/insert', 'CardapioController:inserircardapio')->setName('insert');
+        $this->post('/insert', 'PizzaController:inserircardapio')->setName('insert');
             // atualizar cardapio
-        $this->post('/atualizar', 'CardapioController:updatePizza')->setName('atualizar');
+        $this->post('/atualizar', 'PizzaController:updatePizza')->setName('atualizar');
             // excluir cardapio
-        $this->get('/excluir', 'CardapioController:excluircardapio')->setName('excluir');
+        $this->get('/excluir', 'PizzaController:excluirpizza')->setName('excluir');
 
     });
 

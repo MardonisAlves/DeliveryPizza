@@ -21,7 +21,7 @@ interface interfaceEndereco
   public function getReferencia();
   public function setReferencia($referencia);
   public function getNumero();
-  public function setNumero($numero)
+  public function setNumero($numero);
   public function getTelefone();
   public function setTelefone($telefone);
 

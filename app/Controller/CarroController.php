@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Model\Users;
 use App\Model\Contact;
-use App\Model\Cardapio;
+use App\Model\Pizza;
 use App\Model\Produtos;
 use App\Validate\Validate;
 use Doctrine\ORM\EntityManager;
@@ -32,11 +32,11 @@ public function initsession(Request $request, Response $response, $args)
 /*
 * 1 PRIMEIRO CRIAMOS A SESSION INIT DO PRODUTO
 */
-    $produtos = new Cardapio();
-    $produtos->setConnection($this->db);
-    $produtos->setContainer($this->container);
-    $produtos->setSession($this->session);
-    $listaIdcadapio =  $produtos->selectByid( $_GET['id']);
+    $pizza = new Pizza();
+    $pizza->setConnection($this->db);
+    $pizza->setContainer($this->container);
+    $pizza->setSession($this->session);
+    $listaIdcadapio =  $pizza->selectByid( $_GET['id']);
 
    while ($value = $listaIdcadapio->fetch()) 
    {
