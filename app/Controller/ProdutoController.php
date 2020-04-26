@@ -78,12 +78,12 @@ public function insertBebidas(Request  $request, Response $response,  array $arg
     $produtos->setContainer($this->container);
     $produtos->setSession($this->session);
     $produtos->setId(0);
-    $produtos->setNome($_POST['nome']);
+    $produtos->setNomesabor($_POST['nome']);
     $produtos->setQtdade($_POST['qt_dade']);
     $produtos->setDatavalidade($_POST['date']);
     $produtos->setPrecocompra($_POST['precocompra']);
     $produtos->setPorcentagemvenda($_POST['porcentagemVenda']);
-    $produtos->setDesccricao($_POST['descricao']);
+    $produtos->setDescricao($_POST['descricao']);
     $produtos->insertProdutos();
     
                                                
