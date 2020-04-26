@@ -1,7 +1,7 @@
 <?php
 namespace App\interfaces;
 
-interface interfaceCardapio{
+interface interfacepizza{
 
    public function getId();
    public function setId($id);

@@ -92,7 +92,7 @@ $file = $_FILES['urlimg']['tmp_name'];
     $pizza->setValorM($_POST['valorM']);
     $pizza->setValorG($_POST['valorG']);
     $pizza->setDescricao($_POST['descricao']);
-    $cardapizzapio->setUrlimg($folderPath . $fileNewName. "_thump.". $ext);
+    $pizza->setUrlimg($folderPath . $fileNewName. "_thump.". $ext);
     $pizza->insert();
 
        

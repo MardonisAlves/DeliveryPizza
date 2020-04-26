@@ -3,103 +3,33 @@
 {% block content %}
 
 <div class="">
-<div class="row card-panel  grey lighten-4">
-<div class="col s12 m12 l6 ">
-    <table class="container" style="margin-top:50px;">
-  <thead>
-    <tr>
-      <th scope="col">Nome</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-    {% for card in card %}
-    <tr>
-      <td>{{card.nomesabor}}</td>
-
-      <td>
-        <a href="/listarid?id={{card.id}}" class="waves-effect waves-light green-text darken-4">Edit
-          <i class="material-icons left">edit_attributes</i>
-        
-      </a>
-
+  <div class="row card-panel">
+    <div class="col s12 m12 l12 ">
+<table  style="margin-top:50px;">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+<tbody>
+{% for card in card %}
+  <tr>
+    <td>{{card.nomesabor}}</td>
+    <td>
+    <a href="/listarid?id={{card.id}}" class="waves-effect waves-light green-text darken-4">Edit
+    <i class="material-icons left">edit_attributes</i>
+    </a>
     <a href="/excluir?urlimg={{card.urlimg}}" class="waves-effect waves-light  orange-text darken-4">Excluir
     <i class="material-icons orange-text darken-4 left">restore_from_trash</i>
-        </a>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-  </table>
-</div>
-
-
-<div class="col s12 m12 l6"  style="margin-top:50px;">
-<form method="post" action="/insert" enctype="multipart/form-data">
-    <div class="row">
-      <div class="input-field col s12">
-        <input type="text" name="nomesabor" class="validate" id="nomesabor" required="obrigatorio">
-        <label for="nomesabor">Nome sabor</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input=field col s12">
-      <select class="form-control" name="categoria" placeholer="categoria">
-          <option value="" disabled selected>Categorias</option>
-          <option value="pizzas">Pizzas</option>
-          <option value="panquecas">Panquecas</option>
-          <option value="lasanhas">Lasanhas</option>
-          <option value="bebidas">Refrigerantes</option>
-          <option value="calzones">Calzones</option>
-      </select>
-
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="input-field col s6">
-      <input type="text"  id="valor" name="valorM" class="validate" required="obrigatorio">
-       <label for="valor">Valor pizza média</label>
-    </div>  
-
-    <div class="input-field col s6">
-      <input type="text"  id="valor" name="valorG" class="validate" required="obrigatorio">
-       <label for="valor">Valor pizza grande</label>
-    </div>  
-
-    
-  </div>
-
-      <div class="row">
-        <div class="input-field col s3">
-        <input class="validate" type="file" name="urlimg" required="obrigatorio">
-    </div>
-      </div>
-
-     <div class="row">
-        <div class="input-field col s12">
-        <textarea id="textarea" class="materialize-textarea" name="descricao" required=""></textarea>
-          <label for="textarea">Descrição</label>
-        </div>
-      </div>
-
-  <div class="row">
-    <div class="col s12 md 12">
-    <button type="submit" class="btn teal darken-1 btn-small" name="submit" id="click">
-       <i class="material-icons white-text darken-1 right">send</i>
-    </button>
-
-
-    <button type="reset" class="btn  teal darken-1 btn-small">
-      <i class="material-icons white-text darken-1 right">clear</i>
-    </button>
+    </a>
+    </td>
+  </tr>
+{% endfor %}
+</tbody>
+</table>
 </div>
 </div>
-</form>
-  </div>
 </div>
 </div>
 
