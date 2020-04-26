@@ -7,6 +7,7 @@
   });
 });
 
+// slidnav , slect . dropdown
  $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
     $('#sidebar').toggleClass('active');
@@ -20,13 +21,11 @@
     $('.sidenav').sidenav();
     });
 
-
-
-
  $(document).ready(function(){
   $('.sidenav').sidenav();
 });
 
+// modal
  $(document).ready(function(){
     $('.modal').modal();
   });
@@ -35,20 +34,26 @@
     fullWidth: true
   });
 
-  /* GET CAIZONE BY CODIGO*/
- /*$(document).ready(function(){
-    $("codigo").change(function(){
-    	
-    	  event.preventDefault();
+  // add pizza ajax
+  function add(){
+var formData = $("#pizza").serializeArray();
+var xhttp;    
+  if (formData == "") {
+    document.getElementById("txtHint").innerHTML = "";
+    return;
+  }
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("txtHint").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("POST", "/insert?formData="+formData, true);
+  xhttp.send();
+}
 
-    	var formValues = $(this).serialize();
-        $.get("/caizone",formValues , function(data){
-            // Display the returned data in browser
-            $("#result").html(data);
-        });
-    });
-});
-*/
+
+ // get pizzaz
 function showCodigo(str) {
   var xhttp;    
   if (str == "") {
@@ -64,5 +69,25 @@ function showCodigo(str) {
   xhttp.open("GET", "/caizone?q="+str, true);
   xhttp.send();
 }
+
+// alert exluir
+ function Deletar(str) {
+ 
+  
+ var xhttp;    
+  if (str == "") {
+    document.getElementById("txtHint").innerHTML = "";
+    return;
+  }
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("txtHint").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "/excluir?urlimg="+str, true);
+  xhttp.send();
+}
+
 
 

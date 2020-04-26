@@ -64,7 +64,7 @@ $file = $_FILES['urlimg']['tmp_name'];
             case IMAGETYPE_JPEG:
                 $imageResourceId = imagecreatefromjpeg($file); 
                 $targetLayer = $this->imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
-                imagejpeg($targetLayer ,$folderPath . $fileNewName. "_thump.". $ext );
+                imagejpeg($targetLayer ,$folderPath );
                 break;
 
 
@@ -80,7 +80,7 @@ $file = $_FILES['urlimg']['tmp_name'];
         }
 
     if(isset($_POST['submit'])){    
-    move_uploaded_file($fileNewName. "_thump.". $ext);
+    move_uploaded_file($folderPath ,  $_FILES['urlimg']['name']);
     }        
 
        
@@ -92,16 +92,14 @@ $file = $_FILES['urlimg']['tmp_name'];
     $pizza->setValorM($_POST['valorM']);
     $pizza->setValorG($_POST['valorG']);
     $pizza->setDescricao($_POST['descricao']);
-    $pizza->setUrlimg($folderPath . $fileNewName. "_thump.". $ext);
+    $pizza->setUrlimg( $_FILES['urlimg']['name']);
     $pizza->insert();
 
        
+    //$url = $this->container->get('router')->pathFor('listar');
+    //return $response->withStatus(302)->withHeader('Location' ,$url);
 
-   $this->flash->addMessageNow('msg', 'Pizza cadastrado com sucesso!');
-  				$messages = $this->flash->getMessages();
-            	return $this->container
-            				->view->render($response ,
-            				'admin/cardapio/cardapio.twig' , ['messages' => $messages]);
+    echo "Um novo cardapio foi adicionado";
 }
 
 
@@ -194,21 +192,22 @@ public function excluirpizza(Request $request, Response $response, $args)
 
     //echo "Excluir Pizza e renderizar para view admin";
    
+    if(!empty($_GET['urlimg'])){
     $pizza = new Pizza();
     $pizza->setConnection($this->db);
-    $pizza->setUrlimg($_GET['urlimg']);
+    $pizza->setId($_GET['urlimg']);
     $pizza->excluirpizza();
 
     
-    // deletar img
     $directory = $this->container->get('upload_directory');
     unlink($directory . $_GET['urlimg']);
-    
-     
 
+    echo "Item excluido com sucesso";
 
-    $url = $this->container->get('router')->pathFor('listar');
-    return $response->withStatus(302)->withHeader('Location' ,$url);
+}else{
+   echo "Este item ja foi exlguido"; 
+}
+
     
    
 }

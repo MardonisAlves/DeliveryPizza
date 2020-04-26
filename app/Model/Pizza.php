@@ -18,13 +18,13 @@ class Pizza extends BaseAbstract
     VALUES(:id ,:nomesabor, :categoria, :valorM , :valorG , :descricao , :urlimg)";
 
     $stmt = $this->getConnection()->prepare( $sql );
-    $stmt->bindParam( ':id', $this->getId());
+    $stmt->bindParam( ':id', $id);
     $stmt->bindParam( ':nomesabor', $_POST['nomesabor']);
-    $stmt->bindParam( ':categoria', $this->getCategoria());
-    $stmt->bindParam( ':valorM', $this->getValorM());
-    $stmt->bindParam( ':valorG', $this->getValorG());
-    $stmt->bindParam( ':descricao', $this->getDescricao());
-    $stmt->bindParam( ':urlimg', $this->getUrlimg());
+    $stmt->bindParam( ':categoria', $_POST['categoria']);
+    $stmt->bindParam( ':valorM', $_POST['valorM']);
+    $stmt->bindParam( ':valorG', $_POST['valorG']);
+    $stmt->bindParam( ':descricao', $_POST['descricao']);
+    $stmt->bindParam( ':urlimg', $_FILES['urlimg']['name']);
 
     $stmt->execute();
 
@@ -63,7 +63,7 @@ class Pizza extends BaseAbstract
 
         $card =  "DELETE from Pizza where urlimg=:urlimg";
         $stmt= $this->getConnection()->prepare($card);
-        $stmt->bindParam("urlimg" , $this->getUrlimg());
+        $stmt->bindParam("urlimg" , $_GET['urlimg']);
         $stmt->execute();
 
        

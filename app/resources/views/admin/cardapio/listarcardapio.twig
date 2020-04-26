@@ -4,7 +4,9 @@
 
 <div class="">
   <div class="row card-panel">
+   <p idtxtHintp>
     <div class="col s12 m12 l12 ">
+    
 <table  style="margin-top:50px;">
     <thead>
       <tr>
@@ -20,7 +22,7 @@
     <a href="/listarid?id={{card.id}}" class="waves-effect waves-light green-text darken-4">Edit
     <i class="material-icons left">edit_attributes</i>
     </a>
-    <a href="/excluir?urlimg={{card.urlimg}}" class="waves-effect waves-light  orange-text darken-4">Excluir
+    <a href="#"  class="waves-effect waves-light  orange-text darken-4" onclick="Deletar('{{card.urlimg}}')">Excluir
     <i class="material-icons orange-text darken-4 left">restore_from_trash</i>
     </a>
     </td>
