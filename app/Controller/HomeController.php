@@ -178,22 +178,24 @@ public function caizone($request , $response , $args)
    foreach ($categoria as $key => $value) {
 
 echo "
-<div class='col s6 m4 l2'>
+<div class='col s12 m6 l4'>
 <div class='card'>
-  <div class='card-image'>
-    <img src=$value[urlimg] class='card-img'>
-    <span class='card-title  white-text darken-4'>
-     $value[nomesabor]
-     <p class=' black-text darken-4'>$value[descricao]</p>
-    </span>
-    <a href='/initsession?id=$value[id]' class='btn-floating halfway-fab waves-effect waves-light red'>
+    <div class='col s4 m4 card-image waves-effect waves-block waves-light '>
+    <img class='activator' src='public/img/uploads/cardapio/$value[urlimg]'>
+        <a class='btn-floating halfway-fab waves-effect waves-light red btn-small'>
           <i class='material-icons'>add</i>
-      </a>
+        </a>
     </div>
-
-<div class='card-content'>
-M $value[valorM]  G $value[valorG]
+        
+<div class='col s8 m8  card-content'>
+  <span class='card-title'>$value[nomesabor]</span>
+    <p>M.....................................R$ $value[valorM]</p>
+    <p>G......................................R$ $value[valorG]</p>
+    <p>$value[descricao]</p>
 </div>
+
+            
+
 </div>
 </div>";
  }

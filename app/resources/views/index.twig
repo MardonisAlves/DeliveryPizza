@@ -70,23 +70,25 @@
 
 <div class="row">
  <div class="col s6 m4 l4"></div>
-<br><br><br>
 
-<form action=""> 
+
+<form action="" class="form-index"> 
   <div class="row">
-  <div class="col s4 m4 l4"></div>
-    <div class="col s6 m4 l4">
+  <div class="col s4 m4 l4">
+    <div class="col s6 m4 l8">
     <select name="codigo" onchange="showCodigo(this.value)">
     <option value="" disabled selected>Selecione Cardapio</option>
-    <option value="pizzas">Pizza</option>
-    <option value="calzone">Calzone</option>
-    <option value="lasanha">Lasanha</option>
+    <option value="pizzas">Pizzas</option>
+    <option value="calzones">Calzones</option>
+    <option value="lasanhas">Lasanhas</option>
     <option value="refrigerenates">Refrigerenates</option>
     
     </select>
   </div>
 </div>
+</div>
 </form>
+
 <div class="col s6 m4 l4"></div>
 </div>
 </div>
@@ -96,9 +98,7 @@
 <div id="txtHint">
 <div class="">
      
-    <br>
-    <br>
-    <br>
+  
 {% for allcardapios in allcardapio %}
 <div class="col s12 m6 l4">
 <div class="card">
