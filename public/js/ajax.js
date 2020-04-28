@@ -28,29 +28,15 @@
 // modal
  $(document).ready(function(){
     $('.modal').modal();
-  });
 
-  $('.carousel.carousel-slider').carousel({
+    $('.carousel.carousel-slider').carousel({
     fullWidth: true
   });
+  });
 
-  // add pizza ajax
-  function add(){
-var formData = $("#pizza").serializeArray();
-var xhttp;    
-  if (formData == "") {
-    document.getElementById("txtHint").innerHTML = "";
-    return;
-  }
-  xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("txtHint").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("POST", "/insert?formData="+formData, true);
-  xhttp.send();
-}
+
+
+
 
 
  // get pizzaz
@@ -73,6 +59,7 @@ function showCodigo(str) {
 // alert exluir
  function Deletar(str) {
  
+
   
  var xhttp;    
   if (str == "") {
@@ -88,6 +75,5 @@ function showCodigo(str) {
   xhttp.open("GET", "/excluir?urlimg="+str, true);
   xhttp.send();
 }
-
 
 

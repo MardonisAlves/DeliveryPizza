@@ -31,6 +31,7 @@ public  function index(Request $request, Response $response, $args)
 // inserir 
 public function inserircardapio( $request,  $response, $args)
 {
+   
      if(($_SESSION['user']) == 'admin'){
 
     
@@ -96,11 +97,16 @@ $file = $_FILES['urlimg']['tmp_name'];
     $pizza->insert();
 
        
-    //$url = $this->container->get('router')->pathFor('listar');
-    //return $response->withStatus(302)->withHeader('Location' ,$url);
+    $url = $this->container->get('router')->pathFor('listar');
+    return $response->withStatus(302)->withHeader('Location' ,$url);
+
 
     echo "Um novo cardapio foi adicionado";
+   
+
+
 }
+
 
 
 }

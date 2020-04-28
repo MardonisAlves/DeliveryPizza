@@ -2,27 +2,31 @@
 
 {% block content %}
 
-<div class="">
-  <div class="row card-panel">
-   <p idtxtHintp>
-    <div class="col s12 m12 l12 ">
-    
-<table  style="margin-top:50px;">
+<div class="container">
+<div class="row">
+<div class="col s8 m10 l12 ">
+<table id="example" class="mdl-data-table  striped">
+   <p id="txtHint"></p>
     <thead>
       <tr>
-        <th scope="col">Nome</th>
+        <th scope="col">Sabor</th>
+        <th scope="col">Media</th>
+        <th scope="col">Grande</th>
         <th scope="col">Action</th>
+
       </tr>
     </thead>
 <tbody>
 {% for card in card %}
   <tr>
     <td>{{card.nomesabor}}</td>
+    <td>{{card.valorM}}</td>
+    <td>{{card.valorG}}</td>
     <td>
-    <a href="/listarid?id={{card.id}}" class="waves-effect waves-light green-text darken-4">Edit
+    <a href="/listarid?id={{card.id}}" class="waves-effect waves-light green-text darken-4 large">
     <i class="material-icons left">edit_attributes</i>
     </a>
-    <a href="#"  class="waves-effect waves-light  orange-text darken-4" onclick="Deletar('{{card.urlimg}}')">Excluir
+    <a href="#"  class="waves-effect waves-light  orange-text darken-4" onclick="Deletar('{{card.urlimg}}')">
     <i class="material-icons orange-text darken-4 left">restore_from_trash</i>
     </a>
     </td>
@@ -30,9 +34,12 @@
 {% endfor %}
 </tbody>
 </table>
+
+
+ 
 </div>
 </div>
 </div>
-</div>
+
 
 {% endblock  %}
