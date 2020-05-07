@@ -88,20 +88,15 @@ $file = $_FILES['urlimg']['tmp_name'];
     $pizza =  new Pizza();
     $pizza->setConnection($this->db);
     $pizza->setId(0);
-    $pizza->setNomesabor($_POST['nomesabor']);
-    $pizza->setCategoria($_POST['categoria']);
-    $pizza->setValorM($_POST['valorM']);
-    $pizza->setValorG($_POST['valorG']);
-    $pizza->setDescricao($_POST['descricao']);
-    $pizza->setUrlimg( $_FILES['urlimg']['name']);
-    $pizza->insert();
+    if($_POST['categoria'] == "pizzas"){
+    $pizza->insertPizza();
+    }else{
+    $pizza->insertDefault();
 
-       
+  }
     $url = $this->container->get('router')->pathFor('listar');
     return $response->withStatus(302)->withHeader('Location' ,$url);
 
-
-    echo "Um novo cardapio foi adicionado";
    
 
 
@@ -131,6 +126,93 @@ public function imageResize($imageResourceId,$width,$height) {
 // listar\
 public function listarcardapio( $request,  $response, $args)
 {
+  // RETONAR UMA LISTA POR CATEGORIA VIA AJAX
+    if(($_SESSION['user']) == 'admin'){
+                $pizza = new Pizza();
+                $pizza->setConnection($this->db);
+                $pizza->setContainer($this->container);
+                // passar aqui a actegotia
+              $card =   $pizza->selctAll($_GET['categoria']);
+              
+if($_GET['categoria'] == 'pizzas'){
+echo "<div class='col s12 m10 l6'>
+<table id='example' class='mdl-data-table  striped'>
+   
+    <thead>
+      <tr>
+        <th scope='col'>Sabor</th>
+        <th scope='col'>Media</th>
+        <th scope='col'>Grande</th>
+        <th scope='col'>Descrição</th>
+        <th scope='col'>Action</th>
+
+      </tr>
+    </thead>
+<tbody>";
+}else{
+  echo "<div class='col s12 m10 l6'>
+<table id='example' class='mdl-data-table  striped'>
+   
+    <thead>
+      <tr>
+        <th scope='col'>Sabor</th>
+        <th scope='col'>Valor</th>
+        <th scope='col'>Descrição</th>
+        <th scope='col'>Action</th>
+
+      </tr>
+    </thead>
+<tbody>";
+}
+
+foreach ($card as $key => $value) 
+{
+
+if($value['categoria'] == 'pizzas'){
+ echo "<tr>
+    <td>$value[nomesabor]</td>
+    <td>$value[valorM]</td>
+    <td>$value[valorG]</td>
+    <td>$value[descricao]</td>
+    <td>
+    <a href='#' class='waves-effect waves-light green-text darken-4 large' onclick = 'Pizza($value[id])'>
+    <i class='material-icons left'>edit_attributes</i>
+    </a>
+    <a href='#'  class='waves-effect waves-light  orange-text darken-4' onclick='Deletar($value[urlimg])'>
+    <i class='material-icons orange-text darken-4 left'>restore_from_trash</i>
+    </a>
+    </td>
+  </tr>";
+
+}else{
+   echo "<tr>
+    <td>$value[nomesabor]</td>
+    <td>$value[valor]</td>
+    <td>$value[descricao]</td>
+    <td>
+    <a href='#' class='waves-effect waves-light green-text darken-4 large' onclick = 'Pizza($value[id])'>
+    <i class='material-icons left'>edit_attributes</i>
+    </a>
+    <a href='#'  class='waves-effect waves-light  orange-text darken-4' onclick = 'Deletar($value[urlimg])'>
+    <i class='material-icons orange-text darken-4 left'>restore_from_trash</i>
+    </a>
+    </td>
+  </tr>";
+}
+}
+
+}
+}
+  
+
+    //$url = $this->container->get('router')->pathFor('home');
+    //return $response->withStatus(302)->withHeader('Location' ,$url);
+
+
+
+public function viewlistar( $request,  $response, $args)
+{
+  // RETONAR UMA LISTA POR CATEGORIA VIA AJAX
     if(($_SESSION['user']) == 'admin'){
                 $pizza = new Pizza();
                 $pizza->setConnection($this->db);
@@ -157,25 +239,99 @@ public function listarByid($request,  $response, $args)
                 $pizza = new Pizza();
                 $pizza->setConnection($this->db);
                 $pizza->setContainer($this->container);
-                $pizza->selectByid($_GET['id']);
+               $pizzaid =  $pizza->selectByid($_GET['id']);
                 
-                return $this->container
+foreach ($pizzaid as $key => $value) {
+    if($value['categoria'] == "pizzas"){
+echo "<div class='row'>
+        <br>
+    <form class='col s12 m12 l6' action='/atualizar' method='post' enctype='multipart/form-data'>
+    
+      <div class='row'>
+        <div class='input-field col s12 m12 l12'>
+         Nome: <input  type='text' class='validate'  value='$value[nomesabor]'>
+        </div>
+        </div>
+
+        <div class='row'>
+        <div class='input-field col s6 m12 l6'>
+        Valor M:<input  type='text' class='validate' name='valorM' value='$value[valorM]'>
+        </div>
+         <div class='input-field col s6 m12 l6'>
+        Valor G:<input  type='text' class='validate' name='valorG' value='$value[valorG]'>
+        </div>
+      </div>
+      
+       <div class='row'>
+         <div class='input-field col s12 m12 l12'>
+         Descrição: <textarea id='textarea' class='materialize-textarea' name='descricao' required=''>$value[descricao]</textarea>
+        </div>
+      </div>
+
+      
+      <div class='row'>
+       <div class='input-field col s12'>
+         <button class='btn waves-effect waves-light btn-small' type='submit' name='action'>
+            <i class='material-icons right'>send</i>
+        </button>
+       </div>
+      </div>
+    </form>
+  </div>";
+}else{
+
+    echo "<div class='row'>
+        <br>
+    <form class='col s12 m12 l6' action='/atualizar' method='post' enctype='multipart/form-data'>
+    
+      <div class='row'>
+        <div class='input-field col s12 m12 l12'>
+         Nome: <input  type='text' class='validate'  value='$value[nomesabor]'>
+        </div>
+        </div>
+
+        <div class='row'>
+        <div class='input-field col s6 m12 l12'>
+        Valor :<input  type='text' class='validate' name='valor' value='$value[valor]'>
+        </div>
+      </div>
+      
+       <div class='row'>
+         <div class='input-field col s12 m12 l12'>
+         Descrição: <textarea id='textarea' class='materialize-textarea' name='descricao' required=''>$value[descricao]</textarea>
+        </div>
+      </div>
+
+      
+      <div class='row'>
+       <div class='input-field col s12'>
+         <button class='btn waves-effect waves-light btn-small' type='submit' name='action'>
+            <i class='material-icons right'>send</i>
+        </button>
+       </div>
+      </div>
+    </form>
+  </div>";
+}
+                }
+
+               /* return $this->container
                             ->view
                             ->render($response ,
                                 "admin/cardapio/pizza.twig" ,
-                            ['cardapio' => $pizza->selectByid($_GET['id'])]);
+                            ['cardapio' => $pizza->selectByid($_GET['id'])]);*/
 
     }
 
-     $url = $this->container->get('router')->pathFor('home');
-    return $response->withStatus(302)->withHeader('Location' ,$url);
+        //$url = $this->container->get('router')->pathFor('home');
+        //return $response->withStatus(302)->withHeader('Location' ,$url);
 }
 
 
 
 
 // atualizar
-public function updatepizzaPizza(Request $request, Response $response, $args)
+public function updatePizza(Request $request, Response $response, $args)
 {
     if(($_SESSION['user']) == 'admin'){
     $pizza = new Pizza();
@@ -198,7 +354,7 @@ public function excluirpizza(Request $request, Response $response, $args)
 
     //echo "Excluir Pizza e renderizar para view admin";
    
-    if(!empty($_GET['urlimg'])){
+   
     $pizza = new Pizza();
     $pizza->setConnection($this->db);
     $pizza->setId($_GET['urlimg']);
@@ -208,14 +364,12 @@ public function excluirpizza(Request $request, Response $response, $args)
     $directory = $this->container->get('upload_directory');
     unlink($directory . $_GET['urlimg']);
 
-    echo "Item excluido com sucesso";
+    echo "<p class='red text-darken-1'>Item excluido com sucesso</p>";
 
-}else{
-   echo "Este item ja foi exlguido"; 
 }
 
     
    
 }
-}
+
 }

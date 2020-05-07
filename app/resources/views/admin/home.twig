@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row container-admin">
 	<div class="col s12 m4 l3">
-		<h2 >Notificações</h2>
+		<h4 >Notificações</h4>
     <p id="demo" class="blue-text darken-1">
     Publish an event to channel <code>my-channel</code>
     with event name <code>my-event</code>; it will appear below:
@@ -12,38 +12,44 @@
  
 	</div>
 	
-<div class="col s12 m2 2">
+<div class="col s12 m2 l2">
 	<div class="card" id="user">
-        <div class="card-image" id="user">
-        	<a href="/listaruser"><img src="public/img/users/avatar.jpg" class="card-img"></a>
-                <span class="card-title"><h5>Usuarios</h5></span>
+        <div class="card-image left" id="user">
+        <a href="/listaruser">
+        <i class="material-icons large  green-text text-darken-5">people_outline</i>
+        </a>
+          
         </div>
         <div class="card-content">
-                
+             <span class="card-title black-text text-darken-5"><h5>Users</h5></span>       
         </div>
     </div>
 
 </div>
-<div class="col s12 m2 2">
+<div class="col s12 m2 l2">
 	<div class="card" id="user">
-        <div class="card-image" id="user">
-            <a href="/listar"><img src="public/img/users/pizza.png" class="card-img"></a>
-                <span class="card-title"><h5>Cardapios</h5></span>
+        <div class="card-image left" id="user">
+            <a href="/viewlistar">
+                <i class="material-icons large  orange-text text-darken-5">local_pizza</i>
+            </a>
+               
         </div>
         <div class="card-content">
-                
+           <span class="card-title black-text text-darken-5"><h5>Cardapio</h5></span>       
         </div>
     </div>
 
 </div>
-<div class="col s12 m2 2">
+<div class="col s12 m2 l2">
 	<div class="card" id="user">
-        <div class="card-image" id="user">
-            <a href="/produtos"><img src="public/img/produtos/produto.png" class="card-img"></a>
-                <span class="card-title"><h5>Produtos</h5></span>
+        <div class="card-image left" id="user">
+            <a href="/produtos">
+            <i class="material-icons large">add_shopping_cart</i>
+            </a>
+               
         </div>
         <div class="card-content">
-                
+           <span class="card-title black-text text-darken-5"><h5>Produtos</h5></span>         
         </div>
     </div>
 

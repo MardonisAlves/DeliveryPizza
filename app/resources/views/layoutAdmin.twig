@@ -18,19 +18,51 @@
     <script src="public/js/materialize.js"></script> 
     <script src="public/js/ajax.js"></script>
     <script type="text/javascript">
-    function func(){
+   
     $(document).ready(function(){
     $('#example').DataTable({
         columnDefs: [
             {
-                targets: [ 0, 1],
+                targets: [ 0, 1 , 2  ],
                 className: 'mdl-data-table__cell--non-numeric'
             }
         ]
     });
 });
-}
- func();
+
+
+$(document).ready(function(){
+    $("select").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            console.log(optionValue);
+
+
+            if(optionValue == "pizzas"){
+                $(".input-pizza").not("." + optionValue).show();
+                $(".input-outros").not("." + optionValue).hide();
+            }else if(optionValue == "panquecas"){
+                $(".input-outros").not("." + optionValue).show();
+                $(".input-pizza").not("." + optionValue).hide();
+            }else if(optionValue == "lasanhas"){
+                $(".input-outros").not("." + optionValue).show();
+                $(".input-pizza").not("." + optionValue).hide();
+            }else if(optionValue == "bebidas"){
+                $(".input-outros").not("." + optionValue).show();
+                $(".input-pizza").not("." + optionValue).hide();
+            }else if(optionValue == "calzones"){
+                $(".input-outros").not("." + optionValue).show();
+                $(".input-pizza").not("." + optionValue).hide();
+            }else{
+                 $(".box").hide();
+                $(".box input-outros").hide();
+            }
+
+
+        });
+    }).change();
+});
+
 </script>
 </head> 
 <body>

@@ -12,9 +12,9 @@ class Pizza extends BaseAbstract
    /*  
     @abstract  insert
    */
-    public function insert(){
+    public function insertPizza(){
 
-    $sql = "INSERT INTO Pizza(id,nomesabor, categoria, valorM , valorG ,descricao , urlimg) 
+    $sql = "INSERT INTO Pizza(id,nomesabor, categoria, valorM , valorG  , descricao , urlimg) 
     VALUES(:id ,:nomesabor, :categoria, :valorM , :valorG , :descricao , :urlimg)";
 
     $stmt = $this->getConnection()->prepare( $sql );
@@ -30,10 +30,29 @@ class Pizza extends BaseAbstract
 
     }
 
+
+    public function insertDefault(){
+
+    $sql = "INSERT INTO Pizza(id,nomesabor, categoria , valor , descricao , urlimg) 
+    VALUES(:id ,:nomesabor, :categoria  , :valor, :descricao , :urlimg)";
+
+    $stmt = $this->getConnection()->prepare( $sql );
+    $stmt->bindParam( ':id', $id);
+    $stmt->bindParam( ':nomesabor', $_POST['nomesabor']);
+    $stmt->bindParam( ':categoria', $_POST['categoria']);
+    $stmt->bindParam(':valor' , $_POST['valor']);
+    $stmt->bindParam( ':descricao', $_POST['descricao']);
+    $stmt->bindParam( ':urlimg', $_FILES['urlimg']['name']);
+
+    $stmt->execute();
+
+    }
+
+
     /* @ getall cardapio*/
-    public function selctAll()
+    public function selctAll($categoria)
     {
-       $card  = $this->getConnection()->query("SELECT * FROM pizza");
+       $card  = $this->getConnection()->query("SELECT * FROM pizza where categoria='$categoria'");
       return $card;
       
     }

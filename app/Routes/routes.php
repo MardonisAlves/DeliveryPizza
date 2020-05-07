@@ -104,6 +104,7 @@ $this->get('/caizone','HomeController:caizone')->setName('caizone');
 
         $this->get('/index', 'PizzaController:index')->setName('index');
             // listar cardapio
+        $this->get('/viewlistar', 'PizzaController:viewlistar')->setName('viewlistar');
         $this->get('/listar', 'PizzaController:listarcardapio')->setName('listar');
             // listar by id
          $this->get('/listarid', 'PizzaController:listarByid')->setName('listarid');
