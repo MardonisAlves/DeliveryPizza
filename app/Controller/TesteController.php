@@ -44,12 +44,45 @@ $users = $manager->findBy($array = array('id' =>  $args['id']));
                         );
         return $response->withJson($data , 200);   // response json com withJsons
 }
+}
+
+public function listall(Request  $request, Response $response, $args){
+$manager = $this->em->getRepository('\App\Model\Users');
+$users = $manager->findAll();
+
+        foreach ($users as $user) {
+        $data =  $users = array(
+                          'email' => $user->getEmail(),
+                          'Id' => $user->getId(),
+                          'nome' => $user-> getNome()
+                        );
+        return $response->withJson($data , 200);   // response json com withJsons
+}
+}
+
+
 
 // new User
 public function newuser(Request $request , Response $response , $args)
 {
-
+    $data = $array = array('titulo' => 'update user' );
+    return $response->withJson($data , 200);
 }
 
+
+// update User
+public function updateuser(Request $request , Response $response , $args)
+{
+  $data = $array = array('titulo' => 'update user' );
+  return $response->withJson($data , 200);
 }
+
+
+// delete user
+public function deleteuser(Request $request , Response $response , $args)
+{
+  $data = $array = array('titulo' => 'delete user' );
+  return $response->withJson($data , 200);
+}
+
 }
