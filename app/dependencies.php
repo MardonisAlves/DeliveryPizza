@@ -14,7 +14,7 @@ $container['view'] = function ($container) {
         $container->router,
         $container->request->getUri()
 ));
-    
+
 
     return $view;
 
@@ -44,9 +44,9 @@ $container['em'] = function ($c) {
     $config = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(
         $settings['doctrine']['metadata_dirs'],
        // $settings['doctrine']['meta']['auto_generate_proxies'],
-      
+
        // $settings['doctrine']['meta']['proxy_dir'],
-     
+
         $settings['doctrine']['cache_dir'],
         false
     );
@@ -64,29 +64,18 @@ $container['mysql'] = function ($c) {
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $pdo;
 };
-
-//PDO LOCAL
-$container['local'] = function ($c) {
-    $db = $c['settings']['local'];
-    $pdo = new PDO('mysql:host=' . $db['host'] . ';dbname=' . $db['dbname'],
-        $db['user'], $db['password']);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    return $pdo;
-};
-
 // HOME CONTROLER
 $container['HomeController'] = function ($container) {
-return new \App\Controller\HomeController($container  , 
+return new \App\Controller\HomeController($container  ,
                                             $container['local'],
                                             $container->get('flash'));
 };
- 
+
 
 
 // ADMINCONTROLLER
 $container['AdminController'] = function ($container){
-return new App\Controller\AdminController($container , 
+return new App\Controller\AdminController($container ,
                                             $container['local'] ,
                                             $container->get('flash'),
                                             $container['session']);
@@ -94,7 +83,7 @@ return new App\Controller\AdminController($container ,
 
 // SenhaController
 $container['SenhaController'] = function ($container){
-    return new App\Controller\SenhaController($container , 
+    return new App\Controller\SenhaController($container ,
                                                 $container->get('local') ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
@@ -102,7 +91,7 @@ $container['SenhaController'] = function ($container){
 
 // TesteController
 $container['TesteController'] = function ($container){
-    return new App\Controller\TesteController($container , 
+    return new App\Controller\TesteController($container ,
                                                 $container['em'],
                                                 $container->get('flash'));
 };
@@ -110,7 +99,7 @@ $container['TesteController'] = function ($container){
 
 // ProdutoController
 $container['ProdutoController'] = function ($container){
-    return new App\Controller\ProdutoController($container , 
+    return new App\Controller\ProdutoController($container ,
                                                 $container['local'] ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
@@ -127,20 +116,17 @@ $container['ClienteController'] = function ($container){
 
 // PizzaController
 $container['PizzaController'] = function ($container) {
-    return new \App\Controller\PizzaController($container  , 
-                                                $container['local'] , 
+    return new \App\Controller\PizzaController($container  ,
+                                                $container['local'] ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
 
     };
 // CarroController
     $container['CarroController'] = function ($container) {
-    return new \App\Controller\CarroController($container  , 
-                                                $container['local'] , 
+    return new \App\Controller\CarroController($container  ,
+                                                $container['local'] ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
 
     };
-
-
-

@@ -5,7 +5,7 @@ use App\AbstractModel\BaseAbstract;
 use App\Interfaces\interfaceEndereco;
 use PDO;
 
-class Endereco extends BaseAbstract implements interfaceEndereco
+class Endereco 
 {
 
   private $id;
@@ -18,7 +18,7 @@ class Endereco extends BaseAbstract implements interfaceEndereco
   private $numero;
   private $telefone;
 
-   
+
    public function getId()
    {
        return $this->id;

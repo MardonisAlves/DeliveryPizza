@@ -30,9 +30,9 @@ $this->get('/caizone','HomeController:caizone')->setName('caizone');
         // logout
     $this->get('/logout', 'AdminController:logout')->setName('logout');
         // login
-    $this->map(['POST','GET'],'/login', 'AdminController:login')->setName('login'); 
+    $this->map(['POST','GET'],'/login', 'AdminController:login')->setName('login');
         // newuser
-    $this->get('/newuser', 'AdminController:newuser')->setName('newuser'); 
+    $this->get('/newuser', 'AdminController:newuser')->setName('newuser');
         // addUser metodo insert
     $this->map(['POST','GET'],'/addUser', 'AdminController:addUser')->setName('addUser');
         // contact by id
@@ -51,12 +51,12 @@ $this->get('/caizone','HomeController:caizone')->setName('caizone');
     $this->get('/newendereco', 'AdminController:newendereco')->setName('Newendereco');
         // update endereco user
     $this->map(['POST','GET'],'/updateendereco' , 'AdminController:updateendereco')->setName('updateendereco');
-        
+
     //get form udate User
      $this->get('/update' ,'AdminController:getUserform')->setName('update');
     // update user
     $this->post('/updateuserId' ,'AdminController:updateuserId')->setName('updateuserId');
-    
+
 
 
 
@@ -70,25 +70,17 @@ $this->get('/caizone','HomeController:caizone')->setName('caizone');
     });
 
     // TESTECONTROLLER
-    
+
     $app->group('', function() {
-        $this->get('/Teste' , 'TesteController:Teste')->setName('Teste');
-        $this->get('/Teste_insert' , 'TesteController:Teste_insert')->setName('Teste_insert');
-        $this->get('/deleteuserid' , 'TesteController:deleteuser')->setName('deleteuser');
-        $this->get('/EnderecoCliente' , 'TesteController:EnderecoCliente')->setName('EnderecoCliente');
-        $this->get('/selctQueybuild' , 'TesteController:selctQueybuild')->setName('selctQueybuild');
-        $this->get('/Ajaxteste' , 'TesteController:Ajaxteste')->setName('Ajaxteste');
-        $this->get('/listprodutos' , 'TesteController:listprodutos')->setName('listprodutos');
-        $this->get('/socketio' , 'TesteController:socketio')->setName('socketio');
-        $this->get('/list' , 'TesteController:list')->setName('list');
+        $this->get('/list/{id}' , 'TesteController:list')->setName('list');
         //$this->get('/updateuser', 'TesteController:updateuser')->setName('updateuser');
     });
 
     // PRODUTOCONTROLLER
     $app->group('',function(){
-    $this->get('/formbebida' , 'ProdutoController:form_bebida')->setName('form_bebida'); 
-    $this->post('/inserte' , 'ProdutoController:insertBebidas')->setName('insertBebidas'); 
-    $this->get('/produtos' , 'ProdutoController:listar_produto')->setName('produtos'); 
+    $this->get('/formbebida' , 'ProdutoController:form_bebida')->setName('form_bebida');
+    $this->post('/inserte' , 'ProdutoController:insertBebidas')->setName('insertBebidas');
+    $this->get('/produtos' , 'ProdutoController:listar_produto')->setName('produtos');
     $this->get('/listidproduto' , 'ProdutoController:updateptodutobyId')->setName("updateptodutobyId");
     $this->post('/produtoid' , 'ProdutoController:updateProdutos')->setName('updateProdutos');
     $this->get('/deletarProduto' , 'ProdutoController:deletaProduto')->setName('deletaProduto');
@@ -123,5 +115,3 @@ $this->get('/caizone','HomeController:caizone')->setName('caizone');
         $this->map(['GET','POST'] ,'/initsession', 'CarroController:initsession')->setName('initsession');
 
     });
-
-

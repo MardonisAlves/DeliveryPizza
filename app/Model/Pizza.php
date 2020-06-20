@@ -1,20 +1,18 @@
 <?php
 
 namespace App\Model;
-use App\AbstractModel\BaseAbstract;
-use App\AbstractModel\CardapioAbstract;
 
 use PDO;
 
-class Pizza extends BaseAbstract 
+class Pizza extends BaseAbstract
 {
-   
-   /*  
+
+   /*
     @abstract  insert
    */
     public function insertPizza(){
 
-    $sql = "INSERT INTO Pizza(id,nomesabor, categoria, valorM , valorG  , descricao , urlimg) 
+    $sql = "INSERT INTO Pizza(id,nomesabor, categoria, valorM , valorG  , descricao , urlimg)
     VALUES(:id ,:nomesabor, :categoria, :valorM , :valorG , :descricao , :urlimg)";
 
     $stmt = $this->getConnection()->prepare( $sql );
@@ -33,7 +31,7 @@ class Pizza extends BaseAbstract
 
     public function insertDefault(){
 
-    $sql = "INSERT INTO Pizza(id,nomesabor, categoria , valor , descricao , urlimg) 
+    $sql = "INSERT INTO Pizza(id,nomesabor, categoria , valor , descricao , urlimg)
     VALUES(:id ,:nomesabor, :categoria  , :valor, :descricao , :urlimg)";
 
     $stmt = $this->getConnection()->prepare( $sql );
@@ -54,16 +52,16 @@ class Pizza extends BaseAbstract
     {
        $card  = $this->getConnection()->query("SELECT * FROM pizza where categoria='$categoria'");
       return $card;
-      
+
     }
 
     /*@ select by id cardapio*/
     public function selectByid($id){
-    
+
        $card  = $this->getConnection()->query("SELECT * FROM Pizza where id='$id'");
         return $card;
-      
-      
+
+
     }
 
     /* @ update cardapio*/
@@ -77,7 +75,7 @@ class Pizza extends BaseAbstract
 
     }
 
-    /* @ delete cardapio*/ 
+    /* @ delete cardapio*/
     public function excluirpizza(){
 
         $card =  "DELETE from Pizza where urlimg=:urlimg";
@@ -85,22 +83,22 @@ class Pizza extends BaseAbstract
         $stmt->bindParam("urlimg" , $_GET['urlimg']);
         $stmt->execute();
 
-       
-          
+
+
     }
 
     /*get cardapio by categoria*/
 
     public function caizone($categoria){
     $caizone  = $this->getConnection()->query("SELECT * FROM Pizza where categoria='$categoria'");
-        
+
         /*foreach ($caizone as $key => $value) {
             echo $value['codigo'];
         }
         */
-        return $caizone; 
+        return $caizone;
     }
 
 
-   
+
     }
