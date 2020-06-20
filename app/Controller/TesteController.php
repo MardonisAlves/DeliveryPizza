@@ -35,16 +35,23 @@ public function list(Request  $request, Response $response, $args){
 
 $manager = $this->em->getRepository('\App\Model\Users');
 $users = $manager->findBy($array = array('id' =>  $args['id']));
-
-        foreach ($users as $user) {
+if($users){
+  foreach ($users as $user) {
+         // response json com withJsons
         $data =  $users = array(
-                          'email' => $user->getEmail(),
-                          'Id' => $user->getId(),
-                          'nome' => $user-> getNome()
-                        );
-        return $response->withJson($data , 200);   // response json com withJsons
+        'email' => $user->getEmail(),
+        'Id' => $user->getId(),
+        'nome' => $user-> getNome());
+
+        return $response->withJson($data , 200);
+    }
+
+}else{
+  $data = $array = array('message' => 'Usuario não encontrado' );
+  return $response->withJson($data , 404);
 }
 }
+
 
 public function listall(Request  $request, Response $response, $args){
 $manager = $this->em->getRepository('\App\Model\Users');
