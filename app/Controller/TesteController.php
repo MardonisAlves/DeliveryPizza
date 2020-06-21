@@ -74,10 +74,10 @@ $users = $manager->findAll();
 public function user(Request $request , Response $response , $args)
 {
     $user = new Users();
-    $user->email = setEmail('mardonisgp@gmail.com');
-    $user->nome = setNome('Mardonis Alves B');
-    $user->tipouser = setTipouser('admin');
-    $user->tipouser = password_hash(setSenha('qwe123qwe@'),PASSWORD_DEFAULT);
+    $user->setEmail('mardonisgp@gmail.com');
+    $user->setNome('Mardonis Alves B');
+    $user->setTipouser('admin');
+    $user->password_hash(setSenha('qwe123qwe@'),PASSWORD_DEFAULT);
 
     $this->em->persist($user);
     $this->em->flush();
