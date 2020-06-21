@@ -25,13 +25,15 @@
                             'metadata_dirs' =>   ['./app/Model'],
 
                             'connection' => [
-                                'driver' => 'pdo_pgsql',
-                                'host' => 'ec2-54-243-195-160.compute-1.amazonaws.com',
+                                'driver' => 'pdo_mysql',
+                                'host' => 'ec2-52-20-248-222.compute-1.amazonaws.com',
                                 'port' => 5432,
-                                'dbname' => 'd79kpkvd0q2ssh',
-                                'user' => 'lvncdgrefyqkcp',
-                                'password' => '5656f0de5772eccce3872bec48531f353033bea651c8cc02a1c3ef3a0bd7e937'
-                            ]
+                                'dbname' => 'dsjq5m5njo6sk',
+                                'user' => 'kfbozfdgnpidzj',
+                                'password' => '838b2a30db248e16000020e724fc21be95b411bd206c2a137f490c13f027dc08'
+                            ],
+
+
                         ]
 
 
