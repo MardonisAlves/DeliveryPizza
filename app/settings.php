@@ -27,7 +27,7 @@
                             'connection' => [
                                 'driver' => 'pdo_pgsql',
                                 'host' => 'ec2-54-243-195-160.compute-1.amazonaws.com',
-                                'port' => 3306,
+                                'port' => 5432,
                                 'dbname' => 'd79kpkvd0q2ssh',
                                 'user' => 'lvncdgrefyqkcp',
                                 'password' => '5656f0de5772eccce3872bec48531f353033bea651c8cc02a1c3ef3a0bd7e937'
