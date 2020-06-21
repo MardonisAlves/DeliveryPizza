@@ -74,7 +74,7 @@ $this->get('/caizone','HomeController:caizone')->setName('caizone');
     $app->group('', function() {
         $this->get('/listall' , 'TesteController:listall')->setName('listall');
         $this->get('/list/{id}' , 'TesteController:list')->setName('list');
-        $this->get('/updateuser', 'TesteController:updateuser')->setName('updateuser');
+        $this->get('/user', 'TesteController:user')->setName('user');
         $this->get('/delete', 'TesteController:deleteuser')->setName('deleteuser');
 
     });

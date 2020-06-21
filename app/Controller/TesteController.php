@@ -71,7 +71,7 @@ $users = $manager->findAll();
 
 
 // new User
-public function newuser(Request $request , Response $response , $args)
+public function user(Request $request , Response $response , $args)
 {
     $user = new Users();
     $user->email = setEmail('mardonisgp@gmail.com');
