@@ -48,7 +48,7 @@ if($users){
 
 }else{
   $data = $array = array('message' => 'Usuario não encontrado' );
-  return $response->withJson($data , 200);
+  return $response->withJson($data , 404);
 }
 }
 
