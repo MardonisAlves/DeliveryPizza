@@ -25,7 +25,7 @@
                             'metadata_dirs' =>   ['./app/Model'],
 
                             'connection' => [
-                                'driver' => 'pdo_mysql',
+                                'driver' => 'pgsql',
                                 'host' => 'ec2-54-243-195-160.compute-1.amazonaws.com',
                                 'port' => 3306,
                                 'dbname' => 'd79kpkvd0q2ssh',
