@@ -13,14 +13,14 @@ class AdminController {
     private $container;
     private $flash;
     private $session;
-    
+
     public function __construct($container , $db ,$flash ,  $session){
         $this->db = $db;
         $this->container=$container;
         $this->flash = $flash;
         $this->session = $session;
 
-        
+
 }
 // home
 public function home(Request $request, Response $response, $args){
@@ -44,7 +44,7 @@ if(isset($_SESSION['user'])){
                                   'homecliente/homecliente.twig' ,
                                     ['lista' => $lista]);
       break;
-    
+
     default:
           return $this->container->view->render($response ,'CardCliente.twig');
       break;
@@ -55,7 +55,7 @@ if(isset($_SESSION['user'])){
 
   $url = $this->container->get('router')->pathFor('login');
   return $response->withStatus(302)->withHeader('Location', $url);
-  
+
 }
 // login
 public function login(Request $request, Response $response, $args){
@@ -69,7 +69,7 @@ if(isset($_POST['submit'])){
 
 while($user = $email->fetch())
 {
-       
+
 if( $user['email'] === $_POST['email'] ){
   if(password_verify($_POST['senha'], $user['senha'])){
     //  sessions
@@ -110,16 +110,16 @@ if( $user['email'] === $_POST['email'] ){
 
 
 return $this->container->view->render($response ,'CardCliente.twig');
-  
+
 }
 
 
 // GET Contact By Id //
 public function GetcontactID($request, $response, $args){
-    
+
 
    if(isset($_SESSION['user']) == 'admin'){
-     
+
   $contact =  $this->em->getRepository('App\Model\Contact')
                    ->findBy(Array('id' => $_GET['id']));
 
@@ -135,7 +135,7 @@ public function GetcontactID($request, $response, $args){
               $response ,
               'index.twig',
               Array( 'messages' => $messages));
-        }  
+        }
 }
 
 // Update Contact //
@@ -160,7 +160,7 @@ public function putContact($request, $response, $args)
           $response ,
           'index.twig',
           Array( 'messages' => $messages));
-       }    
+       }
 }
 
 // Delete Contact //
@@ -207,31 +207,31 @@ public function deleteuser(Request  $request, Response $response, $args)
         return $response->withStatus(302)->withHeader('Location', $url);
 
       break;
-    
+
     default:
        $url = $this->container->get('router')->pathFor('home');
         return $response->withStatus(302)->withHeader('Location', $url);
       break;
   }
-  
-      
+
+
 }
 
 // NEW USER
-public function newuser($request ,$response , $args){    
+public function newuser($request ,$response , $args){
    if($_SESSION['user'] == 'admin'){
 
   return $this->container->view->render($response ,'admin/users/newuser.twig');
-   
+
    }elseif($_SESSION['user'] == 'cliente'){
-     
+
   return $this->container->view->render($response ,'homecliente/homecliente.twig');
 
    }else{
-    
+
   return $this->container->view->render($response ,'index.twig');
-   
-}       
+
+}
 }
 
 // ADD USER
@@ -240,14 +240,14 @@ if($_SESSION['user'] == 'admin'){
 // validar o acesso com session
 $users =  $this->db->query("SELECT * FROM Users");
 // validate email
-while ($user = $users->fetch()) 
+while ($user = $users->fetch())
 {
 
     if($user['email'] == $_POST['email']){
 
     $this->flash->addMessageNow('msg', 'Este E-mail ja esta em uso!');
     $messages = $this->flash->getMessages();
-    
+
     return $this->container
                 ->view
                 ->render($response ,'admin/users/newuser.twig',
@@ -278,7 +278,7 @@ while ($user = $users->fetch())
 switch ($_SESSION['user']){
 
   case "admin":
-    
+
      $Users = new Users();
      $Users->setConnection($this->db);
      $Users->setContainer($this->container);
@@ -289,20 +289,20 @@ switch ($_SESSION['user']){
      $Users->setTipouser($_POST['tipouser']);
      $Users->insert($response);
 
-    
 
-     
+
+
 
      $url = $this->container->get('router')->pathFor('home');
     return $response->withStatus(302)->withHeader('Location', $url);
 
-             
+
   break;
 
   case "cliente":
          return $this->container->view->render($response ,'homecliente/homecliente.twig');
   break;
-  
+
   default:
               return $this->container->view->render($response ,'index.twig');
   break;
@@ -314,7 +314,7 @@ switch ($_SESSION['user']){
 public function getUserform( $request ,  $response , $args)
 {
   // validate permission
-  
+
   $Users = new Users();
   $Users->setConnection($this->db);
   $Users->setContainer($this->container);
@@ -331,7 +331,7 @@ public function listarUser( $request ,  $response , $args)
   if(isset($_SESSION['user'])){
  switch ($_SESSION['user']) {
    case 'admin':
-            
+
             $Users = new Users();
             $Users->setConnection($this->db);
             $Users->setContainer($this->container);
@@ -343,7 +343,7 @@ public function listarUser( $request ,  $response , $args)
 
           return $this->container->view->render($response ,'homecliente/homecliente.twig');
 
-   
+
    default:
       return $this->container->view->render($response ,'admin/login/loginCliente.twig');
      break;
@@ -367,9 +367,9 @@ switch ($_SESSION['user']){
                 ->view
                 ->render
                 ($response ,'admin/users/atu_user.twig' ,
-                  Array('endere' => $endere));  
+                  Array('endere' => $endere));
     break;
-  
+
   case 'cliente':
 
         $url = $this->container->get('router')->pathFor('home');
@@ -380,7 +380,7 @@ switch ($_SESSION['user']){
     $url = $this->container->get('router')->pathFor('index');
         return $response->withStatus(302)->withHeader('Location', $url);
 }
-  
+
 }
 
 
@@ -392,15 +392,15 @@ switch ($_SESSION['user']) {
   case 'admin':
 
       if(empty($_POST['tipouser'])){
-      
+
         $this->flash->addMessageNow('msg', 'Tipo user esta vazio');
         $messages = $this->flash->getMessages();
-  
+
         return $this->container
                     ->view
                     ->render($res ,'admin/home.twig',
                     Array( 'messages' => $messages));
-     
+
       }else{
 
       $users =  New Users();
@@ -414,7 +414,7 @@ switch ($_SESSION['user']) {
       return $res->withStatus(302)->withHeader('Location', $url);
       }
   break;
-  
+
   case 'cliente':
 
       $url = $this->container->get('router')->pathFor('home');
@@ -431,34 +431,34 @@ switch ($_SESSION['user']) {
 
 }
 
-// get endereco by id 
+// get endereco by id
 public function getEnderecoByid(Request $req , Response $res , $args){
 
   switch ($_SESSION['user']) {
 
     case 'admin':
-  
+
         $user =  $this->em
                       ->find('App\Model\Users',['id' => $_POST['id']]);
-  
+
         $user->setEmail($_POST['email']);
         $user->setTypeUser($_POST['typeUser']);
         $this->em->flush();
-  
+
         $url = $this->container->get('router')->pathFor('listarUser');
         return $res->withStatus(302)->withHeader('Location', $url);
-  
+
     break;
-    
+
     case 'cliente':
-  
+
         $url = $this->container->get('router')->pathFor('home');
         return $res->withStatus(302)->withHeader('Location', $url);
-  
+
     break;
-  
+
     default:
-  
+
         $url = $this->container->get('router')->pathFor('index');
         return $res->withStatus(302)->withHeader('Location', $url);
 }
@@ -467,7 +467,7 @@ public function getEnderecoByid(Request $req , Response $res , $args){
 
 public function newendereco(Request $req , Response $res , $args)
 {
-    
+
 
     $newendereco = new Endereco();
     $newendereco->setConnection($this->db);
@@ -485,7 +485,7 @@ public function newendereco(Request $req , Response $res , $args)
     $newendereco->setNumero(8877);
     $newendereco->setTelefone(989578193);
 
-    
+
     $newendereco->Novoendereco();
 
     return $res
@@ -498,7 +498,7 @@ public function newendereco(Request $req , Response $res , $args)
 public function updateendereco(Request $request, Response $response, $args)
 {
 
-  $endereco=  "UPDATE Endereco set 
+  $endereco=  "UPDATE Endereco set
                               rua=:rua ,
                               bairro=:bairro,
                               cidade=:cidade,
@@ -540,8 +540,8 @@ public function logout(Request $request, Response $response, $args)
     ->render($response ,'admin/login/loginCliente.twig');
   }
 
-  
- 
+
+
 
 }
 

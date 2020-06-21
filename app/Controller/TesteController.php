@@ -73,8 +73,17 @@ $users = $manager->findAll();
 // new User
 public function newuser(Request $request , Response $response , $args)
 {
-    $data = $array = array('titulo' => 'update user' );
-    return $response->withJson($data , 200);
+    $user = new Users();
+    $user->email = setEmail('mardonisgp@gmail.com');
+    $user->nome = setNome('Mardonis Alves B');
+    $user->tipouser = setTipouser('admin');
+    $user->tipouser = password_hash(setSenha('qwe123qwe@'),PASSWORD_DEFAULT);
+
+    $this->em->persist($user);
+    $this->em->flush();
+
+  //  $data = $array = array('titulo' => 'update user' );
+  //  return $response->withJson($data , 200);
 }
 
 
