@@ -2,8 +2,6 @@
 
 namespace App\Model;
 use Doctrine\ORM\Mapping;
-use Doctrine\ORM\Entity;
-use Doctrine\ORM\Table;
 /**
  *Entity
  *Table(name="users")
