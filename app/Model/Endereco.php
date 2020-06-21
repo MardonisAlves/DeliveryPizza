@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Model;
-use App\AbstractModel\BaseAbstract;
-use App\Interfaces\interfaceEndereco;
+
 use PDO;
 
-class Endereco 
+class Endereco
 {
 
   private $id;

@@ -2,9 +2,9 @@
 
 namespace App\Model;
 
-use PDO;
 
-class Pizza extends BaseAbstract
+
+class Pizza
 {
 
    /*

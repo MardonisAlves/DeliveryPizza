@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Model;
-use App\AbstractModel\BaseAbstract;
-use App\interfaces\interfaceProdutos;
-use PDO;
 
-class Produtos  extends BaseAbstract implements interfaceProdutos{
-    
+
+class Produtos {
+
 private $precocompra;
 private $porcentagemvenda;
 private $precovenda;
@@ -14,7 +12,7 @@ private $valortotalstoque;
 private $qtdade;
 private $datavalidade;
 
-    
+
     /*valor total stoque*/
 public function getvalorStoque(){
 $idProduto = $this->getConnection()->query("SELECT * FROM Produtos");
@@ -24,12 +22,12 @@ while($pro = $idProduto->fetch())
     $valor = floatVal( $this->getPrecocompra()) * ($this->getQtdade());
 
 }
-        
+
 return $valor ;
-        
+
 }
 
-    
+
     /*
     *  callcular preço venda
     */
@@ -51,7 +49,7 @@ public function ProdutosById($id)
 {
     $idProduto = $this->getConnection()->query("SELECT * FROM Produtos where id=$id");
     return $idProduto;
-    
+
 }
 
 public function insertProdutos(){
@@ -60,7 +58,7 @@ $newproduto = "INSERT INTO Produtos(id , nome, descricao ,
                                             precovenda, valortotalstoque,
                                             qtdade, datavalidade)
                                             VALUES(
-                                                :id , :nome, 
+                                                :id , :nome,
                                                 :descricao ,
                                                 :precocompra,
                                                 :porcentagemvenda,
@@ -74,17 +72,17 @@ $newproduto = "INSERT INTO Produtos(id , nome, descricao ,
     $stmt->bindParam("descricao" , $this->getDescricao());
     $stmt->bindParam("precocompra" ,$this->getPrecocompra());
     $stmt->bindParam("porcentagemvenda" , $this->getPorcentagemvenda());
-                                            
+
     $stmt->bindParam("precovenda" , $this->CalcularPrecovenda());
 
     $stmt->bindParam("valortotalstoque" , $this->getvalorStoque());
     $stmt->bindParam("qtdade" , $this->getQtdade());
     $stmt->bindParam("datavalidade" , $this->getDatavalidade());
     $stmt->execute();
-        
+
 }
 public function updateProduto()
-{   
+{
     $produto = "UPDATE Produtos set qtdade=:qtdade,porcentagemvenda=:porcentagemvenda ,precocompra=:precocompra  , valortotalstoque=:valortotalstoque where id=:id";
         $stmt = $this->getConnection()->prepare($produto);
         $stmt->bindParam("id" , $this->getId());

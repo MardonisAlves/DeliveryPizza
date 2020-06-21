@@ -1,13 +1,10 @@
 <?php
 
 namespace App\Model;
-use App\AbstractModel\BaseAbstract;
-use App\interfaces\interfaceUser;
-use App\Model\Users;
+
 use PDO;
 
-class Contact extends Users
-{
+class Contact {
 
   private $id;
   private $email;
@@ -78,14 +75,14 @@ class Contact extends Users
       return $this;
   }
 
-  
+
   public function setTelefone($telefone){
     $this->telefone = $telefone;
     return $this;
   }
 
   public function getTelefone(){
-   
+
     return $this->telefone;
   }
 
@@ -97,7 +94,7 @@ class Contact extends Users
 
 
 public function getMessage(){
-    
+
     return $this->message;
   }
 
@@ -107,7 +104,7 @@ public function getMessage(){
    */
     public function newcontact($response){
 
-  $sql = "INSERT INTO Contact(id,nome, email , telefone , message) 
+  $sql = "INSERT INTO Contact(id,nome, email , telefone , message)
                       VALUES(:id ,:nome, :email, :telefone , :message)";
 
     $stmt = $this->getConnection()->prepare( $sql );
@@ -158,7 +155,7 @@ public function getMessage(){
     public function getuserByemail($email){
 
       $user = $this->getConnection()->query("SELECT * FROM Users where email='$email'" ,PDO::FETCH_ASSOC);
-      
+
 
       /*foreach ($user as $key => $value) {
         echo  $value['id'];

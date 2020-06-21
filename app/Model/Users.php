@@ -2,7 +2,7 @@
 
 namespace App\Model;
 use Doctrine\ORM\Mapping;
-
+use Doctrine\ORM\@Entity;
 /**
  *@Entity
  *@Table(name="users")
