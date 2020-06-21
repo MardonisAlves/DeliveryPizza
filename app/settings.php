@@ -1,67 +1,4 @@
 <?php
-
-
-/*define ('APP_ROOT' , __DIR__);
-    return [
-            'settings' => [
-
-                'displayErrorDetails' => true,
-                'determineRouteBeforeAppMiddleware' => false,
-
-                'view' => [
-                    'path' => __DIR__ . '/resources/views',
-                    'twig' => [
-                    'cache' => false
-                    ]
-                ],
-
-                    "mysql" => [
-                        "driver" => "pdo_mysql",
-                        "host" => "fdb23.awardspace.net",
-                        "dbname" => "3371076_delivery",
-                        "user" => "3371076_delivery",
-                        "password" => "jk8yup02@!"
-                    ],
-
-                    'local' => [
-                        "driver"   => "pdo_mysql",
-                        "host"     => "localhost",
-                        "dbname"   => "api-pizza",
-                        "user"     => "root",
-                        "password" => "qwe123qwe@",
-                    ]
-                    ,
-
-                    'doctrine' => [
-                        // if true, metadata caching is forcefully disabled
-                        'dev_mode' => true,
-
-                        // path where the compiled metadata info will be cached
-                        // make sure the path exists and it is writable
-                        'cache_dir' =>  '../doctrine',
-
-                        // you should add any other path containing annotated entity classes
-                        'metadata_dirs' =>   [ APP_ROOT .'/app/Model'],
-
-                        'connection' => [
-                            'driver' => 'pdo_mysql',
-                            'host' => 'localhost',
-                            'port' => 3306,
-                            'dbname' => 'test',
-                            'user' => 'root',
-                            'password' => ''
-                        ]
-                    ]
-
-
-
-            ]
-    ];
-
-    */
-
-
-
     define ('APP_ROOT' , __DIR__);
         return [
                 'settings' => [
@@ -89,11 +26,11 @@
 
                             'connection' => [
                                 'driver' => 'pdo_mysql',
-                                'host' => 'localhost',
+                                'host' => 'ec2-54-243-195-160.compute-1.amazonaws.com',
                                 'port' => 3306,
-                                'dbname' => 'api-pizza',
-                                'user' => 'root',
-                                'password' => 'qwe123qwe@'
+                                'dbname' => 'd79kpkvd0q2ssh',
+                                'user' => 'lvncdgrefyqkcp',
+                                'password' => '5656f0de5772eccce3872bec48531f353033bea651c8cc02a1c3ef3a0bd7e937'
                             ]
                         ]
 
