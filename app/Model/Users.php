@@ -1,38 +1,38 @@
 <?php
 
 namespace App\Model;
-use Doctrine\ORM\Mapping;
+use Doctrine\ORM\Mapping as ORM;
 /**
- *@Entity
- *@Table(name="users")
+ *@ORM\Entity
+ *@ORM\Table(name="users")
  *
  */
 class Users {
   /**
-  * @Id
-  * @Column(type="integer")
-  * @GeneratedValue
+  * @ORM\Id
+  * @ORM\Column(type="integer")
+  * @ORM\GeneratedValue
   */
 private $id;
 
 /**
-  * @Column(type="string")
+  * @ORM\Column(type="string")
   */
 private $email;
 
 /**
-  * @Column(type="string")
+  * @ORM\Column(type="string")
   */
 private $nome;
 
 /**
-  * @Column(type="string")
+  * @ORM\Column(type="string")
   */
 
 private $senha;
 
 /**
-  * @Column(type="string")
+  * @ORM\Column(type="string")
   */
 private $tipouser;
 
