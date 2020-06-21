@@ -3,8 +3,8 @@
 namespace App\Model;
 use Doctrine\ORM\Mapping;
 /**
- *Entity
- *Table(name="users")
+ *@Entity
+ *@Table(name="users")
  *
  */
 class Users {
