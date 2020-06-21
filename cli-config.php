@@ -5,7 +5,7 @@
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Slim\Container;
-
+use PDO;
 /** @var Container $container */
 $container = require __DIR__ . '/app/app.php';
 
