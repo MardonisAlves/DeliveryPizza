@@ -2,6 +2,8 @@
 
 namespace App\Model;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping\Column;
 use Doctrine\Common\Annotation;
 /**
  *@Entity
