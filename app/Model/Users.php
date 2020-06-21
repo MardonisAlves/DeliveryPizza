@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Model;
-use Doctrine\ORM\Mapping;
+use Doctrine\ORM\Mapping\Entity;
 use Doctrine\Common\Annotation;
 /**
  *@Entity
