@@ -77,7 +77,7 @@ public function user(Request $request , Response $response , $args)
     $user->setEmail('mardonisgp@gmail.com');
     $user->setNome('Mardonis Alves B');
     $user->setTipouser('admin');
-    $user->password_hash(setSenha('qwe123qwe@'),PASSWORD_DEFAULT);
+    $user->setSenha('qwe123qwe@');
 
     $this->em->persist($user);
     $this->em->flush();

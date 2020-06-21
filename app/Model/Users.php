@@ -118,7 +118,7 @@ public function getSenha()
 */
 public function setSenha($senha)
 {
- $this->senha = $senha;
+ $this->senha = password_hash($senha , PASSWORD_DEFAULT);
 
  return $this;
 }
