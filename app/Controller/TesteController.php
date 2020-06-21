@@ -32,7 +32,7 @@ class TesteController
 public function list(Request  $request, Response $response, $args){
 //  $ARGS['id']   nesta variavel passamos o terceito argumento para consulta
 // $this->get('/list/{id}' , 'TesteController:list')->setName('list');
-
+header('Access-Control-Allow-Origin: *'); // Este cabeçalho aceita qualquer requisição
 $manager = $this->em->getRepository('\App\Model\Users');
 $users = $manager->findBy($array = array('id' =>  $args['id']));
 if($users){
@@ -40,9 +40,9 @@ if($users){
          // response json com withJsons
         $data =  $users = array(
         'email' => $user->getEmail(),
-        'Id' => $user->getId(),
-        'nome' => $user-> getNome());
-
+        'id' => $user->getId(),
+        'nome' => $user-> getNome(),
+        'tipouser' => $user->getTipouser());
         return $response->withJson($data , 200);
     }
 
@@ -54,6 +54,7 @@ if($users){
 
 
 public function listall(Request  $request, Response $response, $args){
+header('Access-Control-Allow-Origin: *'); // Este cabeçalho aceita qualquer requisição
 $manager = $this->em->getRepository('\App\Model\Users');
 $users = $manager->findAll();
 
