@@ -39,8 +39,8 @@ if($users){
   foreach ($users as $user) {
          // response json com withJsons
         $data =  $users = array(
-        'email' => $user->getEmail(),
         'id' => $user->getId(),
+        'email' => $user->getEmail(),
         'nome' => $user-> getNome(),
         'tipouser' => $user->getTipouser());
         return $response->withJson($data , 200);
