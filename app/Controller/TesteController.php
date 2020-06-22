@@ -40,8 +40,8 @@ if($users){
          // response json com withJsons
         $data =  $users = array(
         'id' => $user->getId(),
-        'email' => $user->getEmail(),
-        'nome' => $user-> getNome(),
+        'nome' => $user->getNome(),
+        'email' => $user-> getEmail(),
         'tipouser' => $user->getTipouser());
         return $response->withJson($data , 200);
     }
