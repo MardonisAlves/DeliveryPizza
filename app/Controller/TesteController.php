@@ -57,7 +57,6 @@ public function listall(Request  $request, Response $response, $args){
 header('Access-Control-Allow-Origin: *'); // Este cabeçalho aceita qualquer requisição
 $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 
-//$users = $manager->find();
 
         foreach ($manager as $user) {
       /*  $data = array(
@@ -66,8 +65,10 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
                         'email' => $user-> getEmail(),
                         'tipouser' => $user->getTipouser()
                       );*/
-        echo "Email" . $user->getEmail();
+      //  echo "Email" . $user->getEmail();
 
+
+$var = json_encode($manager);
 
 }
 
