@@ -68,7 +68,7 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 
 }
 
-  return $response->withJson($manager , 200);   // response json com withJsons
+  return $response->withJson($data , 200);   // response json com withJsons
 }
 
 
