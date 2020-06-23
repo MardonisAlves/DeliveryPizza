@@ -64,7 +64,7 @@ $users = $manager->findAll();
                           'Id' => $user->getId(),
                           'nome' => $user-> getNome()
                         );
-        return $response->withJson($data , 200);   // response json com withJsons
+        return $response->withJson($users , 200);   // response json com withJsons
 }
 }
 
