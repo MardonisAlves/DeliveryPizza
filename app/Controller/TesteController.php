@@ -65,8 +65,10 @@ $users = $manager->findAll();
                         'email' => $user-> getEmail(),
                         'tipouser' => $user->getTipouser()
                       );
-        return $response->withJson($data , 200);   // response json com withJsons
+
 }
+
+  return $response->withJson($users , 200);   // response json com withJsons
 }
 
 
