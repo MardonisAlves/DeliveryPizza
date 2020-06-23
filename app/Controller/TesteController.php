@@ -58,14 +58,18 @@ header('Access-Control-Allow-Origin: *'); // Este cabeçalho aceita qualquer req
 $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 
 
-        foreach ($manager as $user) {
+      /*  foreach ($manager as $user) {
         $data = array(
                       'Id' => $user->getId(),
                        'nome' => $user->getNome(),
                         'email' => $user-> getEmail(),
                         'tipouser' => $user->getTipouser()
-                      );
-      return $data;
+                      );*/
+                      foreach ($manager as $product) {
+                    echo sprintf("-%s\n", $product->getNome());
+                }
+
+
 
 }
   return $response->withJson($data , 200);   // response json com withJsons
