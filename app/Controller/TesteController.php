@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Intervention\Image\ImageManager;
-use App\Model\Users;
+use App\Model\Users as Users;
 use App\Model\Pizza;
 use App\Model\Produtos;
 use Pusher\Pusher;
