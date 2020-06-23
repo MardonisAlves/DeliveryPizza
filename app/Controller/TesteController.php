@@ -73,10 +73,16 @@ $users = $manager->findAll();
 // new User
 public function user(Request $request , Response $response , $args)
 {
+    //get json
+    header('Content-Type: application/json; charset=utf-8');
+    $json = file_get_contents('php://input');
+    $obj = json_decode($json);
+
+
     $user = new Users();
-    $user->setEmail('mardonisgp@gmail.com');
-    $user->setNome('Mardonis Alves B');
-    $user->setTipouser('admin');
+    $user->setEmail('donygp@gmail.com');
+    $user->setNome('Dony Alves B');
+    $user->setTipouser('client');
     $user->setSenha('qwe123qwe@');
 
     $this->em->persist($user);
