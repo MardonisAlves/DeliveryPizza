@@ -68,7 +68,7 @@ $users = $manager->findAll();
 
 }
 
-  return $response->withJson($users , 200);   // response json com withJsons
+  return $response->withJson($usersall , 200);   // response json com withJsons
 }
 
 
