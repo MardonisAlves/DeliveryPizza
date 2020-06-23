@@ -66,15 +66,12 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
                         'tipouser' => $user->getTipouser()
                       );
 
+        foreach ($data as $key => $value) {
+          echo $value['email'];
+        }
+
 }
-
-return $response->withStatus(200)
-            ->withHeader('Content-Type', 'application/json')
-            ->write(json_encode($data));
-
-
-
-//  return $response->withJson($data , 200);   // response json com withJsons
+  //return $response->withJson($data , 200);   // response json com withJsons
 }
 
 
