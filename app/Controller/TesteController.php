@@ -81,7 +81,7 @@ public function user(Request $request , Response $response , $args)
     $obj = json_decode($json);
 
 
-    $user = new Users();
+  /*  $user = new Users();
     $user->setEmail('donygp@gmail.com');
     $user->setNome('Dony Alves B');
     $user->setTipouser('client');
@@ -92,6 +92,7 @@ public function user(Request $request , Response $response , $args)
 
   //  $data = $array = array('titulo' => 'update user' );
   //  return $response->withJson($data , 200);
+  */
 }
 
 
