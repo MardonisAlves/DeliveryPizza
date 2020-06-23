@@ -59,13 +59,13 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 
 
         foreach ($manager as $user->fetch()) {
-      /*  $data = array(
+        $data = array(
                       'Id' => $user->getId(),
                        'nome' => $user->getNome(),
                         'email' => $user-> getEmail(),
                         'tipouser' => $user->getTipouser()
-                      );*/
-      //  echo "Email" . $user->getEmail();
+                      );
+
 
 
 
@@ -73,7 +73,7 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 }
 
 
-  return $response->withJson($manager , 200);   // response json com withJsons
+  return $response->withJson($data , 200);   // response json com withJsons
 }
 
 
