@@ -57,7 +57,13 @@ public function listall(Request  $request, Response $response, $args){
 header('Access-Control-Allow-Origin: *'); // Este cabeçalho aceita qualquer requisição
 $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 
-//$Response = array('data' => $data );
+
+$alldata = array();
+foreach($manager as $single){
+     $alldata[] = array($single->getId(), $single->getNome());
+}
+$data = array('data' => $alldata );
+//return json_encode($Response);
 
 
 //return $response;
@@ -72,7 +78,7 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 
         //var_dump($data);
 }*/
-    return $response->withJson('$manager' => $manager , 200);   // response json com withJsons
+    return $response->withJson($data, 200);   // response json com withJsons
 }
 
 
