@@ -68,9 +68,10 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
       //  echo "Email" . $user->getEmail();
 
 
-$var = json_encode($manager);
+
 
 }
+$var = json_encode($manager);
 
 //  return $response->withJson($data , 200);   // response json com withJsons
 }
