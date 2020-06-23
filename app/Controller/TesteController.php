@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Intervention\Image\ImageManager;
-use App\Model\Users as Users;
+use App\Model\Users;
 use App\Model\Pizza;
 use App\Model\Produtos;
 use Pusher\Pusher;
@@ -55,20 +55,22 @@ if($users){
 
 public function listall(Request  $request, Response $response, $args){
 header('Access-Control-Allow-Origin: *'); // Este cabeçalho aceita qualquer requisição
-$manager = $this->em->getRepository('Users')->findAll();
+$manager = $this->em->getRepository('\App\Model\Users')->findAll();
+
 //$users = $manager->find();
 
         foreach ($manager as $user) {
         $data = array(
-                       'Id' => $user->getId(),
+                      'Id' => $user->getId(),
                        'nome' => $user->getNome(),
                         'email' => $user-> getEmail(),
                         'tipouser' => $user->getTipouser()
                       );
+      echo $data;
 
 }
 
-  return $response->withJson($data , 200);   // response json com withJsons
+//  return $response->withJson($data , 200);   // response json com withJsons
 }
 
 
