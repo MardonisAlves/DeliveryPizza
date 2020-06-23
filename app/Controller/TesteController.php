@@ -66,11 +66,11 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
                       'tipouser' => $user->getTipouser()
                       ];
 
-        var_dump($data);
+        //var_dump($data);
 
 
 }
-    //return $response->withJson($data , 200);   // response json com withJsons
+    return $response->withJson($data , 200);   // response json com withJsons
 }
 
 
