@@ -70,7 +70,7 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 
 return $response->withStatus(200)
             ->withHeader('Content-Type', 'application/json')
-            ->write(json_encode($data->getArrayCopy()));
+            ->write(json_encode($data);
 
 
 
