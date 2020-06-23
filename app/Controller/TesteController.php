@@ -58,19 +58,19 @@ header('Access-Control-Allow-Origin: *'); // Este cabeçalho aceita qualquer req
 $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 
 
-    //    foreach ($manager as $user) {
-    /*  $data = array(
+        foreach ($manager as $user) {
+        $data = array(
                       'Id' => $user->getId(),
                        'nome' => $user->getNome(),
                         'email' => $user-> getEmail(),
                         'tipouser' => $user->getTipouser()
                       );
 
-*/
+}
 
 return $response->withStatus(200)
             ->withHeader('Content-Type', 'application/json')
-            ->write(json_encode($manager->getArrayCopy()));
+            ->write(json_encode($data->getArrayCopy()));
 
 
 
