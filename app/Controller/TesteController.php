@@ -56,7 +56,7 @@ if($users){
 public function listall(Request  $request, Response $response, $args){
 header('Access-Control-Allow-Origin: *'); // Este cabeçalho aceita qualquer requisição
 $manager = $this->em->getRepository('\App\Model\Users');
-$users = $manager->findAll();
+$users = $manager->find();
 
         foreach ($users as $user) {
         $data =  $usersall = array(
