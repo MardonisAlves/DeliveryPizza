@@ -74,9 +74,6 @@ return $response->withStatus(200)
 
 
 
-}
-
-
 //  return $response->withJson($data , 200);   // response json com withJsons
 }
 
