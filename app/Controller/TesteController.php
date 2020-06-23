@@ -60,13 +60,14 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 //$users = $manager->find();
 
         foreach ($manager as $user) {
-        $data = array(
+      /*  $data = array(
                       'Id' => $user->getId(),
                        'nome' => $user->getNome(),
                         'email' => $user-> getEmail(),
                         'tipouser' => $user->getTipouser()
-                      );
-      echo $data;
+                      );*/
+        echo "Email" . $user->getEmail();
+
 
 }
 
