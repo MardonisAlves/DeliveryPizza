@@ -71,9 +71,9 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 
 
 }
-$var = json_encode($manager);
 
-//  return $response->withJson($data , 200);   // response json com withJsons
+
+  return $response->withJson($data , 200);   // response json com withJsons
 }
 
 
