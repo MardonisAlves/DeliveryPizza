@@ -59,10 +59,11 @@ $manager = $this->em->getRepository('\App\Model\Users');
 $users = $manager->findAll();
 
         foreach ($users as $user) {
-        $data =  $users = array(
-                       'email' => $user->getEmail(),
+        $data =  $usersall = array(
                        'Id' => $user->getId(),
-                         'nome' => $user-> getNome()
+                       'nome' => $user->getNome(),
+                        'email' => $user-> getEmail(),
+                        'tipouser' => $user->getTipouser()
                       );
         return $response->withJson($data , 200);   // response json com withJsons
 }
