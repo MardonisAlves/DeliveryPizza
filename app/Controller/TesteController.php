@@ -63,7 +63,7 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
                             'id' => $single->getId(),
                             'nome' =>$single->getNome(),
                             'email' => $single->getEmail(),
-                            'titpouser' => $single->getTipouser());
+                            'tipouser' => $single->getTipouser());
       }
       //$data = array('data' => $alldata );
 
