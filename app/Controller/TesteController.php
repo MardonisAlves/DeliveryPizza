@@ -80,7 +80,7 @@ public function user(Request $request , Response $response , $args)
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
 
-
+    printf($obj);
   /*  $user = new Users();
     $user->setEmail('donygp@gmail.com');
     $user->setNome('Dony Alves B');
