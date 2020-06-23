@@ -58,7 +58,7 @@ header('Access-Control-Allow-Origin: *'); // Este cabeçalho aceita qualquer req
 $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 
 
-        foreach ($manager as $user) {
+        foreach ($manager as $user->fetch()) {
       /*  $data = array(
                       'Id' => $user->getId(),
                        'nome' => $user->getNome(),
