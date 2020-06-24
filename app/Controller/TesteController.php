@@ -75,14 +75,14 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 // new User
 public function user(Request $request , Response $response , $args)
 {
-    header('Access-Control-Allow-Origin: *'); // Este cabeçalho aceita qualquer requisição
+
     //get json
     //header('Content-Type: application/json; charset=utf-8');
     header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
 
-    return $response;
+    header('Access-Control-Allow-Origin: *'); // Este cabeçalho aceita qualquer requisição
   /*  $user = new Users();
     $user->setEmail('donygp@gmail.com');
     $user->setNome('Dony Alves B');
