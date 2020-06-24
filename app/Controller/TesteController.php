@@ -77,7 +77,7 @@ public function user(Request $request , Response $response , $args)
 {
 
     //get json
-    //header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Origin: *');
     //header('Content-Type: application/json; charset=utf-8');
     //header("Access-Control-Allow-Headers:GET", "Origin, X-Requested-With, Content-Type, Accept");
     //$json = file_get_contents('php://input');
