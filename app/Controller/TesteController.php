@@ -76,7 +76,6 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 public function user(Request $request , Response $response , $args)
 {
 
-    //get json
     header("Access-Control-Allow-Origin: *");
     //header('Content-Type: application/json; charset=utf-8');
     //header("Access-Control-Allow-Headers:","Content-Type");
@@ -84,7 +83,7 @@ public function user(Request $request , Response $response , $args)
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
 
-    $array = array('data' => $obj );
+    $array = array('data' => $obj->email );
     return $response->withJson($array , 200);
 
  // Este cabeçalho aceita qualquer requisição
