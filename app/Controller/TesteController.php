@@ -84,7 +84,7 @@ public function user(Request $request , Response $response , $args)
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
 
-    return $response->withJson($obj , 200);
+    return $response->getBody();
 
  // Este cabeçalho aceita qualquer requisição
   /*  $user = new Users();
