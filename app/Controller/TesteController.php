@@ -84,7 +84,7 @@ public function user(Request $request , Response $response , $args)
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
 
-     $array = array('titulo' => 'update user' );
+     $array = array('data' => $obj );
     return $response->withJson($array , 200);
 
  // Este cabeçalho aceita qualquer requisição
