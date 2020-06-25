@@ -13,6 +13,12 @@ Em nosso arquivo composer.json vamos configurar com a PSR-4
 ```
 composer require slim/slim "^3.0"
 
+"autoload":{
+  psr-4:{
+    "App\\" : "app/"
+  }
+}
+
 ```
 </p>
 
