@@ -20,6 +20,14 @@ composer require slim/slim "^3.0"
 }
 
 ```
+
+Precisamos baixar o Doctrine ORM em sua maquina devera ter o mysql e o php instalado se possivel na ultima versao
+
+```
+composer require doctrine/orm
+
+```
+
 </p>
 
 
