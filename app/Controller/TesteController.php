@@ -83,22 +83,20 @@ public function user(Request $request , Response $response , $args)
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
 
-    $array = array('data' => $obj->email );
-    return $response->withJson($array , 200);
+
 
  // Este cabeçalho aceita qualquer requisição
-  /*  $user = new Users();
-    $user->setEmail('donygp@gmail.com');
-    $user->setNome('Dony Alves B');
-    $user->setTipouser('client');
-    $user->setSenha('qwe123qwe@');
+   $user = new Users();
+    $user->setEmail($obj->email);
+    $user->setNome($obj->name);
+    $user->setTipouser($obj->typer);
+    $user->setSenha($obj->password);
 
     $this->em->persist($user);
     $this->em->flush();
 
-  //  $data = $array = array('titulo' => 'update user' );
-  //  return $response->withJson($data , 200);
-  */
+  $array = array('data' => $obj );
+  return $response->withJson($array , 200);
 }
 
 
