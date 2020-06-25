@@ -8,7 +8,10 @@
 <h5>Dependecias do projeto</h5>
 <p>
 <a href="http://www.slimframework.com/docs/v3/tutorial/first-app.html">Slim Documentação</a><br>
-Em nosso arquivo composer.json vamos configurar com a PSR-4
+Em nosso arquivo composer.json vamos configurar com a PSR-4. Depois que configurar a psr digite o comando sua pasta raiz
+do projeto no mesmo diretorio do composer.json 
+    
+
 
 ```
 composer require slim/slim "^3.0"
@@ -19,8 +22,9 @@ composer require slim/slim "^3.0"
   }
 }
 
-```
+composer dump-autoload
 
+```
 Precisamos baixar o Doctrine ORM em sua maquina devera ter o mysql e o php instalado se possivel na ultima versao
 
 ```
