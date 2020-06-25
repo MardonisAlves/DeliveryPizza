@@ -9,7 +9,7 @@
 <p>
 <a href="http://www.slimframework.com/docs/v3/tutorial/first-app.html">Slim Documentação</a><br>
 
-´´´ php composer require slim/slim "^3.0" ´´´
+> composer require slim/slim "^3.0"
 </p>
 
 </p>
