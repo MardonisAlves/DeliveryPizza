@@ -98,7 +98,7 @@ public function user(Request $request , Response $response , $args)
 public function updateuser(Request $request , Response $response , $args)
 {
 
-  $data = $array = array('titulo' => 'update user' );
+  $data = $array = array('id' => $args );
   return $response->withJson($data , 200);
 }
 
@@ -106,7 +106,7 @@ public function updateuser(Request $request , Response $response , $args)
 // delete user
 public function deleteuser(Request $request , Response $response , $args)
 {
-  $data = $array = array('titulo' => 'delete user' );
+  $data = $array = array('id' => $args );
   return $response->withJson($data , 200);
 }
 
