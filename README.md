@@ -78,6 +78,15 @@ public function user(Request $request , Response $response , $args)
 }
 
 ```
+Em nosso arquivo de rota passaremos o id da seguinte maneira /metodo/id e TesteController
+no navegador ficaria assim https://infinite-springs-64835.herokuapp.com/list/1
+
+```php
+
+  $this->get('/list/{id}' , 'TesteController:list')->setName('list');
+  
+  ```
+  
 
 </p>
 
