@@ -77,15 +77,9 @@ public function user(Request $request , Response $response , $args)
 {
 
     header("Access-Control-Allow-Origin: *");
-    //header('Content-Type: application/json; charset=utf-8');
-    //header("Access-Control-Allow-Headers:","Content-Type");
-    //header("Access-Control-Allow-Methods:","POST");
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
 
-
-
- // Este cabeçalho aceita qualquer requisição
     $user = new Users();
     $user->setEmail($obj->email);
     $user->setNome($obj->name);
