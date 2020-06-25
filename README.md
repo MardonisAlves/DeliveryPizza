@@ -27,7 +27,7 @@ Precisamos baixar o Doctrine ORM em sua maquina devera ter o mysql e o php insta
 composer require doctrine/orm
 
 ```
-Para o nosso controller vamos passar alguns parametros como : container , Entitymange
+Para o nosso controller vamos passar alguns parametros como : container , Entitymange pois sera atraves do entitymanger que pegaremos o objeto de conexao para o banco de dados e tambem para fazer as INSERTS , UPDATE , DELETE
 
 ```php
 class TesteController
@@ -43,6 +43,34 @@ class TesteController
         $this->flash = $flash;
 }
 
+}
+
+```
+Em nosso metodo da classe TesteController devera receber tres parametros para a nosso aplicação funcionar:
+Request com os parametros que contem o nosso json o response que sera o retorno da nosso requisição e  outro sera
+args com o id. Este id sera passado da nossa classe de rotas
+
+```php 
+
+// new User
+public function user(Request $request , Response $response , $args)
+{
+
+    header("Access-Control-Allow-Origin: *");
+    $json = file_get_contents('php://input');
+    $obj = json_decode($json);
+
+    $user = new Users();
+    $user->setEmail($obj->email);
+    $user->setNome($obj->name);
+    $user->setTipouser($obj->typer);
+    $user->setSenha($obj->password);
+
+    $this->em->persist($user);
+    $this->em->flush();
+
+    $array = array('data' => $obj );
+    return $response->withJson($array , 200);
 }
 
 ```
