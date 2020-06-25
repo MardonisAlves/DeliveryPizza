@@ -1,5 +1,5 @@
 
-<h1>Slim Microframework back End</h1>
+<h1>DELIVERY PIZZA API  REST PHP E VUE JS</h1>
 <p>
     Neste pequeno projeto utilizaremos o Slim Framework php para o nosso back-end
     e  vuejs para o front-end. Lembrando que Vocẽ deve ter instalado na maquina o composer o gerenciador de dependecia do php.
