@@ -27,6 +27,25 @@ Precisamos baixar o Doctrine ORM em sua maquina devera ter o mysql e o php insta
 composer require doctrine/orm
 
 ```
+Para o nosso controller vamos passar alguns parametros como : container , Entitymange
+
+```php
+class TesteController
+{
+    protected $em;
+    private $container;
+    private $flash;
+
+    public function __construct($container ,EntityManager $em ,$flash )
+{
+        $this->em = $em;
+        $this->container=$container;
+        $this->flash = $flash;
+}
+
+}
+
+```
 
 </p>
 
