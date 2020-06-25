@@ -9,7 +9,10 @@
 <p>
 <a href="http://www.slimframework.com/docs/v3/tutorial/first-app.html">Slim Documentação</a><br>
 
-> composer require slim/slim "^3.0"
+```
+composer require slim/slim "^3.0"
+
+```
 </p>
 
 </p>
@@ -35,15 +38,4 @@ composer require slim/flash
 
 <div>
 
-<h1>Pagina Home</h1>
-<img src="public/img/pastasistemaimg/home.png">
-<h1>pagina contato</h1>
-<img src="public/img/pastasistemaimg/contato.png">
-<h1>Pagina admin</h1>
-<img src="public/img/pastasistemaimg/admin.png">
-<h1>Pagina add user</h1>
-<img src="public/img/pastasistemaimg/user.png">
-<h1>update User</h1>
-<img src="public/img/pastasistemaimg/udateuser.png">
-<div>
 </div># DeliveryPizza
