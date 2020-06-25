@@ -86,7 +86,7 @@ public function user(Request $request , Response $response , $args)
 
 
  // Este cabeçalho aceita qualquer requisição
-   $user = new Users();
+    $user = new Users();
     $user->setEmail($obj->email);
     $user->setNome($obj->name);
     $user->setTipouser($obj->typer);
@@ -95,14 +95,15 @@ public function user(Request $request , Response $response , $args)
     $this->em->persist($user);
     $this->em->flush();
 
-  $array = array('data' => $obj );
-  return $response->withJson($array , 200);
+    $array = array('data' => $obj );
+    return $response->withJson($array , 200);
 }
 
 
 // update User
 public function updateuser(Request $request , Response $response , $args)
 {
+
   $data = $array = array('titulo' => 'update user' );
   return $response->withJson($data , 200);
 }
