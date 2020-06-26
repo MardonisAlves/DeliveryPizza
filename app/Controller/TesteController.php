@@ -107,11 +107,12 @@ public function updateuser(Request $request , Response $response , $args)
 public function deleteuser(Request $request , Response $response , $args)
 {
   header('Access-Control-Allow-Origin: *');
-  header('Access-Control-Allow-Methods: GET, POST, PUT ,DELETE');
+  header('Access-Control-Allow-Methods: GET');
 
   $user = $this->em->getRepository->find('\App\Model\Users' , 1);
   $this->em->remove($user);
   $this->em->flush();
+
   if($user){
   //$json = file_get_contents('php://input');
   //$obj = json_decode($json);
