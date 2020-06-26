@@ -106,7 +106,7 @@ public function updateuser(Request $request , Response $response , $args)
 // delete user
 public function deleteuser(Request $request , Response $response , $args)
 {
-  header('Access-Control-Allow-Origin: *');
+  header('Access-Control-Allow-Origin: http://localhost:8080');
   header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
   header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
   $json = file_get_contents('php://input');
