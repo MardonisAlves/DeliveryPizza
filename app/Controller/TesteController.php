@@ -107,7 +107,11 @@ public function updateuser(Request $request , Response $response , $args)
 public function deleteuser(Request $request , Response $response , $args)
 {
   header("Access-Control-Allow-Origin: * ");
-  $data = $array = array('id' => $args );
+
+  $json = file_get_contents('php://input');
+  $obj = json_decode($json);
+
+  $data = $array = array('id' => $obj );
   return $response->withJson($data , 200);
 }
 
