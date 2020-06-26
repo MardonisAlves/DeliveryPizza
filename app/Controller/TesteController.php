@@ -109,12 +109,13 @@ public function deleteuser(Request $request , Response $response , $args)
   header('Access-Control-Allow-Origin: *');
   header('Access-Control-Allow-Methods: GET');
 
-  $user = $this->em->getRepository->find('\App\Model\Users' , 1);
+  $manager = $this->em->getRepository->find('\App\Model\Users' , 1);
+  $user = $manager->findBy($array = array('id' =>  $args['id']));
   $this->em->remove($user);
   $this->em->flush();
 
   if($user){
-  //$json = file_get_contents('php://input');
+  //$json = file_get_contents('php//input');
   //$obj = json_decode($json);
 
   // deletar user by id
