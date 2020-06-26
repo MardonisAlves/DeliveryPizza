@@ -106,7 +106,7 @@ public function updateuser(Request $request , Response $response , $args)
 // delete user
 public function deleteuser(Request $request , Response $response , $args)
 {
-  header("Access-Control-Allow-Origin: *");
+  header("Access-Control-Allow-Origin: http://localhost:8080");
   $data = $array = array('id' => $args );
   return $response->withJson($data , 200);
 }
