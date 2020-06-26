@@ -109,7 +109,7 @@ public function deleteuser(Request $request , Response $response , $args)
   header('Access-Control-Allow-Origin: *');
   header('Access-Control-Allow-Methods: GET, POST, PUT ,DELETE');
 
-  $user = $this->em->getRepository()->find('\App\Model\Users' , $args);
+  $user = $this->em->getRepository->find('\App\Model\Users' , $args);
   $this->em->remove($user);
   $this->em->flush();
   if($user){
