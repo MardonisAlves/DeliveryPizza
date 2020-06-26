@@ -109,11 +109,21 @@ public function deleteuser(Request $request , Response $response , $args)
   header('Access-Control-Allow-Origin: *');
   header('Access-Control-Allow-Methods: GET, POST, PUT ,DELETE');
 
+  $user = $this->em->getRepository()->find('\App\Model\Users' , $args);
+  $this->em->remove($user);
+  $this->em->flush();
+  if($user){
   //$json = file_get_contents('php://input');
   //$obj = json_decode($json);
 
+  // deletar user by id
   $data = $array = array('id' => $args );
   return $response->withJson($data , 200);
+
+}else {
+  $data = $array = array('id' =>'Não foi possivel deletar' );
+  return $response->withJson($data , 404);
+}
 }
 
 }
