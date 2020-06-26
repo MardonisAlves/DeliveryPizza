@@ -106,13 +106,13 @@ public function updateuser(Request $request , Response $response , $args)
 // delete user
 public function deleteuser(Request $request , Response $response , $args)
 {
-  header('Access-Control-Allow-Origin: \*');
+  header('Access-Control-Allow-Origin: *');
   header('Access-Control-Allow-Methods: GET, POST, PUT ,DELETE');
 
-  $json = file_get_contents('php://input');
-  $obj = json_decode($json);
+  //$json = file_get_contents('php://input');
+  //$obj = json_decode($json);
 
-  $data = $array = array('id' => $obj );
+  $data = $array = array('id' => $args );
   return $response->withJson($data , 200);
 }
 
