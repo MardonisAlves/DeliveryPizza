@@ -110,7 +110,7 @@ public function deleteuser(Request $request , Response $response , $args)
   header('Access-Control-Allow-Methods: GET');
 
   $manager = $this->em->getRepository('\App\Model\Users');
-  $user = $manager->findBy($array = array('id' =>  $args['id']));
+  $user = $manager->find($args['id']);
   $this->em->remove($user);
   $this->em->flush();
 
