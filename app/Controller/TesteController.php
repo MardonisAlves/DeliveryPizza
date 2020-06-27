@@ -117,7 +117,10 @@ public function deleteuser(Request $request , Response $response , $args)
 
   $manager = $this->em->find('\App\Model\Users',$args['id']);
 //  $user = $manager->find($args['id']);
-  $this->em->remove($manager);
+  foreach ($manager as $key => $value) {
+      $this->em->remove($value);
+  }
+
   $this->em->flush();
 
 return  $response
