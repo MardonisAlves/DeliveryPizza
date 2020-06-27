@@ -119,9 +119,9 @@ public function deleteuser(Request $request , Response $response , $args)
   $users = $manager->findBy($args['id']);
   foreach ($users as $user) {
       $this->em->remove($user);
+      $this->em->flush();
   }
 
-  $this->em->flush();
 
 return  $response
   ->withHeader('Access-Control-Allow-Origin', '*')
