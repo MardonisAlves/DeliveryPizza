@@ -107,10 +107,10 @@ public function updateuser(Request $request , Response $response , $args)
 public function deleteuser(Request $request , Response $response , $args)
 {
 
-  return  $response
-    ->withHeader('Access-Control-Allow-Origin', '*')
-    ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
-    ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization');
+    header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS');
 
   //$json = file_get_contents('php://input');
   //$obj = json_decode($json);
