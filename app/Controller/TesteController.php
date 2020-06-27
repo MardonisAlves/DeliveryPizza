@@ -108,24 +108,18 @@ public function deleteuser(Request $request , Response $response , $args)
 {
   header('Access-Control-Allow-Origin: *');
   header('Access-Control-Allow-Methods: GET');
+  $json = file_get_contents('php://input');
+  $obj = json_decode($json);
+  //$manager = $this->em->getRepository('\App\Model\Users');
+  //$user = $manager->find($args['id']);
+  //$this->em->remove($user);
+  //$this->em->flush();
 
-  $manager = $this->em->getRepository('\App\Model\Users');
-  $user = $manager->find($args['id']);
-  $this->em->remove($user);
-  $this->em->flush();
-
-  if($user){
-  //$json = file_get_contents('php//input');
-  //$obj = json_decode($json);
 
   // deletar user by id
-  $data = $array = array('id' => $args );
+  $data = $array = array('id' => $obj );
   return $response->withJson($data , 200);
 
-}else {
-  $data = $array = array('id' =>'Não foi possivel deletar' );
-  return $response->withJson($data , 404);
-}
 }
 
 }
