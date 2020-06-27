@@ -114,6 +114,7 @@ public function deleteuser(Request $request , Response $response , $args)
   $user = $manager->find($obj->id);
   $this->em->remove($user);
   $this->em->flush();
+
   $data = $array = array('id' => $obj );
 
   return $response
