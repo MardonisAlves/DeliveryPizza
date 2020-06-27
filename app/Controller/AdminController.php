@@ -167,10 +167,7 @@ public function putContact($request, $response, $args)
 public function DeleteContact($request, $response, $args){
   if(isset($_SESSION['user']) == 'admin' AND $_SERVER['REQUEST_METHOD'] == 'GET'){
 
-        $contact =  $this->em->find(
-          'App\Model\Contact',
-          $_GET['id']);
-
+        $contact =  $this->em->find('App\Model\Contact',$_GET['id']);
         $this->em->remove($contact);
         $this->em->flush();
 

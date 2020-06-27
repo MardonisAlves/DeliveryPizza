@@ -126,7 +126,8 @@ return  $response
   ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
   ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
   ->withHeader('Content-type', 'application/json')
-  ->withJson($args['id']);
+  ->withJson($args['id'])
+  ->withStatus(200);
 
 
 }
