@@ -112,10 +112,10 @@ public function deleteuser(Request $request , Response $response , $args)
     header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization');
     header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS');
 
-  //$json = file_get_contents('php://input');
-  //$obj = json_decode($json);
+  $json = file_get_contents('php://input');
+  $obj = json_decode($json);
 
-  $manager = $this->em->find('App\Model\Users',$args['id']);
+  $manager = $this->em->find('App\Model\Users' , $obj->id);
   //$users = $manager->findBy($args['id']);
 
   $this->em->remove($manager);
@@ -126,7 +126,7 @@ return  $response
   ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
   ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
   ->withHeader('Content-type', 'application/json')
-  ->withJson($args['id']);
+  ->withJson($obj->id);
 
 
 }
