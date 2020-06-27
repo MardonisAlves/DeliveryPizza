@@ -106,10 +106,12 @@ public function updateuser(Request $request , Response $response , $args)
 // delete user
 public function deleteuser(Request $request , Response $response , $args)
 {
-
-
-
-
+  return $response
+  ->withHeader('Access-Control-Allow-Origin', '*')
+  ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+  ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
+  ->withHeader('Content-type', 'application/json')
+  
   $json = file_get_contents('php://input');
   $obj = json_decode($json);
   $manager = $this->em->getRepository('\App\Model\Users');
@@ -117,6 +119,7 @@ public function deleteuser(Request $request , Response $response , $args)
   $this->em->remove($user);
   $this->em->flush();
   $data = $array = array('id' => $obj );
+
   return $response
   ->withHeader('Access-Control-Allow-Origin', '*')
   ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
