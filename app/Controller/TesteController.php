@@ -107,9 +107,9 @@ public function updateuser(Request $request , Response $response , $args)
 public function deleteuser(Request $request , Response $response , $args)
 {
 
-if($_SERVER['REQUEST_METHOD'] == 'OPTIONS'){
+
   header('Access-Control-Allow-Origin: *');
-  header('Access-Control-Allow-Methods: POST, GET, OPTIONS , DELETE');
+  header('Access-Control-Allow-Methods: DELETE');
   header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
   header("Content-Type: application/json");
 
@@ -125,7 +125,7 @@ if($_SERVER['REQUEST_METHOD'] == 'OPTIONS'){
   $data = $array = array('obj' => $obj );
   return $response->withJson($data , 200);
 
-}
+
 
 }
 
