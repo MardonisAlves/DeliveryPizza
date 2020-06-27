@@ -117,11 +117,8 @@ public function deleteuser(Request $request , Response $response , $args)
 
   $manager = $this->em->getRepository('\App\Model\Users');
   $users = $manager->findBy($args['id']);
-  foreach ($users as $user) {
-      $this->em->remove($user);
 
-  }
-
+  $this->em->remove($user);
   $this->em->flush();
 return  $response
   ->withHeader('Access-Control-Allow-Origin', '*')
