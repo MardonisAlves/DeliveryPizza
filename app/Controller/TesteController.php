@@ -123,7 +123,7 @@ public function deleteuser(Request $request , Response $response , $args)
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 
 
-            $data = $array = array('id' => 1 );
+            $data = $array = array('id' => $obj );
             return $response->withJson($data , 200);
 
 }
