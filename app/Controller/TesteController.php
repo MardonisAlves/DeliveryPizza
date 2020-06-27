@@ -107,7 +107,7 @@ public function updateuser(Request $request , Response $response , $args)
 public function deleteuser(Request $request , Response $response , $args)
 {
 
-
+header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
   $json = file_get_contents('php://input');
   $obj = json_decode($json);
   //$manager = $this->em->getRepository('\App\Model\Users');
@@ -115,7 +115,7 @@ public function deleteuser(Request $request , Response $response , $args)
   //$this->em->remove($user);
   //$this->em->flush();
 
-  header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+
 
   $data = $array = array('obj' => $obj );
   return $response->withJson($data , 200);
