@@ -117,14 +117,13 @@ public function deleteuser(Request $request , Response $response , $args)
   //$this->em->remove($user);
   //$this->em->flush();
 $data = $array = array('id' => $obj );
-  return $response
+            $response
             ->withHeader('Access-Control-Allow-Origin', '*')
             ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
-            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
-            ->withJson($data , 200);
+            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 
 
-            return $response->withJson($data , 200);
+  return $response->withJson($data , 200);
 
 }
 
