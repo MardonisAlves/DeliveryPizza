@@ -106,12 +106,12 @@ public function updateuser(Request $request , Response $response , $args)
 // delete user
 public function deleteuser(Request $request , Response $response , $args)
 {
-  header('Access-Control-Allow-Origin': '*');
+  //header('Access-Control-Allow-Origin': '*');
 
   $json = file_get_contents('php://input');
   $obj = json_decode($json);
   $manager = $this->em->getRepository('\App\Model\Users');
-  $user = $manager->find($args['id']);
+  $user = $manager->find($obj->id);
   $this->em->remove($user);
   $this->em->flush();
   $data = $array = array('id' => $obj );
