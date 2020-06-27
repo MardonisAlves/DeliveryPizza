@@ -115,10 +115,10 @@ public function deleteuser(Request $request , Response $response , $args)
   //$json = file_get_contents('php://input');
   //$obj = json_decode($json);
 
-  $manager = $this->em->getRepository('\App\Model\Users')->findBy($args['id']);
-//  $user = $manager->find($args['id']);
-  foreach ($manager as $value) {
-      $this->em->remove($value);
+  $manager = $this->em->getRepository('\App\Model\Users',$args['id']);
+  $users = $manager->find($args['id']);
+  foreach ($users as $user) {
+      $this->em->remove($user);
   }
 
   $this->em->flush();
