@@ -122,8 +122,8 @@ if($_SERVER['REQUEST_METHOD'] == 'OPTIONS'){
 
 
 
-  //$data = $array = array('obj' => $obj );
-  //return $response->withJson($data , 200);
+  $data = $array = array('obj' => $obj );
+  return $response->withJson($data , 200);
 
 }
 
