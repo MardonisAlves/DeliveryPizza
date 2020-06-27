@@ -107,7 +107,12 @@ public function updateuser(Request $request , Response $response , $args)
 public function deleteuser(Request $request , Response $response , $args)
 {
 
-header("Access-Control-Allow-Origin: *");
+  header('Access-Control-Allow-Origin: http://localhost:8080');
+  header('Access-Control-Allow-Methods: POST, GET, OPTIONS , DELETE');
+  header('Access-Control-Allow-Headers: X-PINGARUNER');
+  header('Access-Control-Max-Age: 1728000');
+  header("Content-Length: 0");
+  header("Content-Type: application/json");
   $json = file_get_contents('php://input');
   $obj = json_decode($json);
   //$manager = $this->em->getRepository('\App\Model\Users');
