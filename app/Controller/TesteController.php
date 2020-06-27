@@ -116,11 +116,10 @@ public function deleteuser(Request $request , Response $response , $args)
   //$this->em->remove($user);
   //$this->em->flush();
 
-  //$headers = $response->getHeaders();
-  // deletar user by id
-  //$data = $array = array('headers' => $headers );
-  //return $response->withJson($data , 200);
-  return  $response->withHeader('Content-type', 'application/json');
+
+  $data = $array = array('obj' => $obj );
+  return $response->withJson($data , 200);
+
 
 
 }
