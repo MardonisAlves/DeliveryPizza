@@ -106,8 +106,7 @@ public function updateuser(Request $request , Response $response , $args)
 // delete user
 public function deleteuser(Request $request , Response $response , $args)
 {
-  header('Access-Control-Allow-Origin: *');
-  header('Access-Control-Allow-Methods: DELETE');
+
 
   $json = file_get_contents('php://input');
   $obj = json_decode($json);
@@ -116,7 +115,9 @@ public function deleteuser(Request $request , Response $response , $args)
   //$this->em->remove($user);
   //$this->em->flush();
 
-
+  header('Access-Control-Allow-Origin: *');
+  header('Access-Control-Allow-Methods: DELETE');
+  
   $data = $array = array('obj' => $obj );
   return $response->withJson($data , 200);
 
