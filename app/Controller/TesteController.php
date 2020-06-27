@@ -121,9 +121,8 @@ public function deleteuser(Request $request , Response $response , $args)
             ->withHeader('Access-Control-Allow-Origin', '*')
             ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-
-  $data = $array = array('obj' => '1' );
-  return $response->withJson($data , 200);
+            ->withJson($data , 200);
+  
 
 
 
