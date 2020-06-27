@@ -107,6 +107,12 @@ public function updateuser(Request $request , Response $response , $args)
 public function deleteuser(Request $request , Response $response , $args)
 {
 
+  $response
+  ->withHeader('Access-Control-Allow-Origin', '*')
+  ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+  ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
+  ->withHeader('Content-type', 'application/json')
+  ->withJson($args['id']);
 
   //$json = file_get_contents('php://input');
   //$obj = json_decode($json);
@@ -116,15 +122,7 @@ public function deleteuser(Request $request , Response $response , $args)
   $this->em->remove($user);
   $this->em->flush();
 
-  return $response
-  ->withHeader('Access-Control-Allow-Origin', '*')
-  ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
-  ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
-  ->withHeader('Content-type', 'application/json')
-  ->withJson($args['id']);
-
-  $data = $array = array('id' => $args['id'] );
-  return $response->withJson($data , 200);
+  return $response;
 
 
 }
