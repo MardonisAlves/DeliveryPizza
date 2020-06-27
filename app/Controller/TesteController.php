@@ -120,7 +120,7 @@ public function deleteuser(Request $request , Response $response , $args)
   $this->em->remove($user);
   $this->em->flush();
 
-  $data = $array = array('id' => $obj );
+  $data = $array = array('id' => $args['id'] );
   return $response->withJson($data , 200);
 
 
