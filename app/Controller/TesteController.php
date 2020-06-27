@@ -117,7 +117,7 @@ public function deleteuser(Request $request , Response $response , $args)
 
   $manager = $this->em->getRepository('\App\Model\Users')->findBy($args['id']);
 //  $user = $manager->find($args['id']);
-  foreach ($manager as $key => $value) {
+  foreach ($manager as $value) {
       $this->em->remove($value);
   }
 
