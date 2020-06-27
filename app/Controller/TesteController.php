@@ -115,7 +115,7 @@ public function deleteuser(Request $request , Response $response , $args)
   //$this->em->remove($user);
   //$this->em->flush();
 
-  
+  header("Access-Control-Allow-Origin: *");
 
   $data = $array = array('obj' => $obj );
   return $response->withJson($data , 200);
