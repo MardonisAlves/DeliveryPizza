@@ -120,7 +120,7 @@ public function deleteuser(Request $request , Response $response , $args)
   // deletar user by id
   //$data = $array = array('headers' => $headers );
   //return $response->withJson($data , 200);
-  $response->withHeader('Content-type', 'application/json');
+  return  $response->withHeader('Content-type', 'application/json');
 
 
 }
