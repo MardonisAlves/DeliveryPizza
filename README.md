@@ -1,10 +1,13 @@
 
-<<<<<<< HEAD
+
 <h1>Slim Microframework back End</h1>
-<a heref="https://aqueous-meadow-05876.herokuapp.com/">Front-End-VueJS</a>
-=======
+<p>
+<a>https://aqueous-meadow-05876.herokuapp.com/">Front-End-VueJS</a>
+</p>
+
 <h1>DELIVERY PIZZA API  REST PHP E VUE JS</h1>
->>>>>>> 3e5d2b295d5427a4afd9d95388fe5c8edb8e52d6
+
+
 <p>
     Neste pequeno projeto utilizaremos o Slim Framework php para o nosso back-end
     e  vuejs para o front-end. Lembrando que Vocẽ deve ter instalado na maquina o composer o gerenciador de dependecia do php.
@@ -14,8 +17,8 @@
 <p>
 <a href="http://www.slimframework.com/docs/v3/tutorial/first-app.html">Slim Documentação</a><br>
 Em nosso arquivo composer.json vamos configurar com a PSR-4. Depois que configurar a psr digite o comando sua pasta raiz
-do projeto no mesmo diretorio do composer.json 
-    
+do projeto no mesmo diretorio do composer.json
+
 
 
 ```
@@ -59,7 +62,7 @@ Em nosso metodo da classe TesteController devera receber tres parametros para a 
 Request com os parametros que contem o nosso json o response que sera o retorno da nosso requisição e  outro sera
 args com o id. Este id sera passado da nossa classe de rotas
 
-```php 
+```php
 
 // new User
 public function user(Request $request , Response $response , $args)
@@ -89,9 +92,9 @@ no navegador ficaria assim https://infinite-springs-64835.herokuapp.com/list/1
 ```php
 
   $this->get('/list/{id}' , 'TesteController:list')->setName('list');
-  
+
   ```
-  
+
 
 </p>
 
