@@ -26,11 +26,11 @@
 
                             'connection' => [
                                 'driver' => 'pdo_pgsql',
-                                'host' => 'SEU_HOST',
+                                'host' => 'ec2-52-20-248-222.compute-1.amazonaws.com',
                                 'port' => 5432,
-                                'dbname' => 'DB_NAME',
-                                'user' => 'SEU_USER',
-                                'password' => 'SEU_PASSOWRD'
+                                'dbname' => 'dsjq5m5njo6sk',
+                                'user' => 'kfbozfdgnpidzj',
+                                'password' => '838b2a30db248e16000020e724fc21be95b411bd206c2a137f490c13f027dc08'
                             ],
 
 
