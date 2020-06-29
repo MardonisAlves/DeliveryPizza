@@ -113,6 +113,13 @@ public function deleteuser(Request $request , Response $response , $args)
     header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS');
 
   $manager = $this->em->getRepository('App\Model\Users')->findOneBy($args['id']);
+  if(!$manager){
+
+  $error =   throw $this->createNotFoundException('No livre found for id '.$args['id']);
+
+    return $response->withJson($error , 200);
+  }
+
   $this->em->remove($manager);
   $this->em->flush();
 
