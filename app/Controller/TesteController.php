@@ -65,9 +65,12 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
                             'email' => $single->getEmail(),
                             'tipouser' => $single->getTipouser());
       }
-      //$data = array('data' => $alldata );
 
-      return $response->withJson($alldata, 200);   // response json com withJsons
+      if($alldata == ""){
+        $data = $array = array('message' => 'Não tem Usuario Cadastro' );
+        return $response->withJson($data, 200);
+      }
+      return $response->withJson($alldata, 200);
 }
 
 
@@ -106,32 +109,17 @@ public function updateuser(Request $request , Response $response , $args)
 // delete user
 public function deleteuser(Request $request , Response $response , $args)
 {
-
-
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization');
     header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS');
 
-  //$json = file_get_contents('php://input');
-  //$obj = json_decode($json);
+    $manager = $this->em->getRepository('App\Model\Users')->findBy(array('id' => $args['id']));
+    //$users = $manager->findBy($args['id']);
+    foreach ($manager as  $user) {
+      $this->em->remove($user);
+    }
 
-  $manager = $this->em->getRepository('App\Model\Users')->findBy(array('id' => $args['id']));
-  //$users = $manager->findBy($args['id']);
-  foreach ($manager as  $user) {
-    $this->em->remove($user);
-  }
-
-  $this->em->flush();
-
-/*return  $response
-  ->withHeader('Access-Control-Allow-Origin', '*')
-  ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
-  ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
-  ->withHeader('Content-type', 'application/json')
-  ->withJson($args['id'])
-  ->withStatus(200);
-  */
-
+    $this->em->flush();
 
 }
 
