@@ -115,13 +115,11 @@ public function deleteuser(Request $request , Response $response , $args)
   //$json = file_get_contents('php://input');
   //$obj = json_decode($json);
 
-  //$manager = $this->em->getRepository('App\Model\Users')->find($args['id']);
+  $manager = $this->em->getRepository('App\Model\Users')->find($args['id']);
   //$users = $manager->findBy($args['id']);
 
-  //$this->em->remove($manager);
-  //$this->em->flush();
-  
-  DELETE App\Model\Users u WHERE u.id = $args['id'];
+  $this->em->remove($manager);
+  $this->em->flush();
 
 /*return  $response
   ->withHeader('Access-Control-Allow-Origin', '*')
