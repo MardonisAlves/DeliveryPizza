@@ -112,12 +112,7 @@ public function deleteuser(Request $request , Response $response , $args)
     header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization');
     header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS');
 
-  //$json = file_get_contents('php://input');
-  //$obj = json_decode($json);
-
-  $manager = $this->em->find('App\Model\Users' , $args['id']);
-  //$users = $manager->findBy($args['id']);
-
+  $manager = $this->em->findOneBy('App\Model\Users' , $args['id']);
   $this->em->remove($manager);
   $this->em->flush();
 
