@@ -20,17 +20,17 @@ public function __construct($container , $db  , $flash)
           $this->db = $db;
           $this->container=$container;
           $this->flash = $flash;
-      
+
 
 
 }
 public function index(Request $request, Response $response, $args)
 {
   // listar os cardapio
-  $pizza = new Pizza();
-  $pizza->setConnection($this->db);
-  $pizza->setContainer($this->container);
-  $allcardapio = $pizza->selctAll($response);
+  //$pizza = new Pizza();
+  //$pizza->setConnection($this->db);
+  //$pizza->setContainer($this->container);
+  //$allcardapio = $pizza->selctAll($response);
 
   return $this->container
               ->view->render($response, 'index.twig' ,
@@ -186,7 +186,7 @@ echo "
           <i class='material-icons'>add</i>
         </a>
     </div>
-        
+
 <div class='col s8 m8  card-content'>
   <span class='card-title'>$value[nomesabor]</span>
     <p>M.....................................R$ $value[valorM]</p>
@@ -194,7 +194,7 @@ echo "
     <p>$value[descricao]</p>
 </div>
 
-            
+
 
 </div>
 </div>";
