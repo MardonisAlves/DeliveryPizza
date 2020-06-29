@@ -112,13 +112,11 @@ public function deleteuser(Request $request , Response $response , $args)
     header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization');
     header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS');
 
-  $manager = $this->em->getRepository('App\Model\Users')->findOneBy($args['id']);
-  if(!$manager){
+  //$json = file_get_contents('php://input');
+  //$obj = json_decode($json);
 
-  $error =   throw $this->createNotFoundException('No livre found for id '.$args['id']);
-
-    return $response->withJson($error , 200);
-  }
+  $manager = $this->em->find('App\Model\Users' , $args['id']);
+  //$users = $manager->findBy($args['id']);
 
   $this->em->remove($manager);
   $this->em->flush();
