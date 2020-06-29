@@ -122,14 +122,14 @@ public function deleteuser(Request $request , Response $response , $args)
   $this->em->remove($manager);
   $this->em->flush();
 
-/*return  $response
+return  $response
   ->withHeader('Access-Control-Allow-Origin', '*')
   ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
   ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
   ->withHeader('Content-type', 'application/json')
   ->withJson($args['id'])
   ->withStatus(200);
-  */
+  
 
 
 }
