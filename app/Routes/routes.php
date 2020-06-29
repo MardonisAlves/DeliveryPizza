@@ -75,7 +75,7 @@ $this->get('/caizone','HomeController:caizone')->setName('caizone');
         $this->get('/listall' , 'TesteController:listall')->setName('listall');
         $this->get('/list/{id}' , 'TesteController:list')->setName('list');
         $this->post('/user', 'TesteController:user')->setName('user');
-        $this->delete('/delete/{id}', 'TesteController:deleteuser')->setName('deleteuser');
+        $this->map(['DELETE' , 'OPTIONS'] , '/delete/{id}', 'TesteController:deleteuser')->setName('deleteuser');
 
     });
 
