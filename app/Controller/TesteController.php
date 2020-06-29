@@ -66,8 +66,8 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
                             'tipouser' => $single->getTipouser());
       }
 
-      if($alldata == ""){
-        $data = $array = array('message' => 'Não tem Usuario Cadastro' );
+      if($alldata == array()){
+        $data =  array('message' => 'Não tem Usuario Cadastro' );
         return $response->withJson($data, 200);
       }
       return $response->withJson($alldata, 200);
