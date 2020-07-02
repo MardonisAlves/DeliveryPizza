@@ -55,6 +55,9 @@ if($users){
 
 public function listall(Request  $request, Response $response, $args){
 header('Access-Control-Allow-Origin: *'); // Este cabeçalho aceita qualquer requisição
+header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS');
+header('Content-type', 'application/javascript');
 $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 
       $alldata = array();
