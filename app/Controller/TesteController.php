@@ -69,7 +69,7 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 
       //return $response->withJson($alldata, 200);
 
-      $response = $response->withHeader('Content-Type', 'application/javascript');
+      $response = $response->withHeader('Content-Type', 'application/json');
       $response->write(json_encode($alldata));
       return $response;
 
