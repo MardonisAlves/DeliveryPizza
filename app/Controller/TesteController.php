@@ -68,7 +68,7 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 
     //  return $response->withJson($alldata, 200);
 
-    $response->header('Access-Control-Allow-Origin: *')
+  return  $response->header('Access-Control-Allow-Origin: *')
     header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization')
     header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS')
     withHeader('Content-type', 'application/json')
