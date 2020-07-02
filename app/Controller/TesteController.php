@@ -69,8 +69,9 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 
       //return $response->withJson($alldata, 200);
 
-  return  $response->withHeader('Access-Control-Allow-Origin: *')
-      ->withJson($alldata , 200);
+      $response = $response->withHeader('Content-Type', 'application/javascript');
+      $response->write(json_encode($alldata));
+      return $response;
 
 
 
