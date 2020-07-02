@@ -68,7 +68,8 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
                             'tipouser' => $single->getTipouser());
       }
 
-    //  return $response->withJson($alldata, 200);
+      header('Content-type', 'application/javascript');
+      return $response->withJson($alldata, 200);
 
     return  $response->header('Content-type', 'application/json');
 
