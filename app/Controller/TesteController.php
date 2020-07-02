@@ -66,9 +66,13 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
                             'tipouser' => $single->getTipouser());
       }
 
-    return $response->withJson($alldata, 200);
+    //  return $response->withJson($alldata, 200);
 
-
+  return  $response->header('Access-Control-Allow-Origin: *')
+    header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization')
+    header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS')
+    withHeader('Content-type', 'application/javascript')
+    withJson($alldata, 200);
 }
 
 
