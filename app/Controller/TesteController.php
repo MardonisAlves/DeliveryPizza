@@ -65,8 +65,13 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
                             'email' => $single->getEmail(),
                             'tipouser' => $single->getTipouser());
       }
-      
-      return $response->withJson($alldata, 200);
+
+    //  return $response->withJson($alldata, 200);
+
+    $response->header('Access-Control-Allow-Origin: *')
+    header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization')
+    header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS')
+    withHeader('Content-type', 'application/javascript');;
 }
 
 
@@ -110,7 +115,6 @@ public function deleteuser(Request $request , Response $response , $args)
     header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS');
 
     $manager = $this->em->getRepository('App\Model\Users')->findBy(array('id' => $args['id']));
-    //$users = $manager->findBy($args['id']);
     foreach ($manager as  $user) {
       $this->em->remove($user);
     }
