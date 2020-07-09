@@ -14,38 +14,38 @@ class Pizza
 {
   /**
   * @Id
-  * @Collumn(typer="integer")
+  * @Column(typer="integer")
   * @GeneratedValue
   */
   private $id;
 
   /**
-  * @Collumn(type="string")
+  * @Column(type="string")
   */
   private $nomesabor;
 
   /**
-  * @Collumn(type="string")
+  * @Column(type="string")
   */
   private $categoria;
 
   /**
-  * @Collumn(type="string")
+  * @Column(type="string")
   */
   private $valorM;
 
   /**
-  * @Collumn(type="string")
+  * @Column(type="string")
   */
   private $valorG;
 
   /**
-  * @Collumn(type="string")
+  * @Column(type="string")
   */
   private $descrição;
 
   /**
-  * @Collumn(type="string")
+  * @Column(type="string")
   */
   private $urlimg;
 
