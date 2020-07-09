@@ -65,8 +65,7 @@ if(isset($_POST['submit'])){
   $manager = $this->db->getRepository('\App\Model\Users');
   $users = $manager->findBy($array = array('email' => $_POST['email']));
 
-
-while($user = $users->fetch())
+foreach($user as $users)
 {
 
 if( $user->getEmail() === $_POST['email'] ){
