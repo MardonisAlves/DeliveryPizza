@@ -66,7 +66,7 @@ if(isset($_POST['submit'])){
 foreach($user as $users)
 {
 
-if( $user->getEmail() === $_POST['email'] ){
+if( $user->getEmail() == $_POST['email'] ){
   if(password_verify($_POST['senha'], $user->getSenha() )){
     //  sessions
     $this->session->set('user', $user['tipouser']);
