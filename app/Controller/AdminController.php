@@ -96,8 +96,6 @@ if( $user->getEmail() == $_POST['email'] ){
   }
 }
 
-}
-
 
 return $this->container->view->render($response ,'CardCliente.twig');
 
