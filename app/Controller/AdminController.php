@@ -66,7 +66,7 @@ if(isset($_POST['submit'])){
   $users = $manager->findBy($array = array('email' => $_POST['email']));
 
 
-while($users = $email->fetch())
+while($user = $users->fetch())
 {
 
 if( $users['email'] === $_POST['email'] ){
@@ -76,6 +76,7 @@ if( $users['email'] === $_POST['email'] ){
     $this->session->set('email', $users['email']);
     $this->session->set('nome', $users['nome']);
     $this->session->set('id', $users['id']);
+
     $url = $this->container->get('router')->pathFor('home');
     return $response->withStatus(302)->withHeader('Location', $url);
 
