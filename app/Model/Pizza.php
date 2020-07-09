@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\Common\Annotation;
+use Doctrine\Common\GeneratedValue;
   /**
   * @Entity
   * @Table(name="pizza")
@@ -14,7 +15,7 @@ class Pizza
 {
   /**
   * @Id
-  * @Column(typer="integer")
+  * @Column(type="integer")
   * @GeneratedValue
   */
   private $id;
