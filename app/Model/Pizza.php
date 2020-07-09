@@ -7,9 +7,11 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\Common\Annotation;
 //use Doctrine\Common\GeneratedValue;
+
   /**
   * @Entity
   * @Table(name="pizza")
+  *
   */
 class Pizza
 {
