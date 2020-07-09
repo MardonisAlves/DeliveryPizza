@@ -63,8 +63,7 @@ public function login(Request $request, Response $response, $args){
 if(isset($_POST['submit'])){
 
   $manager = $this->db->getRepository('\App\Model\Users');
-  $users = $manager->findBy($array = array('email' =>  "pedro@gmail.com
-"));
+  $users = $manager->findBy($array = array('email' => $_POST['email']));
 
 
 while($users = $email->fetch())
