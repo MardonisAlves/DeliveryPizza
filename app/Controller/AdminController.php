@@ -69,8 +69,8 @@ if(isset($_POST['submit'])){
 while($user = $users->fetch())
 {
 
-if( $users['email'] === $_POST['email'] ){
-  if(password_verify($_POST['senha'], $user['senha'])){
+if( $user->getEmail() === $_POST['email'] ){
+  if(password_verify($_POST['senha'], $user->getSenha() )){
     //  sessions
     $this->session->set('user', $user['tipouser']);
     $this->session->set('email', $user['email']);
