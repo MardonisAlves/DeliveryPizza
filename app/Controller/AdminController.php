@@ -62,21 +62,20 @@ public function login(Request $request, Response $response, $args){
 
 if(isset($_POST['submit'])){
 
-  $user = new Users();
-  $user->setConnection($this->db);
-  $email =  $user->getuserByemail($_POST['email']);
+  $manager = $this->em->getRepository('\App\Model\Users');
+  $users = $manager->findBy($array = array('email' =>  $_POST['email']));
 
 
-while($user = $email->fetch())
+while($users = $email->fetch())
 {
 
-if( $user['email'] === $_POST['email'] ){
-  if(password_verify($_POST['senha'], $user['senha'])){
+if( $users['email'] === $_POST['email'] ){
+  if(password_verify($_POST['senha'], $users['senha'])){
     //  sessions
-    $this->session->set('user', $user['tipouser']);
-    $this->session->set('email', $user['email']);
-    $this->session->set('nome', $user['nome']);
-    $this->session->set('id', $user['id']);
+    $this->session->set('user', $users['tipouser']);
+    $this->session->set('email', $users['email']);
+    $this->session->set('nome', $users['nome']);
+    $this->session->set('id', $users['id']);
     $url = $this->container->get('router')->pathFor('home');
     return $response->withStatus(302)->withHeader('Location', $url);
 
