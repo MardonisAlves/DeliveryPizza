@@ -44,7 +44,6 @@ $container['em'] = function ($c) {
     $config = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(
         $settings['doctrine']['metadata_dirs'],
        // $settings['doctrine']['meta']['auto_generate_proxies'],
-
        // $settings['doctrine']['meta']['proxy_dir'],
 
         $settings['doctrine']['cache_dir'],
@@ -67,7 +66,7 @@ $container['mysql'] = function ($c) {
 // HOME CONTROLER
 $container['HomeController'] = function ($container) {
 return new \App\Controller\HomeController($container  ,
-                                            $container['local'],
+                                            $container['em'],
                                             $container->get('flash'));
 };
 
@@ -76,7 +75,7 @@ return new \App\Controller\HomeController($container  ,
 // ADMINCONTROLLER
 $container['AdminController'] = function ($container){
 return new App\Controller\AdminController($container ,
-                                            $container['local'] ,
+                                            $container['em'] ,
                                             $container->get('flash'),
                                             $container['session']);
 };
@@ -84,7 +83,7 @@ return new App\Controller\AdminController($container ,
 // SenhaController
 $container['SenhaController'] = function ($container){
     return new App\Controller\SenhaController($container ,
-                                                $container->get('local') ,
+                                                $container->get('em') ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
 };
@@ -100,7 +99,7 @@ $container['TesteController'] = function ($container){
 // ProdutoController
 $container['ProdutoController'] = function ($container){
     return new App\Controller\ProdutoController($container ,
-                                                $container['local'] ,
+                                                $container['em'] ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
 };
@@ -109,7 +108,7 @@ $container['ProdutoController'] = function ($container){
 
 $container['ClienteController'] = function ($container){
     return new App\Controller\ClienteController($container ,
-                                                $container['local'],
+                                                $container['em'],
                                                  $container->get('flash') ,
                                                  $container->get('session'));
 };
@@ -117,7 +116,7 @@ $container['ClienteController'] = function ($container){
 // PizzaController
 $container['PizzaController'] = function ($container) {
     return new \App\Controller\PizzaController($container  ,
-                                                $container['local'] ,
+                                                $container['em'] ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
 
@@ -125,7 +124,7 @@ $container['PizzaController'] = function ($container) {
 // CarroController
     $container['CarroController'] = function ($container) {
     return new \App\Controller\CarroController($container  ,
-                                                $container['local'] ,
+                                                $container['em'] ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
 
