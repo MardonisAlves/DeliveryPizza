@@ -61,7 +61,8 @@ if(isset($_SESSION['user'])){
 public function login(Request $request, Response $response, $args){
   $manager = $this->db->getRepository('\App\Model\Users');
   $users = $manager->findBy($array = array('email' => $_POST['email']));
-if(isset($_POST['submit'])){
+
+
 
 foreach($user as $users)
 {
@@ -94,14 +95,6 @@ if( $user->getEmail() == $_POST['email'] ){
                                     Array( 'messages' => $messages));
   }
 }
-
-}else{
-
-    $this->flash->addMessageNow('msg', 'Você deve Criar user!');
-    $messages = $this->flash->getMessages();
-    return $this->container->view->render($response ,
-                                    'admin/login/loginCliente.twig',
-                                    Array( 'messages' => 'Você não esta autenticado'));
 
 }
 
