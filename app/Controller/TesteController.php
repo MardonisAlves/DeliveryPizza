@@ -83,7 +83,7 @@ $manager = $this->em->getRepository('\App\Model\Users')->findAll();
 public function user(Request $request , Response $response , $args)
 {
 
-    header("Access-Control-Allow-Origin: *");
+    /*header("Access-Control-Allow-Origin: *");
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
 
@@ -98,6 +98,17 @@ public function user(Request $request , Response $response , $args)
 
     $array = array('data' => $obj );
     return $response->withJson($array , 200);
+
+    */
+
+    $user = new Users();
+    $user->setEmail("mardonisgp@gmail.com");
+    $user->setNome("Mardonis Alves B");
+    $user->setTipouser("admin");
+    $user->setSenha("jk8yup02@");
+
+    $this->em->persist($user);
+    $this->em->flush();
 }
 
 
