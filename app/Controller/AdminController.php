@@ -70,12 +70,12 @@ while($user = $users->fetch())
 {
 
 if( $users['email'] === $_POST['email'] ){
-  if(password_verify($_POST['senha'], $users['senha'])){
+  if(password_verify($_POST['senha'], $user['senha'])){
     //  sessions
-    $this->session->set('user', $users['tipouser']);
-    $this->session->set('email', $users['email']);
-    $this->session->set('nome', $users['nome']);
-    $this->session->set('id', $users['id']);
+    $this->session->set('user', $user['tipouser']);
+    $this->session->set('email', $user['email']);
+    $this->session->set('nome', $user['nome']);
+    $this->session->set('id', $user['id']);
 
     $url = $this->container->get('router')->pathFor('home');
     return $response->withStatus(302)->withHeader('Location', $url);
