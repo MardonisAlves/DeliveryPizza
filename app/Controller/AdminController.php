@@ -63,7 +63,7 @@ public function login(Request $request, Response $response, $args){
   $manager = $this->db->getRepository('\App\Model\Users');
   $users = $manager->findBy(array('email' => $_POST['email']));
 
-  var_dump($users);
+  var_dump($users['email']);
 
 foreach($user as $users)
 {
