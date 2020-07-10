@@ -59,8 +59,9 @@ if(isset($_SESSION['user'])){
 }
 // login
 public function login(Request $request, Response $response, $args){
+
   $manager = $this->db->getRepository('\App\Model\Users');
-  $users = $manager->findBy($array = array('email' => $_POST['email']));
+  $users = $manager->findBy(array('email' => $_POST['email']));
 
 
 
