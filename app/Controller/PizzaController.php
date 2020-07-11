@@ -49,7 +49,7 @@ $file = $_FILES['urlimg']['tmp_name'];
 
 
             case IMAGETYPE_PNG:
-                $imageResourceId = imagecreatefrompng($file);
+                $imageResourceId = @imagecreatefrompng($file);
                 $targetLayer = imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
                 imagepng($targetLayer,$folderPath . $fileNewName. "_thump.". $ext);
                 break;
@@ -83,8 +83,6 @@ $file = $_FILES['urlimg']['tmp_name'];
     if(isset($_POST['submit'])){
     move_uploaded_file($folderPath ,  $_FILES['urlimg']['name']);
     }
-
-
     if($_POST['categoria'] == "pizzas"){
     $pizza = new Pizza();
     $pizza->setNomesabor($_POST['nomesabor']);
@@ -102,18 +100,11 @@ $file = $_FILES['urlimg']['tmp_name'];
   }
     $url = $this->container->get('router')->pathFor('listar');
     return $response->withStatus(302)->withHeader('Location' ,$url);
-
-
-
-
+}
 }
 
-
-
-}
 
 // resize
-
 public function imageResize($imageResourceId,$width,$height) {
 
 
