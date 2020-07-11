@@ -39,8 +39,7 @@ public  function  recu_form(Request $request, Response $response, $args)
 public function enviartoken(Request $request, Response $response, $args)
 {
     // selecionar o user by email
-  $users = $this->db->getRepository('\App\Model\Users')->findBy(array('email' => $_POST['email']));
-
+  $users = $this->db->getRepository('\App\Model\Users')->findAll();
     if($users)
     {
         foreach($users  as $sms)
@@ -55,7 +54,7 @@ public function enviartoken(Request $request, Response $response, $args)
 
         // criar session
       $this->session->set('tk', $tk);
-      $this->session->set('id', $sms['id']);
+      $this->session->set('id', $sms->getId());
 
 $message = "<a href='https://infinite-springs-64835.herokuapp.com/atu_senha?tk=$_SESSION[tk]'>Click Aqui</a>";
 
@@ -84,7 +83,7 @@ $message = "<a href='https://infinite-springs-64835.herokuapp.com/atu_senha?tk=$
         $mail->Body =  $message ; //Corpo da mensagem caso seja HTML
         $mail->AltBody = "ola" ; //PlainText, para caso quem receber o email não aceite o corpo HTML
 
-}
+        }
         if(!$mail->Send()) // Envia o email
         {
             echo "Erro no envio da mensagem";
