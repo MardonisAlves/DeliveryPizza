@@ -20,7 +20,8 @@
         "wobeto/easychart": "^0.6.0",
         "bryanjhv/slim-session": "~3.0",
         "pusher/pusher-php-server": "^4.1",
-        "doctrine/orm" : "*"
+        "doctrine/orm" : "*",
+        "php": "^7.2.0"
 
     },
     "autoload": {
