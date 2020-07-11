@@ -59,7 +59,7 @@ $message = "<a href='https://infinite-springs-64835.herokuapp.com/atu_senha?tk=$
         $mail = new PHPMailer(true);
         $mail->IsSMTP(); // envia por SMTP
         $mail->CharSet = 'UTF-8';
-        $mail->SMTPDebug = 3;
+        $mail->SMTPDebug = 0;
         //$mail->True;
         $mail->Host = "smtps.bol.com.br"; // Servidor SMTP
         $mail->Port = 587;
@@ -157,11 +157,10 @@ public function updatesenha(Request $request, Response $response, $args)
     // verifica se existe o token
     if(isset($_SESSION['tk']))
     {
-        echo $_SESSION['id'];
-        $reset = $this->em->findBy('App\Model\Users' , $_SESSION['id']);
+        echo "id:" . $_SESSION['id'];
+        $reset = $this->em->find('App\Model\Users' , $_SESSION['id']);
         $reset->setSenha($_POST['senha']);
         $this->em->flush();
-        //$users->setSenha(password_hash($_POST["senha"] , PASSWORD_DEFAULT));
 
         // apagar a cookie tk
        unset($_SESSION['tk']);
