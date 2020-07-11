@@ -63,12 +63,11 @@ if(isset($_SESSION['user'])){
 // login
 public function login(Request $request, Response $response, $args){
 
-  $entity = $this->db->getRepository('\App\Model\Users');
-  $users = $entity->findBy($arrayName = array('email' => $_POST['email'] ));
+  $entity = $this->db->getRepository('App\Model\Users')->findBy(array('email' => "mardonisgp@gmail.com" ));
 
 //  var_dump($manager);
 
-foreach($users as $user)
+foreach($entity as $user)
 {
 
 if( $_POST['email'] == $user->getEmail()){
