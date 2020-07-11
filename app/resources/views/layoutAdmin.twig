@@ -12,13 +12,13 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="public/css/front-style-materialize.css">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script> 
-    <script src="public/js/jquery.dataTables.min.js"></script> 
-    <script src="public/js/dataTables.material.min.js"></script> 
-    <script src="public/js/materialize.js"></script> 
-    <script src="public/js/ajax.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables.material.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/ajax.js"></script>
     <script type="text/javascript">
-   
+
     $(document).ready(function(){
     $('#example').DataTable({
         columnDefs: [
@@ -64,20 +64,20 @@ $(document).ready(function(){
 });
 
 </script>
-</head> 
+</head>
 <body>
 
         <div class="wrapper">
-            
+
             {% include 'partials/navAdmin.twig' %}
 
             {% block content %}
-               
+
             {% endblock %}
-        
+
 
         </div>
-    
+
 
     </body>
 
