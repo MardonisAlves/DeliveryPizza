@@ -46,8 +46,10 @@ public function enviartoken(Request $request, Response $response, $args)
         foreach($users  as $sms)
         {
 
-        $stringhas = "$#@.;0dq>=+/8*&&";
-        $tk = password_hash($stringhas,PASSWORD_DEFAULT);
+          if($sms->getEmail() == $_POST['email']){
+
+            $stringhas = "$#@.;0dq>=+/8*&&";
+            $tk = password_hash($stringhas,PASSWORD_DEFAULT);
 
 
 
@@ -82,7 +84,7 @@ $message = "<a href='https://infinite-springs-64835.herokuapp.com/atu_senha?tk=$
         $mail->Body =  $message ; //Corpo da mensagem caso seja HTML
         $mail->AltBody = "ola" ; //PlainText, para caso quem receber o email não aceite o corpo HTML
 
-
+}
         if(!$mail->Send()) // Envia o email
         {
             echo "Erro no envio da mensagem";
