@@ -157,7 +157,7 @@ public function updatesenha(Request $request, Response $response, $args)
     // verifica se existe o token
     if(isset($_SESSION['tk']))
     {
-        $reset = $this->em->getRepository('App\Model\Users')->findBy( array('id' => $_SESSION['id']););
+        $reset = $this->em->getRepository('App\Model\Users')->findBy( array('id' => $_SESSION['id']));
         $reset->setSenha($_POST['senha']);
         $this->em->flush();
         //$users->setSenha(password_hash($_POST["senha"] , PASSWORD_DEFAULT));
