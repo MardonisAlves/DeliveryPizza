@@ -134,11 +134,8 @@ public function listarcardapio( $request,  $response, $args)
 {
   // RETONAR UMA LISTA POR CATEGORIA VIA AJAX
     if(($_SESSION['user']) == 'admin'){
-                $pizza = new Pizza();
-                $pizza->setConnection($this->db);
-                $pizza->setContainer($this->container);
-                // passar aqui a actegotia
-              $card =   $pizza->selctAll($_GET['categoria']);
+
+$card = $this->db->getRepository('App\Model\Pizza')->findAll();
 
 if($_GET['categoria'] == 'pizzas'){
 echo "<div class='col s12 m10 l6'>
@@ -176,10 +173,10 @@ foreach ($card as $key => $value)
 
 if($value['categoria'] == 'pizzas'){
  echo "<tr>
-    <td>$value[nomesabor]</td>
-    <td>$value[valorM]</td>
-    <td>$value[valorG]</td>
-    <td>$value[descricao]</td>
+    <td>$value->getNomesabor()</td>
+    <td>$value->getValorM()</td>
+    <td>$value->getValorG()</td>
+    <td>$value->getDescricao()</td>
     <td>
     <a href='#' class='waves-effect waves-light green-text darken-4 large' onclick = 'Pizza($value[id])'>
     <i class='material-icons left'>edit_attributes</i>
@@ -192,9 +189,9 @@ if($value['categoria'] == 'pizzas'){
 
 }else{
    echo "<tr>
-    <td>$value[nomesabor]</td>
-    <td>$value[valor]</td>
-    <td>$value[descricao]</td>
+    <td>$value->getNomesabor()</td>
+    <td>$value->getValor()</td>
+    <td>$value->getDescricao()</td>
     <td>
     <a href='#' class='waves-effect waves-light green-text darken-4 large' onclick = 'Pizza($value[id])'>
     <i class='material-icons left'>edit_attributes</i>
