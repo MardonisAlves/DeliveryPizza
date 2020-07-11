@@ -63,8 +63,8 @@ if(isset($_SESSION['user'])){
 // login
 public function login(Request $request, Response $response, $args){
 
-  $users = $this->db->getRepository('\App\Model\Users');
-  $user = $users->findBy(array('email' => $_POST['email']));
+  $entity = $this->db->getRepository('\App\Model\Users');
+  $users = $entity->findBy(array('email' => $_POST['email']));
 
 //  var_dump($manager);
 
