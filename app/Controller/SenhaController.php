@@ -87,12 +87,14 @@ $message = "<a href='https://infinite-springs-64835.herokuapp.com/atu_senha?tk=$
         if(!$mail->Send()) // Envia o email
         {
             echo "Erro no envio da mensagem";
+        }else{
+          $this->flash->addMessageNow('msg', 'Verifique o seu email para continuar');
+          $messages = $this->flash->getMessages();
+          return $this->container->view->render($response ,'admin/login/recu_form.twig',Array('messages' => $messages));
         }
 
-}
-        $this->flash->addMessageNow('msg', 'Verifique o seu email para continuar');
-        $messages = $this->flash->getMessages();
-        return $this->container->view->render($response ,'admin/login/recu_form.twig',Array('messages' => $messages));
+      }
+
 
         }
     }else{
