@@ -39,13 +39,12 @@ public  function  recu_form(Request $request, Response $response, $args)
 public function enviartoken(Request $request, Response $response, $args)
 {
     // selecionar o user by email
-  $users = $this->db->getRepository('\App\Model\Users')->findOneBy(array('email' => $-POST['email']));
+  $users = $this->db->getRepository('\App\Model\Users')->findOneBy(array('email' => $POST['email']));
 
     if($users)
     {
         foreach($users  as $sms)
         {
-
 
         $stringhas = "$#@.;0dq>=+/8*&&";
         $tk = password_hash($stringhas,PASSWORD_DEFAULT);
