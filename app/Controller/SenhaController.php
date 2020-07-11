@@ -157,6 +157,7 @@ public function updatesenha(Request $request, Response $response, $args)
     // verifica se existe o token
     if(isset($_SESSION['tk']))
     {
+        echo $_SESSION['id'];
         $reset = $this->em->findBy('App\Model\Users' , $_SESSION['id']);
         $reset->setSenha($_POST['senha']);
         $this->em->flush();
