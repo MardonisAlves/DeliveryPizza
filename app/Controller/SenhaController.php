@@ -157,14 +157,9 @@ public function updatesenha(Request $request, Response $response, $args)
     // verifica se existe o token
     if(isset($_SESSION['tk']))
     {
-        $Users = new Users();
-        $Users->setContainer($this->container);
-        $Users->setSession($this->session);
-        $Users->setConnection($this->db);
-        $email =  password_hash($_POST['email'], PASSWORD_DEFAULT);
-        $Users->updatsenha($email);
-
-
+        $reset = $this->em->find('App\Model\Users' , $_SESSION['id']);
+        $reset->setSenha($_POST['senha']);
+        $this->em->fflush();
         //$users->setSenha(password_hash($_POST["senha"] , PASSWORD_DEFAULT));
 
         // apagar a cookie tk
