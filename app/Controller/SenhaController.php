@@ -83,13 +83,13 @@ $message = "<a href='https://infinite-springs-64835.herokuapp.com/atu_senha?tk=$
         $mail->Body =  $message ; //Corpo da mensagem caso seja HTML
         $mail->AltBody = "ola" ; //PlainText, para caso quem receber o email não aceite o corpo HTML
 
-        }
+
         if(!$mail->Send()) // Envia o email
         {
             echo "Erro no envio da mensagem";
         }
 
-
+}
         $this->flash->addMessageNow('msg', 'Verifique o seu email para continuar');
         $messages = $this->flash->getMessages();
         return $this->container->view->render($response ,'admin/login/recu_form.twig',Array('messages' => $messages));
