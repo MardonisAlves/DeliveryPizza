@@ -54,7 +54,7 @@ public function enviartoken(Request $request, Response $response, $args)
       $this->session->set('tk', $tk);
       $this->session->set('id', $sms->getId());
 
-$message = "<a href='https://infinite-springs-64835.herokuapp.com/atu_senha?tk=$_SESSION[tk]'>Click Aqui</a>";
+      $message = "<a href='https://infinite-springs-64835.herokuapp.com/atu_senha?tk=$_SESSION[tk]'>Click Aqui</a>";
 
         $mail = new PHPMailer(true);
         $mail->IsSMTP(); // envia por SMTP
@@ -158,7 +158,7 @@ public function updatesenha(Request $request, Response $response, $args)
     if(isset($_SESSION['tk']))
     {
         echo "id:" . $_SESSION['id'];
-        $reset = $this->em->find('App\Model\Users' , $_SESSION['id']);
+        $reset = $this->db->find('App\Model\Users' , $_SESSION['id']);
         $reset->setSenha($_POST['senha']);
         $this->em->flush();
 
