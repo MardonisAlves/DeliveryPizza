@@ -57,6 +57,9 @@ if(isset($_SESSION['user'])){
   return $response->withStatus(302)->withHeader('Location', $url);
 
 }
+
+
+
 // login
 public function login(Request $request, Response $response, $args){
 
@@ -65,9 +68,9 @@ public function login(Request $request, Response $response, $args){
 
 //  var_dump($manager);
 
-foreach($user as $users)
+foreach($users as $user)
 {
-
+  
 if( $user->getEmail() == $_POST['email'] ){
   if(password_verify($_POST['senha'], $user->getSenha() )){
     //  sessions
