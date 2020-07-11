@@ -59,7 +59,7 @@ $message = "<a href='https://infinite-springs-64835.herokuapp.com/atu_senha?tk=$
         $mail = new PHPMailer();
         $mail->IsSMTP(); // envia por SMTP
         $mail->CharSet = 'UTF-8';
-        $mail->SMTPDebug = 0;
+        $mail->SMTPDebug = 2;
         //$mail->True;
         $mail->Host = "smtps.bol.com.br"; // Servidor SMTP
         $mail->Port = 587;
