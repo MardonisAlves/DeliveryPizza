@@ -63,7 +63,7 @@ if(isset($_SESSION['user'])){
 // login
 public function login(Request $request, Response $response, $args){
 
-  $entity = $this->db->getRepository('App\Model\Users')->findBy(array('email' => "mardonisgp@gmail.com" ));
+  $entity = $this->db->getRepository('App\Model\Users')->findBy(array('email' => $_POST['email'] ));
 
 //  var_dump($manager);
 
@@ -73,10 +73,10 @@ foreach($entity as $user)
 if( $_POST['email'] == $user->getEmail()){
   if(password_verify($_POST['senha'], $user->getSenha() )){
     //  sessions
-    $this->session->set('user', $user['tipouser']);
-    $this->session->set('email', $user['email']);
-    $this->session->set('nome', $user['nome']);
-    $this->session->set('id', $user['id']);
+    $this->session->set('user', $user->getTipouser());
+    $this->session->set('email', $user->getEmail());
+    $this->session->set('nome', $user->getNome());
+    $this->session->set('id', $user->getId());
 
     $url = $this->container->get('router')->pathFor('home');
     return $response->withStatus(302)->withHeader('Location', $url);
