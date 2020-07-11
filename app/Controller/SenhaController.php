@@ -73,7 +73,7 @@ $message = "<a href='https://infinite-springs-64835.herokuapp.com/atu_senha?tk=$
         $mail->From = "mardonisgp@gmail.com"; // From
         $mail->FromName = "Mardonis Alves B" ; // Nome de quem envia o email
 
-        $mail->AddAddress($_POST['email'], $sms['nome']); // Email e nome de quem receberá //Responder
+        $mail->AddAddress($_POST['email'], $sms->getNome()); // Email e nome de quem receberá //Responder
         $mail->WordWrap = 50; // Definir quebra de linha
 
 
