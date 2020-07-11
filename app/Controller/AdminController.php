@@ -60,10 +60,10 @@ if(isset($_SESSION['user'])){
 // login
 public function login(Request $request, Response $response, $args){
 
-  $manager = $this->db->getRepository('\App\Model\Users')->findAll();
+  $users = $this->db->getRepository('\App\Model\Users')->findAll();
 //  $users = $manager->findBy(array('email' => $_POST['email']));
 
-  var_dump($manager);
+//  var_dump($manager);
 
 foreach($user as $users)
 {
