@@ -7,13 +7,13 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Model\Pizza;
 use App\Helper\HelperSize;
 
-class PizzaController 
+class PizzaController
 {
     protected $db;
     private $container;
     private $flash;
     private $session;
-    
+
     public function __construct($container , $db ,$flash ,  $session)
 {
         $this->db = $db;
@@ -21,25 +21,25 @@ class PizzaController
         $this->flash = $flash;
         $this->session = $session;
 
-        
+
 }
 // index cardapio get form
 public  function index(Request $request, Response $response, $args)
 {
     return $this->container->view->render($response ,'admin/cardapio/cardapio.twig');
 }
-// inserir 
+// inserir
 public function inserircardapio( $request,  $response, $args)
 {
-   
+
      if(($_SESSION['user']) == 'admin'){
 
-    
-    
-$file = $_FILES['urlimg']['tmp_name']; 
+
+
+$file = $_FILES['urlimg']['tmp_name'];
         $sourceProperties = getimagesize($file);
         $fileNewName = time();
-       
+
         $directory = $this->container->get('upload_directory');
         $folderPath  = $directory . $_FILES['urlimg']['name'];
         $ext = pathinfo($_FILES['urlimg']['name'], PATHINFO_EXTENSION);
@@ -49,21 +49,21 @@ $file = $_FILES['urlimg']['tmp_name'];
 
 
             case IMAGETYPE_PNG:
-                $imageResourceId = imagecreatefrompng($file); 
+                $imageResourceId = imagecreatefrompng($file);
                 $targetLayer = imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
                 imagepng($targetLayer,$folderPath . $fileNewName. "_thump.". $ext);
                 break;
 
 
             case IMAGETYPE_GIF:
-                $imageResourceId = imagecreatefromgif($file); 
+                $imageResourceId = imagecreatefromgif($file);
                 $targetLayer = imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
                 imagegif($targetLayer,$folderPath . $fileNewName. "_thump.". $ext);
                 break;
 
 
             case IMAGETYPE_JPEG:
-                $imageResourceId = imagecreatefromjpeg($file); 
+                $imageResourceId = imagecreatefromjpeg($file);
                 $targetLayer = $this->imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
                 imagejpeg($targetLayer ,$folderPath );
                 break;
@@ -75,21 +75,27 @@ $file = $_FILES['urlimg']['tmp_name'];
             	return $this->container
             				->view->render($response ,
             				'admin/cardapio/cardapio.twig' , ['messages' => $messages]);
-              
+
                 exit;
                 break;
         }
 
-    if(isset($_POST['submit'])){    
+    if(isset($_POST['submit'])){
     move_uploaded_file($folderPath ,  $_FILES['urlimg']['name']);
-    }        
+    }
 
-       
-    $pizza =  new Pizza();
-    $pizza->setConnection($this->db);
-    $pizza->setId(0);
+
     if($_POST['categoria'] == "pizzas"){
-    $pizza->insertPizza();
+    $pizza = new Pizza();
+    $pizza->setNomesabor($_POST['nomesabor']);
+    $pizza->setCategoria($_POST['categoria']);
+    $pizza->setValorM($_POST['valorM']);
+    $pizza->setValorG($_POST['valorG']);
+    $pizza->setDescrição($_POST['descricao']);
+    $pizza->setUrlimg($_POST['urlimg']);
+
+    $this->db->persist($pizza);
+    $this->db->flush();
     }else{
     $pizza->insertDefault();
 
@@ -97,16 +103,16 @@ $file = $_FILES['urlimg']['tmp_name'];
     $url = $this->container->get('router')->pathFor('listar');
     return $response->withStatus(302)->withHeader('Location' ,$url);
 
-   
-
-
-}
 
 
 
 }
 
-// resize 
+
+
+}
+
+// resize
 
 public function imageResize($imageResourceId,$width,$height) {
 
@@ -133,11 +139,11 @@ public function listarcardapio( $request,  $response, $args)
                 $pizza->setContainer($this->container);
                 // passar aqui a actegotia
               $card =   $pizza->selctAll($_GET['categoria']);
-              
+
 if($_GET['categoria'] == 'pizzas'){
 echo "<div class='col s12 m10 l6'>
 <table id='example' class='mdl-data-table  striped'>
-   
+
     <thead>
       <tr>
         <th scope='col'>Sabor</th>
@@ -152,7 +158,7 @@ echo "<div class='col s12 m10 l6'>
 }else{
   echo "<div class='col s12 m10 l6'>
 <table id='example' class='mdl-data-table  striped'>
-   
+
     <thead>
       <tr>
         <th scope='col'>Sabor</th>
@@ -165,7 +171,7 @@ echo "<div class='col s12 m10 l6'>
 <tbody>";
 }
 
-foreach ($card as $key => $value) 
+foreach ($card as $key => $value)
 {
 
 if($value['categoria'] == 'pizzas'){
@@ -203,7 +209,7 @@ if($value['categoria'] == 'pizzas'){
 
 }
 }
-  
+
 
     //$url = $this->container->get('router')->pathFor('home');
     //return $response->withStatus(302)->withHeader('Location' ,$url);
@@ -218,12 +224,12 @@ public function viewlistar( $request,  $response, $args)
                 $pizza->setConnection($this->db);
                 $pizza->setContainer($this->container);
                 $pizza->selctAll($response);
-                
+
                 return $this->container->view->render($response ,
                 "admin/cardapio/listarcardapio.twig" ,
                  ['card' => $pizza->selctAll($response)]);
-                
-             
+
+
 }
 
     $url = $this->container->get('router')->pathFor('home');
@@ -240,13 +246,13 @@ public function listarByid($request,  $response, $args)
                 $pizza->setConnection($this->db);
                 $pizza->setContainer($this->container);
                $pizzaid =  $pizza->selectByid($_GET['id']);
-                
+
 foreach ($pizzaid as $key => $value) {
     if($value['categoria'] == "pizzas"){
 echo "<div class='row'>
         <br>
     <form class='col s12 m12 l6' action='/atualizar' method='post' enctype='multipart/form-data'>
-    
+
       <div class='row'>
         <div class='input-field col s12 m12 l12'>
          Nome: <input  type='text' class='validate'  value='$value[nomesabor]'>
@@ -261,14 +267,14 @@ echo "<div class='row'>
         Valor G:<input  type='text' class='validate' name='valorG' value='$value[valorG]'>
         </div>
       </div>
-      
+
        <div class='row'>
          <div class='input-field col s12 m12 l12'>
          Descrição: <textarea id='textarea' class='materialize-textarea' name='descricao' required=''>$value[descricao]</textarea>
         </div>
       </div>
 
-      
+
       <div class='row'>
        <div class='input-field col s12'>
          <button class='btn waves-effect waves-light btn-small' type='submit' name='action'>
@@ -283,7 +289,7 @@ echo "<div class='row'>
     echo "<div class='row'>
         <br>
     <form class='col s12 m12 l6' action='/atualizar' method='post' enctype='multipart/form-data'>
-    
+
       <div class='row'>
         <div class='input-field col s12 m12 l12'>
          Nome: <input  type='text' class='validate'  value='$value[nomesabor]'>
@@ -295,14 +301,14 @@ echo "<div class='row'>
         Valor :<input  type='text' class='validate' name='valor' value='$value[valor]'>
         </div>
       </div>
-      
+
        <div class='row'>
          <div class='input-field col s12 m12 l12'>
          Descrição: <textarea id='textarea' class='materialize-textarea' name='descricao' required=''>$value[descricao]</textarea>
         </div>
       </div>
 
-      
+
       <div class='row'>
        <div class='input-field col s12'>
          <button class='btn waves-effect waves-light btn-small' type='submit' name='action'>
@@ -349,18 +355,18 @@ public function updatePizza(Request $request, Response $response, $args)
 // excluir
 public function excluirpizza(Request $request, Response $response, $args)
 {
-    
+
     if(($_SESSION['user']) == 'admin'){
 
     //echo "Excluir Pizza e renderizar para view admin";
-   
-   
+
+
     $pizza = new Pizza();
     $pizza->setConnection($this->db);
     $pizza->setId($_GET['urlimg']);
     $pizza->excluirpizza();
 
-    
+
     $directory = $this->container->get('upload_directory');
     unlink($directory . $_GET['urlimg']);
 
@@ -368,8 +374,8 @@ public function excluirpizza(Request $request, Response $response, $args)
 
 }
 
-    
-   
+
+
 }
 
 }
