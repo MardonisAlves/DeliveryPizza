@@ -7,6 +7,12 @@
 <div class="container">
     <div class="row">
          <div class="col m12 s3 12">
+           {% for message in messages %}
+             <div class="alert alert-info">
+             <li>{{ message[0] }}</li>
+             </div>
+           {% endfor %}
+           
           <p class=" center-align"><img src="public/img/cadeado1.png" class="responsive-img"></p>
          </div>
               <form name="" action="/login" method="post">
@@ -32,14 +38,14 @@
 
                 <a href="/CardCliente">
                   <button type="reset" class="icon-clear btn waves-effect waves-light btn-small">
-                    <i class="material-icons">clear</i> 
+                    <i class="material-icons">clear</i>
                     </button>
                 </a>
 
                 <a href="/recu_form">
                   <button type="button" class="icon-reset btn waves-effect waves-light btn-small">senha
                     <i class="material-icons right">vpn_lock</i>
-                      
+
                     </button>
                 </a>
                 </div>
@@ -47,7 +53,7 @@
               </form>
           </div>
 
-     
+
     </div>
 
 
