@@ -217,14 +217,8 @@ public function viewlistar( $request,  $response, $args)
 {
   // RETONAR UMA LISTA POR CATEGORIA VIA AJAX
     if(($_SESSION['user']) == 'admin'){
-                $pizza = new Pizza();
-                $pizza->setConnection($this->db);
-                $pizza->setContainer($this->container);
-                $pizza->selctAll($response);
-
-                return $this->container->view->render($response ,
-                "admin/cardapio/listarcardapio.twig" ,
-                 ['card' => $pizza->selctAll($response)]);
+    $card = $this->db->getRepository('App\Model\Pizza')->findAll();
+    return $this->container->view->render($response , "admin/cardapio/listarcardapio.twig" ,['card' => $card);
 
 
 }
