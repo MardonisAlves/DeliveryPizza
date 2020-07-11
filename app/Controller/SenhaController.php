@@ -23,9 +23,6 @@ public function __construct($container , $db ,$flash , $session )
           $this->container=$container;
           $this->flash = $flash;
           $this->session=$session;
-
-
-
 }
 
 // Recuperar senha
@@ -35,6 +32,7 @@ public  function  recu_form(Request $request, Response $response, $args)
         $response ,
         'admin/login/recu_form.twig');
 }
+
 
 public function enviartoken(Request $request, Response $response, $args)
 {
@@ -63,15 +61,15 @@ $message = "<a href='https://infinite-springs-64835.herokuapp.com/atu_senha?tk=$
         $mail->CharSet = 'UTF-8';
         $mail->SMTPDebug = 0;
         //$mail->True;
-        $mail->Host = "smtp.gmail.com"; // Servidor SMTP
-        $mail->Port = 465;
+        $mail->Host = "smtps.bol.com.br"; // Servidor SMTP
+        $mail->Port = 587;
         $mail->SMTPSecure = 'ssl';
         $mail->SMTPAuth = true; // Caso o servidor SMTP precise de autenticação
-        $mail->Username = "mardonisgp@gmail.com"; // SMTP username
-        $mail->Password = "#qwe123qwe@"; // SMTP password
+        $mail->Username = "donyfic@bol.com.br"; // SMTP username
+        $mail->Password = "jk8yup02@"; // SMTP password
 
-        $mail->From = "mardonisgp@gmail.com"; // From
-        $mail->FromName = "Mardonis Alves B" ; // Nome de quem envia o email
+        $mail->From = "donyfic@bol.com.br"; // From
+        $mail->FromName = "Delivery Pizza Reset Senha" ; // Nome de quem envia o email
 
         $mail->AddAddress($_POST['email'], $sms->getNome()); // Email e nome de quem receberá //Responder
         $mail->WordWrap = 50; // Definir quebra de linha
