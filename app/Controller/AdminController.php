@@ -70,8 +70,8 @@ public function login(Request $request, Response $response, $args){
 
 foreach($users as $user)
 {
-  
-if( $user->getEmail() == $_POST['email'] ){
+
+if( $user->getEmail() === $_POST['email'] ){
   if(password_verify($_POST['senha'], $user->getSenha() )){
     //  sessions
     $this->session->set('user', $user['tipouser']);
