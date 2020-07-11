@@ -160,7 +160,7 @@ public function updatesenha(Request $request, Response $response, $args)
         echo "id:" . $_SESSION['id'];
         $reset = $this->db->find('App\Model\Users' , $_SESSION['id']);
         $reset->setSenha($_POST['senha']);
-        $this->em->flush();
+        $this->db->flush();
 
         // apagar a cookie tk
        unset($_SESSION['tk']);
