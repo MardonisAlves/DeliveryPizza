@@ -50,7 +50,7 @@ $file = $_FILES['urlimg']['tmp_name'];
 
             case IMAGETYPE_PNG:
                 $imageResourceId = @imagecreatefrompng($file);
-                $targetLayer = imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
+                $targetLayer = $this->imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
                 imagepng($targetLayer,$folderPath . $fileNewName. "_thump.". $ext);
                 break;
 
