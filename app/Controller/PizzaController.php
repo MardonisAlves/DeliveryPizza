@@ -336,7 +336,7 @@ public function excluirpizza(Request $request, Response $response, $args)
 
     if(($_SESSION['user']) == 'admin'){
     //echo "Excluir Pizza e renderizar para view admin";
-    $pizza = $this->db->find('App\Model\Pizza , $args['id']');
+    $pizza = $this->db->find('App\Model\Pizza , $args['id']);
     $this->db->remove($pizza);
     $this->db->flush();
     $directory = $this->container->get('upload_directory');
