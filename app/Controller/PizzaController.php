@@ -51,21 +51,21 @@ $file = $_FILES['urlimg']['tmp_name'];
 
 
             case IMAGETYPE_PNG:
-                $imageResourceId = @imagecreatefrompng($file);
+                $imageResourceId = imagecreatefrompng($file);
                 $targetLayer = $this->imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
                 imagepng($targetLayer,$folderPath . $fileNewName. "_thump.". $ext);
                 break;
 
 
             case IMAGETYPE_GIF:
-                $imageResourceId = @imagecreatefromgif($file);
+                $imageResourceId = imagecreatefromgif($file);
                 $targetLayer = $this->imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
                 imagegif($targetLayer,$folderPath . $fileNewName. "_thump.". $ext);
                 break;
 
 
             case IMAGETYPE_JPEG:
-                $imageResourceId = @imagecreatefromjpeg($file);
+                $imageResourceId = imagecreatefromjpeg($file);
                 $targetLayer = $this->imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
                 imagejpeg($targetLayer ,$folderPath );
                 break;
