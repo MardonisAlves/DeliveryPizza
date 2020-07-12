@@ -41,7 +41,7 @@ $manager = $this->em->getRepository('\App\Model\Pizza')->findAll();
                             'id' => $single->getId(),
                             'nome' =>$single->getNomesabor(),
                             'valorM' => $single->getValorM(),
-                            'valorG' => $single->getValorGs(),
+                            'valorG' => $single->getValorG(),
                             'descricao' => $single->getDescrição());
       }
 
