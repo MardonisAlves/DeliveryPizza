@@ -12,7 +12,7 @@ use App\Model\Pizza;
 use App\Model\Produtos;
 use Pusher\Pusher;
 
-class TesteController
+class RestControllerApi
 {
     protected $em;
     private $container;
