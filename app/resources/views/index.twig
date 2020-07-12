@@ -2,7 +2,7 @@
 
 
 {% block content %}
-    
+
 {% include 'partials/banner.twig'%}
   {% for message in messages %}
     <div class="alert alert-danger">
@@ -19,9 +19,9 @@
         <div class="card-panel">
           <div class="row valign-wrapper">
             <div class="col s12 m12 l12">
-              <img src="public/img/img.1.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+              <img src="img/img.1.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
             </div>
-            
+
           </div>
         </div>
          <div class="col">
@@ -36,7 +36,7 @@
         <div class="card-panel">
           <div class="row valign-wrapper">
             <div class="col s12 m12 l12">
-              <img src="public/img/img.2.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+              <img src="img/img.2.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
             </div>
           </div>
         </div>
@@ -53,9 +53,9 @@
         <div class="card-panel">
           <div class="row valign-wrapper">
             <div class="col s12 m12 l12">
-         <img src="public/img/img.3.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+         <img src="img/img.3.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
             </div>
-           
+
           </div>
         </div>
          <div class="col">
@@ -72,7 +72,7 @@
  <div class="col s4 m4 l4"></div>
 
 
-<form action="" class="form-index"> 
+<form action="" class="form-index">
   <div class="row">
   <div class="col s8 m10 l4">
     <div class="col s8 m0 l8">
@@ -82,7 +82,7 @@
     <option value="calzones">Calzones</option>
     <option value="lasanhas">Lasanhas</option>
     <option value="refrigerenates">Refrigerenates</option>
-    
+
     </select>
   </div>
 </div>
@@ -97,46 +97,46 @@
 <div class="row">
 <div id="txtHint">
 <div class="">
-     
-  
+
+
 {% for allcardapios in allcardapio %}
 <div class="col s12 m6 l4">
 <div class="card">
     <div class="col s4 m4 card-image waves-effect waves-block waves-light ">
-    <img class="activator" src="public/img/uploads/cardapio/{{allcardapios.urlimg}}">
+    <img class="activator" src="img/uploads/cardapio/{{allcardapios.urlimg}}">
         <a class="btn-floating halfway-fab waves-effect waves-light red btn-small">
           <i class="material-icons">add</i>
         </a>
     </div>
-  
+
 <div class="col s8 m8  card-content">
   <span class="card-title">{{allcardapios.nomesabor}}</span>
-{% set p = allcardapios.categoria %}  
-{% if p == "pizzas" %}   
+{% set p = allcardapios.categoria %}
+{% if p == "pizzas" %}
     <p class="green-text text-darken-5">M.....................................R$ {{allcardapios.valorM}}</p>
     <p class="green-text text-darken-5">G......................................R$ {{allcardapios.valorG}}</p>
     <p>{{allcardapios.descricao}}</p>
 {% endif %}
 
-{% if p == "panquecas" %}     
+{% if p == "panquecas" %}
     <P>panquecas</P>
     <p class="green-text text-darken-5">Valor.....................................R$ 6.50</p>
     <p>{{allcardapios.descricao}}</p>
 {% endif %}
 
-{% if p == "lasanhas" %}     
+{% if p == "lasanhas" %}
     <P>lasanhas</P>
     <p class="green-text text-darken-5">valor.....................................R$ 5.50</p>
     <p>{{allcardapios.descricao}}</p>
 {% endif %}
 
-{% if p == "bebidas" %}     
+{% if p == "bebidas" %}
     <P>bebidas</P>
     <p class="green-text text-darken-5">Valor.....................................R$ 18.90</p>
     <p>{{allcardapios.descricao}}</p>
 {% endif %}
 
-{% if p == "calzones" %}     
+{% if p == "calzones" %}
     <P>calzones</P>
     <p class="green-text text-darken-5">Valor.....................................R$ 6.50</p>
     <p>{{allcardapios.descricao}}</p>
@@ -144,7 +144,7 @@
 
 
 </div>
-            
+
 
 </div>
 </div>
