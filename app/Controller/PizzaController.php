@@ -163,8 +163,8 @@ foreach ($card as $key => $value)
 {
 
 if($value->getCategoria() == 'pizzas'){
- echo "<tr>
-    <td>"$value->getNomesabor();"</td>
+ echo "<tr>";
+echo  "<td>".$value->getNomesabor();".</td>";
     <td>"$value->getValorM();"</td>
     <td>"$value->getValorG();"</td>
     <td>"$value->getDescricao();"</td>
