@@ -45,6 +45,8 @@ $file = $_FILES['urlimg']['tmp_name'];
         $ext = pathinfo($_FILES['urlimg']['name'], PATHINFO_EXTENSION);
         $imageType = $sourceProperties[2];
 
+
+
          switch ($imageType) {
 
 
@@ -79,11 +81,8 @@ $file = $_FILES['urlimg']['tmp_name'];
                 exit;
                 break;
         }
-
-
-    move_uploaded_file($folderPath ,  $_FILES['urlimg']['name']);
-
     if($_POST['categoria'] == "pizzas"){
+    move_uploaded_file($folderPath ,  $_FILES['urlimg']['name']);
     $pizza = new Pizza();
     $pizza->setNomesabor($_POST['nomesabor']);
     $pizza->setCategoria($_POST['categoria']);
@@ -94,6 +93,8 @@ $file = $_FILES['urlimg']['tmp_name'];
 
     $this->db->persist($pizza);
     $this->db->flush();
+
+
     }else{
     $pizza->insertDefault();
 
