@@ -56,14 +56,14 @@ $file = $_FILES['urlimg']['tmp_name'];
 
 
             case IMAGETYPE_GIF:
-                $imageResourceId = imagecreatefromgif($file);
-                $targetLayer = imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
+                $imageResourceId = @imagecreatefromgif($file);
+                $targetLayer = $this->imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
                 imagegif($targetLayer,$folderPath . $fileNewName. "_thump.". $ext);
                 break;
 
 
             case IMAGETYPE_JPEG:
-                $imageResourceId = imagecreatefromjpeg($file);
+                $imageResourceId = @imagecreatefromjpeg($file);
                 $targetLayer = $this->imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
                 imagejpeg($targetLayer ,$folderPath );
                 break;
