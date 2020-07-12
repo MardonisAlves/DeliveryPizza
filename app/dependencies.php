@@ -95,6 +95,13 @@ $container['TesteController'] = function ($container){
                                                 $container->get('flash'));
 };
 
+// RestControllerApi
+$container['RestControllerApi'] = function ($container){
+    return new App\Controller\RestControllerApi($container ,
+                                                $container['em'],
+                                                $container->get('flash'));
+};
+
 
 // ProdutoController
 $container['ProdutoController'] = function ($container){
