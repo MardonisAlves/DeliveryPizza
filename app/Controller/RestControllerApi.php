@@ -39,9 +39,10 @@ $manager = $this->em->getRepository('\App\Model\Pizza')->findAll();
       foreach($manager as $single){
            $alldata[] = array(
                             'id' => $single->getId(),
-                            'nome' =>$single->getNome(),
-                            'email' => $single->getEmail(),
-                            'tipouser' => $single->getTipouser());
+                            'nome' =>$single->getNomesabor(),
+                            'valorM' => $single->getValorM(),
+                            'valorG' => $single->getValorGs(),
+                            'descricao' => $single->getDescrição());
       }
 
       //return $response->withJson($alldata, 200);
