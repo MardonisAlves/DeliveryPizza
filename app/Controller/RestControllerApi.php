@@ -42,7 +42,8 @@ $manager = $this->em->getRepository('\App\Model\Pizza')->findAll();
                             'nome' =>$single->getNomesabor(),
                             'valorM' => $single->getValorM(),
                             'valorG' => $single->getValorG(),
-                            'descricao' => $single->getDescrição());
+                            'descricao' => $single->getDescrição(),
+                            'urlimg' => $single->getUrlimg());
       }
 
       //return $response->withJson($alldata, 200);
