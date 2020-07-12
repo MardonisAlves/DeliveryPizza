@@ -112,7 +112,7 @@ $this->get('/caizone','HomeController:caizone')->setName('caizone');
             // atualizar cardapio
         $this->post('/atualizar', 'PizzaController:updatePizza')->setName('atualizar');
             // excluir cardapio
-        $this->get('/excluir', 'PizzaController:excluirpizza')->setName('excluir');
+        $this->get('/excluir/{urlimg}', 'PizzaController:excluirpizza')->setName('excluir');
 
     });
 
