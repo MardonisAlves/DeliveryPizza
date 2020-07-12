@@ -162,7 +162,7 @@ echo "<div class='col s12 m10 l6'>
 foreach ($card as $key => $value)
 {
 
-if($value['categoria'] == 'pizzas'){
+if($value->getCategoria() == 'pizzas'){
  echo "<tr>
     <td>$value->getNomesabor()</td>
     <td>$value->getValorM()</td>
