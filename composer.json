@@ -22,7 +22,7 @@
         "pusher/pusher-php-server": "^4.1",
         "doctrine/orm" : "*",
         "php": "^7.2.0",
-        "ext-gd": "*"
+        "gd": "*"
 
     },
     "autoload": {
