@@ -336,11 +336,11 @@ public function excluirpizza(Request $request, Response $response, $args)
 
     if(($_SESSION['user']) == 'admin'){
     //echo "Excluir Pizza e renderizar para view admin";
-    $pizza = $this->db->getRepository('App\Model\Pizza')->findBy(array('urlimg' => $args['urlimg']));
+    $pizza = $this->db->find('App\Model\Pizza , $args['id']');
     $this->db->remove($pizza);
     $this->db->flush();
     $directory = $this->container->get('upload_directory');
-    unlink($directory . $args['urlimg']);
+    unlink($directory . $pizza->getUrlimg());
 
     echo "<p class='red text-darken-1'>Item excluido com sucesso</p>";
 
