@@ -81,7 +81,7 @@ $this->get('/caizone','HomeController:caizone')->setName('caizone');
 
     // RestControllerApi
     $app->group('', function() {
-        $this->get('/listcardapio' , 'TesteController:listApiCardapio')->setName('listApiCardapio');
+        $this->get('/listcardapio' , 'RestControllerApi:listApiCardapio')->setName('listApiCardapio');
 });
     // PRODUTOCONTROLLER
     $app->group('',function(){
