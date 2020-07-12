@@ -4,28 +4,38 @@
 
 <div class="">
 <div class="row">
+  <div class='col s12 m10 l6'>
+  <table id='example' class='mdl-data-table  striped'>
 
-  <form action="" class="form-index"> 
-  <div class="row">
-  <div class="col s8 m10 l6">
-    <div class="col s8 m0 l8">
-    <select name="codigo" onchange='editcardapio(this.value)'>
-    <option value="" disabled selected>Selecione Cardapio</option>
-    <option value="pizzas">Pizzas</option>
-    <option value="calzones">Calzones</option>
-    <option value="lasanhas">Lasanhas</option>
-    <option value="refrigerenates">Refrigerenates</option>
-    
-    </select>
-  </div>
-</div>
-</div>
-</form>
+      <thead>
+        <tr>
+          <th scope='col'>Sabor</th>
+          <th scope='col'>Media</th>
+          <th scope='col'>Grande</th>
+          <th scope='col'>Descrição</th>
+          <th scope='col'>Action</th>
 
-<p id="txtHint">
-
-</p>
-<p id="pizzaid"></p>
+        </tr>
+      </thead>
+  <tbody>
+    {% for card in cardapio %}
+    <tr>
+       <td>{{cardapio.nomesabor}}</td>
+       <td>{{cardapio.valorm}}</td>
+       <td>{{cardapio.valorg}}</td>
+       <td>{{cardapio.descricao}}</td>
+       <td>
+       <a href='#' class='waves-effect waves-light green-text darken-4 large' onclick = 'Pizza({{cardapio.Id}})'>
+       <i class='material-icons left'>edit_attributes</i>
+       </a>
+       <a href='#'  class='waves-effect waves-light  orange-text darken-4' onclick='Deletar({{cardapio.urlimg}})'>
+       <i class='material-icons orange-text darken-4 left'>restore_from_trash</i>
+       </a>
+       </td>
+     </tr>
+    {% endfor %}
+  </tbody>
+</table>
 </div>
 </div>
 

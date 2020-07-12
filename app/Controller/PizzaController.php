@@ -163,20 +163,20 @@ foreach ($card as $key => $value)
 {
 
 if($value->getCategoria() == 'pizzas'){
- echo "<tr>";
- echo "<td>".$value->getNomesabor();".</td>";
- echo "<td>".$value->getValorM();".</td>";
- echo "<td>".$value->getValorG();".</td>";
- echo  "<td>".$value->getDescricao();".</td>";
- echo   "<td>";
- echo  "<a href='#' class='waves-effect waves-light green-text darken-4 large' onclick = 'Pizza($value->getId())'>";
-echo "<i class='material-icons left'>edit_attributes</i>";
-echo "</a>";
-  echo " <a href='#'  class='waves-effect waves-light  orange-text darken-4' onclick='Deletar($value->getUrlimg())'>";
-  echo " <i class='material-icons orange-text darken-4 left'>restore_from_trash</i>";
-  echo  "</a>";
-  echo  "</td>";
-echo  "</tr>";
+ echo "<tr>
+    <td>$value->getNomesabor()</td>
+    <td>$value->getValorM()</td>
+    <td>$value->getValorG()</td>
+    <td>$value->getDescricao()</td>
+    <td>
+    <a href='#' class='waves-effect waves-light green-text darken-4 large' onclick = 'Pizza($value->getId())'>
+    <i class='material-icons left'>edit_attributes</i>
+    </a>
+    <a href='#'  class='waves-effect waves-light  orange-text darken-4' onclick='Deletar($value->getUrlimg())'>
+    <i class='material-icons orange-text darken-4 left'>restore_from_trash</i>
+    </a>
+    </td>
+  </tr>";
 
 }else{
    echo "<tr>
