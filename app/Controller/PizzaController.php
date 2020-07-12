@@ -164,12 +164,12 @@ foreach ($card as $key => $value)
 
 if($value->getCategoria() == 'pizzas'){
  echo "<tr>
-    <td>$value->getNomesabor()</td>
-    <td>$value->getValorM()</td>
-    <td>$value->getValorG()</td>
-    <td>$value->getDescricao()</td>
+    <td>"$value->getNomesabor();"</td>
+    <td>"$value->getValorM();"</td>
+    <td>"$value->getValorG();"</td>
+    <td>"$value->getDescricao();"</td>
     <td>
-    <a href='#' class='waves-effect waves-light green-text darken-4 large' onclick = 'Pizza($value->getId())'>
+    <a href='#' class='waves-effect waves-light green-text darken-4 large' onclick = 'Pizza($value->getId();)'>
     <i class='material-icons left'>edit_attributes</i>
     </a>
     <a href='#'  class='waves-effect waves-light  orange-text darken-4' onclick='Deletar($value->getUrlimg())'>
