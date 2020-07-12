@@ -80,9 +80,9 @@ $file = $_FILES['urlimg']['tmp_name'];
                 break;
         }
 
-    if(isset($_POST['submit'])){
+
     move_uploaded_file($folderPath ,  $_FILES['urlimg']['name']);
-    }
+
     if($_POST['categoria'] == "pizzas"){
     $pizza = new Pizza();
     $pizza->setNomesabor($_POST['nomesabor']);
