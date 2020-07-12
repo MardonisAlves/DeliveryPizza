@@ -90,7 +90,7 @@ $file = $_FILES['urlimg']['tmp_name'];
     $pizza->setValorM($_POST['valorM']);
     $pizza->setValorG($_POST['valorG']);
     $pizza->setDescrição($_POST['descricao']);
-    $pizza->setUrlimg($_POST['urlimg']);
+    $pizza->setUrlimg($_FILES['urlimg']);
 
     $this->db->persist($pizza);
     $this->db->flush();
