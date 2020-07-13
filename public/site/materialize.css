@@ -6582,22 +6582,18 @@ nav ul li a {
   background-color: white;
   color: black; }
 
-.img1 {
-  background-image: url("img/lasa.1.jpg");
-  background-repeat: no-repeat; }
-
 .img2 {
-  background-image: url("img/pizza02.jpg");
+  background-image: url("./../img/pizza02.jpg");
   background-repeat: no-repeat;
   background-size: cover; }
 
 .img3 {
-  background-image: url("img/cal.1.jpg");
+  background-image: url("./../img/cal.1.jpg");
   background-repeat: no-repeat;
   background-size: cover; }
 
 .img4 {
-  background-image: url("img/pizza04.png");
+  background-image: url("./../img/pizza04.png");
   background-repeat: no-repeat;
   background-size: cover; }
 
