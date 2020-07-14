@@ -31,36 +31,35 @@ $this->get('/caizone','HomeController:caizone')->setName('caizone');
     $this->get('/logout', 'AdminController:logout')->setName('logout');
         // login
     $this->map(['POST','GET'],'/login', 'AdminController:login')->setName('login');
-        // newuser
-    $this->get('/newuser', 'AdminController:newuser')->setName('newuser');
-        // addUser metodo insert
-    $this->map(['POST','GET'],'/addUser', 'AdminController:addUser')->setName('addUser');
-        // contact by id
     $this->get('/GetcontactID', 'AdminController:GetcontactID')->setName('GetcontactID');
         // update contact
     $this->map(['POST','GET'],'/putContact', 'AdminController:putContact')->setName('putContact');
         // delete contact
     $this->get('/DeleteContact' , 'AdminController:DeleteContact')->setName('DeleteContact');
-        // delete user
-    $this->get('/deleteuser' , 'AdminController:deleteuser')->setName('deleteuser');
-        // listar user
-    $this->get('/listaruser' , 'AdminController:listarUser')->setName('listarUser');
         // get form  enedereco by id
     $this->get('/UpdateUserEndeId', 'AdminController:UpdateUserEndeId')->setName('UpdateUserEndeId');
         // new endereco
     $this->get('/newendereco', 'AdminController:newendereco')->setName('Newendereco');
         // update endereco user
     $this->map(['POST','GET'],'/updateendereco' , 'AdminController:updateendereco')->setName('updateendereco');
-
-    //get form udate User
-     $this->get('/update' ,'AdminController:getUserform')->setName('update');
-    // update user
-    $this->post('/updateuserId' ,'AdminController:updateuserId')->setName('updateuserId');
-
-
-
-
 });
+
+    // UserController
+    $app->group('',function(){
+    // newuser
+    $this->get('/newuser', 'UserController:newuser')->setName('newuser');
+    // addUser metodo insert
+    $this->map(['POST','GET'],'/addUser', 'UserController:addUser')->setName('addUser');
+    // delete user
+    $this->get('/deleteuser/{id}' , 'UserController:deleteuser')->setName('deleteuser');
+    // listar user
+    $this->get('/listaruser' , 'UserController:listarUser')->setName('listarUser');
+    //get form udate User
+     $this->get('/update/{id}' ,'UserController:getUserform')->setName('update');
+    // update user
+    $this->post('/updateuserId' ,'UserController:updateuserId')->setName('updateuserId');
+});
+
     // SENHACONTROLLER
     $app->group('',function(){
         $this->map(['GET','POST'],'/recu_form', 'SenhaController:recu_form')->setName('recu_form');
@@ -104,7 +103,6 @@ $this->get('/caizone','HomeController:caizone')->setName('caizone');
         $this->get('/index', 'PizzaController:index')->setName('index');
             // listar cardapio
         $this->get('/viewlistar', 'PizzaController:viewlistar')->setName('viewlistar');
-        $this->get('/listar', 'PizzaController:listarcardapio')->setName('listar');
             // listar by id
          $this->get('/listarid', 'PizzaController:listarByid')->setName('listarid');
             // insert cardapio

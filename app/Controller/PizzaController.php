@@ -31,12 +31,8 @@ public  function index(Request $request, Response $response, $args)
 // inserir
 public function inserircardapio( $request,  $response, $args)
 {
-
-     if(($_SESSION['user']) == 'admin'){
-
-
-
-$file = $_FILES['urlimg']['tmp_name'];
+  if(($_SESSION['user']) == 'admin'){
+        $file = $_FILES['urlimg']['tmp_name'];
         $sourceProperties = getimagesize($file);
         $fileNewName = time();
 
@@ -100,7 +96,7 @@ $file = $_FILES['urlimg']['tmp_name'];
     $pizza->insertDefault();
 
   }
-    $url = $this->container->get('router')->pathFor('listar');
+    $url = $this->container->get('router')->pathFor('viewlistar');
     return $response->withStatus(302)->withHeader('Location' ,$url);
 }
 }
@@ -108,104 +104,15 @@ $file = $_FILES['urlimg']['tmp_name'];
 
 // resize
 public function imageResize($imageResourceId,$width,$height) {
-
-
     $targetWidth =450;
     $targetHeight =450;
-
-
     $targetLayer=imagecreatetruecolor($targetWidth,$targetHeight);
     imagecopyresampled($targetLayer,$imageResourceId,0,0,0,0,$targetWidth,$targetHeight, $width,$height);
-
-
     return $targetLayer;
 }
 
 
-// listar\
-public function listarcardapio( $request,  $response, $args)
-{
-  // RETONAR UMA LISTA POR CATEGORIA VIA AJAX
-    if(($_SESSION['user']) == 'admin'){
-
-$card = $this->db->getRepository('App\Model\Pizza')->findAll();
-
-if($_GET['categoria'] == 'pizzas'){
-echo "<div class='col s12 m10 l6'>
-<table id='example' class='mdl-data-table  striped'>
-
-    <thead>
-      <tr>
-        <th scope='col'>Sabor</th>
-        <th scope='col'>Media</th>
-        <th scope='col'>Grande</th>
-        <th scope='col'>Descrição</th>
-        <th scope='col'>Action</th>
-
-      </tr>
-    </thead>
-<tbody>";
-}else{
-  echo "<div class='col s12 m10 l6'>
-<table id='example' class='mdl-data-table  striped'>
-
-    <thead>
-      <tr>
-        <th scope='col'>Sabor</th>
-        <th scope='col'>Valor</th>
-        <th scope='col'>Descrição</th>
-        <th scope='col'>Action</th>
-
-      </tr>
-    </thead>
-<tbody>";
-}
-
-foreach ($card as $key => $value)
-{
-
-if($value->getCategoria() == 'pizzas'){
- echo "<tr>
-    <td>$value->getNomesabor()</td>
-    <td>$value->getValorM()</td>
-    <td>$value->getValorG()</td>
-    <td>$value->getDescricao()</td>
-    <td>
-    <a href='#' class='waves-effect waves-light green-text darken-4 large' onclick = 'Pizza($value->getId())'>
-    <i class='material-icons left'>edit_attributes</i>
-    </a>
-    <a href='#'  class='waves-effect waves-light  orange-text darken-4' onclick='Deletar($value->getUrlimg())'>
-    <i class='material-icons orange-text darken-4 left'>restore_from_trash</i>
-    </a>
-    </td>
-  </tr>";
-
-}else{
-   echo "<tr>
-    <td>$value->getNomesabor()</td>
-    <td>$value->getValor()</td>
-    <td>$value->getDescricao()</td>
-    <td>
-    <a href='#' class='waves-effect waves-light green-text darken-4 large' onclick = 'Pizza($value[id])'>
-    <i class='material-icons left'>edit_attributes</i>
-    </a>
-    <a href='#'  class='waves-effect waves-light  orange-text darken-4' onclick = 'Deletar($value[urlimg])'>
-    <i class='material-icons orange-text darken-4 left'>restore_from_trash</i>
-    </a>
-    </td>
-  </tr>";
-}
-}
-
-}
-}
-
-
-    //$url = $this->container->get('router')->pathFor('home');
-    //return $response->withStatus(302)->withHeader('Location' ,$url);
-
-
-
+// listar
 public function viewlistar( $request,  $response, $args)
 {
   // RETONAR UMA LISTA POR CATEGORIA VIA AJAX

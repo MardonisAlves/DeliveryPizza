@@ -12,7 +12,7 @@
          <i class="material-icons left">add_box</i>
       </a>
 
-<table class="striped">
+<table  id='example' class='mdl-data-table  striped'>
   <thead class="thead btn-light">
     <tr>
       <th scope="col">Id</th>
@@ -20,8 +20,8 @@
       <th scope="col">Action</th>
     </tr>
 </thead>
-    
-      
+
+
 <tbody>
     {% for user in users %}
     <tr>
@@ -29,28 +29,28 @@
       <td>{{user.nome }}</td>
       <td>
 
-     
 
-      
-      <a href="/update?id={{user.id}}" class="waves-effect waves-light green-text darken-1">User
+
+
+      <a href="/update/{{user.id}}" class="waves-effect waves-light green-text darken-1">User
         <i class="small material-icons green-text darken-1 left">face</i>
       </a>
 
          <a href="/UpdateUserEndeId?id={{user.id}}" class="waves-effect waves-light blue-text darken-1">Endereço
            <i class="small material-icons blue-text darken-1 left">search</i>
-        
-        </a> 
 
-         <a href="/deleteuser?id={{user.id}}" class="waves-effect waves-light orange-text darken-1 left">Excluir
+        </a>
+
+         <a href="/deleteuser/{{user.id}}" class="waves-effect waves-light orange-text darken-1 left">Excluir
          <i class="small material-icons orange-text darken-1 left">restore_from_trash</i>
-        
+
       </a>
 
       </td>
     </tr>
     {% endfor %}
   </tbody>
-  
+
   </table>
 </div>
 {% endblock  %}
