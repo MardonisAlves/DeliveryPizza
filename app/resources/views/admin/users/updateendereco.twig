@@ -16,8 +16,9 @@
 
 
 
-<form method="post" action="/updateendereco" enctype="multipart/form-data">
 
+  {% if endere %}
+  <form method="post" action="/updateendereco" enctype="multipart/form-data">
   {% for getendere in endere %}
 
     <div class="form-group col-md-6">
@@ -43,13 +44,46 @@
      <div class="form-group col-md-6">
      <input type="text" class="form-control"  value="{{getendere.telefone}}" name="telefone" required="obrigatorio">
     </div>
-
   {% endfor %}
-
-</div>
+  </div>
   <button type="submit" class="btn btn-primary" id="click">Cadastrar</button>
   <button type="reset" class="btn btn-success">Reset</button>
 </form>
+
+  {% else %}
+
+  <h4>Endereço Cliente</h4>
+
+  <form method="post" action="/newendereco" enctype="multipart/form-data">
+    <div class="form-group col-lg-6">
+      <input type="text" class="form-control" name="rua" required="obrigatorio" placeholder="Nome da Rua">
+    </div>
+     <div class="form-group col-lg-6">
+      <input type="text" class="form-control" name="cep" required="obrigatorio" placeholder="Cep">
+    </div>
+    <div class="form-group col-md-6">
+     <input type="text" class="form-control" value="" name="numero" required="obrigatorio" placeholder="numero">
+    </div>
+
+    <div class="form-group col-md-6">
+     <input type="text" class="form-control"  value="" name="bairro" required="obrigatorio" placeholder="bairro">
+    </div>
+
+     <div class="form-group col-md-6">
+     <input type="text" class="form-control"  value="" name="cidade" required="obrigatorio" placeholder="cidade">
+    </div>
+
+     <div class="form-group col-md-6">
+     <input type="text" class="form-control"  value="" name="telefone" required="obrigatorio" placeholder="telefone">
+    </div>
+  
+  </div>
+  <button type="submit" class="btn btn-primary" id="click">Cadastrar</button>
+  <button type="reset" class="btn btn-success">Reset</button>
+</form>
+
+  {% endif %}
+
   </div>
 </div>
  

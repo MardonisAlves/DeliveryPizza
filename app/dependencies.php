@@ -135,8 +135,16 @@ $container['UserController'] = function ($container) {
                                                 $container['em'] ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
-
 };
+
+// EnderecoController
+$container['EnderecoController'] = function ($container) {
+    return new \App\Controller\EnderecoController($container  ,
+                                                $container['em'] ,
+                                                $container->get('flash'),
+                                                $container->get('session'));
+};
+
 // CarroController
     $container['CarroController'] = function ($container) {
     return new \App\Controller\CarroController($container  ,

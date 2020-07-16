@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+//namespace App\Model;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Column;
@@ -252,29 +252,5 @@ private $telefone;
     public function getTelefone()
     {
         return $this->telefone;
-    }
-
-    /**
-     * Set userId.
-     *
-     * @param int $userId
-     *
-     * @return Endereco
-     */
-    public function setUserId($userId)
-    {
-        $this->user_id = $userId;
-
-        return $this;
-    }
-
-    /**
-     * Get userId.
-     *
-     * @return int
-     */
-    public function getUserId()
-    {
-        return $this->user_id;
     }
 }

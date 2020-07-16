@@ -22,101 +22,103 @@ $this->get('/caizone','HomeController:caizone')->setName('caizone');
 });
 
 
-    // ADMIN-CONTROLLER
-    // Request com method multiplo com get post com map
-    $app->group('',function(){
-        // home
-    $this->get('/home', 'AdminController:home')->setName('home');
-        // logout
-    $this->get('/logout', 'AdminController:logout')->setName('logout');
-        // login
-    $this->map(['POST','GET'],'/login', 'AdminController:login')->setName('login');
-    $this->get('/GetcontactID', 'AdminController:GetcontactID')->setName('GetcontactID');
-        // update contact
-    $this->map(['POST','GET'],'/putContact', 'AdminController:putContact')->setName('putContact');
-        // delete contact
-    $this->get('/DeleteContact' , 'AdminController:DeleteContact')->setName('DeleteContact');
-        // get form  enedereco by id
-    $this->get('/UpdateUserEndeId', 'AdminController:UpdateUserEndeId')->setName('UpdateUserEndeId');
-        // new endereco
-    $this->get('/newendereco', 'AdminController:newendereco')->setName('Newendereco');
-        // update endereco user
-    $this->map(['POST','GET'],'/updateendereco' , 'AdminController:updateendereco')->setName('updateendereco');
+// ADMIN-CONTROLLER
+// Request com method multiplo com get post com map
+$app->group('',function(){
+// home
+$this->get('/home', 'AdminController:home')->setName('home');
+// logout
+$this->get('/logout', 'AdminController:logout')->setName('logout');
+// login
+$this->map(['POST','GET'],'/login', 'AdminController:login')->setName('login');
+$this->get('/GetcontactID', 'AdminController:GetcontactID')->setName('GetcontactID');
+// update contact
+$this->map(['POST','GET'],'/putContact', 'AdminController:putContact')->setName('putContact');
+// delete contact
+$this->get('/DeleteContact' , 'AdminController:DeleteContact')->setName('DeleteContact');
 });
 
-    // UserController
-    $app->group('',function(){
-    // newuser
-    $this->get('/newuser', 'UserController:newuser')->setName('newuser');
-    // addUser metodo insert
-    $this->map(['POST','GET'],'/addUser', 'UserController:addUser')->setName('addUser');
-    // delete user
-    $this->get('/deleteuser/{id}' , 'UserController:deleteuser')->setName('deleteuser');
-    // listar user
-    $this->get('/listaruser' , 'UserController:listarUser')->setName('listarUser');
-    //get form udate User
-     $this->get('/update/{id}' ,'UserController:getUserform')->setName('update');
-    // update user
-    $this->post('/updateuserId' ,'UserController:updateuserId')->setName('updateuserId');
+// UserController
+$app->group('',function(){
+// newuser
+$this->get('/newuser', 'UserController:newuser')->setName('newuser');
+// addUser metodo insert
+$this->map(['POST','GET'],'/addUser', 'UserController:addUser')->setName('addUser');
+// delete user
+$this->get('/deleteuser/{id}' , 'UserController:deleteuser')->setName('deleteuser');
+// listar user
+$this->get('/listaruser' , 'UserController:listarUser')->setName('listarUser');
+//get form udate User
+$this->get('/update/{id}' ,'UserController:getUserform')->setName('update');
+// update user
+$this->post('/updateuserId' ,'UserController:updateuserId')->setName('updateuserId');
 });
 
-    // SENHACONTROLLER
-    $app->group('',function(){
-        $this->map(['GET','POST'],'/recu_form', 'SenhaController:recu_form')->setName('recu_form');
-        $this->map(['GET','POST'],'/enviartoken', 'SenhaController:enviartoken')->setName('enviartoken');
-        $this->map(['GET','POST'],'/atu_senha', 'SenhaController:atu_senha')->setName('atu_senha');
-        $this->map(['GET','POST'],'/updatesenha', 'SenhaController:updatesenha')->setName('updatesenha');
+// SENHACONTROLLER
+$app->group('',function(){
+$this->map(['GET','POST'],'/recu_form', 'SenhaController:recu_form')->setName('recu_form');
+$this->map(['GET','POST'],'/enviartoken', 'SenhaController:enviartoken')->setName('enviartoken');
+$this->map(['GET','POST'],'/atu_senha', 'SenhaController:atu_senha')->setName('atu_senha');
+$this->map(['GET','POST'],'/updatesenha', 'SenhaController:updatesenha')->setName('updatesenha');
     });
 
-    // TESTECONTROLLER
+// TESTECONTROLLER
 
-    $app->group('', function() {
-        $this->get('/listall' , 'TesteController:listall')->setName('listall');
-        $this->get('/list/{id}' , 'TesteController:list')->setName('list');
-        $this->post('/user', 'TesteController:user')->setName('user');
-        $this->map(['DELETE' , 'OPTIONS'] , '/delete/{id}', 'TesteController:deleteuser')->setName('deleteuser');
+$app->group('', function() {
+$this->get('/listall' , 'TesteController:listall')->setName('listall');
+$this->get('/list/{id}' , 'TesteController:list')->setName('list');
+$this->post('/user', 'TesteController:user')->setName('user');
+$this->map(['DELETE' , 'OPTIONS'] , '/delete/{id}', 'TesteController:deleteuser')->setName('deleteuser');
 
-    });
-
-    // RestControllerApi
-    $app->group('', function() {
-        $this->get('/listcardapio' , 'RestControllerApi:listApiCardapio')->setName('listApiCardapio');
 });
-    // PRODUTOCONTROLLER
-    $app->group('',function(){
-    $this->get('/formbebida' , 'ProdutoController:form_bebida')->setName('form_bebida');
-    $this->post('/inserte' , 'ProdutoController:insertBebidas')->setName('insertBebidas');
-    $this->get('/produtos' , 'ProdutoController:listar_produto')->setName('produtos');
-    $this->get('/listidproduto' , 'ProdutoController:updateptodutobyId')->setName("updateptodutobyId");
-    $this->post('/produtoid' , 'ProdutoController:updateProdutos')->setName('updateProdutos');
-    $this->get('/deletarProduto' , 'ProdutoController:deletaProduto')->setName('deletaProduto');
-    });
 
-    // CLIENTECONTROLLER
-    $app->group('',function(){
-        $this->get('/homecliente', 'ClienteController:homecliente')->setName('homecliente');
-    });
+// RestControllerApi
+$app->group('', function() {
+$this->get('/listcardapio' , 'RestControllerApi:listApiCardapio')->setName('listApiCardapio');
+});
 
-    // PIZZACONTROLLER
-    $app->group('',function(){
+// ENDERECCONTROLLER
+$app->group('', function() {
+$this->post('/newendereco' , 'EnderecoController:newendereco')->setName('newendereco');
+// get form  enedereco by id
+$this->get('/updateendeid/{id}', 'EnderecoController:UpdateUserEndeId')->setName('UpdateUserEndeId');
+// update endereco user
+$this->map(['POST','GET'],'/updateendereco' , 'EnderecoController:updateendereco')->setName('updateendereco');
+});
 
-        $this->get('/index', 'PizzaController:index')->setName('index');
-            // listar cardapio
-        $this->get('/viewlistar', 'PizzaController:viewlistar')->setName('viewlistar');
-            // listar by id
-         $this->get('/listarid', 'PizzaController:listarByid')->setName('listarid');
-            // insert cardapio
-        $this->post('/insert', 'PizzaController:inserircardapio')->setName('insert');
-            // atualizar cardapio
-        $this->post('/atualizar', 'PizzaController:updatePizza')->setName('atualizar');
-            // excluir cardapio
-        $this->get('/excluir/{id}', 'PizzaController:excluirpizza')->setName('excluir');
+// PRODUTOCONTROLLER
+$app->group('',function(){
+$this->get('/formbebida' , 'ProdutoController:form_bebida')->setName('form_bebida');
+$this->post('/inserte' , 'ProdutoController:insertBebidas')->setName('insertBebidas');
+$this->get('/produtos' , 'ProdutoController:listar_produto')->setName('produtos');
+$this->get('/listidproduto' , 'ProdutoController:updateptodutobyId')->setName("updateptodutobyId");
+$this->post('/produtoid' , 'ProdutoController:updateProdutos')->setName('updateProdutos');
+$this->get('/deletarProduto' , 'ProdutoController:deletaProduto')->setName('deletaProduto');
+});
 
-    });
+// CLIENTECONTROLLER
+$app->group('',function(){
+$this->get('/homecliente', 'ClienteController:homecliente')->setName('homecliente');
+});
 
-    // CarroController
-     $app->group('',function(){
+// PIZZACONTROLLER
+$app->group('',function(){
 
-        $this->map(['GET','POST'] ,'/initsession', 'CarroController:initsession')->setName('initsession');
+$this->get('/index', 'PizzaController:index')->setName('index');
+// listar cardapio
+$this->get('/viewlistar', 'PizzaController:viewlistar')->setName('viewlistar');
+// listar by id
+$this->get('/listarid', 'PizzaController:listarByid')->setName('listarid');
+// insert cardapio
+$this->post('/insert', 'PizzaController:inserircardapio')->setName('insert');
+// atualizar cardapio
+$this->post('/atualizar', 'PizzaController:updatePizza')->setName('atualizar');
+// excluir cardapio
+$this->get('/excluir/{id}', 'PizzaController:excluirpizza')->setName('excluir');
 
-    });
+});
+
+// CarroController
+$app->group('',function(){
+$this->map(['GET','POST'] ,'/initsession', 'CarroController:initsession')->setName('initsession');
+});

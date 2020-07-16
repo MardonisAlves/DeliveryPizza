@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\Common\Annotation;
+use Doctrine\ORM\Mapping\OnetoOne;
 use Doctrine\ORM\Mapping\GeneratedValue;
 
 /**
@@ -14,6 +15,13 @@ use Doctrine\ORM\Mapping\GeneratedValue;
  *
  */
 class Users {
+
+  /***
+   * One Users has One Endereco 
+   * @OneToOne(targetEntity="Endereco" mappedBy="users")
+   */
+private $endereco;
+
   /**
   * @Id
   * @Column(type="integer")
