@@ -181,7 +181,7 @@ switch ($_SESSION['user']) {
       $user->setId($_POST['id']);
       $user->setEmail($_POST['email']);
       $user->setTipouser($_POST['tipouser']);
-      $user->db->flush();
+      $this->db->flush();
 
       $url = $this->container->get('router')->pathFor('listarUser');
       return $res->withStatus(302)->withHeader('Location', $url);
