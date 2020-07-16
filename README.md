@@ -1,13 +1,14 @@
 
 
 <h1>Slim Microframework back End</h1>
+
 <p> Link para o herokuapp vue js front end com template webpack cli
 <ul>
   <li>
-      <a href="https://aqueous-meadow-05876.herokuapp.com/">Front-End-VueJS</a>
+      <a href="https://aqueous-meadow-05876.herokuapp.com/">Front-End-VueJS PWA</a>
   </li>
   <li>  
-      <a href="https://github.com/MardonisAlves/vue-js-front-pizza">Repositotio github VueJS front-end</a>
+      <a href="https://github.com/MardonisAlves/VueJsDelivery">Repositotio github VueJS front-end</a>
   </li>
   <li>
       <a href="https://github.com/MardonisAlves/DeliveryPizza">Repositotio github Back-end PHP slimframework</a>

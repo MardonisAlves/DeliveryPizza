@@ -177,13 +177,12 @@ switch ($_SESSION['user']) {
 
       }else{
 
-      $users =  New Users();
-      $users->setConnection($this->db);
-      $users->setContainer($this->container);
-      $users->setId($_POST['id']);
-      $users->setEmail($_POST['email']);
-      $users->setTipouser($_POST['tipouser']);
-      $users->updateusers($res);
+      $user = $this->db->find('App\Model\Users',$_POST['id']);
+      $user->setId($_POST['id']);
+      $user->setEmail($_POST['email']);
+      $user->setTipouser($_POST['tipouser']);
+      $user->flush();
+      
       $url = $this->container->get('router')->pathFor('listarUser');
       return $res->withStatus(302)->withHeader('Location', $url);
       }
