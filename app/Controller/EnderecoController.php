@@ -28,13 +28,9 @@ public function UpdateUserEndeId(Request  $request, Response $response, $args)
 switch ($_SESSION['user']){
 
   case 'admin':
-    $endere =  $this->db->find('App\Model\Endereco' , $args['id']);
-
-    return $this->container
-                ->view
-                ->render
-                ($response ,'admin/users/updateendereco.twig' ,
-                  Array('endere' => $endere));
+    $endere =  $this->db->getRepository('App\Model\Endereco')->findBy(array('user_id' => $args['id']));
+   
+    return $this->container->view->render($response ,'admin/users/updateendereco.twig' ,Array('endere' => $endere));
     break;
 
   case 'cliente':
@@ -89,6 +85,19 @@ public function newendereco(Request $req , Response $res , $args)
 {
 
     echo $_SESSION['id'];
+    $endere = new Endereco();
+    $endere->setUserId($_SESSION['id']);
+    $endere->setRua($_POST['rua']);
+    $endere->setCidade($_POST['cidade']);
+    $endere->setBairro($_POST['bairro']);
+    $endere->setCep($_POST['cep']);
+    $endere->setNumero($_POST['numero']);
+    $endere->setTelefone($_POST['telefone']);
+    $endere->setReferencia($_POST['referencia']);
+
+    $this->db->persist($endere);
+    $this->db->flush();
+
    // return $res->withHeader('Location', '/listaruser')->withStatus(302);
 }
 
