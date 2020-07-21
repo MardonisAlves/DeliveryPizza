@@ -46,7 +46,7 @@ $manager = $this->em->getRepository('\App\Model\Pizza')->findAll();
                             'urlimg' => $single->getUrlimg());
       }
 
-      //return $response->withJson($alldata, 200);
+     
 
       $response = $response->withHeader('Content-Type', 'application/json');
       $response->write(json_encode($alldata));
@@ -54,13 +54,29 @@ $manager = $this->em->getRepository('\App\Model\Pizza')->findAll();
 
 
 }
-public function listPizzaId(Request  $req, Response $res, $args)
+public function listPizzaId(Request  $request, Response $response, $args)
 {
     header('Access-Control-Allow-Origin: *'); 
-    $manager = $this->em->getRepository('\App\Model\Users');
-    $pizza = $manager->findBy($array = array('id' =>  $args['id']));
+    $manager = $this->em->getRepository('App\Model\Pizza');
+    $pizza = $this->em->findBy($array  = array('id' => $args['id']));
 
-    return $res->withJson($pizza , 200);
+    foreach ($pizza as $card) {
+        // response json com withJsons
+       $data = $pizza =array(
+        'id' => $card->getId(),
+        'nome' =>$card->getNomesabor(),
+        'valorM' => $card->getValorM(),
+        'valorG' => $card->getValorG(),
+        'descricao' => $card->getDescrição(),
+        'urlimg' => $card->getUrlimg());
+
+        $response = $response->withHeader('Content-Type', 'application/json');
+        $response->write(json_encode($data));
+        return $res;
+   }
+    
+
+ 
 }
 
 }
