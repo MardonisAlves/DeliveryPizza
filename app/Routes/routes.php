@@ -84,6 +84,8 @@ $this->post('/newendereco' , 'EnderecoController:newendereco')->setName('newende
 $this->get('/updateendeid/{id}', 'EnderecoController:UpdateUserEndeId')->setName('UpdateUserEndeId');
 // update endereco user
 $this->map(['POST','GET'],'/updateendereco' , 'EnderecoController:updateendereco')->setName('updateendereco');
+// delete
+$this->get('/deleteende', 'EnderecoController:delete')->setName('delete');
 });
 
 // PRODUTOCONTROLLER

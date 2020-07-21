@@ -14,8 +14,8 @@
     {% endfor %}
 
 {% if endere %}
- <form method="post" action="/updateendereco" enctype="multipart/form-data">
   {% for getendere in endere %}
+   <form method="post" action="/updateendereco">
     <div class="form-group col-md-6">
       <input type="text" class="form-control"  value="{{getendere.id}}" name="id" required="obrigatorio">
     </div>
@@ -39,9 +39,12 @@
      <div class="form-group col-md-6">
      <input type="text" class="form-control"  value="{{getendere.telefone}}" name="telefone" required="obrigatorio">
     </div>
-    </form>
+    <div class="form-group col-md-6">
+     <input type="text" class="form-control"  value="{{getendere.referencia}}" name="referencia" required="obrigatorio">
+    </div>
   <button type="submit" class="btn btn-primary" id="click">Cadastrar</button>
   <button type="reset" class="btn btn-success">Reset</button>
+    </form>
    {% endfor %}
 
    </div>

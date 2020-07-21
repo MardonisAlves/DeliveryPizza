@@ -45,13 +45,11 @@ public function newuser($request ,$response , $args){
 public function addUser($request , $response , $args){
 if($_SESSION['user'] == 'admin'){
 // validar o acesso com session
-$users =  $this->db->query("SELECT * FROM Users");
+$users =  $this->db->getRepository('App\Model\Users')->findAll();
 // validate email
-while ($user = $users->fetch())
+foreach ($users as $user)
 {
-
-    if($user['email'] == $_POST['email']){
-
+    if($user->getEmail() == $_POST['email']){
     $this->flash->addMessageNow('msg', 'Este E-mail ja esta em uso!');
     $messages = $this->flash->getMessages();
 
@@ -79,39 +77,25 @@ while ($user = $users->fetch())
                   Array( 'messages' => $messages));
 
      }
-
-
-
 switch ($_SESSION['user']){
-
   case "admin":
 
-     $Users = new Users();
-     $Users->setConnection($this->db);
-     $Users->setContainer($this->container);
-     $Users->setId(0);
-     $Users->setEmail($_POST['email']);
-     $Users->setNome($_POST['nome']);
-     $Users->setSenha($_POST['senha']);
-     $Users->setTipouser($_POST['tipouser']);
-     $Users->insert($response);
-
-
-
-
-
+    $Users = new Users();
+    $Users->setEmail($_POST['email']);
+    $Users->setSenha($_POST['senha']);
+    $Users->setNome($_POST['nome']);
+    $Users->setTipouser($_POST['tipouser']);
+    $this->db->persist($Users);
+    $this->db->flush();
+    
      $url = $this->container->get('router')->pathFor('home');
     return $response->withStatus(302)->withHeader('Location', $url);
-
-
   break;
-
-  case "cliente":
-         return $this->container->view->render($response ,'homecliente/homecliente.twig');
+    case "cliente":
+    return $this->container->view->render($response ,'homecliente/homecliente.twig');
   break;
-
   default:
-              return $this->container->view->render($response ,'index.twig');
+    return $this->container->view->render($response ,'index.twig');
   break;
 }
 
@@ -120,14 +104,12 @@ switch ($_SESSION['user']){
 //form update user
 public function getUserform( $request ,  $response , $args)
 {
-  $user = $this->db->getRepository('App\Model\Users')->findBy(array('id' => $args['id'] ));
-
+  $user = $this->db->getRepository('App\Model\Users')->findBy(array('id' => $args['id'] ));  
   return $this->container
               ->view
               ->render($response ,'admin/users/UserUpdate.twig' ,['user' => $user ]);
 
 }
-
 
 //list user
 public function listarUser( $request ,  $response , $args)
@@ -135,17 +117,11 @@ public function listarUser( $request ,  $response , $args)
   if(isset($_SESSION['user'])){
  switch ($_SESSION['user']) {
    case 'admin':
-
-          $users = $this->db->getRepository('App\Model\Users')->findAll();
-          return $this->container->view->render($response ,'admin/users/listarUser.twig',['users' => $users]);
-
+    $users = $this->db->getRepository('App\Model\Users')->findAll();
+    return $this->container->view->render($response ,'admin/users/listarUser.twig',['users' => $users]);
      break;
-
     case 'cliente':
-
-          return $this->container->view->render($response ,'homecliente/homecliente.twig');
-
-
+    return $this->container->view->render($response ,'homecliente/homecliente.twig');
    default:
       return $this->container->view->render($response ,'admin/login/loginCliente.twig');
      break;
@@ -155,21 +131,16 @@ public function listarUser( $request ,  $response , $args)
         return $response->withStatus(302)->withHeader('Location', $url);
 }
 
-
 }
 
 // update userID
 public function updateuserId(Request $req , Response $res , $args){
 // seperar update users
 switch ($_SESSION['user']) {
-
   case 'admin':
-
       if(empty($_POST['tipouser'])){
-
         $this->flash->addMessageNow('msg', 'Tipo user esta vazio');
         $messages = $this->flash->getMessages();
-
         return $this->container
                     ->view
                     ->render($res ,'admin/home.twig',
