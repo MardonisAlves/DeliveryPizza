@@ -53,8 +53,14 @@ $manager = $this->em->getRepository('\App\Model\Pizza')->findAll();
       return $response;
 
 
-
 }
+public function listPizzaId(Request  $req, Response $res, $args)
+{
+    header('Access-Control-Allow-Origin: *'); 
+    $manager = $this->em->getRepository('\App\Model\Users');
+    $pizza = $manager->findBy($array = array('id' =>  $args['id']));
 
+    return $res->withJson($pizza , 200);
+}
 
 }

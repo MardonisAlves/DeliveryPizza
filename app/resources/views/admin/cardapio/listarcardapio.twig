@@ -9,6 +9,7 @@
 
       <thead>
         <tr>
+          <th scope='col'>Id</th>
           <th scope='col'>Sabor</th>
           <th scope='col'>Media</th>
           <th scope='col'>Grande</th>
@@ -20,6 +21,7 @@
   <tbody>
     {% for cardapio in card %}
     <tr>
+       <td>{{cardapio.id}}</td>
        <td>{{cardapio.nomesabor}}</td>
        <td>{{cardapio.valorm}}</td>
        <td>{{cardapio.valorg}}</td>

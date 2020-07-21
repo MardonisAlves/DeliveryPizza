@@ -75,6 +75,7 @@ $this->map(['DELETE' , 'OPTIONS'] , '/delete/{id}', 'TesteController:deleteuser'
 // RestControllerApi
 $app->group('', function() {
 $this->get('/listcardapio' , 'RestControllerApi:listApiCardapio')->setName('listApiCardapio');
+$this->get('/listcardapioid/{id}' , 'RestControllerApi:listPizzaId')->setName('listPizzaId');
 });
 
 // ENDERECCONTROLLER
