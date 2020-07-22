@@ -72,7 +72,7 @@ public function listPizzaId(Request  $request, Response $response, $args)
 
         $response = $response->withHeader('Content-Type', 'application/json');
         $response->write(json_encode($data));
-        return $res;
+        return $response;
    }
     
 
