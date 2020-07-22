@@ -57,12 +57,12 @@ $manager = $this->em->getRepository('\App\Model\Pizza')->findAll();
 public function listPizzaId(Request  $request, Response $response, $args)
 {
     header('Access-Control-Allow-Origin: *'); 
-    $manager = $this->em->getRepository('App\Model\Pizza');
-    $pizza = $this->em->findBy($array  = array('id' => $args['id']));
+    $manager = $this->em->getRepository('App\Model\Pizza')->findBy($array  = array('id' => $args['id']));
+    //$pizza = $manager->findBy($array  = array('id' => $args['id']));
 
-    foreach ($pizza as $card) {
+    foreach ($manager as $card) {
         // response json com withJsons
-       $data = $pizza =array(
+       $data = array(
         'id' => $card->getId(),
         'nome' =>$card->getNomesabor(),
         'valorM' => $card->getValorM(),
