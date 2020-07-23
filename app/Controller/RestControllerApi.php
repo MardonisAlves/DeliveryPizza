@@ -59,16 +59,17 @@ public function listPizzaId(Request  $request, Response $response, $args)
     header('Access-Control-Allow-Origin: *'); 
     $manager = $this->em->getRepository('App\Model\Pizza')->findBy($array  = array('id' => $args['id']));
     //$pizza = $manager->findBy($array  = array('id' => $args['id']));
-
+    $data = Array();
     foreach ($manager as $card) {
-        // response json com withJsons
-       $data = array(
-        'id' => $card->getId(),
-        'nome' =>$card->getNomesabor(),
-        'valorM' => $card->getValorM(),
-        'valorG' => $card->getValorG(),
-        'descricao' => $card->getDescrição(),
-        'urlimg' => $card->getUrlimg());
+        
+       $data[] = array(
+                    'id' => $card->getId(),
+                    'nome' =>$card->getNomesabor(),
+                    'valorM' => $card->getValorM(),
+                    'valorG' => $card->getValorG(),
+                    'descricao' => $card->getDescrição(),
+                    'urlimg' => $card->getUrlimg()
+                );
 
         $response = $response->withHeader('Content-Type', 'application/json');
         $response->write(json_encode($data));
