@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\endereco;
 
 use App\Model\Users;
 use App\Model\Endereco;

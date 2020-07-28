@@ -78,6 +78,11 @@ $this->get('/listcardapio' , 'RestControllerApi:listApiCardapio')->setName('list
 $this->get('/listcardapioid/{id}' , 'RestControllerApi:listPizzaId')->setName('listPizzaId');
 });
 
+// CategoriaControllerApi
+$app->group('', function() {
+$this->get('/listcategoria' , 'CategoriaControllerApi:listcategoria')->setName('listcategoria');
+});
+
 // ENDERECCONTROLLER
 $app->group('', function() {
 $this->post('/newendereco' , 'EnderecoController:newendereco')->setName('newendereco');
@@ -124,4 +129,14 @@ $this->get('/excluir/{id}', 'PizzaController:excluirpizza')->setName('excluir');
 // CarroController
 $app->group('',function(){
 $this->map(['GET','POST'] ,'/initsession', 'CarroController:initsession')->setName('initsession');
+});
+
+
+// CategoriaController
+
+$app->group('',function(){
+$this->get('/categoria', 'CategoriaController:categoria')->setName('categoria');
+$this->post('/newcategoria', 'CategoriaController:newcategoria')->setName('newcategoria');
+$this->get('/excluircategoria', 'CategoriaController:excluir')->setName('excluircategoria');
+
 });

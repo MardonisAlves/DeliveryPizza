@@ -37,6 +37,7 @@ $container['session'] = function () {
 //UPLOADS IMAGES Hroku
 $container = $app->getContainer();
 $container['upload_directory'] =  'img/uploads/cardapio/';
+$container['upload_directory_categoria'] =  'img/categoria/';
 
 // DOCTRINE
 $container['em'] = function ($c) {
@@ -82,7 +83,7 @@ return new App\Controller\AdminController($container ,
 
 // SenhaController
 $container['SenhaController'] = function ($container){
-    return new App\Controller\SenhaController($container ,
+    return new App\Controller\senha\SenhaController($container ,
                                                 $container->get('em') ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
@@ -90,14 +91,21 @@ $container['SenhaController'] = function ($container){
 
 // TesteController
 $container['TesteController'] = function ($container){
-    return new App\Controller\TesteController($container ,
+    return new App\Controller\teste\TesteController($container ,
                                                 $container['em'],
                                                 $container->get('flash'));
 };
 
 // RestControllerApi
 $container['RestControllerApi'] = function ($container){
-    return new App\Controller\RestControllerApi($container ,
+    return new App\Controller\api\RestControllerApi($container ,
+                                                $container['em'],
+                                                $container->get('flash'));
+};
+
+// CategoriaControllerApi
+$container['CategoriaControllerApi'] = function ($container){
+    return new App\Controller\api\CategoriaControllerApi($container ,
                                                 $container['em'],
                                                 $container->get('flash'));
 };
@@ -105,7 +113,7 @@ $container['RestControllerApi'] = function ($container){
 
 // ProdutoController
 $container['ProdutoController'] = function ($container){
-    return new App\Controller\ProdutoController($container ,
+    return new App\Controller\produto\ProdutoController($container ,
                                                 $container['em'] ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
@@ -114,7 +122,7 @@ $container['ProdutoController'] = function ($container){
 // ClienteController
 
 $container['ClienteController'] = function ($container){
-    return new App\Controller\ClienteController($container ,
+    return new App\Controller\usuario\ClienteController($container ,
                                                 $container['em'],
                                                  $container->get('flash') ,
                                                  $container->get('session'));
@@ -122,7 +130,7 @@ $container['ClienteController'] = function ($container){
 
 // PizzaController
 $container['PizzaController'] = function ($container) {
-    return new \App\Controller\PizzaController($container  ,
+    return new \App\Controller\pizza\PizzaController($container  ,
                                                 $container['em'] ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
@@ -131,7 +139,7 @@ $container['PizzaController'] = function ($container) {
 
 // UserController
 $container['UserController'] = function ($container) {
-    return new \App\Controller\UserController($container  ,
+    return new \App\Controller\usuario\UserController($container  ,
                                                 $container['em'] ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
@@ -139,7 +147,7 @@ $container['UserController'] = function ($container) {
 
 // EnderecoController
 $container['EnderecoController'] = function ($container) {
-    return new \App\Controller\EnderecoController($container  ,
+    return new \App\Controller\endereco\EnderecoController($container  ,
                                                 $container['em'] ,
                                                 $container->get('flash'),
                                                 $container->get('session'));
@@ -148,6 +156,16 @@ $container['EnderecoController'] = function ($container) {
 // CarroController
     $container['CarroController'] = function ($container) {
     return new \App\Controller\CarroController($container  ,
+                                                $container['em'] ,
+                                                $container->get('flash'),
+                                                $container->get('session'));
+
+};
+
+
+// CategoriaController
+    $container['CategoriaController'] = function ($container) {
+    return new \App\Controller\categoria\CategoriaController($container  ,
                                                 $container['em'] ,
                                                 $container->get('flash'),
                                                 $container->get('session'));

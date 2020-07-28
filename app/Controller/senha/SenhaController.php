@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\senha;
 
 use App\Model\Users;
 use App\Validate\Validate;

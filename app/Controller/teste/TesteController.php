@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\teste;
 
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;

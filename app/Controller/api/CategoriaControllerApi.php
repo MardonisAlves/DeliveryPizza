@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\api;
 
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Intervention\Image\ImageManager;
-use App\Model\Users;
 use App\Model\Pizza;
-use App\Model\Produtos;
+use App\Model\Categorias;
 use Pusher\Pusher;
 
-class RestControllerApi
+class CategoriaControllerApi
 {
     protected $em;
     private $container;
@@ -26,34 +25,25 @@ class RestControllerApi
 }
 
 /*=================================================================
- *================== METHODS FOR TEST==============================*/
+ *================== METHODS FOR API==============================*/
 
-
-
-public function listApiCardapio(Request  $request, Response $response, $args){
-header('Access-Control-Allow-Origin: *'); // Este cabeçalho aceita qualquer requisição
-
-$manager = $this->em->getRepository('\App\Model\Pizza')->findAll();
-
+public function listcategoria(Request  $request, Response $response, $args){
+header('Access-Control-Allow-Origin: *'); 
+$categorias = $this->em->getRepository('\App\Model\Categorias')->findAll();
       $alldata = array();
-      foreach($manager as $single){
+      foreach($categorias as $categoria){
            $alldata[] = array(
-                            'id' => $single->getId(),
-                            'nome' =>$single->getNomesabor(),
-                            'valorM' => $single->getValorM(),
-                            'valorG' => $single->getValorG(),
-                            'descricao' => $single->getDescrição(),
-                            'urlimg' => $single->getUrlimg());
+                            'id' => $categoria->getId(),
+                            'categoria' =>$categoria->getCategoria(),
+                            'urlimg' => $categoria->getUrlimg());
       }
-
-     
-
       $response = $response->withHeader('Content-Type', 'application/json');
       $response->write(json_encode($alldata));
       return $response;
-
-
 }
+
+
+
 public function listPizzaId(Request  $request, Response $response, $args)
 {
     header('Access-Control-Allow-Origin: *'); 

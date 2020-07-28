@@ -1,0 +1,65 @@
+{% extends 'layoutAdmin.twig' %}
+
+{% block content %}
+
+<div class="container" style="margin-top:50px;">
+  <div class="row">
+     <h4  class="grey-text lighten-5">Nova Categoria</h4>
+      <div class="col s12 m12 19">
+        {% for message in messages %}
+          <div class="card-panel teal lighten-2 white-text">
+         {{ message[0] }}
+        {% endfor %}
+      </div>
+    </div>
+   
+
+    <form method="post" action="/newcategoria" enctype="multipart/form-data" novalidate>
+    <div class="row">
+      <div class="input=field col s12 m4 l4">
+        Categoria:
+      <select class="form-control" name="categoria" placeholer="categoria">
+          <option value="" disabled selected></option>
+          <option value="pizzas">Pizzas</option>
+          <option value="panquecas" >Panquecas</option>
+          <option value="lasanhas" >Lasanhas</option>
+          <option value="bebidas" >Refrigerantes</option>
+          <option value="calzones">Calzones</option>
+      </select>
+
+    </div>
+
+    <div class="row">
+  <div class="file-field input-field">
+    <br>
+    <div class="btn">
+      <span>File</span>
+      <input type="file" name="urlimg">
+    </div>
+    <div class="file-path-wrapper">
+    <input class="file-path validate" type="text">
+    </div>
+
+  </div>
+</div>
+  </div>
+  
+
+  <div class="row">
+    <div class="col s12 md 12">
+    <button type="submit" class="btn teal darken-1 btn-small" name="submit">Cadastrar
+       <i class="material-icons white-text darken-1 right">send</i>
+    </button>
+
+
+    <button type="reset" class="btn  teal darken-1 btn-small">Reset
+      <i class="material-icons white-text darken-1 right">clear</i>
+    </button>
+</div>
+</div>
+</form>
+  </div>
+</div>
+
+
+{% endblock  %}
