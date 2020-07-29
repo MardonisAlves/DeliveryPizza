@@ -37,7 +37,7 @@ $container['session'] = function () {
 //UPLOADS IMAGES Hroku
 $container = $app->getContainer();
 $container['upload_directory'] =  'img/uploads/cardapio/';
-$container['upload_directory_categoria'] =  'img/categoria/';
+$container['upload_directory_categoria'] =  'img/uploads/categoria/';
 
 // DOCTRINE
 $container['em'] = function ($c) {
