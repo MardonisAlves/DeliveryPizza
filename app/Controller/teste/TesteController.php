@@ -9,6 +9,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Intervention\Image\ImageManager;
 use App\Model\Users;
 use App\Model\Pizza;
+use App\Model\Categorias;
 use App\Model\Produtos;
 use Pusher\Pusher;
 
@@ -124,6 +125,31 @@ public function deleteuser(Request $request , Response $response , $args)
 
     $this->em->flush();
 
+}
+
+// ============TesteCardapio=================================
+
+public function newtesteCar(Request $request , Response $response , $args){
+
+  
+    $cate = $this->em->find('App\Model\Categorias', 11);
+
+    //var_dump($cate->getId());
+    //$categoria = new Categorias();
+    //$categoria->setCategoria('teste9');
+    //$categoria->setUrlimg('teste9');
+
+    $pizza = new Pizza();
+    $pizza->setNomesabor('TesteSabor');
+    $pizza->setCategorias($cate);
+    $pizza->setValorM('valorM');
+    $pizza->setValorG('valorG');
+    $pizza->setDescrição('descricao');
+    $pizza->setUrlimg('urlimg');
+
+    //$this->em->persist($cate);
+    $this->em->persist($pizza);
+    $this->em->flush();
 }
 
 }

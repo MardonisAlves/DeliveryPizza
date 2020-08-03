@@ -69,6 +69,7 @@ $this->get('/listall' , 'TesteController:listall')->setName('listall');
 $this->get('/list/{id}' , 'TesteController:list')->setName('list');
 $this->post('/user', 'TesteController:user')->setName('user');
 $this->map(['DELETE' , 'OPTIONS'] , '/delete/{id}', 'TesteController:deleteuser')->setName('deleteuser');
+$this->get('/newtesteCar' , 'TesteController:newtesteCar')->setName('newtesteCar');
 
 });
 
@@ -137,6 +138,6 @@ $this->map(['GET','POST'] ,'/initsession', 'CarroController:initsession')->setNa
 $app->group('',function(){
 $this->get('/categoria', 'CategoriaController:categoria')->setName('categoria');
 $this->post('/newcategoria', 'CategoriaController:newcategoria')->setName('newcategoria');
-$this->get('/excluircategoria', 'CategoriaController:excluir')->setName('excluircategoria');
+$this->get('/excluircategoria/{id}', 'CategoriaController:excluir')->setName('excluircategoria');
 
 });

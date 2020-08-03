@@ -122,7 +122,7 @@ public function updatecategoria(Request $request, Response $response, $args)
 // excluir
 public function excluir(Request $request, Response $response, $args)
 {
-   $categoria = $this->db->find('App\Model\Categorias' ,7);
+   $categoria = $this->db->find('App\Model\Categorias' ,$args['id']);
     $this->db->remove($categoria);
     $this->db->flush();
     $directory = $this->container->get('upload_directory_categoria');

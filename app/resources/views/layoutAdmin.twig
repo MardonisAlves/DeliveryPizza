@@ -34,25 +34,26 @@
 $(document).ready(function(){
     $("select").change(function(){
         $(this).find("option:selected").each(function(){
-            var optionValue = $(this).attr("value");
-            console.log(optionValue);
+            //var optionValue = $(this).attr("value");
+            var texto = $('#id_do_select :selected').text();
 
+            console.log(texto);
 
-            if(optionValue == "pizzas"){
-                $(".input-pizza").not("." + optionValue).show();
-                $(".input-outros").not("." + optionValue).hide();
-            }else if(optionValue == "panquecas"){
-                $(".input-outros").not("." + optionValue).show();
-                $(".input-pizza").not("." + optionValue).hide();
-            }else if(optionValue == "lasanhas"){
-                $(".input-outros").not("." + optionValue).show();
-                $(".input-pizza").not("." + optionValue).hide();
-            }else if(optionValue == "bebidas"){
-                $(".input-outros").not("." + optionValue).show();
-                $(".input-pizza").not("." + optionValue).hide();
-            }else if(optionValue == "calzones"){
-                $(".input-outros").not("." + optionValue).show();
-                $(".input-pizza").not("." + optionValue).hide();
+            if(texto == "pizzas"){
+                $(".input-pizza").not("." + texto).show();
+                $(".input-outros").not("." + texto).hide();
+            }else if(texto == "panquecas"){
+                $(".input-outros").not("." + texto).show();
+                $(".input-pizza").not("." + texto).hide();
+            }else if(texto == "lasanhas"){
+                $(".input-outros").not("." + texto).show();
+                $(".input-pizza").not("." + texto).hide();
+            }else if(texto == "bebidas"){
+                $(".input-outros").not("." + texto).show();
+                $(".input-pizza").not("." + texto).hide();
+            }else if(texto == "calzones"){
+                $(".input-outros").not("." + texto).show();
+                $(".input-pizza").not("." + texto).hide();
             }else{
                  $(".box").hide();
                 $(".box input-outros").hide();

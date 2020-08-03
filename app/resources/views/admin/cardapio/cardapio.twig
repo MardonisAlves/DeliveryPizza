@@ -41,13 +41,12 @@
     <div class="row">
       <div class="input=field col s12 m4 l4">
         Categoria:
-      <select class="form-control" name="categoria" placeholer="categoria">
+      <select class="form-control" name="categoria_id" placeholer="categoria"  id="id_do_select">
+        <!--AQUI FOREACH ALL CATEGORIAS-->
           <option value="" disabled selected></option>
-          <option value="pizzas">Pizzas</option>
-          <option value="panquecas" >Panquecas</option>
-          <option value="lasanhas" >Lasanhas</option>
-          <option value="bebidas" >Refrigerantes</option>
-          <option value="calzones">Calzones</option>
+          {% for categoria in categorias %}
+          <option value="{{categoria.id}}">{{categoria.categoria}}</option>
+          {% endfor %}
       </select>
 
     </div>

@@ -21,10 +21,10 @@ class Pizza
   /**
   * Many pizzas have one Categotia. This is the owning side.
   * @ManyToOne(targetEntity="Categorias", inversedBy="pizza")
-  * @JoinColumn(name="categoria_id", referencedColumnName="id")
+  * @JoinColumn(name="categorias_id" ,referencedColumnName="id", onDelete ="restrict")
   */
 
-  private $categorias;
+  protected $categorias;
 
   /**
   * @Id
@@ -58,10 +58,6 @@ class Pizza
   */
   private $urlimg;
 
- /**
-  * @Column(type="integer")
-  */
-  private $categoria_id;
 
     /**
      * Get id.
@@ -95,30 +91,6 @@ class Pizza
     public function getNomesabor()
     {
         return $this->nomesabor;
-    }
-
-    /**
-     * Set categoria.
-     *
-     * @param string $categoria
-     *
-     * @return Pizza
-     */
-    public function setCategoria($categoria)
-    {
-        $this->categoria = $categoria;
-
-        return $this;
-    }
-
-    /**
-     * Get categoria.
-     *
-     * @return string
-     */
-    public function getCategoria()
-    {
-        return $this->categoria;
     }
 
     /**
@@ -224,9 +196,9 @@ class Pizza
      *
      * @return Pizza
      */
-    public function setCategoriaId($categoriaId)
+    public function setCategoriasId($categoriaId)
     {
-        $this->categoria_id = $categoriaId;
+        $this->categorias_id = $categoriaId;
 
         return $this;
     }
@@ -236,9 +208,9 @@ class Pizza
      *
      * @return int
      */
-    public function getCategoriaId()
+    public function getCategoriasId()
     {
-        return $this->categoria_id;
+        return $this->categorias_id;
     }
 
     /**
@@ -248,7 +220,7 @@ class Pizza
      *
      * @return Pizza
      */
-    public function setCategorias(\Categorias $categorias = null)
+    public function setCategorias(Categorias $categorias = null )
     {
         $this->categorias = $categorias;
 

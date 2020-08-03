@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  *  @Entity
- *  @Table(name="categorias" ,indexes={@Index (name="catego_index", columns={"categoria"})})
+ *  @Table(name="categorias",indexes={@Index(name="categoria_idx", columns={"categoria"})})
  *
  */
 class Categorias {
@@ -21,7 +21,7 @@ class Categorias {
 
 /**
 * One CATEGORIA has many Pizza. This is the inverse side.
-* @OneToMany(targetEntity="Pizza", mappedBy="categorias")
+* @OneToMany(targetEntity="Pizza", mappedBy="categorias",cascade={"persist", "merge", "detach" ,"remove"})
 */
   private $pizza;
 
@@ -48,6 +48,8 @@ class Categorias {
   */
   private $urlimg;
   
+
+    
 
     /**
      * Get id.
@@ -110,11 +112,11 @@ class Categorias {
     /**
      * Add pizza.
      *
-     * @param \pizza $pizza
+     * @param \Pizza $pizza
      *
      * @return Categorias
      */
-    public function addPizza(\pizza $pizza)
+    public function addPizza(\Pizza $pizza)
     {
         $this->pizza[] = $pizza;
 
@@ -124,11 +126,11 @@ class Categorias {
     /**
      * Remove pizza.
      *
-     * @param \pizza $pizza
+     * @param \Pizza $pizza
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removePizza(\pizza $pizza)
+    public function removePizza(\Pizza $pizza)
     {
         return $this->pizza->removeElement($pizza);
     }
