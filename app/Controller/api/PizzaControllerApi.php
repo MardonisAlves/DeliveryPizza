@@ -57,10 +57,11 @@ $manager = $this->em->getRepository('\App\Model\Pizza')->findAll();
 public function listcardapioid(Request  $request, Response $response, $args)
 {
     header('Access-Control-Allow-Origin: *'); 
-    $manager = $this->em->getRepository('App\Model\Pizza')->findBy($array  = array('categorias_id' => $args['id']));
-    //$pizza = $manager->findBy($array  = array('id' => $args['id']));
+    $categoria = $this->find('App\Model\Categorias' , $args['id']);
+    $pizza = $this->em->getRepository('App\Model\Pizza')->findBy(array('categorias_id' => $categoria ));
+  
     $data = Array();
-    foreach ($manager as $card) {
+    foreach ($pizza as $card) {
         
        $data[] = array(
                     'id' => $card->getId(),
