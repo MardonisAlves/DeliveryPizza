@@ -75,8 +75,8 @@ $this->get('/newtesteCar' , 'TesteController:newtesteCar')->setName('newtesteCar
 
 // RestControllerApi
 $app->group('', function() {
-$this->get('/listcardapio' , 'RestControllerApi:listApiCardapio')->setName('listApiCardapio');
-$this->get('/listcardapioid/{id}' , 'RestControllerApi:listPizzaId')->setName('listPizzaId');
+$this->get('/listcardapio' , 'PizzaControllerApi:listApiCardapio')->setName('listApiCardapio');
+$this->get('/listcardapioid/{id}' , 'PizzaControllerApi:listPizzaId')->setName('listPizzaId');
 });
 
 // CategoriaControllerApi

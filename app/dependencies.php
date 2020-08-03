@@ -96,9 +96,9 @@ $container['TesteController'] = function ($container){
                                                 $container->get('flash'));
 };
 
-// RestControllerApi
-$container['RestControllerApi'] = function ($container){
-    return new App\Controller\api\RestControllerApi($container ,
+// PizzaControllerApi
+$container['PizzaControllerApi'] = function ($container){
+    return new App\Controller\api\PizzaControllerApi($container ,
                                                 $container['em'],
                                                 $container->get('flash'));
 };

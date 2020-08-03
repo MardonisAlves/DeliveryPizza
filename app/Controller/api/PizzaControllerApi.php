@@ -12,7 +12,7 @@ use App\Model\Pizza;
 use App\Model\Produtos;
 use Pusher\Pusher;
 
-class RestControllerApi
+class PizzaControllerApi
 {
     protected $em;
     private $container;
@@ -54,10 +54,10 @@ $manager = $this->em->getRepository('\App\Model\Pizza')->findAll();
 
 
 }
-public function listPizzaId(Request  $request, Response $response, $args)
+public function listcardapioid(Request  $request, Response $response, $args)
 {
     header('Access-Control-Allow-Origin: *'); 
-    $manager = $this->em->getRepository('App\Model\Pizza')->findBy($array  = array('id' => $args['id']));
+    $manager = $this->em->getRepository('App\Model\Pizza')->findBy($array  = array('categorias_id' => $args['id']));
     //$pizza = $manager->findBy($array  = array('id' => $args['id']));
     $data = Array();
     foreach ($manager as $card) {
