@@ -84,12 +84,12 @@ public function inserircardapio( $request,  $response, $args)
     $cate = $this->db->find('App\Model\Categorias', $_POST['categoria_id']);
 
     $pizza = new Pizza();
-    $pizza->setNomesabor('TesteSabor');
+    $pizza->setNomesabor($_POST['nomesabor']);
     $pizza->setCategorias($cate);
-    $pizza->setValorM('valorM');
-    $pizza->setValorG('valorG');
-    $pizza->setDescrição('descricao');
-    $pizza->setUrlimg('urlimg');
+    $pizza->setValorM($_POST['valorM']);
+    $pizza->setValorG($_POST['valorG']);
+    $pizza->setDescrição($_POST['descricao']);
+    $pizza->setUrlimg($_FILES['urlimg']['name']);
     $this->db->persist($pizza);
     $this->db->flush();
 
@@ -147,18 +147,19 @@ public function updatePizza(Request $request, Response $response, $args)
 // excluir
 public function excluirpizza(Request $request, Response $response, $args)
 {
-
-    if(($_SESSION['user']) == 'admin'){
-    //echo "Excluir Pizza e renderizar para view admin";
-    $pizza = $this->db->find('App\Model\Pizza' , $args['id']);
+    //$cate = $this->db->find('App\Model\Categorias' , $args['id']);
+   
+    $pizzaid = $this->db->find('App\Model\Categorias' , $args['id']);
+    $pizza = $this->db->find('App\Model\Pizza' , $pizzaid);
     $this->db->remove($pizza);
     $this->db->flush();
+
     $directory = $this->container->get('upload_directory');
     unlink($directory . $pizza->getUrlimg());
 
     echo "<p class='red text-darken-1'>Item excluido com sucesso</p>";
 
-}
+
 
 
 
