@@ -58,10 +58,11 @@ public function listcardapioid(Request  $request, Response $response, $args)
 {
     header('Access-Control-Allow-Origin: *'); 
     $categoria = $this->em->find('App\Model\Categorias' , $args['id']);
-    $pizza = $this->em->getRepository('App\Model\Pizza')->findBy(array('categorias' => $categoria ));
+
+   // $pizza = $this->em->getRepository('App\Model\Pizza')->findBy(array('categorias' => $categoria ));
   
     $data = Array();
-    foreach ($pizza as $card) {
+    foreach ($categoria->getPizza() as $card) {
         
        $data[] = array(
                     'id' => $card->getId(),
