@@ -116,13 +116,23 @@ public function viewlistar( $request,  $response, $args)
  
 
     return $this->container->view->render($response , 
-    "admin/cardapio/listarcardapio.twig" ,['categorias' => $categorias]);
+    "admin/categoria/listarcategoria.twig" ,['categorias' => $categorias]);
 
+}
+
+// all pizza
+public function allpiza(Request $req, Response $res, $args)
+{
+$categorias = $this->db->find('App\Model\Categorias' , $args['id']);  
+$pizzas = $this->db->getRepository('App\Model\Pizza')->findBy(array('categorias' => $categorias->getId()));
+return $this->container->view->render($res , 
+"admin/cardapio/listarcardapio.twig" ,['pizzas' => $pizzas ]);
 }
 
 // listar by id
 public function listarByid($request,  $response, $args)
 {
+
 }
 
 

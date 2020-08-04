@@ -9,19 +9,19 @@
       <thead>
         <tr>
           <th scope='col'>Id</th>
-          <th scope='col'>Categoria</th>
+          <th scope='col'>Sabor</th>
         </tr>
       </thead>
   <tbody>
-    {% for categoria in categorias %}
+    {% for pizza in pizzas %}
     <tr>
-       <td>{{categoria.id}}</td>
-       <td>{{categoria.categoria}}</td>
+       <td>{{pizza.id}}</td>
+       <td>{{pizza.nomesabor}}</td>
        <td>
-       <a href='#' class='waves-effect waves-light green-text darken-4 large' onclick = 'Pizza({{categoria.Id}})'>
+       <a href='#' class='waves-effect waves-light green-text darken-4 large'>
        <i class='material-icons left'>edit_attributes</i>
        </a>
-       <a href="/excluircategoria/{{categoria.id}}"  class='waves-effect waves-light  orange-text darken-4' onclick='Deletar({{categoria.urlimg}})'>
+       <a href="/excluircategoria/{{pizza.id}}"  class='waves-effect waves-light  orange-text darken-4'>
        <i class='material-icons orange-text darken-4 left'>restore_from_trash</i>
        </a>
        </td>

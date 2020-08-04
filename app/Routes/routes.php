@@ -70,6 +70,7 @@ $this->get('/list/{id}' , 'TesteController:list')->setName('list');
 $this->post('/user', 'TesteController:user')->setName('user');
 $this->map(['DELETE' , 'OPTIONS'] , '/delete/{id}', 'TesteController:deleteuser')->setName('deleteuser');
 $this->get('/newtesteCar' , 'TesteController:newtesteCar')->setName('newtesteCar');
+$this->get('/deleteByid/{id}' , 'TesteController:deleteByid')->setName('deleteByid');
 
 });
 
@@ -118,6 +119,8 @@ $this->get('/index', 'PizzaController:index')->setName('index');
 $this->get('/viewlistar', 'PizzaController:viewlistar')->setName('viewlistar');
 // listar by id
 $this->get('/listarid', 'PizzaController:listarByid')->setName('listarid');
+// all pizza
+$this->get('/allpiza/{id}' ,'PizzaController:allpiza')->setName('allpiza');
 // insert cardapio
 $this->post('/insert', 'PizzaController:inserircardapio')->setName('insert');
 // atualizar cardapio

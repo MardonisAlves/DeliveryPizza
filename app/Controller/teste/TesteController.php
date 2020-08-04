@@ -12,6 +12,7 @@ use App\Model\Pizza;
 use App\Model\Categorias;
 use App\Model\Produtos;
 use Pusher\Pusher;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class TesteController
 {
@@ -150,6 +151,36 @@ public function newtesteCar(Request $request , Response $response , $args){
     //$this->em->persist($cate);
     $this->em->persist($pizza);
     $this->em->flush();
+}
+
+// delete pizza by id
+public function deleteByid(Request $req , Response $res , $args)
+{
+      //$pizzaid = $this->em->find('App\Model\Categorias' , $args['id']);
+
+    $categorias = $this->em->find('App\Model\Categorias' , $args['id']);
+    
+
+    foreach ($categorias->getPizza() as $key => $value) {
+      echo $value->getValorM();
+      echo  $value->getId();
+
+      if($value->getId() == 113){ // a varialvel get com id pizza
+      
+       $pizza = $this->em->find('App\Model\Pizza', 113);
+       $this->em->remove($pizza);
+       $this->em->flush();
+
+    }
+  }
+
+
+   // $directory = $this->container->get('upload_directory');
+   // unlink($directory . $pizza->getUrlimg());
+
+    //echo "<p class='red text-darken-1'>Item excluido com sucesso</p>";
+
+
 }
 
 }
