@@ -59,11 +59,9 @@ public function listcardapioid(Request  $request, Response $response, $args)
     header('Access-Control-Allow-Origin: *'); 
     $categoria = $this->em->find('App\Model\Categorias' , $args['id']);
 
-   $pizza = $this->em->getRepository('App\Model\Pizza')->findBy(array('categorias' => $args['id'] ));
-  
+   $pizza = $this->em->getRepository('App\Model\Pizza')->findBy(array('categorias' => $categoria));
     $data = Array();
-    foreach ($pizza as $card) {
-        
+    foreach ($pizza as $key=> $card) {   
        $data[] = array(
                     'id' => $card->getId(),
                     'nome' =>$card->getNomesabor(),
@@ -72,14 +70,13 @@ public function listcardapioid(Request  $request, Response $response, $args)
                     'descricao' => $card->getDescrição(),
                     'urlimg' => $card->getUrlimg()
                 );
-
-        $response = $response->withHeader('Content-Type', 'application/json');
+     }
+    $response = $response->withHeader('Content-Type', 'application/json');
         $response->write(json_encode($data));
         return $response;
-   }
-    
+   
+  
 
- 
 }
 
 }

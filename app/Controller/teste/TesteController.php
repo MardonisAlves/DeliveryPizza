@@ -162,8 +162,8 @@ public function deleteByid(Request $req , Response $res , $args)
     
 
     foreach ($categorias->getPizza() as $key => $value) {
-      echo $value->getValorM();
-      echo  $value->getId();
+      echo $value->getValorM()."<br>";
+      echo  $value->getId()."<br>";
 
       if($value->getId() == 113){ // a varialvel get com id pizza
       
