@@ -62,7 +62,7 @@ public function listcardapioid(Request  $request, Response $response, $args)
    $pizza = $this->em->getRepository('App\Model\Pizza')->findBy(array('categorias' => $categoria->getId() ));
   
     $data = Array();
-    foreach ($categoria->getPizza() as $card) {
+    foreach ($pizza as $card) {
         
        $data[] = array(
                     'id' => $card->getId(),
