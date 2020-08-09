@@ -159,34 +159,12 @@ public function updatePizza(Request $request, Response $response, $args)
 // excluir
 public function excluir(Request $request, Response $response, $args)
 {
-
-  
-$pizza = $this->db->getRepository('App\Model\Categorias')
-                    ->findBy(array('id' => $args['id']));
-
-  
-  //  var_export($pizza->getPizza());
-    
-
-    foreach ($pizza as $key => $value) {
-        echo $value->getId();
-
+    $pizza = $this->db->find('App\Model\Pizza' , $args['id']);
     $this->db->remove($pizza);
     $this->db->flush();
-    }
-
-
-   
-
-    //$directory = $this->container->get('upload_directory');
-    //unlink($directory . $pizza->getUrlimg());
-
-    //echo "<p class='red text-darken-1'>Item excluido com sucesso</p>";
-
-
-
-
-
+    $directory = $this->container->get('upload_directory');
+    unlink($directory . $pizza->getUrlimg());
+    echo "<p class='red text-darken-1'>Item excluido com sucesso</p>";
 }
 
 }
