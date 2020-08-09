@@ -6,25 +6,18 @@ use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Index;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\Common\Annotation;
 use Doctrine\ORM\Mapping\GeneratedValue;
 
   /**
   * @Entity
-  * @Table(name="pizza")
+  * @Table(name="pizza" , indexes={@Index(name="nomesabor_idx", columns={"nomesabor"})})
   *
   */
 class Pizza
 {
-
-  /**
-  * Many pizzas have one Categotia. This is the owning side.
-  * @ManyToOne(targetEntity="Categorias", inversedBy="pizza")
-  * @JoinColumn(name="categorias_id" ,referencedColumnName="id", onDelete ="restrict")
-  */
-
-  protected $categorias;
 
   /**
   * @Id
@@ -58,6 +51,11 @@ class Pizza
   */
   private $urlimg;
 
+  /**
+  *@Column(type="string")
+  *
+  */
+  private $categoria;
 
     /**
      * Get id.
@@ -189,51 +187,31 @@ class Pizza
         return $this->urlimg;
     }
 
+   
+
+    
+
     /**
-     * Set categoriaId.
+     * Set categoria.
      *
-     * @param int $categoriaId
+     * @param string $categoria
      *
      * @return Pizza
      */
-    public function setCategoriasId($categoriaId)
+    public function setCategoria($categoria)
     {
-        $this->categorias_id = $categoriaId;
+        $this->categoria = $categoria;
 
         return $this;
     }
 
     /**
-     * Get categoriaId.
+     * Get categoria.
      *
-     * @return int
+     * @return string
      */
-    public function getCategoriasId()
+    public function getCategoria()
     {
-        return $this->categorias_id;
-    }
-
-    /**
-     * Set categorias.
-     *
-     * @param \Categorias|null $categorias
-     *
-     * @return Pizza
-     */
-    public function setCategorias(Categorias $categorias = null )
-    {
-        $this->categorias = $categorias;
-
-        return $this;
-    }
-
-    /**
-     * Get categorias.
-     *
-     * @return \Categorias|null
-     */
-    public function getCategorias()
-    {
-        return $this->categorias;
+        return $this->categoria;
     }
 }

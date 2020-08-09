@@ -88,18 +88,19 @@ public function user(Request $request , Response $response , $args)
     header("Access-Control-Allow-Origin: *");
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
-
+    
     $user = new Users();
     $user->setEmail($obj->email);
     $user->setNome($obj->name);
-    $user->setTipouser($obj->typer);
+    $user->setTipouser($obj->typeuser);
     $user->setSenha($obj->password);
 
     $this->em->persist($user);
     $this->em->flush();
 
-    $array = array('data' => $obj );
+ $array = array('data' => $obj );
     return $response->withJson($array , 200);
+  
 }
 
 

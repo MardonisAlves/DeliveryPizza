@@ -27,8 +27,8 @@ class PizzaController
 // index cardapio get form
 public  function index(Request $request, Response $response, $args)
 {
-    $categorias = $this->db->getRepository('App\Model\Categorias')->findAll();
-    return $this->container->view->render($response ,'admin/cardapio/cardapio.twig' ,['categorias' => $categorias]);
+    
+    return $this->container->view->render($response ,'admin/cardapio/cardapio.twig');
 }
 // inserir
 public function inserircardapio( $request,  $response, $args)
@@ -81,11 +81,11 @@ public function inserircardapio( $request,  $response, $args)
         }
     move_uploaded_file($folderPath ,  $_FILES['urlimg']['name']);
     
-    $cate = $this->db->find('App\Model\Categorias', $_POST['categoria_id']);
+   
 
     $pizza = new Pizza();
     $pizza->setNomesabor($_POST['nomesabor']);
-    $pizza->setCategorias($cate);
+    $pizza->setCategoria($_POST['categoria']);
     $pizza->setValorM($_POST['valorM']);
     $pizza->setValorG($_POST['valorG']);
     $pizza->setDescrição($_POST['descricao']);
@@ -112,22 +112,24 @@ public function imageResize($imageResourceId,$width,$height) {
 // listar
 public function viewlistar( $request,  $response, $args)
 {
-    $categorias = $this->db->getRepository('App\Model\Categorias')->findAll();
+    $pizzas = $this->db->getRepository('App\Model\Pizza')->findAll();
  
 
     return $this->container->view->render($response , 
-    "admin/categoria/listarcategoria.twig" ,['categorias' => $categorias]);
+    "admin/cardapio/listarcardapio.twig" ,['pizzas' => $pizzas]);
 
 }
 
 // all pizza
 public function allpiza(Request $req, Response $res, $args)
 {
-$categorias = $this->db->find('App\Model\Categorias' , $args['id']);  
-$pizzas = $this->db->getRepository('App\Model\Pizza')->findBy(array('categorias' => $categorias->getId()));
+$categorias = $this->db->find('App\Model\Categorias', $args['id']); 
+
 return $this->container->view->render($res , 
-"admin/cardapio/listarcardapio.twig" ,['pizzas' => $pizzas ]);
+"admin/cardapio/listarcardapio.twig" ,['pizzas' => $categorias->getPizza() ]);
+
 }
+
 
 // listar by id
 public function listarByid($request,  $response, $args)
@@ -155,19 +157,31 @@ public function updatePizza(Request $request, Response $response, $args)
 }
 
 // excluir
-public function excluirpizza(Request $request, Response $response, $args)
+public function excluir(Request $request, Response $response, $args)
 {
-    //$cate = $this->db->find('App\Model\Categorias' , $args['id']);
-   
-    $pizzaid = $this->db->find('App\Model\Categorias' , $args['id']);
-    $pizza = $this->db->find('App\Model\Pizza' , $pizzaid);
+
+  
+$pizza = $this->db->getRepository('App\Model\Categorias')
+                    ->findBy(array('id' => $args['id']));
+
+  
+  //  var_export($pizza->getPizza());
+    
+
+    foreach ($pizza as $key => $value) {
+        echo $value->getId();
+
     $this->db->remove($pizza);
     $this->db->flush();
+    }
 
-    $directory = $this->container->get('upload_directory');
-    unlink($directory . $pizza->getUrlimg());
 
-    echo "<p class='red text-darken-1'>Item excluido com sucesso</p>";
+   
+
+    //$directory = $this->container->get('upload_directory');
+    //unlink($directory . $pizza->getUrlimg());
+
+    //echo "<p class='red text-darken-1'>Item excluido com sucesso</p>";
 
 
 

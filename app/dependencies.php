@@ -163,11 +163,4 @@ $container['EnderecoController'] = function ($container) {
 };
 
 
-// CategoriaController
-    $container['CategoriaController'] = function ($container) {
-    return new \App\Controller\categoria\CategoriaController($container  ,
-                                                $container['em'] ,
-                                                $container->get('flash'),
-                                                $container->get('session'));
 
-};

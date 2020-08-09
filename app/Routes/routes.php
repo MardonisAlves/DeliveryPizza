@@ -67,17 +67,17 @@ $this->map(['GET','POST'],'/updatesenha', 'SenhaController:updatesenha')->setNam
 $app->group('', function() {
 $this->get('/listall' , 'TesteController:listall')->setName('listall');
 $this->get('/list/{id}' , 'TesteController:list')->setName('list');
-$this->post('/user', 'TesteController:user')->setName('user');
+$this->get('/user', 'TesteController:user')->setName('user');
 $this->map(['DELETE' , 'OPTIONS'] , '/delete/{id}', 'TesteController:deleteuser')->setName('deleteuser');
 $this->get('/newtesteCar' , 'TesteController:newtesteCar')->setName('newtesteCar');
 $this->get('/deleteByid/{id}' , 'TesteController:deleteByid')->setName('deleteByid');
 
 });
 
-// RestControllerApi
+// PizzaControllerApi
 $app->group('', function() {
 $this->get('/listcardapio' , 'PizzaControllerApi:listApiCardapio')->setName('listApiCardapio');
-$this->get('/listcardapioid/{id}' , 'PizzaControllerApi:listcardapioid')->setName('listcardapioid');
+$this->get('/listcardapio/{categoria}' , 'PizzaControllerApi:listcardapio')->setName('listcardapio');
 });
 
 // CategoriaControllerApi
@@ -126,7 +126,7 @@ $this->post('/insert', 'PizzaController:inserircardapio')->setName('insert');
 // atualizar cardapio
 $this->post('/atualizar', 'PizzaController:updatePizza')->setName('atualizar');
 // excluir cardapio
-$this->get('/excluir/{id}', 'PizzaController:excluirpizza')->setName('excluir');
+$this->get('/excluir/{id}', 'PizzaController:excluir')->setName('excluir');
 
 });
 
@@ -136,11 +136,3 @@ $this->map(['GET','POST'] ,'/initsession', 'CarroController:initsession')->setNa
 });
 
 
-// CategoriaController
-
-$app->group('',function(){
-$this->get('/categoria', 'CategoriaController:categoria')->setName('categoria');
-$this->post('/newcategoria', 'CategoriaController:newcategoria')->setName('newcategoria');
-$this->get('/excluircategoria/{id}', 'CategoriaController:excluir')->setName('excluircategoria');
-
-});

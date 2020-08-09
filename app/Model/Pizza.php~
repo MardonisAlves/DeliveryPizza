@@ -6,24 +6,18 @@ use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Index;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\Common\Annotation;
 use Doctrine\ORM\Mapping\GeneratedValue;
 
   /**
   * @Entity
-  * @Table(name="pizza")
+  * @Table(name="pizza" , indexes={@Index(name="nomesabor_idx", columns={"nomesabor"})})
   *
   */
 class Pizza
 {
-
-  /**
-  * Many pizzas have one Categotia. This is the owning side.
-  * @ManyToOne(targetEntity="Categorias", inversedBy="pizza")
-  */
-
-  protected $categorias;
 
   /**
   * @Id
@@ -57,6 +51,11 @@ class Pizza
   */
   private $urlimg;
 
+  /**
+  *@Column(type="string")
+  *
+  */
+  private $categoria;
 
     /**
      * Get id.
@@ -188,51 +187,7 @@ class Pizza
         return $this->urlimg;
     }
 
-    /**
-     * Set categoriaId.
-     *
-     * @param int $categoriaId
-     *
-     * @return Pizza
-     */
-    public function setCategoriaId($categoriaId)
-    {
-        $this->categoria_id = $categoriaId;
+   
 
-        return $this;
-    }
-
-    /**
-     * Get categoriaId.
-     *
-     * @return int
-     */
-    public function getCategoriaId()
-    {
-        return $this->categoria_id;
-    }
-
-    /**
-     * Set categorias.
-     *
-     * @param \Categorias|null $categorias
-     *
-     * @return Pizza
-     */
-    public function setCategorias(Categorias $categorias = null )
-    {
-        $this->categorias = $categorias;
-
-        return $this;
-    }
-
-    /**
-     * Get categorias.
-     *
-     * @return \Categorias|null
-     */
-    public function getCategorias()
-    {
-        return $this->categorias;
-    }
+    
 }
