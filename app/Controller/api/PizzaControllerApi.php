@@ -76,5 +76,24 @@ public function listcardapio(Request  $request, Response $response, $args)
   
 
 }
+public function listcardapioId(Request  $request, Response $response, $args)
+{
+  header('Access-Control-Allow-Origin: *'); 
+   $pizza = $this->em->getRepository('App\Model\Pizza')->findBy(array('id' => $args['id']));
+    $data = Array();
+    foreach ($pizza as $key=> $card) {   
+       $data[] = array(
+                    'id' => $card->getId(),
+                    'nome' =>$card->getNomesabor(),
+                    'valorM' => $card->getValorM(),
+                    'valorG' => $card->getValorG(),
+                    'descricao' => $card->getDescrição(),
+                    'urlimg' => $card->getUrlimg()
+                );
+     }
+    $response = $response->withHeader('Content-Type', 'application/json');
+        $response->write(json_encode($data));
+        return $response; 
+}
 
 }
