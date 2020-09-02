@@ -76,7 +76,7 @@ $this->get('/deleteByid/{id}' , 'TesteController:deleteByid')->setName('deleteBy
 
 // PizzaControllerApi
 $app->group('', function() {
-$this->get('/listcardapio' , 'PizzaControllerApi:listApiCardapio')->setName('listApiCardapio');
+$this->get('/listAll' , 'PizzaControllerApi:listAll')->setName('listAll');
 $this->get('/listcardapio/{categoria}' , 'PizzaControllerApi:listcardapio')->setName('listcardapio');
 });
 

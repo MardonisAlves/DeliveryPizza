@@ -30,7 +30,7 @@ class PizzaControllerApi
 
 
 
-public function listApiCardapio(Request  $request, Response $response, $args){
+public function listAll(Request  $request, Response $response, $args){
 header('Access-Control-Allow-Origin: *'); // Este cabeçalho aceita qualquer requisição
 
 $manager = $this->em->getRepository('\App\Model\Pizza')->findAll();
