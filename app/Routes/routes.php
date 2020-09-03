@@ -76,9 +76,8 @@ $this->get('/deleteByid/{id}' , 'TesteController:deleteByid')->setName('deleteBy
 
 // PizzaControllerApi
 $app->group('', function() {
-//$this->get('/listAll' , 'PizzaControllerApi:listAll')->setName('listAll');
-$this->get('/listAll/{categoria}' , 'PizzaControllerApi:listcardapio')->setName('listcardapio');
-$this->get('/listcardapioId/{id}' , 'PizzaControllerApi:listcardapioId')->setName('listcardapioId');
+$this->get('/listcardapio' , 'PizzaControllerApi:listApiCardapio')->setName('listApiCardapio');
+$this->get('/listcardapio/{categoria}' , 'PizzaControllerApi:listcardapio')->setName('listcardapio');
 });
 
 // CategoriaControllerApi
@@ -92,8 +91,8 @@ $this->post('/newendereco' , 'EnderecoController:newendereco')->setName('newende
 // get form  enedereco by id
 $this->get('/updateendeid/{id}', 'EnderecoController:UpdateUserEndeId')->setName('UpdateUserEndeId');
 // update endereco user
-
-$this->get('/listcardapioId/{id}')// delete
+$this->map(['POST','GET'],'/updateendereco' , 'EnderecoController:updateendereco')->setName('updateendereco');
+// delete
 $this->get('/deleteende', 'EnderecoController:delete')->setName('delete');
 });
 
